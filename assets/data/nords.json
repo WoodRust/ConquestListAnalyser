@@ -1,0 +1,1012 @@
+[
+    {
+        "name": "Raiders",
+        "faction": "Nords",
+        "type": "infantry",
+        "regimentClass": "light",
+        "characteristics": {
+            "march": 6,
+            "volley": 1,
+            "clash": 2,
+            "attacks": 4,
+            "wounds": 4,
+            "resolve": 2,
+            "defense": 1,
+            "evasion": 1
+        },
+        "specialRules": [
+            {
+                "name": "Flurry",
+                "description": "This Stand may re-roll failed Hit rolls when performing a Clash Action."
+            },
+            {
+                "name": "Impact (2)",
+                "description": "When this Stand performs a successful Charge Action, before its Clash Action, it inflicts a number of automatic Hits equal to its Impact value."
+            },
+            {
+                "name": "Tenacious (1)",
+                "description": "This Regiment may ignore a number of failed Resolve Tests equal to its Tenacious value."
+            },
+            {
+                "name": "Leader",
+                "description": "The Regiment's Command Stand that provides leadership to the unit."
+            },
+            {
+                "name": "Standard Bearer",
+                "description": "The Regiment's Command Stand includes a Standard Bearer."
+            }
+        ],
+        "numericSpecialRules": {
+            "impact": 2,
+            "tenacious": 1
+        },
+        "drawEvents": [],
+        "points": 120,
+        "pointsPerAdditionalStand": 40,
+        "officerUpgrades": "Any Raiders Regiment may take up to two of the following Officers: Captain (20 points), Shield Biter (15 points)"
+    },
+    {
+        "name": "Bow-Chosen",
+        "faction": "Nords",
+        "type": "infantry",
+        "regimentClass": "light",
+        "characteristics": {
+            "march": 6,
+            "volley": 3,
+            "clash": 3,
+            "attacks": 4,
+            "wounds": 5,
+            "resolve": 3,
+            "defense": 2,
+            "evasion": 2
+        },
+        "specialRules": [
+            {
+                "name": "Barrage (5) (14\", Precise Shot)",
+                "description": "This Regiment may perform a Volley Action, making a number of Attack rolls equal to its Barrage value multiplied by the Regiment's number of Stands."
+            },
+            {
+                "name": "War-Brethren",
+                "description": "Stands in this Regiment gain the benefits of the Tribal Tactics the [Character] Stand, whose Warband they are part of, has selected."
+            },
+            {
+                "name": "Leader",
+                "description": "The Regiment's Command Stand that provides leadership to the unit."
+            }
+        ],
+        "numericSpecialRules": {
+            "barrage": 5,
+            "barrageRange": 14
+        },
+        "drawEvents": [],
+        "points": 200,
+        "pointsPerAdditionalStand": 60
+    },
+    {
+        "name": "Stalkers",
+        "faction": "Nords",
+        "type": "infantry",
+        "regimentClass": "light",
+        "characteristics": {
+            "march": 6,
+            "volley": 2,
+            "clash": 2,
+            "attacks": 4,
+            "wounds": 4,
+            "resolve": 2,
+            "defense": 1,
+            "evasion": 2
+        },
+        "specialRules": [
+            {
+                "name": "Barrage (4) (16\")",
+                "description": "This Regiment may perform a Volley Action, making a number of Attack rolls equal to its Barrage value multiplied by the Regiment's number of Stands."
+            },
+            {
+                "name": "Flank",
+                "description": "Once per Round, during this Regiment's Activation, it may perform a free Retreat Action after completing its Action."
+            },
+            {
+                "name": "Opportunists",
+                "description": "This Regiment may perform a free March Action during its Activation."
+            },
+            {
+                "name": "Leader",
+                "description": "The Regiment's Command Stand that provides leadership to the unit."
+            },
+            {
+                "name": "Standard Bearer",
+                "description": "The Regiment's Command Stand includes a Standard Bearer."
+            }
+        ],
+        "numericSpecialRules": {
+            "barrage": 4,
+            "barrageRange": 16
+        },
+        "drawEvents": [],
+        "points": 140,
+        "pointsPerAdditionalStand": 40
+    },
+    {
+        "name": "Werewargs",
+        "faction": "Nords",
+        "type": "brute",
+        "regimentClass": "light",
+        "characteristics": {
+            "march": 7,
+            "volley": 1,
+            "clash": 2,
+            "attacks": 6,
+            "wounds": 5,
+            "resolve": 3,
+            "defense": 2,
+            "evasion": 1
+        },
+        "specialRules": [
+            {
+                "name": "Impact (3)",
+                "description": "When this Stand performs a successful Charge Action, before its Clash Action, it inflicts a number of automatic Hits equal to its Impact value."
+            },
+            {
+                "name": "Terrifying (1)",
+                "description": "Enemy Stands with 6 or more Wounds total than are in base contact with this Stand suffer -1 to their Resolve Characteristic."
+            },
+            {
+                "name": "Leader",
+                "description": "The Regiment's Command Stand that provides leadership to the unit."
+            }
+        ],
+        "numericSpecialRules": {
+            "impact": 3,
+            "terrifying": 1
+        },
+        "drawEvents": [
+            {
+                "name": "Regeneration (3)",
+                "description": "This Regiment Heals 3 Wounds."
+            }
+        ],
+        "points": 170,
+        "pointsPerAdditionalStand": 60
+    },
+    {
+        "name": "Huskarls",
+        "faction": "Nords",
+        "type": "infantry",
+        "regimentClass": "medium",
+        "characteristics": {
+            "march": 6,
+            "volley": 1,
+            "clash": 3,
+            "attacks": 5,
+            "wounds": 4,
+            "resolve": 3,
+            "defense": 2,
+            "evasion": 0
+        },
+        "specialRules": [
+            {
+                "name": "Shield",
+                "description": "This Stand adds +1 to its Defense Characteristic against Attacks originating from its front arc."
+            },
+            {
+                "name": "Impact (2)",
+                "description": "When this Stand performs a successful Charge Action, before its Clash Action, it inflicts a number of automatic Hits equal to its Impact value."
+            },
+            {
+                "name": "Untouchable",
+                "description": "Once per Round, during this Regiment's Activation, it may perform a free Withdraw and Reform Action after completing its Action."
+            },
+            {
+                "name": "Leader",
+                "description": "The Regiment's Command Stand that provides leadership to the unit."
+            },
+            {
+                "name": "Standard Bearer",
+                "description": "The Regiment's Command Stand includes a Standard Bearer."
+            }
+        ],
+        "numericSpecialRules": {
+            "impact": 2,
+            "shield": true
+        },
+        "drawEvents": [],
+        "points": 150,
+        "pointsPerAdditionalStand": 50,
+        "officerUpgrades": "Any Huskarl Regiment may take up to two of the following Officers: Thegn (20 points), Skald (20 points)"
+    },
+    {
+        "name": "Ulfhednar",
+        "faction": "Nords",
+        "type": "infantry",
+        "regimentClass": "medium",
+        "characteristics": {
+            "march": 6,
+            "volley": 1,
+            "clash": 2,
+            "attacks": 7,
+            "wounds": 4,
+            "resolve": 4,
+            "defense": 2,
+            "evasion": 1
+        },
+        "specialRules": [
+            {
+                "name": "Vanguard (4)",
+                "description": "This Regiment may perform a free March Action during its Activation with a maximum March Distance of 4\"."
+            },
+            {
+                "name": "Tenacious (1)",
+                "description": "This Regiment may ignore a number of failed Resolve Tests equal to its Tenacious value."
+            },
+            {
+                "name": "Leader",
+                "description": "The Regiment's Command Stand that provides leadership to the unit."
+            },
+            {
+                "name": "Standard Bearer",
+                "description": "The Regiment's Command Stand includes a Standard Bearer."
+            }
+        ],
+        "numericSpecialRules": {
+            "vanguard": 4,
+            "tenacious": 1
+        },
+        "drawEvents": [],
+        "points": 170,
+        "pointsPerAdditionalStand": 60,
+        "officerUpgrades": "Any Ulfhednar Regiment may take one of the following Officers: Savage (30 points), Shield Biter (15 points)"
+    },
+    {
+        "name": "Trolls",
+        "faction": "Nords",
+        "type": "infantry",
+        "regimentClass": "medium",
+        "characteristics": {
+            "march": 6,
+            "volley": 1,
+            "clash": 2,
+            "attacks": 5,
+            "wounds": 6,
+            "resolve": 3,
+            "defense": 2,
+            "evasion": 1
+        },
+        "specialRules": [
+            {
+                "name": "Cleave (1)",
+                "description": "Enemy Stands in contact with this Stand reduce their Defense Characteristic by 1 when making Defense rolls against Hits inflicted by this Stand."
+            },
+            {
+                "name": "Fearsome",
+                "description": "Enemy models suffer a -1 penalty to Morale tests when in base contact with models with this rule."
+            },
+            {
+                "name": "Oblivious",
+                "description": "This Regiment does not suffer penalties to its Clash value for charging through Hindering Terrain."
+            },
+            {
+                "name": "Leader",
+                "description": "The Regiment's Command Stand that provides leadership to the unit."
+            },
+            {
+                "name": "Standard Bearer",
+                "description": "The Regiment's Command Stand includes a Standard Bearer."
+            }
+        ],
+        "numericSpecialRules": {
+            "cleave": 1
+        },
+        "drawEvents": [
+            {
+                "name": "Regeneration (6)",
+                "description": "This Regiment Heals 6 Wounds."
+            }
+        ],
+        "points": 180,
+        "pointsPerAdditionalStand": 60
+    },
+    {
+        "name": "Valkyries",
+        "faction": "Nords",
+        "type": "infantry",
+        "regimentClass": "medium",
+        "characteristics": {
+            "march": 6,
+            "volley": 1,
+            "clash": 3,
+            "attacks": 4,
+            "wounds": 4,
+            "resolve": 3,
+            "defense": 2,
+            "evasion": 0
+        },
+        "specialRules": [
+            {
+                "name": "Blessed",
+                "description": "This Regiment may re-roll all failed Hit rolls when attacking [Fiend] Regiments."
+            },
+            {
+                "name": "Devout",
+                "description": "This Regiment may be the Target of a Friendly [Character] Stand's Spellcasting Action regardless of the Spell's Range."
+            },
+            {
+                "name": "Shield",
+                "description": "This Stand adds +1 to its Defense Characteristic against Attacks originating from its front arc."
+            },
+            {
+                "name": "Support (2)",
+                "description": "Unengaged Stands in this Regiment inflict 2 Attacks as support."
+            },
+            {
+                "name": "Leader",
+                "description": "The Regiment's Command Stand that provides leadership to the unit."
+            },
+            {
+                "name": "Standard Bearer",
+                "description": "The Regiment's Command Stand includes a Standard Bearer."
+            }
+        ],
+        "numericSpecialRules": {
+            "support": 2,
+            "shield": true
+        },
+        "drawEvents": [],
+        "points": 150,
+        "pointsPerAdditionalStand": 50
+    },
+    {
+        "name": "Fenr Beastpack",
+        "faction": "Nords",
+        "type": "cavalry",
+        "regimentClass": "medium",
+        "characteristics": {
+            "march": 7,
+            "volley": 1,
+            "clash": 2,
+            "attacks": 6,
+            "wounds": 4,
+            "resolve": 2,
+            "defense": 1,
+            "evasion": 2
+        },
+        "specialRules": [
+            {
+                "name": "Fluid Formation",
+                "description": "This Regiment can perform Volley Actions while in contact with Enemy Regiments."
+            },
+            {
+                "name": "Opportunists",
+                "description": "This Regiment may perform a free March Action during its Activation."
+            },
+            {
+                "name": "Irregular",
+                "description": "This Regiment suffers a -1 modifier to its Resolve Characteristic for each lost Stand."
+            },
+            {
+                "name": "Loose Formation",
+                "description": "This Regiment may March and Charge through other Friendly Regiments."
+            },
+            {
+                "name": "Vanguard (4)",
+                "description": "This Regiment may perform a free March Action during its Activation with a maximum March Distance of 4\"."
+            },
+            {
+                "name": "Leader",
+                "description": "The Regiment's Command Stand that provides leadership to the unit."
+            }
+        ],
+        "numericSpecialRules": {
+            "vanguard": 4
+        },
+        "drawEvents": [],
+        "points": 140,
+        "pointsPerAdditionalStand": 50
+    },
+    {
+        "name": "Ugr",
+        "faction": "Nords",
+        "type": "brute",
+        "regimentClass": "medium",
+        "characteristics": {
+            "march": 6,
+            "volley": 1,
+            "clash": 3,
+            "attacks": 4,
+            "wounds": 5,
+            "resolve": 3,
+            "defense": 2,
+            "evasion": 0
+        },
+        "specialRules": [
+            {
+                "name": "Cleave (2)",
+                "description": "Enemy Stands in contact with this Stand reduce their Defense Characteristic by 2 when making Defense rolls against Hits inflicted by this Stand."
+            },
+            {
+                "name": "Fearless",
+                "description": "This Regiment is immune to the effects of the Terrifying Special Rule."
+            },
+            {
+                "name": "Oblivious",
+                "description": "This Regiment does not suffer penalties to its Clash value for charging through Hindering Terrain."
+            },
+            {
+                "name": "Impact (2)",
+                "description": "When this Stand performs a successful Charge Action, before its Clash Action, it inflicts a number of automatic Hits equal to its Impact value."
+            },
+            {
+                "name": "Leader",
+                "description": "The Regiment's Command Stand that provides leadership to the unit."
+            }
+        ],
+        "numericSpecialRules": {
+            "cleave": 2,
+            "impact": 2
+        },
+        "drawEvents": [],
+        "points": 150,
+        "pointsPerAdditionalStand": 50
+    },
+    {
+        "name": "Bearsarks",
+        "faction": "Nords",
+        "type": "infantry",
+        "regimentClass": "heavy",
+        "characteristics": {
+            "march": 6,
+            "volley": 1,
+            "clash": 3,
+            "attacks": 5,
+            "wounds": 4,
+            "resolve": 4,
+            "defense": 2,
+            "evasion": 1
+        },
+        "specialRules": [
+            {
+                "name": "Cleave (2)",
+                "description": "Enemy Stands in contact with this Stand reduce their Defense Characteristic by 2 when making Defense rolls against Hits inflicted by this Stand."
+            },
+            {
+                "name": "Vanguard (4)",
+                "description": "This Regiment may perform a free March Action during its Activation with a maximum March Distance of 4\"."
+            },
+            {
+                "name": "Tenacious (1)",
+                "description": "This Regiment may ignore a number of failed Resolve Tests equal to its Tenacious value."
+            },
+            {
+                "name": "Leader",
+                "description": "The Regiment's Command Stand that provides leadership to the unit."
+            },
+            {
+                "name": "Standard Bearer",
+                "description": "The Regiment's Command Stand includes a Standard Bearer."
+            }
+        ],
+        "numericSpecialRules": {
+            "cleave": 2,
+            "vanguard": 4,
+            "tenacious": 1
+        },
+        "drawEvents": [],
+        "points": 170,
+        "pointsPerAdditionalStand": 60,
+        "officerUpgrades": "Any Bearsarks Regiment may take one of the following Officers: Savage (30 points), Shield Biter (15 points)"
+    },
+    {
+        "name": "Steel Chosen",
+        "faction": "Nords",
+        "type": "infantry",
+        "regimentClass": "medium",
+        "characteristics": {
+            "march": 6,
+            "volley": 1,
+            "clash": 3,
+            "attacks": 6,
+            "wounds": 5,
+            "resolve": 3,
+            "defense": 2,
+            "evasion": 1
+        },
+        "specialRules": [
+            {
+                "name": "Flurry",
+                "description": "This Stand may re-roll failed Hit rolls when performing a Clash Action."
+            },
+            {
+                "name": "Linebreaker",
+                "description": "This Regiment may Charge and pass through Enemy Regiments with the Fodder Special Rule."
+            },
+            {
+                "name": "Impact (2)",
+                "description": "When this Stand performs a successful Charge Action, before its Clash Action, it inflicts a number of automatic Hits equal to its Impact value."
+            },
+            {
+                "name": "War-Brethren",
+                "description": "Stands in this Regiment gain the benefits of the Tribal Tactics the [Character] Stand, whose Warband they are part of, has selected."
+            },
+            {
+                "name": "Leader",
+                "description": "The Regiment's Command Stand that provides leadership to the unit."
+            },
+            {
+                "name": "Standard Bearer",
+                "description": "The Regiment's Command Stand includes a Standard Bearer."
+            }
+        ],
+        "numericSpecialRules": {
+            "impact": 2
+        },
+        "drawEvents": [],
+        "points": 180,
+        "pointsPerAdditionalStand": 60,
+        "officerUpgrades": "Any Steel Chosen Regiment may take the following Officer: Shield Biter (20 points)"
+    },
+    {
+        "name": "Goltr Beastpack",
+        "faction": "Nords",
+        "type": "cavalry",
+        "regimentClass": "medium",
+        "characteristics": {
+            "march": 6,
+            "volley": 1,
+            "clash": 3,
+            "attacks": 5,
+            "wounds": 5,
+            "resolve": 3,
+            "defense": 3,
+            "evasion": 1
+        },
+        "specialRules": [
+            {
+                "name": "Brutal Impact (1)",
+                "description": "When this Stand performs a successful Charge Action, it inflicts automatic Hits that reduce the Enemy Stands' Defense Characteristic by 1 when defending against them."
+            },
+            {
+                "name": "Linebreaker",
+                "description": "This Regiment may Charge and pass through Enemy Regiments with the Fodder Special Rule."
+            },
+            {
+                "name": "Trample (2)",
+                "description": "As part of a Move Action, this Stand may move through Enemy Stands with the Fodder Special Rule, inflicting 2 automatic Hits on them."
+            },
+            {
+                "name": "Irregular",
+                "description": "This Regiment suffers a -1 modifier to its Resolve Characteristic for each lost Stand."
+            },
+            {
+                "name": "Impact (3)",
+                "description": "When this Stand performs a successful Charge Action, before its Clash Action, it inflicts a number of automatic Hits equal to its Impact value."
+            },
+            {
+                "name": "Unstoppable",
+                "description": "This Regiment may re-roll all failed Charge rolls."
+            },
+            {
+                "name": "Leader",
+                "description": "The Regiment's Command Stand that provides leadership to the unit."
+            }
+        ],
+        "numericSpecialRules": {
+            "brutalImpact": 1,
+            "trample": 2,
+            "impact": 3
+        },
+        "drawEvents": [],
+        "points": 160,
+        "pointsPerAdditionalStand": 50
+    },
+    {
+        "name": "Sea Jotnar",
+        "faction": "Nords",
+        "type": "monster",
+        "regimentClass": "heavy",
+        "characteristics": {
+            "march": 7,
+            "volley": 3,
+            "clash": 3,
+            "attacks": 13,
+            "wounds": 16,
+            "resolve": 3,
+            "defense": 3,
+            "evasion": 2
+        },
+        "specialRules": [
+            {
+                "name": "Barrage (6) (8\", Armor Piercing (1))",
+                "description": "This Regiment may perform a Volley Action, making a number of Attack rolls equal to its Barrage value. The Barrage has the Armor Piercing (1) special rule."
+            },
+            {
+                "name": "Cleave (2)",
+                "description": "Enemy Stands in contact with this Stand reduce their Defense Characteristic by 2 when making Defense rolls against Hits inflicted by this Stand."
+            },
+            {
+                "name": "Fiend Hunter",
+                "description": "This Regiment may re-roll all failed Hit rolls against [Fiend] targets."
+            },
+            {
+                "name": "Terrifying (1)",
+                "description": "Enemy Stands with 6 or fewer models than are in base contact with this Stand suffer -1 to their Resolve Characteristic."
+            },
+            {
+                "name": "Impact (5)",
+                "description": "When this Stand performs a successful Charge Action, before its Clash Action, it inflicts a number of automatic Hits equal to its Impact value."
+            }
+        ],
+        "numericSpecialRules": {
+            "barrage": 6,
+            "barrageRange": 8,
+            "armorPiercing": true,
+            "armorPiercingValue": 1,
+            "cleave": 2,
+            "terrifying": 1,
+            "impact": 5
+        },
+        "drawEvents": [],
+        "points": 240
+    },
+    {
+        "name": "Mountain Jotnar",
+        "faction": "Nords",
+        "type": "monster",
+        "regimentClass": "heavy",
+        "characteristics": {
+            "march": 7,
+            "volley": 1,
+            "clash": 3,
+            "attacks": 12,
+            "wounds": 18,
+            "resolve": 3,
+            "defense": 3,
+            "evasion": 0
+        },
+        "specialRules": [
+            {
+                "name": "Cleave (2)",
+                "description": "Enemy Stands in contact with this Stand reduce their Defense Characteristic by 2 when making Defense rolls against Hits inflicted by this Stand."
+            },
+            {
+                "name": "Terrifying (1)",
+                "description": "Enemy Stands with 6 or fewer models than are in base contact with this Stand suffer -1 to their Resolve Characteristic."
+            },
+            {
+                "name": "Hardened (1)",
+                "description": "This Regiment ignores the first point of Cleave being applied to it."
+            },
+            {
+                "name": "Impact (6)",
+                "description": "When this Stand performs a successful Charge Action, before its Clash Action, it inflicts a number of automatic Hits equal to its Impact value."
+            }
+        ],
+        "numericSpecialRules": {
+            "cleave": 2,
+            "terrifying": 1,
+            "impact": 6
+        },
+        "drawEvents": [],
+        "points": 210
+    },
+    {
+        "name": "Ice Jotnar",
+        "faction": "Nords",
+        "type": "monster",
+        "regimentClass": "heavy",
+        "characteristics": {
+            "march": 7,
+            "volley": 1,
+            "clash": 3,
+            "attacks": 14,
+            "wounds": 16,
+            "resolve": 4,
+            "defense": 3,
+            "evasion": 2
+        },
+        "specialRules": [
+            {
+                "name": "Cleave (3)",
+                "description": "Enemy Stands in contact with this Stand reduce their Defense Characteristic by 3 when making Defense rolls against Hits inflicted by this Stand."
+            },
+            {
+                "name": "Priest (5)",
+                "description": "This model may cast spells as if it were a [Character] Stand."
+            },
+            {
+                "name": "Terrifying (1)",
+                "description": "Enemy Stands with 6 or fewer models than are in base contact with this Stand suffer -1 to their Resolve Characteristic."
+            },
+            {
+                "name": "Impact (6)",
+                "description": "When this Stand performs a successful Charge Action, before its Clash Action, it inflicts a number of automatic Hits equal to its Impact value."
+            }
+        ],
+        "numericSpecialRules": {
+            "cleave": 3,
+            "terrifying": 1,
+            "impact": 6,
+            "spellDice": 5
+        },
+        "drawEvents": [],
+        "points": 250
+    },
+    {
+        "name": "Blooded",
+        "faction": "Nords",
+        "type": "infantry",
+        "regimentClass": "character",
+        "characteristics": {
+            "march": null,
+            "volley": 1,
+            "clash": 4,
+            "attacks": 5,
+            "wounds": 5,
+            "resolve": 3,
+            "defense": 2,
+            "evasion": 0
+        },
+        "specialRules": [
+            {
+                "name": "Cleave (2)",
+                "description": "Enemy Stands in contact with this Stand reduce their Defense Characteristic by 2 when making Defense rolls against Hits inflicted by this Stand."
+            },
+            {
+                "name": "Impact (2)",
+                "description": "When this Stand performs a successful Charge Action, before its Clash Action, it inflicts a number of automatic Hits equal to its Impact value."
+            },
+            {
+                "name": "Forward Force",
+                "description": "This [Character] Stand may be attached to Brute [Half-Bloods] Regiments even though it is an Infantry [Character] Stand."
+            }
+        ],
+        "numericSpecialRules": {
+            "cleave": 2,
+            "impact": 2
+        },
+        "drawEvents": [],
+        "points": 110
+    },
+    {
+        "name": "Jarl",
+        "faction": "Nords",
+        "type": "infantry",
+        "regimentClass": "character",
+        "characteristics": {
+            "march": null,
+            "volley": 2,
+            "clash": 3,
+            "attacks": 6,
+            "wounds": 4,
+            "resolve": 3,
+            "defense": 2,
+            "evasion": 0
+        },
+        "specialRules": [
+            {
+                "name": "Shield",
+                "description": "This Stand adds +1 to its Defense Characteristic against Attacks originating from its front arc."
+            },
+            {
+                "name": "Impact (2)",
+                "description": "When this Stand performs a successful Charge Action, before its Clash Action, it inflicts a number of automatic Hits equal to its Impact value."
+            },
+            {
+                "name": "Forward Force",
+                "description": "When this Character successfully Charges an Enemy Regiment, all Friendly Infantry Regiments gain +1 to their Clash Characteristic until the end of the Round."
+            }
+        ],
+        "numericSpecialRules": {
+            "shield": true,
+            "impact": 2
+        },
+        "drawEvents": [],
+        "points": 100
+    },
+    {
+        "name": "Konungyr",
+        "faction": "Nords",
+        "type": "infantry",
+        "regimentClass": "character",
+        "characteristics": {
+            "march": null,
+            "volley": 2,
+            "clash": 4,
+            "attacks": 7,
+            "wounds": 5,
+            "resolve": 4,
+            "defense": 2,
+            "evasion": 2
+        },
+        "specialRules": [
+            {
+                "name": "Cleave (1)",
+                "description": "Enemy Stands in contact with this Stand reduce their Defense Characteristic by 1 when making Defense rolls against Hits inflicted by this Stand."
+            },
+            {
+                "name": "Terrifying (1)",
+                "description": "Enemy Stands with 6 or fewer models than are in base contact with this Stand suffer -1 to their Resolve Characteristic."
+            },
+            {
+                "name": "Impact (3)",
+                "description": "When this Stand performs a successful Charge Action, before its Clash Action, it inflicts a number of automatic Hits equal to its Impact value."
+            }
+        ],
+        "numericSpecialRules": {
+            "cleave": 1,
+            "terrifying": 1,
+            "impact": 3
+        },
+        "drawEvents": [],
+        "points": 120
+    },
+    {
+        "name": "Shaman",
+        "faction": "Nords",
+        "type": "infantry",
+        "regimentClass": "character",
+        "characteristics": {
+            "march": null,
+            "volley": 1,
+            "clash": 2,
+            "attacks": 3,
+            "wounds": 4,
+            "resolve": 3,
+            "defense": 1,
+            "evasion": 1
+        },
+        "specialRules": [
+            {
+                "name": "Priest (6)",
+                "description": "This model may cast spells with 6 dice."
+            }
+        ],
+        "numericSpecialRules": {
+            "spellDice": 6
+        },
+        "drawEvents": [],
+        "points": 80
+    },
+    {
+        "name": "Volva",
+        "faction": "Nords",
+        "type": "infantry",
+        "regimentClass": "character",
+        "characteristics": {
+            "march": null,
+            "volley": 1,
+            "clash": 3,
+            "attacks": 5,
+            "wounds": 4,
+            "resolve": 3,
+            "defense": 2,
+            "evasion": 0
+        },
+        "specialRules": [
+            {
+                "name": "Priest (6)",
+                "description": "This model may cast spells with 6 dice."
+            },
+            {
+                "name": "Devout",
+                "description": "This Regiment may be the Target of a Friendly [Character] Stand's Spellcasting Action regardless of the Spell's Range."
+            }
+        ],
+        "numericSpecialRules": {
+            "spellDice": 6
+        },
+        "drawEvents": [],
+        "points": 100
+    },
+    {
+        "name": "Vargyr Lord",
+        "faction": "Nords",
+        "type": "brute",
+        "regimentClass": "character",
+        "characteristics": {
+            "march": null,
+            "volley": 1,
+            "clash": 3,
+            "attacks": 6,
+            "wounds": 6,
+            "resolve": 3,
+            "defense": 3,
+            "evasion": 1
+        },
+        "specialRules": [
+            {
+                "name": "Cleave (1)",
+                "description": "Enemy Stands in contact with this Stand reduce their Defense Characteristic by 1 when making Defense rolls against Hits inflicted by this Stand."
+            },
+            {
+                "name": "Impact (4)",
+                "description": "When this Stand performs a successful Charge Action, before its Clash Action, it inflicts a number of automatic Hits equal to its Impact value."
+            },
+            {
+                "name": "Irregular",
+                "description": "This Regiment suffers a -1 modifier to its Resolve Characteristic for each lost Stand."
+            },
+            {
+                "name": "Forward Force",
+                "description": "This [Character] Stand may be attached to any Friendly [Half-Bloods] Regiment even though it is a Brute [Character] Stand."
+            },
+            {
+                "name": "Feral Hunters",
+                "description": "Werewargs Regiments in this Warband gain the Flurry Special Rule."
+            }
+        ],
+        "numericSpecialRules": {
+            "cleave": 1,
+            "impact": 4
+        },
+        "drawEvents": [
+            {
+                "name": "Regeneration (2)",
+                "description": "This Regiment Heals 2 Wounds."
+            }
+        ],
+        "points": 120
+    },
+    {
+        "name": "Jotnar Seidr",
+        "faction": "Nords",
+        "type": "monster",
+        "regimentClass": "character",
+        "characteristics": {
+            "march": 7,
+            "volley": 2,
+            "clash": 3,
+            "attacks": 12,
+            "wounds": 20,
+            "resolve": 4,
+            "defense": 3,
+            "evasion": 2
+        },
+        "specialRules": [
+            {
+                "name": "Cleave (2)",
+                "description": "Enemy Stands in contact with this Stand reduce their Defense Characteristic by 2 when making Defense rolls against Hits inflicted by this Stand."
+            },
+            {
+                "name": "Fearless",
+                "description": "This Regiment is immune to the effects of the Terrifying Special Rule."
+            },
+            {
+                "name": "Hardened (1)",
+                "description": "This Regiment ignores the first point of Cleave being applied to it."
+            },
+            {
+                "name": "Impact (6)",
+                "description": "When this Stand performs a successful Charge Action, before its Clash Action, it inflicts a number of automatic Hits equal to its Impact value."
+            },
+            {
+                "name": "Tenacious (1)",
+                "description": "This Regiment may ignore a number of failed Resolve Tests equal to its Tenacious value."
+            },
+            {
+                "name": "Terrifying (1)",
+                "description": "Enemy Stands with 6 or fewer models than are in base contact with this Stand suffer -1 to their Resolve Characteristic."
+            },
+            {
+                "name": "Seizing a New Future",
+                "description": "All Friendly [Titan] Regiments in the Army gain the Fearless Special Rule while within range of an Objective Zone."
+            },
+            {
+                "name": "Crushing Avalanche",
+                "description": "All Friendly [Titan] Regiments declaring a Charge Action while within 10\" of this Regiment gain the Brutal Impact (+1) and Impact (+2) Special Rules until the end of the Round."
+            },
+            {
+                "name": "Lord of Titans",
+                "description": "A Jotnar Seidr is considered to be a Regiment by itself in addition to it also being a Character Stand."
+            }
+        ],
+        "numericSpecialRules": {
+            "cleave": 2,
+            "hardened": 1,
+            "impact": 6,
+            "tenacious": 1,
+            "terrifying": 1
+        },
+        "drawEvents": [],
+        "points": 260
+    }
+]
