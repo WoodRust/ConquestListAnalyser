@@ -1,0 +1,1112 @@
+[
+    {
+        "name": "Thorakites",
+        "faction": "City States",
+        "type": "infantry",
+        "regimentClass": "light",
+        "characteristics": {
+            "march": 6,
+            "volley": 1,
+            "clash": 2,
+            "attacks": 4,
+            "wounds": 4,
+            "resolve": 2,
+            "defense": 2,
+            "evasion": 0
+        },
+        "specialRules": [
+            {
+                "name": "Shield",
+                "description": "This Stand adds +1 to its Defense Characteristic against Attacks originating from its front arc."
+            },
+            {
+                "name": "Vanguard (3)",
+                "description": "This Regiment may perform a free March Action during its Activation with a maximum March Distance of 3\"."
+            },
+            {
+                "name": "Take Cover",
+                "description": "When this Regiment becomes the Target of an Enemy Regiment's Volley Action it gains the Tenacious (2) Special Rule until the end of that Action."
+            },
+            {
+                "name": "Change Flanks!",
+                "description": "When the Regiment Activates from the Strategic Stack it gains the Fluid Formation Special Rule until the end of the Round."
+            },
+            {
+                "name": "Leader",
+                "description": "The Regiment's Command Stand that provides leadership to the unit."
+            }
+        ],
+        "numericSpecialRules": {
+            "vanguard": 3,
+            "shield": true
+        },
+        "drawEvents": [],
+        "points": 120,
+        "pointsPerAdditionalStand": 35,
+        "officerUpgrades": "Any Thorakites Regiment may take up to one Officer: Andromachos (25 points), Lochagos (15 points)"
+    },
+    {
+        "name": "Hoplites",
+        "faction": "City States",
+        "type": "infantry",
+        "regimentClass": "medium",
+        "characteristics": {
+            "march": 5,
+            "volley": 1,
+            "clash": 2,
+            "attacks": 4,
+            "wounds": 4,
+            "resolve": 2,
+            "defense": 2,
+            "evasion": 0
+        },
+        "specialRules": [
+            {
+                "name": "Phalanx",
+                "description": "This Regiment counts its Defense and Resolve Characteristics as 1 point higher against all Hits originating from its front Arc."
+            },
+            {
+                "name": "Shield",
+                "description": "This Stand adds +1 to its Defense Characteristic against Attacks originating from its front arc."
+            },
+            {
+                "name": "Support (2)",
+                "description": "Unengaged Stands in this Regiment inflict 2 Attacks as support."
+            },
+            {
+                "name": "Hold!",
+                "description": "While another Friendly Regiment is in contact with the same Enemy Regiment as this Regiment it gains the Opportunists Special Rule."
+            },
+            {
+                "name": "Leader",
+                "description": "The Regiment's Command Stand that provides leadership to the unit."
+            }
+        ],
+        "numericSpecialRules": {
+            "support": 2,
+            "shield": true
+        },
+        "drawEvents": [],
+        "points": 130,
+        "pointsPerAdditionalStand": 40,
+        "officerUpgrades": "Any Hoplite Regiment may take up to one Officer: Dorilates (15 points), Lochagos (15 points)"
+    },
+    {
+        "name": "Selinoi",
+        "faction": "City States",
+        "type": "infantry",
+        "regimentClass": "light",
+        "characteristics": {
+            "march": 6,
+            "volley": 2,
+            "clash": 2,
+            "attacks": 4,
+            "wounds": 4,
+            "resolve": 3,
+            "defense": 2,
+            "evasion": 1
+        },
+        "specialRules": [
+            {
+                "name": "Barrage (4) (16\", Arcing Fire)",
+                "description": "This Regiment may perform a Volley Action, making a number of Attack rolls equal to its Barrage value multiplied by the Regiment's number of Stands."
+            },
+            {
+                "name": "Loose Formation",
+                "description": "When a Stand performs a Volley Action against a Regiment with this Special Rule it halves the X value in its Barrage (X) Special Rule."
+            },
+            {
+                "name": "Leader",
+                "description": "The Regiment's Command Stand that provides leadership to the unit."
+            }
+        ],
+        "numericSpecialRules": {
+            "barrage": 4,
+            "barrageRange": 16
+        },
+        "drawEvents": [],
+        "points": 130,
+        "pointsPerAdditionalStand": 40
+    },
+    {
+        "name": "Phalangites",
+        "faction": "City States",
+        "type": "infantry",
+        "regimentClass": "medium",
+        "characteristics": {
+            "march": 5,
+            "volley": 1,
+            "clash": 3,
+            "attacks": 5,
+            "wounds": 4,
+            "resolve": 3,
+            "defense": 2,
+            "evasion": 0
+        },
+        "specialRules": [
+            {
+                "name": "Phalanx",
+                "description": "This Regiment counts its Defense and Resolve Characteristics as 1 point higher against all Hits originating from its front Arc."
+            },
+            {
+                "name": "Pike Formation",
+                "description": "Enemy Regiments suffer -3 to their Impact (X) Special Rule when in contact with this Regiment's front arc."
+            },
+            {
+                "name": "Support (3)",
+                "description": "Unengaged Stands in this Regiment inflict 3 Attacks as support."
+            },
+            {
+                "name": "Wall of Pikes",
+                "description": "When the Regiment Activates from the Strategic Stack it gains the Aura of Death (6) Special Rule until the end of the Round."
+            },
+            {
+                "name": "Leader",
+                "description": "The Regiment's Command Stand that provides leadership to the unit."
+            }
+        ],
+        "numericSpecialRules": {
+            "support": 3
+        },
+        "drawEvents": [],
+        "points": 150,
+        "pointsPerAdditionalStand": 40,
+        "officerUpgrades": "Any Phalangites Regiment may take up to one Officer: Dorilates (15 points), Lochagos (15 points)"
+    },
+    {
+        "name": "Agema",
+        "faction": "City States",
+        "type": "infantry",
+        "regimentClass": "medium",
+        "characteristics": {
+            "march": 6,
+            "volley": 1,
+            "clash": 3,
+            "attacks": 5,
+            "wounds": 4,
+            "resolve": 3,
+            "defense": 2,
+            "evasion": 0
+        },
+        "specialRules": [
+            {
+                "name": "Shield",
+                "description": "This Stand adds +1 to its Defense Characteristic against Attacks originating from its front arc."
+            },
+            {
+                "name": "Cleave (1)",
+                "description": "Enemy Stands in contact with this Stand reduce their Defense Characteristic by 1 when making Defense rolls against Hits inflicted by this Stand."
+            },
+            {
+                "name": "Fluid Formation",
+                "description": "This Regiment may perform a free additional Reform Action during its Activation."
+            },
+            {
+                "name": "Leader",
+                "description": "The Regiment's Command Stand that provides leadership to the unit."
+            }
+        ],
+        "numericSpecialRules": {
+            "shield": true,
+            "cleave": 1
+        },
+        "drawEvents": [],
+        "points": 170,
+        "pointsPerAdditionalStand": 50,
+        "officerUpgrades": "Any Agema Regiment may take up to one Officer: Andromachos (25 points)"
+    },
+    {
+        "name": "Satyroi",
+        "faction": "City States",
+        "type": "infantry",
+        "regimentClass": "medium",
+        "characteristics": {
+            "march": 6,
+            "volley": 1,
+            "clash": 2,
+            "attacks": 4,
+            "wounds": 4,
+            "resolve": 2,
+            "defense": 1,
+            "evasion": 2
+        },
+        "specialRules": [
+            {
+                "name": "Cleave (1)",
+                "description": "Enemy Stands in contact with this Stand reduce their Defense Characteristic by 1 when making Defense rolls against Hits inflicted by this Stand."
+            },
+            {
+                "name": "Shield",
+                "description": "This Stand adds +1 to its Defense Characteristic against Attacks originating from its front arc."
+            },
+            {
+                "name": "Fluid Formation",
+                "description": "This Regiment may perform a free additional Reform Action during its Activation."
+            },
+            {
+                "name": "Impact (2)",
+                "description": "When this Stand performs a successful Charge Action, before its Clash Action, it inflicts a number of automatic Hits equal to its Impact value."
+            },
+            {
+                "name": "Opportunists",
+                "description": "This Regiment may perform a free March Action during its Activation."
+            },
+            {
+                "name": "Vanguard (6)",
+                "description": "This Regiment may perform a free March Action during its Activation with a maximum March Distance of 6\"."
+            },
+            {
+                "name": "Pathfinders",
+                "description": "A Reinforcement Line set by this Regiment cannot be pushed back by Enemy Regiments."
+            },
+            {
+                "name": "Leader",
+                "description": "The Regiment's Command Stand that provides leadership to the unit."
+            }
+        ],
+        "numericSpecialRules": {
+            "cleave": 1,
+            "shield": true,
+            "impact": 2,
+            "vanguard": 6
+        },
+        "drawEvents": [],
+        "points": 160,
+        "pointsPerAdditionalStand": 50
+    },
+    {
+        "name": "Sacred Band",
+        "faction": "City States",
+        "type": "infantry",
+        "regimentClass": "heavy",
+        "characteristics": {
+            "march": 6,
+            "volley": 1,
+            "clash": 3,
+            "attacks": 5,
+            "wounds": 5,
+            "resolve": 4,
+            "defense": 3,
+            "evasion": 0
+        },
+        "specialRules": [
+            {
+                "name": "Devout",
+                "description": "This Regiment may be the Target of a Friendly [Character] Stand's Spellcasting Action regardless of the Spell's Range."
+            },
+            {
+                "name": "Priest (5)",
+                "description": "This model may cast spells with 5 dice."
+            },
+            {
+                "name": "Cleave (2)",
+                "description": "Enemy Stands in contact with this Stand reduce their Defense Characteristic by 2 when making Defense rolls against Hits inflicted by this Stand."
+            },
+            {
+                "name": "Fearless",
+                "description": "This Regiment is immune to the effects of the Terrifying Special Rule."
+            },
+            {
+                "name": "Leader",
+                "description": "The Regiment's Command Stand that provides leadership to the unit."
+            }
+        ],
+        "numericSpecialRules": {
+            "spellDice": 5,
+            "cleave": 2
+        },
+        "drawEvents": [],
+        "points": 190,
+        "pointsPerAdditionalStand": 50
+    },
+    {
+        "name": "Clockwork Hoplites",
+        "faction": "City States",
+        "type": "infantry",
+        "regimentClass": "heavy",
+        "characteristics": {
+            "march": 5,
+            "volley": 1,
+            "clash": 2,
+            "attacks": 4,
+            "wounds": 5,
+            "resolve": null,
+            "defense": 3,
+            "evasion": 1
+        },
+        "specialRules": [
+            {
+                "name": "Cleave (1)",
+                "description": "Enemy Stands in contact with this Stand reduce their Defense Characteristic by 1 when making Defense rolls against Hits inflicted by this Stand."
+            },
+            {
+                "name": "Flurry",
+                "description": "This Stand may re-roll failed Hit rolls when performing a Clash Action."
+            },
+            {
+                "name": "Hardened (1)",
+                "description": "This Regiment ignores the first point of Cleave being applied to it."
+            },
+            {
+                "name": "Shield",
+                "description": "This Stand adds +1 to its Defense Characteristic against Attacks originating from its front arc."
+            },
+            {
+                "name": "Support (2)",
+                "description": "Unengaged Stands in this Regiment inflict 2 Attacks as support."
+            },
+            {
+                "name": "Automaton",
+                "description": "Stands with this Special Rule never receive the benefit of the Inspired Special Rule."
+            },
+            {
+                "name": "Leader",
+                "description": "The Regiment's Command Stand that provides leadership to the unit."
+            }
+        ],
+        "numericSpecialRules": {
+            "cleave": 1,
+            "hardened": 1,
+            "shield": true,
+            "support": 2
+        },
+        "drawEvents": [],
+        "points": 190,
+        "pointsPerAdditionalStand": 70
+    },
+    {
+        "name": "Companion Cavalry",
+        "faction": "City States",
+        "type": "cavalry",
+        "regimentClass": "medium",
+        "characteristics": {
+            "march": 8,
+            "volley": 1,
+            "clash": 3,
+            "attacks": 6,
+            "wounds": 4,
+            "resolve": 3,
+            "defense": 2,
+            "evasion": 1
+        },
+        "specialRules": [
+            {
+                "name": "Impact (3)",
+                "description": "When this Stand performs a successful Charge Action, before its Clash Action, it inflicts a number of automatic Hits equal to its Impact value."
+            },
+            {
+                "name": "Dread",
+                "description": "Enemy Regiments in contact with Stands with this Special Rule cannot benefit from the effects of the \"Inspired\" Special Rule."
+            },
+            {
+                "name": "Leader",
+                "description": "The Regiment's Command Stand that provides leadership to the unit."
+            }
+        ],
+        "numericSpecialRules": {
+            "impact": 3
+        },
+        "drawEvents": [],
+        "points": 140,
+        "pointsPerAdditionalStand": 40
+    },
+    {
+        "name": "Inquisitors",
+        "faction": "City States",
+        "type": "brute",
+        "regimentClass": "medium",
+        "characteristics": {
+            "march": 7,
+            "volley": 1,
+            "clash": 2,
+            "attacks": 6,
+            "wounds": 5,
+            "resolve": 4,
+            "defense": 3,
+            "evasion": 2
+        },
+        "specialRules": [
+            {
+                "name": "Cleave (1)",
+                "description": "Enemy Stands in contact with this Stand reduce their Defense Characteristic by 1 when making Defense rolls against Hits inflicted by this Stand."
+            },
+            {
+                "name": "Flurry",
+                "description": "This Stand may re-roll failed Hit rolls when performing a Clash Action."
+            },
+            {
+                "name": "Unstoppable",
+                "description": "This Regiment may re-roll all failed Charge rolls."
+            },
+            {
+                "name": "Impact (3)",
+                "description": "When this Stand performs a successful Charge Action, before its Clash Action, it inflicts a number of automatic Hits equal to its Impact value."
+            }
+        ],
+        "numericSpecialRules": {
+            "cleave": 1,
+            "impact": 3
+        },
+        "drawEvents": [],
+        "points": 180,
+        "pointsPerAdditionalStand": 60
+    },
+    {
+        "name": "Minotaur Haspists",
+        "faction": "City States",
+        "type": "brute",
+        "regimentClass": "medium",
+        "characteristics": {
+            "march": 6,
+            "volley": 1,
+            "clash": 3,
+            "attacks": 4,
+            "wounds": 6,
+            "resolve": 3,
+            "defense": 2,
+            "evasion": 1
+        },
+        "specialRules": [
+            {
+                "name": "Brutal Impact (1)",
+                "description": "When this Stand performs a successful Charge Action, it inflicts automatic Hits that reduce the Enemy Stands' Defense Characteristic by 1 when defending against them."
+            },
+            {
+                "name": "Cleave (1)",
+                "description": "Enemy Stands in contact with this Stand reduce their Defense Characteristic by 1 when making Defense rolls against Hits inflicted by this Stand."
+            },
+            {
+                "name": "Fearsome",
+                "description": "Enemy models suffer a -1 penalty to Morale tests when in base contact with models with this rule."
+            },
+            {
+                "name": "Impact (2)",
+                "description": "When this Stand performs a successful Charge Action, before its Clash Action, it inflicts a number of automatic Hits equal to its Impact value."
+            },
+            {
+                "name": "Shield",
+                "description": "This Stand adds +1 to its Defense Characteristic against Attacks originating from its front arc."
+            },
+            {
+                "name": "Vanguard (3)",
+                "description": "This Regiment may perform a free March Action during its Activation with a maximum March Distance of 3\"."
+            },
+            {
+                "name": "Unstoppable",
+                "description": "This Regiment may re-roll all failed Charge rolls."
+            },
+            {
+                "name": "Leader",
+                "description": "The Regiment's Command Stand that provides leadership to the unit."
+            }
+        ],
+        "numericSpecialRules": {
+            "brutalImpact": 1,
+            "cleave": 1,
+            "impact": 2,
+            "shield": true,
+            "vanguard": 3
+        },
+        "drawEvents": [],
+        "points": 180,
+        "pointsPerAdditionalStand": 60
+    },
+    {
+        "name": "Promethean",
+        "faction": "City States",
+        "type": "monster",
+        "regimentClass": "medium",
+        "characteristics": {
+            "march": 7,
+            "volley": 1,
+            "clash": 3,
+            "attacks": 11,
+            "wounds": 16,
+            "resolve": 4,
+            "defense": 3,
+            "evasion": 1
+        },
+        "specialRules": [
+            {
+                "name": "Cleave (2)",
+                "description": "Enemy Stands in contact with this Stand reduce their Defense Characteristic by 2 when making Defense rolls against Hits inflicted by this Stand."
+            },
+            {
+                "name": "Hardened (1)",
+                "description": "This Regiment ignores the first point of Cleave being applied to it."
+            },
+            {
+                "name": "Priest (2)",
+                "description": "This model may cast spells with 2 dice."
+            },
+            {
+                "name": "Terrifying (1)",
+                "description": "Enemy Stands with 6 or fewer models than are in base contact with this Stand suffer -1 to their Resolve Characteristic."
+            },
+            {
+                "name": "Impact (5)",
+                "description": "When this Stand performs a successful Charge Action, before its Clash Action, it inflicts a number of automatic Hits equal to its Impact value."
+            },
+            {
+                "name": "Herald of the Forge God",
+                "description": "At the end of this Regiment's Activation, this Regiment may perform a free Spellcasting Action as if they were a Character."
+            }
+        ],
+        "numericSpecialRules": {
+            "cleave": 2,
+            "hardened": 1,
+            "spellDice": 2,
+            "terrifying": 1,
+            "impact": 5
+        },
+        "drawEvents": [],
+        "points": 210
+    },
+    {
+        "name": "Hephaestian",
+        "faction": "City States",
+        "type": "monster",
+        "regimentClass": "heavy",
+        "characteristics": {
+            "march": 7,
+            "volley": 0,
+            "clash": 3,
+            "attacks": 11,
+            "wounds": 16,
+            "resolve": 4,
+            "defense": 3,
+            "evasion": 1
+        },
+        "specialRules": [
+            {
+                "name": "Cleave (3)",
+                "description": "Enemy Stands in contact with this Stand reduce their Defense Characteristic by 3 when making Defense rolls against Hits inflicted by this Stand."
+            },
+            {
+                "name": "Hardened (1)",
+                "description": "This Regiment ignores the first point of Cleave being applied to it."
+            },
+            {
+                "name": "Priest (2)",
+                "description": "This model may cast spells with 2 dice."
+            },
+            {
+                "name": "Terrifying (2)",
+                "description": "Enemy Stands with 6 or fewer models than are in base contact with this Stand suffer -2 to their Resolve Characteristic."
+            },
+            {
+                "name": "Impact (5)",
+                "description": "When this Stand performs a successful Charge Action, before its Clash Action, it inflicts a number of automatic Hits equal to its Impact value."
+            },
+            {
+                "name": "Herald of the Forge God",
+                "description": "At the end of this Regiment's Activation, this Regiment may perform a free Spellcasting Action as if they were a Character."
+            }
+        ],
+        "numericSpecialRules": {
+            "cleave": 3,
+            "hardened": 1,
+            "spellDice": 2,
+            "terrifying": 2,
+            "impact": 5
+        },
+        "drawEvents": [],
+        "points": 230
+    },
+    {
+        "name": "Minotaur Thyrean",
+        "faction": "City States",
+        "type": "brute",
+        "regimentClass": "heavy",
+        "characteristics": {
+            "march": 6,
+            "volley": 1,
+            "clash": 3,
+            "attacks": 5,
+            "wounds": 6,
+            "resolve": 3,
+            "defense": 2,
+            "evasion": 1
+        },
+        "specialRules": [
+            {
+                "name": "Brutal Impact (1)",
+                "description": "When this Stand performs a successful Charge Action, it inflicts automatic Hits that reduce the Enemy Stands' Defense Characteristic by 1 when defending against them."
+            },
+            {
+                "name": "Cleave (3)",
+                "description": "Enemy Stands in contact with this Stand reduce their Defense Characteristic by 3 when making Defense rolls against Hits inflicted by this Stand."
+            },
+            {
+                "name": "Impact (3)",
+                "description": "When this Stand performs a successful Charge Action, before its Clash Action, it inflicts a number of automatic Hits equal to its Impact value."
+            },
+            {
+                "name": "Linebreaker",
+                "description": "This Regiment may Charge and pass through Enemy Regiments with the Fodder Special Rule."
+            },
+            {
+                "name": "Tenacious (1)",
+                "description": "This Regiment may ignore a number of failed Resolve Tests equal to its Tenacious value."
+            },
+            {
+                "name": "Terrifying (1)",
+                "description": "Enemy Stands with 6 or fewer models than are in base contact with this Stand suffer -1 to their Resolve Characteristic."
+            },
+            {
+                "name": "Juggernaut",
+                "description": "This Regiment's special rule for its ability to break through enemy lines."
+            },
+            {
+                "name": "Leader",
+                "description": "The Regiment's Command Stand that provides leadership to the unit."
+            }
+        ],
+        "numericSpecialRules": {
+            "brutalImpact": 1,
+            "cleave": 3,
+            "impact": 3,
+            "tenacious": 1,
+            "terrifying": 1
+        },
+        "drawEvents": [],
+        "points": 190,
+        "pointsPerAdditionalStand": 60
+    },
+    {
+        "name": "Talos",
+        "faction": "City States",
+        "type": "monster",
+        "regimentClass": "heavy",
+        "characteristics": {
+            "march": 7,
+            "volley": 1,
+            "clash": 3,
+            "attacks": 12,
+            "wounds": 20,
+            "resolve": 4,
+            "defense": 3,
+            "evasion": 1
+        },
+        "specialRules": [
+            {
+                "name": "Cleave (1)",
+                "description": "Enemy Stands in contact with this Stand reduce their Defense Characteristic by 1 when making Defense rolls against Hits inflicted by this Stand."
+            },
+            {
+                "name": "Fearless",
+                "description": "This Regiment is immune to the effects of the Terrifying Special Rule."
+            },
+            {
+                "name": "Hardened (2)",
+                "description": "This Regiment ignores the first 2 points of Cleave being applied to it."
+            },
+            {
+                "name": "Impact (5)",
+                "description": "When this Stand performs a successful Charge Action, before its Clash Action, it inflicts a number of automatic Hits equal to its Impact value."
+            },
+            {
+                "name": "Shield",
+                "description": "This Stand adds +1 to its Defense Characteristic against Attacks originating from its front arc."
+            },
+            {
+                "name": "Terrifying (1)",
+                "description": "Enemy Stands with 6 or fewer models than are in base contact with this Stand suffer -1 to their Resolve Characteristic."
+            },
+            {
+                "name": "Vanguard (3)",
+                "description": "This Regiment may perform a free March Action during its Activation with a maximum March Distance of 3\"."
+            },
+            {
+                "name": "Descendant of the Brazen Race",
+                "description": "This Model does not suffer the effects of Aura of Death (X) and Decay (X) Special Rules."
+            },
+            {
+                "name": "Blood of the Forge God",
+                "description": "Friendly Spellcasters with the Priest (X) Special Rules, currently within 10\" of this Regiment gain the Priest (+1) Special Rule."
+            }
+        ],
+        "numericSpecialRules": {
+            "cleave": 1,
+            "hardened": 2,
+            "impact": 5,
+            "shield": true,
+            "terrifying": 1,
+            "vanguard": 3
+        },
+        "drawEvents": [],
+        "points": 260
+    },
+    {
+        "name": "Flogobolon",
+        "faction": "City States",
+        "type": "chariot",
+        "regimentClass": "medium",
+        "characteristics": {
+            "march": 7,
+            "volley": 2,
+            "clash": 2,
+            "attacks": 6,
+            "wounds": 10,
+            "resolve": 3,
+            "defense": 3,
+            "evasion": 0
+        },
+        "specialRules": [
+            {
+                "name": "Barrage (7) (12\", Armor Piercing (1), Torrential Fire)",
+                "description": "This Regiment may perform a Volley Action, making a number of Attack rolls equal to its Barrage value. The Barrage has Armor Piercing (1) and Torrential Fire special rules."
+            },
+            {
+                "name": "Weapon Platform",
+                "description": "Stands in this Regiment count their Flank Arcs as their Front Arc for the purposes of determining Line of Sight."
+            },
+            {
+                "name": "Deadshots",
+                "description": "A Stand with this Special Rule always counts as under the effects of the Aimed Shot Special Rule."
+            },
+            {
+                "name": "Impact (3)",
+                "description": "When this Stand performs a successful Charge Action, before its Clash Action, it inflicts a number of automatic Hits equal to its Impact value."
+            },
+            {
+                "name": "Hardened (1)",
+                "description": "This Regiment ignores the first point of Cleave being applied to it."
+            },
+            {
+                "name": "Vanguard (4)",
+                "description": "This Regiment may perform a free March Action during its Activation with a maximum March Distance of 4\"."
+            },
+            {
+                "name": "Exploit Flanks",
+                "description": "Enemy Regiments that become the Target of this Regiment's Volley Action within its Effective Range, Re-Roll successful Defense Rolls of \"1\", should the shots originate from their Flank or Rear Arc."
+            }
+        ],
+        "numericSpecialRules": {
+            "barrage": 8,
+            "barrageRange": 14,
+            "armorPiercing": true,
+            "armorPiercingValue": 1,
+            "impact": 3,
+            "hardened": 1,
+            "vanguard": 4
+        },
+        "drawEvents": [
+            {
+                "name": "Fire and Advance",
+                "description": "If this Regiment performs a Volley Action as its second Action during this Activation, it may take a free additional March Action immediately after the Volley Action is resolved."
+            }
+        ],
+        "points": 130
+    },
+    {
+        "name": "Skorpios",
+        "faction": "City States",
+        "type": "chariot",
+        "regimentClass": "medium",
+        "characteristics": {
+            "march": 7,
+            "volley": 2,
+            "clash": 2,
+            "attacks": 6,
+            "wounds": 10,
+            "resolve": 3,
+            "defense": 3,
+            "evasion": 0
+        },
+        "specialRules": [
+            {
+                "name": "Barrage (8) (14\", Armor Piercing (1), Rapid Volley)",
+                "description": "This Regiment may perform a Volley Action, making a number of Attack rolls equal to its Barrage value. The Barrage has Armor Piercing (1) and Rapid Volley special rules."
+            },
+            {
+                "name": "Weapon Platform",
+                "description": "Stands in this Regiment count their Flank Arcs as their Front Arc for the purposes of determining Line of Sight."
+            },
+            {
+                "name": "Deadshots",
+                "description": "A Stand with this Special Rule always counts as under the effects of the Aimed Shot Special Rule."
+            },
+            {
+                "name": "Impact (3)",
+                "description": "When this Stand performs a successful Charge Action, before its Clash Action, it inflicts a number of automatic Hits equal to its Impact value."
+            },
+            {
+                "name": "Hardened (1)",
+                "description": "This Regiment ignores the first point of Cleave being applied to it."
+            },
+            {
+                "name": "Vanguard (4)",
+                "description": "This Regiment may perform a free March Action during its Activation with a maximum March Distance of 4\"."
+            },
+            {
+                "name": "Condensed Propellant",
+                "description": "This Regiment's Effective Range is equal to the Regiment's Barrage Range."
+            }
+        ],
+        "numericSpecialRules": {
+            "barrage": 7,
+            "barrageRange": 12,
+            "armorPiercing": true,
+            "armorPiercingValue": 1,
+            "impact": 3,
+            "hardened": 1,
+            "vanguard": 4
+        },
+        "drawEvents": [
+            {
+                "name": "Fire and Advance",
+                "description": "If this Regiment performs a Volley Action as its second Action during this Activation, it may take a free additional March Action immediately after the Volley Action is resolved."
+            }
+        ],
+        "points": 130
+    },
+    {
+        "name": "Eidolon",
+        "faction": "City States",
+        "type": "brute",
+        "regimentClass": "character",
+        "characteristics": {
+            "march": null,
+            "volley": 1,
+            "clash": 3,
+            "attacks": 4,
+            "wounds": 6,
+            "resolve": 4,
+            "defense": 3,
+            "evasion": 2
+        },
+        "specialRules": [
+            {
+                "name": "Combat Directives",
+                "description": "At the end of each Round's Supremacy Phase this Character Stand selects a Combat Directive that will last until the end of the Round."
+            },
+            {
+                "name": "Hardened (1)",
+                "description": "This Regiment ignores the first point of Cleave being applied to it."
+            },
+            {
+                "name": "Impact (2)",
+                "description": "When this Stand performs a successful Charge Action, before its Clash Action, it inflicts a number of automatic Hits equal to its Impact value."
+            },
+            {
+                "name": "Dark Hand of the Scholae",
+                "description": "At the beginning of this Character Stand's Activation select one Enemy Regiment currently on the Battlefield to count as \"Hunted\" for the duration of the game."
+            }
+        ],
+        "numericSpecialRules": {
+            "hardened": 1,
+            "impact": 2
+        },
+        "drawEvents": [],
+        "points": 120
+    },
+    {
+        "name": "Mechanist",
+        "faction": "City States",
+        "type": "infantry",
+        "regimentClass": "character",
+        "characteristics": {
+            "march": null,
+            "volley": 2,
+            "clash": 2,
+            "attacks": 4,
+            "wounds": 4,
+            "resolve": 3,
+            "defense": 2,
+            "evasion": 1
+        },
+        "specialRules": [
+            {
+                "name": "Priest (5)",
+                "description": "This model may cast spells with 5 dice."
+            },
+            {
+                "name": "Close the Gap!",
+                "description": "The Regiment this Character Stand is currently attached to gains the Unstoppable Special Rule."
+            }
+        ],
+        "numericSpecialRules": {
+            "spellDice": 5
+        },
+        "drawEvents": [],
+        "points": 80
+    },
+    {
+        "name": "Polemarch",
+        "faction": "City States",
+        "type": "infantry",
+        "regimentClass": "character",
+        "characteristics": {
+            "march": null,
+            "volley": 1,
+            "clash": 3,
+            "attacks": 6,
+            "wounds": 4,
+            "resolve": 4,
+            "defense": 3,
+            "evasion": 0
+        },
+        "specialRules": [
+            {
+                "name": "Flurry",
+                "description": "This Stand may re-roll failed Hit rolls when performing a Clash Action."
+            },
+            {
+                "name": "Shield",
+                "description": "This Stand adds +1 to its Defense Characteristic against Attacks originating from its front arc."
+            },
+            {
+                "name": "Close the Gap!",
+                "description": "The Regiment this Character Stand is currently attached to gains the Unstoppable Special Rule."
+            },
+            {
+                "name": "Battlefield Tactics",
+                "description": "At the beginning of this Character Stand's Activation select one Battlefield Tactic. Until the end of the Round, the Regiment this Character Stand is currently attached to gains these effects."
+            }
+        ],
+        "numericSpecialRules": {
+            "shield": true
+        },
+        "drawEvents": [],
+        "points": 90
+    },
+    {
+        "name": "Aristarch",
+        "faction": "City States",
+        "type": "infantry",
+        "regimentClass": "character",
+        "characteristics": {
+            "march": null,
+            "volley": 1,
+            "clash": 3,
+            "attacks": 6,
+            "wounds": 4,
+            "resolve": 4,
+            "defense": 2,
+            "evasion": 0
+        },
+        "specialRules": [
+            {
+                "name": "Shield",
+                "description": "This Stand adds +1 to its Defense Characteristic against Attacks originating from its front arc."
+            },
+            {
+                "name": "Close the Gap!",
+                "description": "The Regiment this Character Stand is currently attached to gains the Unstoppable Special Rule."
+            },
+            {
+                "name": "Battlefield Orders",
+                "description": "At the beginning of this Character Stand's Activation select one Battlefield Order. Until the end of the Round, the Regiment this Character Stand is currently attached to gains these effects."
+            }
+        ],
+        "numericSpecialRules": {
+            "shield": true
+        },
+        "drawEvents": [],
+        "points": 90
+    },
+    {
+        "name": "Ipparchos",
+        "faction": "City States",
+        "type": "cavalry",
+        "regimentClass": "character",
+        "characteristics": {
+            "march": null,
+            "volley": 0,
+            "clash": 3,
+            "attacks": 6,
+            "wounds": 5,
+            "resolve": 3,
+            "defense": 4,
+            "evasion": 1
+        },
+        "specialRules": [
+            {
+                "name": "Cleave (1)",
+                "description": "Enemy Stands in contact with this Stand reduce their Defense Characteristic by 1 when making Defense rolls against Hits inflicted by this Stand."
+            },
+            {
+                "name": "Impact (4)",
+                "description": "When this Stand performs a successful Charge Action, before its Clash Action, it inflicts a number of automatic Hits equal to its Impact value."
+            },
+            {
+                "name": "Dread",
+                "description": "Enemy Regiments in contact with Stands with this Special Rule cannot benefit from the effects of the \"Inspired\" Special Rule."
+            },
+            {
+                "name": "Finest Cavalry",
+                "description": "This Character Stand's Warband may not contain more than three Regiments of Companion Cavalry."
+            }
+        ],
+        "numericSpecialRules": {
+            "cleave": 1,
+            "impact": 4
+        },
+        "drawEvents": [],
+        "points": 100
+    },
+    {
+        "name": "Promethean Oracle",
+        "faction": "City States",
+        "type": "monster",
+        "regimentClass": "character",
+        "characteristics": {
+            "march": 7,
+            "volley": 2,
+            "clash": 3,
+            "attacks": 12,
+            "wounds": 20,
+            "resolve": 4,
+            "defense": 3,
+            "evasion": 2
+        },
+        "specialRules": [
+            {
+                "name": "Cleave (2)",
+                "description": "Enemy Stands in contact with this Stand reduce their Defense Characteristic by 2 when making Defense rolls against Hits inflicted by this Stand."
+            },
+            {
+                "name": "Fearless",
+                "description": "This Regiment is immune to the effects of the Terrifying Special Rule."
+            },
+            {
+                "name": "Hardened (1)",
+                "description": "This Regiment ignores the first point of Cleave being applied to it."
+            },
+            {
+                "name": "Impact (6)",
+                "description": "When this Stand performs a successful Charge Action, before its Clash Action, it inflicts a number of automatic Hits equal to its Impact value."
+            },
+            {
+                "name": "Tenacious (1)",
+                "description": "This Regiment may ignore a number of failed Resolve Tests equal to its Tenacious value."
+            },
+            {
+                "name": "Terrifying (1)",
+                "description": "Enemy Stands with 6 or fewer models than are in base contact with this Stand suffer -1 to their Resolve Characteristic."
+            },
+            {
+                "name": "Seizing a New Future",
+                "description": "All Friendly [Titan] Regiments in the Army gain the Fearless Special Rule while within range of an Objective Zone."
+            },
+            {
+                "name": "Ancient Tactician",
+                "description": "Friendly [Titan] Regiments Charging through a piece of Hindering Terrain, can benefit from the Inspired Special Rule."
+            },
+            {
+                "name": "Lord of Titans",
+                "description": "A Promethean Oracle is considered to be a Regiment by itself in addition to it also being a Character Stand."
+            }
+        ],
+        "numericSpecialRules": {
+            "cleave": 2,
+            "hardened": 1,
+            "impact": 6,
+            "tenacious": 1,
+            "terrifying": 1
+        },
+        "drawEvents": [],
+        "points": 260
+    }
+]

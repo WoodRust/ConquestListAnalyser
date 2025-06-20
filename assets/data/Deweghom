@@ -1,0 +1,879 @@
+[
+    {
+        "name": "Flame Berserkers",
+        "faction": "Dweghom",
+        "type": "infantry",
+        "regimentClass": "light",
+        "characteristics": {
+            "march": 6,
+            "volley": 1,
+            "clash": 3,
+            "attacks": 6,
+            "wounds": 5,
+            "resolve": 4,
+            "defense": 3,
+            "evasion": 0
+        },
+        "specialRules": [
+            {
+                "name": "Aura of Death (4)",
+                "description": "At the start of an Enemy Regiment's \"Draw Command Card\" step, if it is in contact with one or more Enemy Regiment with this Special Rule, it suffers 4 Hits."
+            },
+            {
+                "name": "Leader",
+                "description": "The Regiment's Command Stand that provides leadership to the unit."
+            },
+            {
+                "name": "Standard Bearer",
+                "description": "The Regiment's Command Stand includes a Standard Bearer."
+            }
+        ],
+        "numericSpecialRules": {
+            "auraOfDeath": 4
+        },
+        "drawEvents": [],
+        "points": 160,
+        "pointsPerAdditionalStand": 50,
+        "officerUpgrades": "Standard Bearer (10 points)"
+    },
+    {
+        "name": "Hold Ballistae",
+        "faction": "Dweghom",
+        "type": "infantry",
+        "regimentClass": "light",
+        "characteristics": {
+            "march": 5,
+            "volley": 2,
+            "clash": 1,
+            "attacks": 4,
+            "wounds": 5,
+            "resolve": 2,
+            "defense": 2,
+            "evasion": 0
+        },
+        "specialRules": [
+            {
+                "name": "Barrage (3) (18\", Armor Piercing (1))",
+                "description": "This Regiment may perform a Volley Action, making a number of Attack rolls equal to its Barrage value multiplied by the Regiment's number of Stands. The Barrage has the Armor Piercing (1) special rule."
+            },
+            {
+                "name": "Shield",
+                "description": "This Stand adds +1 to its Defense Characteristic against Attacks originating from its front arc."
+            },
+            {
+                "name": "Leader",
+                "description": "The Regiment's Command Stand that provides leadership to the unit."
+            }
+        ],
+        "numericSpecialRules": {
+            "barrage": 3,
+            "barrageRange": 18,
+            "armorPiercing": 1,
+            "shield": true
+        },
+        "drawEvents": [],
+        "points": 140,
+        "pointsPerAdditionalStand": 40,
+        "officerUpgrades": "Herald of Stone (25 points), Herald of Fire (25 points), Herald of Magma (20 points), Standard Bearer (10 points)"
+    },
+    {
+        "name": "Fireforged",
+        "faction": "Dweghom",
+        "type": "infantry",
+        "regimentClass": "medium",
+        "characteristics": {
+            "march": 5,
+            "volley": 2,
+            "clash": 2,
+            "attacks": 3,
+            "wounds": 5,
+            "resolve": 3,
+            "defense": 3,
+            "evasion": 0
+        },
+        "specialRules": [
+            {
+                "name": "Barrage (4) (14\", Armor Piercing (2))",
+                "description": "This Regiment may perform a Volley Action, making a number of Attack rolls equal to its Barrage value multiplied by the Regiment's number of Stands. The Barrage has the Armor Piercing (2) special rule."
+            },
+            {
+                "name": "Shield",
+                "description": "This Stand adds +1 to its Defense Characteristic against Attacks originating from its front arc."
+            },
+            {
+                "name": "Leader",
+                "description": "The Regiment's Command Stand that provides leadership to the unit."
+            }
+        ],
+        "numericSpecialRules": {
+            "barrage": 4,
+            "barrageRange": 14,
+            "armorPiercing": 2,
+            "shield": true
+        },
+        "drawEvents": [],
+        "points": 180,
+        "pointsPerAdditionalStand": 60,
+        "officerUpgrades": "Flamecaster (25 points), Herald of Fire (25 points), Standard Bearer (10 points)"
+    },
+    {
+        "name": "Hold Warriors",
+        "faction": "Dweghom",
+        "type": "infantry",
+        "regimentClass": "medium",
+        "characteristics": {
+            "march": 5,
+            "volley": 1,
+            "clash": 2,
+            "attacks": 4,
+            "wounds": 5,
+            "resolve": 2,
+            "defense": 2,
+            "evasion": 0
+        },
+        "specialRules": [
+            {
+                "name": "Shield",
+                "description": "This Stand adds +1 to its Defense Characteristic against Attacks originating from its front arc."
+            },
+            {
+                "name": "Vanguard (3)",
+                "description": "When a Regiment with this Special Rule enters the Battlefield from Reinforcements, add +3 to its March Characteristic for the first March Action this Activation."
+            },
+            {
+                "name": "Leader",
+                "description": "The Regiment's Command Stand that provides leadership to the unit."
+            },
+            {
+                "name": "Standard Bearer",
+                "description": "The Regiment's Command Stand includes a Standard Bearer."
+            }
+        ],
+        "numericSpecialRules": {
+            "shield": true,
+            "vanguard": 3
+        },
+        "drawEvents": [],
+        "points": 130,
+        "pointsPerAdditionalStand": 40,
+        "officerUpgrades": "Herald of Stone (25 points), Herald of Fire (25 points), Herald of Magma (25 points), Exemplar (15 points), Standard Bearer (included)"
+    },
+    {
+        "name": "Initiates",
+        "faction": "Dweghom",
+        "type": "infantry",
+        "regimentClass": "medium",
+        "characteristics": {
+            "march": 5,
+            "volley": 1,
+            "clash": 2,
+            "attacks": 4,
+            "wounds": 5,
+            "resolve": 3,
+            "defense": 3,
+            "evasion": 0
+        },
+        "specialRules": [
+            {
+                "name": "Devout",
+                "description": "When a Regiment with this Special Rule is the Target of a Priest (X)'s Spellcasting Action, one failed Spellcasting die is converted to a success."
+            },
+            {
+                "name": "Iron Discipline",
+                "description": "When this Regiment is Engaged or suffers Wounds from the Sides or Rear, it does not lose the Support (X) Special Rule and does not Re-Roll successful Morale Tests."
+            },
+            {
+                "name": "Shield",
+                "description": "This Stand adds +1 to its Defense Characteristic against Attacks originating from its front arc."
+            },
+            {
+                "name": "Support (2)",
+                "description": "This Regiment's Stands contribute 2 Supporting Attacks during a Clash Action instead of 1."
+            },
+            {
+                "name": "Leader",
+                "description": "The Regiment's Command Stand that provides leadership to the unit."
+            }
+        ],
+        "numericSpecialRules": {
+            "shield": true,
+            "support": 2
+        },
+        "drawEvents": [],
+        "points": 145,
+        "pointsPerAdditionalStand": 45,
+        "officerUpgrades": "Standard Bearer (10 points)"
+    },
+    {
+        "name": "Wardens",
+        "faction": "Dweghom",
+        "type": "infantry",
+        "regimentClass": "medium",
+        "characteristics": {
+            "march": 6,
+            "volley": 1,
+            "clash": 3,
+            "attacks": 6,
+            "wounds": 5,
+            "resolve": 4,
+            "defense": 3,
+            "evasion": 0
+        },
+        "specialRules": [
+            {
+                "name": "Cleave (1)",
+                "description": "When a Stand with this Special Rule performs a Clash or Duel Action, any Hits caused by those attacks reduce the Target's Defense by 1 for the purposes of making Defense Rolls against those Attacks."
+            },
+            {
+                "name": "Devout",
+                "description": "When a Regiment with this Special Rule is the Target of a Priest (X)'s Spellcasting Action, one failed Spellcasting die is converted to a success."
+            },
+            {
+                "name": "Fearless",
+                "description": "A Regiment with this Special Rule ignores the effects of the Fearsome and Terrifying (X) Special Rules."
+            },
+            {
+                "name": "Leader",
+                "description": "The Regiment's Command Stand that provides leadership to the unit."
+            }
+        ],
+        "numericSpecialRules": {
+            "cleave": 1
+        },
+        "drawEvents": [],
+        "points": 190,
+        "pointsPerAdditionalStand": 55,
+        "officerUpgrades": "Standard Bearer (15 points)"
+    },
+    {
+        "name": "Dragonslayers",
+        "faction": "Dweghom",
+        "type": "infantry",
+        "regimentClass": "heavy",
+        "characteristics": {
+            "march": 5,
+            "volley": 1,
+            "clash": 4,
+            "attacks": 5,
+            "wounds": 6,
+            "resolve": 4,
+            "defense": 3,
+            "evasion": 0
+        },
+        "specialRules": [
+            {
+                "name": "Cleave (3)",
+                "description": "When a Stand with this Special Rule performs a Clash or Duel Action, any Hits caused by those attacks reduce the Target's Defense by 3 for the purposes of making Defense Rolls against those Attacks."
+            },
+            {
+                "name": "Fiend Hunter",
+                "description": "Stands with this Special Rule may Re-Roll all failed Hit Rolls against Monster and Brute Regiments."
+            },
+            {
+                "name": "Hardened (2)",
+                "description": "When this Regiment makes a Defense Roll, reduce any Cleave (X), Brutal Impact (X) or Armor Piercing (X) Special Rule by 2 when resolving that Defense Roll."
+            },
+            {
+                "name": "Leader",
+                "description": "The Regiment's Command Stand that provides leadership to the unit."
+            }
+        ],
+        "numericSpecialRules": {
+            "cleave": 3,
+            "hardened": 2
+        },
+        "drawEvents": [],
+        "points": 220,
+        "pointsPerAdditionalStand": 65,
+        "officerUpgrades": "Standard Bearer (20 points)"
+    },
+    {
+        "name": "Hold Thanes",
+        "faction": "Dweghom",
+        "type": "infantry",
+        "regimentClass": "heavy",
+        "characteristics": {
+            "march": 5,
+            "volley": 1,
+            "clash": 3,
+            "attacks": 4,
+            "wounds": 5,
+            "resolve": 3,
+            "defense": 3,
+            "evasion": 0
+        },
+        "specialRules": [
+            {
+                "name": "Cleave (1)",
+                "description": "When a Stand with this Special Rule performs a Clash or Duel Action, any Hits caused by those attacks reduce the Target's Defense by 1 for the purposes of making Defense Rolls against those Attacks."
+            },
+            {
+                "name": "Shield",
+                "description": "This Stand adds +1 to its Defense Characteristic against Attacks originating from its front arc."
+            },
+            {
+                "name": "Hardened (1)",
+                "description": "When this Regiment makes a Defense Roll, reduce any Cleave (X), Brutal Impact (X) or Armor Piercing (X) Special Rule by 1 when resolving that Defense Roll."
+            },
+            {
+                "name": "Leader",
+                "description": "The Regiment's Command Stand that provides leadership to the unit."
+            },
+            {
+                "name": "Standard Bearer",
+                "description": "The Regiment's Command Stand includes a Standard Bearer."
+            }
+        ],
+        "numericSpecialRules": {
+            "cleave": 1,
+            "shield": true,
+            "hardened": 1
+        },
+        "drawEvents": [],
+        "points": 190,
+        "pointsPerAdditionalStand": 55,
+        "officerUpgrades": "Herald of Stone (30 points), Herald of Fire (30 points), Herald of Magma (20 points), Standard Bearer (included)"
+    },
+    {
+        "name": "Magmaforged",
+        "faction": "Dweghom",
+        "type": "infantry",
+        "regimentClass": "medium",
+        "characteristics": {
+            "march": 6,
+            "volley": 1,
+            "clash": 3,
+            "attacks": 4,
+            "wounds": 5,
+            "resolve": 4,
+            "defense": 3,
+            "evasion": 0
+        },
+        "specialRules": [
+            {
+                "name": "Aura of Death (4)",
+                "description": "At the start of an Enemy Regiment's \"Draw Command Card\" step, if it is in contact with one or more Enemy Regiment with this Special Rule, it suffers 4 Hits."
+            },
+            {
+                "name": "Cleave (2)",
+                "description": "When a Stand with this Special Rule performs a Clash or Duel Action, any Hits caused by those attacks reduce the Target's Defense by 2 for the purposes of making Defense Rolls against those Attacks."
+            },
+            {
+                "name": "Leader",
+                "description": "The Regiment's Command Stand that provides leadership to the unit."
+            },
+            {
+                "name": "Standard Bearer",
+                "description": "The Regiment's Command Stand includes a Standard Bearer."
+            }
+        ],
+        "numericSpecialRules": {
+            "auraOfDeath": 4,
+            "cleave": 2
+        },
+        "drawEvents": [],
+        "points": 190,
+        "pointsPerAdditionalStand": 60
+    },
+    {
+        "name": "Inferno Automata",
+        "faction": "Dweghom",
+        "type": "brute",
+        "regimentClass": "light",
+        "characteristics": {
+            "march": 7,
+            "volley": 1,
+            "clash": 2,
+            "attacks": 6,
+            "wounds": 5,
+            "resolve": 3,
+            "defense": 3,
+            "evasion": 2
+        },
+        "specialRules": [
+            {
+                "name": "Aura of Death (4)",
+                "description": "At the start of an Enemy Regiment's \"Draw Command Card\" step, if it is in contact with one or more Enemy Regiment with this Special Rule, it suffers 4 Hits."
+            },
+            {
+                "name": "Fearsome",
+                "description": "Enemy Regiments in contact with this Regiment must roll a D6 before being able to perform a Combat Rally or Combat Reform Action."
+            },
+            {
+                "name": "Fluid Formation",
+                "description": "This Regiment may perform a free additional Reform Action during its Activation."
+            },
+            {
+                "name": "Impact (2)",
+                "description": "Stands with this Special Rule perform Impact Attacks equal to 2."
+            },
+            {
+                "name": "Irregular",
+                "description": "This Regiment does not affect Friendly and Enemy Reinforcement Lines."
+            }
+        ],
+        "numericSpecialRules": {
+            "auraOfDeath": 4,
+            "impact": 2
+        },
+        "drawEvents": [],
+        "points": 180,
+        "pointsPerAdditionalStand": 55
+    },
+    {
+        "name": "Steelforged",
+        "faction": "Dweghom",
+        "type": "brute",
+        "regimentClass": "medium",
+        "characteristics": {
+            "march": 6,
+            "volley": 1,
+            "clash": 3,
+            "attacks": 4,
+            "wounds": 5,
+            "resolve": 4,
+            "defense": 4,
+            "evasion": 1
+        },
+        "specialRules": [
+            {
+                "name": "Cleave (1)",
+                "description": "When a Stand with this Special Rule performs a Clash or Duel Action, any Hits caused by those attacks reduce the Target's Defense by 1 for the purposes of making Defense Rolls against those Attacks."
+            },
+            {
+                "name": "Fearsome",
+                "description": "Enemy Regiments in contact with this Regiment must roll a D6 before being able to perform a Combat Rally or Combat Reform Action."
+            },
+            {
+                "name": "Impact (2)",
+                "description": "Stands with this Special Rule perform Impact Attacks equal to 2."
+            },
+            {
+                "name": "Leader",
+                "description": "The Regiment's Command Stand that provides leadership to the unit."
+            }
+        ],
+        "numericSpecialRules": {
+            "cleave": 1,
+            "impact": 2
+        },
+        "drawEvents": [
+            {
+                "name": "Flux-Powered",
+                "description": "Until the end of the Round, choose one of the following bonuses for this Regiment to receive: +2 Clash Characteristic or +2 Attacks Characteristic."
+            }
+        ],
+        "points": 210,
+        "pointsPerAdditionalStand": 65
+    },
+    {
+        "name": "Lost",
+        "faction": "Dweghom",
+        "type": "brute",
+        "regimentClass": "medium",
+        "characteristics": {
+            "march": 6,
+            "volley": 1,
+            "clash": 3,
+            "attacks": 6,
+            "wounds": 6,
+            "resolve": 3,
+            "defense": 3,
+            "evasion": 0
+        },
+        "specialRules": [
+            {
+                "name": "Aura of Death (4)",
+                "description": "At the start of an Enemy Regiment's \"Draw Command Card\" step, if it is in contact with one or more Enemy Regiment with this Special Rule, it suffers 4 Hits."
+            },
+            {
+                "name": "Cleave (1)",
+                "description": "When a Stand with this Special Rule performs a Clash or Duel Action, any Hits caused by those attacks reduce the Target's Defense by 1 for the purposes of making Defense Rolls against those Attacks."
+            },
+            {
+                "name": "Impact (3)",
+                "description": "Stands with this Special Rule perform Impact Attacks equal to 3."
+            },
+            {
+                "name": "Unstoppable",
+                "description": "This Regiment may Re-Roll failed Charge Rolls."
+            },
+            {
+                "name": "Leader",
+                "description": "The Regiment's Command Stand that provides leadership to the unit."
+            }
+        ],
+        "numericSpecialRules": {
+            "auraOfDeath": 4,
+            "cleave": 1,
+            "impact": 3
+        },
+        "drawEvents": [
+            {
+                "name": "Fires of the Descent",
+                "description": "Target Friendly Regiment within 8\" gains the Relentless Blows Special Rule until the end of the Round."
+            }
+        ],
+        "points": 170,
+        "pointsPerAdditionalStand": 60
+    },
+    {
+        "name": "Found",
+        "faction": "Dweghom",
+        "type": "brute",
+        "regimentClass": "medium",
+        "characteristics": {
+            "march": 6,
+            "volley": 3,
+            "clash": 2,
+            "attacks": 4,
+            "wounds": 6,
+            "resolve": 3,
+            "defense": 3,
+            "evasion": 0
+        },
+        "specialRules": [
+            {
+                "name": "Barrage (3) (14\", Armor Piercing (1))",
+                "description": "This Regiment may perform a Volley Action, making a number of Attack rolls equal to its Barrage value multiplied by the Regiment's number of Stands. The Barrage has the Armor Piercing (1) special rule."
+            },
+            {
+                "name": "Bombardment",
+                "description": "This Regiment does not add +1 to its Volley Characteristic as a result of the Aimed Shot Special Rule. Instead it gains the Barrage (+1) Special Rule and adds +2\" to its Barrage distance."
+            },
+            {
+                "name": "Leader",
+                "description": "The Regiment's Command Stand that provides leadership to the unit."
+            }
+        ],
+        "numericSpecialRules": {
+            "barrage": 3,
+            "barrageRange": 14,
+            "armorPiercing": 1
+        },
+        "drawEvents": [],
+        "points": 180,
+        "pointsPerAdditionalStand": 60
+    },
+    {
+        "name": "Stoneforged",
+        "faction": "Dweghom",
+        "type": "monster",
+        "regimentClass": "heavy",
+        "characteristics": {
+            "march": 6,
+            "volley": 1,
+            "clash": 3,
+            "attacks": 10,
+            "wounds": 20,
+            "resolve": 4,
+            "defense": 3,
+            "evasion": 1
+        },
+        "specialRules": [
+            {
+                "name": "Cleave (2)",
+                "description": "When a Stand with this Special Rule performs a Clash or Duel Action, any Hits caused by those attacks reduce the Target's Defense by 2 for the purposes of making Defense Rolls against those Attacks."
+            },
+            {
+                "name": "Impact (4)",
+                "description": "Stands with this Special Rule perform Impact Attacks equal to 4."
+            },
+            {
+                "name": "Terrifying (1)",
+                "description": "Regiments in contact with Stands with this Special Rule reduce their Resolve Characteristic by 1 for the purposes of making Morale Tests against Wounds taken from that Regiment."
+            },
+            {
+                "name": "Fearsome",
+                "description": "Enemy Regiments in contact with this Regiment must roll a D6 before being able to perform a Combat Rally or Combat Reform Action."
+            },
+            {
+                "name": "Unstable Alloys",
+                "description": "When an Enemy Regiment selects this Regiment as a Target of a Volley Action this Regiment counts as having the Hardened (2) Special Rule until the end of that Action. In addition, when an Enemy Spellcaster selects this Regiment as a Target of a Spell, the Spell requires 2 more successes in order to be successfully cast."
+            }
+        ],
+        "numericSpecialRules": {
+            "cleave": 2,
+            "impact": 4,
+            "terrifying": 1
+        },
+        "drawEvents": [
+            {
+                "name": "Magnetic Conduit",
+                "description": "This Regiment may immediately spend up to 3 Elemental Potency Markers. For each Elemental Potency Marker spent, this Regiment adds +1 to its Attacks Characteristic and counts as one additional Stand for the purposes of Seizing Objective Markers until the end of the Round."
+            }
+        ],
+        "points": 220
+    },
+    {
+        "name": "Ironclad Drake",
+        "faction": "Dweghom",
+        "type": "monster",
+        "regimentClass": "heavy",
+        "characteristics": {
+            "march": 7,
+            "volley": 1,
+            "clash": 3,
+            "attacks": 12,
+            "wounds": 17,
+            "resolve": 4,
+            "defense": 3,
+            "evasion": 2
+        },
+        "specialRules": [
+            {
+                "name": "Cleave (2)",
+                "description": "When a Stand with this Special Rule performs a Clash or Duel Action, any Hits caused by those attacks reduce the Target's Defense by 2 for the purposes of making Defense Rolls against those Attacks."
+            },
+            {
+                "name": "Relentless Blows",
+                "description": "When a Stand with this Special Rule performs a Clash or Duel Action, each Hit Roll of \"1\" causes an additional automatic Hit on the Target."
+            },
+            {
+                "name": "Impact (6)",
+                "description": "Stands with this Special Rule perform Impact Attacks equal to 6."
+            },
+            {
+                "name": "Terrifying (2)",
+                "description": "Regiments in contact with Stands with this Special Rule reduce their Resolve Characteristic by 2 for the purposes of making Morale Tests against Wounds taken from that Regiment."
+            },
+            {
+                "name": "Unstoppable",
+                "description": "This Regiment may Re-Roll failed Charge Rolls."
+            },
+            {
+                "name": "Brutal Impact (2)",
+                "description": "When a Stand with this Special Rule inflicts Impact Attacks, those Impact Attacks reduce the Target Enemy Regiment's Defense by 2 for the purposes of making Defense Rolls against those Impact Attacks."
+            },
+            {
+                "name": "Aghm is Eternal",
+                "description": "Friendly Character and Command Stands within 8\" of this Regiment count as if they had the Flurry Special Rule."
+            }
+        ],
+        "numericSpecialRules": {
+            "cleave": 2,
+            "impact": 6,
+            "terrifying": 2,
+            "brutalImpact": 2
+        },
+        "drawEvents": [],
+        "points": 220
+    },
+    {
+        "name": "Hellbringer Drake",
+        "faction": "Dweghom",
+        "type": "monster",
+        "regimentClass": "medium",
+        "characteristics": {
+            "march": 7,
+            "volley": 2,
+            "clash": 2,
+            "attacks": 8,
+            "wounds": 14,
+            "resolve": 3,
+            "defense": 3,
+            "evasion": 2
+        },
+        "specialRules": [
+            {
+                "name": "Barrage (10) (16\", Armor Piercing (1))",
+                "description": "This Regiment may perform a Volley Action, making a number of Attack rolls equal to its Barrage value. The Barrage has the Armor Piercing (1) special rule."
+            },
+            {
+                "name": "Impact (5)",
+                "description": "Stands with this Special Rule perform Impact Attacks equal to 5."
+            },
+            {
+                "name": "Cleave (1)",
+                "description": "When a Stand with this Special Rule performs a Clash or Duel Action, any Hits caused by those attacks reduce the Target's Defense by 1 for the purposes of making Defense Rolls against those Attacks."
+            },
+            {
+                "name": "Terrifying (1)",
+                "description": "Regiments in contact with Stands with this Special Rule reduce their Resolve Characteristic by 1 for the purposes of making Morale Tests against Wounds taken from that Regiment."
+            }
+        ],
+        "numericSpecialRules": {
+            "barrage": 10,
+            "barrageRange": 16,
+            "armorPiercing": 1,
+            "impact": 5,
+            "cleave": 1,
+            "terrifying": 1
+        },
+        "drawEvents": [
+            {
+                "name": "Overcharge",
+                "description": "The Regiment places an Overcharge Marker besides its Stand(s). When the Regiment performs a Volley Action, the Regiment may discard any number of Overcharge Markers. For each Marker discarded this way, the Regiment gains the Barrage (+2) and Armor Piercing (+1) Special Rules until the end of the Round."
+            }
+        ],
+        "points": 200
+    },
+    {
+        "name": "Ardent Kerawegh",
+        "faction": "Dweghom",
+        "type": "infantry",
+        "regimentClass": "character",
+        "characteristics": {
+            "march": null,
+            "volley": 1,
+            "clash": 3,
+            "attacks": 5,
+            "wounds": 4,
+            "resolve": 4,
+            "defense": 3,
+            "evasion": 0
+        },
+        "specialRules": [
+            {
+                "name": "Priest (6)",
+                "description": "This Regiment or Character Stand can perform the Spellcasting Action during its Activation. The 6 value is this Stand's Magic Level."
+            }
+        ],
+        "numericSpecialRules": {
+            "spellDice": 6
+        },
+        "drawEvents": [],
+        "points": 90
+    },
+    {
+        "name": "Tempered Sorcerer",
+        "faction": "Dweghom",
+        "type": "infantry",
+        "regimentClass": "character",
+        "characteristics": {
+            "march": null,
+            "volley": 3,
+            "clash": 2,
+            "attacks": 3,
+            "wounds": 4,
+            "resolve": 3,
+            "defense": 2,
+            "evasion": 0
+        },
+        "specialRules": [
+            {
+                "name": "Barrage (5) (16\")",
+                "description": "This Regiment may perform a Volley Action, making a number of Attack rolls equal to its Barrage value."
+            },
+            {
+                "name": "Wizard (7)",
+                "description": "This Regiment or Character Stand can perform the Spellcasting Action during its Activation. The 7 value is this Stand's Magic Level."
+            }
+        ],
+        "numericSpecialRules": {
+            "barrage": 5,
+            "barrageRange": 16,
+            "spellDice": 7
+        },
+        "drawEvents": [],
+        "points": 130
+    },
+    {
+        "name": "Tempered Steelshaper",
+        "faction": "Dweghom",
+        "type": "infantry",
+        "regimentClass": "character",
+        "characteristics": {
+            "march": null,
+            "volley": 2,
+            "clash": 2,
+            "attacks": 4,
+            "wounds": 5,
+            "resolve": null,
+            "defense": 4,
+            "evasion": 2
+        },
+        "specialRules": [
+            {
+                "name": "Barrage (5) (18\")",
+                "description": "This Regiment may perform a Volley Action, making a number of Attack rolls equal to its Barrage value."
+            },
+            {
+                "name": "Wizard (7)",
+                "description": "This Regiment or Character Stand can perform the Spellcasting Action during its Activation. The 7 value is this Stand's Magic Level."
+            },
+            {
+                "name": "Indifferent Towards Life",
+                "description": "This Character Stand cannot be affected by Enemy Interference. Furthermore, the Regiment this Character Stand is currently attached does not suffer the negative effects of refusing a Duel. Finally, the Character Stand does not have a Resolve Characteristic and is always considered to have passed any Morale or Resolve Characteristic Test."
+            },
+            {
+                "name": "Critical Field",
+                "description": "When this Character Stand chooses the Regiment they are currently attached to or an Enemy Regiment they are currently Engaged with as the Target of a Spell during a Spellcasting Action, the Spell is automatically successfully resolved as if it had scored the amount of successes required."
+            }
+        ],
+        "numericSpecialRules": {
+            "barrage": 5,
+            "barrageRange": 18,
+            "spellDice": 7
+        },
+        "drawEvents": [],
+        "points": 120
+    },
+    {
+        "name": "Hold Raegh",
+        "faction": "Dweghom",
+        "type": "infantry",
+        "regimentClass": "character",
+        "characteristics": {
+            "march": null,
+            "volley": 1,
+            "clash": 4,
+            "attacks": 5,
+            "wounds": 5,
+            "resolve": 4,
+            "defense": 4,
+            "evasion": 0
+        },
+        "specialRules": [
+            {
+                "name": "Cleave (1)",
+                "description": "When a Stand with this Special Rule performs a Clash or Duel Action, any Hits caused by those attacks reduce the Target's Defense by 1 for the purposes of making Defense Rolls against those Attacks."
+            },
+            {
+                "name": "Aghm to be Gained!",
+                "description": "A Hold Thanes Regiment this Character Stand is currently attached to gains the Flank Special Rule."
+            }
+        ],
+        "numericSpecialRules": {
+            "cleave": 1
+        },
+        "drawEvents": [],
+        "points": 100
+    },
+    {
+        "name": "Lost Ancestor",
+        "faction": "Dweghom",
+        "type": "brute",
+        "regimentClass": "character",
+        "characteristics": {
+            "march": null,
+            "volley": 1,
+            "clash": 3,
+            "attacks": 5,
+            "wounds": 6,
+            "resolve": 4,
+            "defense": 3,
+            "evasion": 1
+        },
+        "specialRules": [
+            {
+                "name": "Cleave (2)",
+                "description": "When a Stand with this Special Rule performs a Clash or Duel Action, any Hits caused by those attacks reduce the Target's Defense by 2 for the purposes of making Defense Rolls against those Attacks."
+            },
+            {
+                "name": "Priest (6)",
+                "description": "This Regiment or Character Stand can perform the Spellcasting Action during its Activation. The 6 value is this Stand's Magic Level."
+            },
+            {
+                "name": "Forward Force",
+                "description": "This Character Stand may be attached to an Infantry Regiment even though it is a Brute Character Stand. Furthermore, the Lost Ancestor's Size is ignored for the purposes of Line of Sight."
+            }
+        ],
+        "numericSpecialRules": {
+            "cleave": 2,
+            "spellDice": 6
+        },
+        "drawEvents": [],
+        "points": 120
+    }
+]

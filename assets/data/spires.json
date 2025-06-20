@@ -1,0 +1,988 @@
+[
+    {
+        "name": "Force-Grown Drones",
+        "faction": "Spires",
+        "type": "infantry",
+        "regimentClass": "light",
+        "characteristics": {
+            "march": 5,
+            "volley": 1,
+            "clash": 1,
+            "attacks": 4,
+            "wounds": 4,
+            "resolve": 1,
+            "defense": 1,
+            "evasion": 0
+        },
+        "specialRules": [
+            {
+                "name": "Shield",
+                "description": "Stands in this Regiment, including Character Stands, count their Defense Characteristic as 1 point higher against all Hits originating from the Regiment's front Arc."
+            },
+            {
+                "name": "Support (2)",
+                "description": "This Regiment's Stands contribute 2 Supporting Attacks during a Clash Action instead of 1."
+            },
+            {
+                "name": "Purposefully Mindless",
+                "description": "While a Character Stand is attached to this Regiment, the Regiment always uses the highest Resolve Characteristic in the Regiment, including modifiers, even when Broken."
+            },
+            {
+                "name": "Standard Bearer",
+                "description": "The Regiment's Command Stand includes a Standard Bearer."
+            }
+        ],
+        "numericSpecialRules": {
+            "support": 2,
+            "shield": true
+        },
+        "drawEvents": [],
+        "points": 90,
+        "pointsPerAdditionalStand": 30,
+        "officerUpgrades": "Any Force Grown Drone Regiment may take the following Officers: Catabolic Node (20 points)"
+    },
+    {
+        "name": "Stryx",
+        "faction": "Spires",
+        "type": "infantry",
+        "regimentClass": "light",
+        "characteristics": {
+            "march": 10,
+            "volley": 1,
+            "clash": 2,
+            "attacks": 4,
+            "wounds": 4,
+            "resolve": 1,
+            "defense": 1,
+            "evasion": 2
+        },
+        "specialRules": [
+            {
+                "name": "Fly",
+                "description": "A Regiment containing only Stands with this Special Rule can March and Charge over other Regiments, regardless of whether they are Engaged, as well as Impassable and Garrison Terrain, provided the Regiment does not end its Activation overlapping any Regiments or Impassable Terrain."
+            },
+            {
+                "name": "Irregular",
+                "description": "This Regiment does not affect Friendly and Enemy Reinforcement Lines. A Stand without this Special Rule may not join this Regiment."
+            },
+            {
+                "name": "Lethal Demise",
+                "description": "For every Wound allocated to a Stand with this Special Rule as a result of a failed Defense Roll, the Enemy Regiment in contact with the Stand's Regiment that caused the Hits suffers a Hit."
+            }
+        ],
+        "numericSpecialRules": {},
+        "drawEvents": [],
+        "points": 120,
+        "pointsPerAdditionalStand": 40
+    },
+    {
+        "name": "Vanguard Clone Infiltrators",
+        "faction": "Spires",
+        "type": "infantry",
+        "regimentClass": "light",
+        "characteristics": {
+            "march": 6,
+            "volley": 2,
+            "clash": 2,
+            "attacks": 4,
+            "wounds": 4,
+            "resolve": 3,
+            "defense": 1,
+            "evasion": 2
+        },
+        "specialRules": [
+            {
+                "name": "Barrage (5) (14\", Rapid Volley)",
+                "description": "A Stand with this Special Rule contributes 5 Shots when its Regiment performs a Volley Action. When a Stand with this Special Rule performs a Volley Action, each Hit Roll of \"1\" causes an additional automatic Hit on the Target."
+            },
+            {
+                "name": "Fluid Formation",
+                "description": "This Regiment may perform a free additional Reform Action during its Activation. This free Reform Action must be performed before the Regiment takes its first Action, or at the end of its Activation after all other Actions have been resolved."
+            },
+            {
+                "name": "Vanguard (4)",
+                "description": "When a Regiment with this Special Rule enters the Battlefield from Reinforcements, add +4 to its March Characteristic for the first March Action this Activation."
+            },
+            {
+                "name": "Leader",
+                "description": "The Regiment's Command Stand that provides leadership to the unit."
+            }
+        ],
+        "numericSpecialRules": {
+            "barrage": 5,
+            "barrageRange": 14,
+            "vanguard": 4
+        },
+        "drawEvents": [],
+        "points": 160,
+        "pointsPerAdditionalStand": 60
+    },
+    {
+        "name": "Bound Clones",
+        "faction": "Spires",
+        "type": "infantry",
+        "regimentClass": "medium",
+        "characteristics": {
+            "march": 5,
+            "volley": 1,
+            "clash": 2,
+            "attacks": 4,
+            "wounds": 4,
+            "resolve": 2,
+            "defense": 2,
+            "evasion": 1
+        },
+        "specialRules": [
+            {
+                "name": "Shield",
+                "description": "Stands in this Regiment, including Character Stands, count their Defense Characteristic as 1 point higher against all Hits originating from the Regiment's front Arc."
+            },
+            {
+                "name": "Support (2)",
+                "description": "This Regiment's Stands contribute 2 Supporting Attacks during a Clash Action instead of 1."
+            },
+            {
+                "name": "Leader",
+                "description": "The Regiment's Command Stand that provides leadership to the unit."
+            },
+            {
+                "name": "Standard Bearer",
+                "description": "The Regiment's Command Stand includes a Standard Bearer."
+            }
+        ],
+        "numericSpecialRules": {
+            "support": 2,
+            "shield": true
+        },
+        "drawEvents": [],
+        "points": 110,
+        "pointsPerAdditionalStand": 30,
+        "officerUpgrades": "Any Bound Clones Regiment may take one of the following Officers: Ward Preceptor (25 points), Assault Preceptor (20 points), Catabolic Node (20 points)"
+    },
+    {
+        "name": "Vanguard Clones",
+        "faction": "Spires",
+        "type": "infantry",
+        "regimentClass": "medium",
+        "characteristics": {
+            "march": 6,
+            "volley": 1,
+            "clash": 2,
+            "attacks": 6,
+            "wounds": 4,
+            "resolve": 3,
+            "defense": 2,
+            "evasion": 2
+        },
+        "specialRules": [
+            {
+                "name": "Shield",
+                "description": "Stands in this Regiment, including Character Stands, count their Defense Characteristic as 1 point higher against all Hits originating from the Regiment's front Arc."
+            },
+            {
+                "name": "Vanguard (4)",
+                "description": "When a Regiment with this Special Rule enters the Battlefield from Reinforcements, add +4 to its March Characteristic for the first March Action this Activation."
+            },
+            {
+                "name": "Leader",
+                "description": "The Regiment's Command Stand that provides leadership to the unit."
+            },
+            {
+                "name": "Standard Bearer",
+                "description": "The Regiment's Command Stand includes a Standard Bearer."
+            }
+        ],
+        "numericSpecialRules": {
+            "vanguard": 4,
+            "shield": true
+        },
+        "drawEvents": [],
+        "points": 140,
+        "pointsPerAdditionalStand": 50,
+        "officerUpgrades": "Any Vanguard Clones Regiment may take one of the following Officers: Ward Preceptor (25 points), Assault Preceptor (20 points)"
+    },
+    {
+        "name": "Marksman Clones",
+        "faction": "Spires",
+        "type": "infantry",
+        "regimentClass": "medium",
+        "characteristics": {
+            "march": 5,
+            "volley": 2,
+            "clash": 1,
+            "attacks": 4,
+            "wounds": 4,
+            "resolve": 2,
+            "defense": 1,
+            "evasion": 0
+        },
+        "specialRules": [
+            {
+                "name": "Barrage (5) (20\", Arcing Fire)",
+                "description": "A Stand with this Special Rule contributes 5 Shots when its Regiment performs a Volley Action. Until the end of this Regiment's Activation, if the Regiment has the Aimed Shot Special Rule and is not currently occupying a piece of Garrison terrain, instead of performing a Volley Action as normal it may perform the following: The Regiment suffers -1 to its Volley Characteristic until the end of the Regiment's Activation. Then the Regiment may select an Enemy Regiment in its front arc, within Barrage Range of at least one of its Stands and within Line of Sight of a Friendly Regiment and perform the Volley Action against it as if its Volley was a Clear Shot."
+            },
+            {
+                "name": "Leader",
+                "description": "The Regiment's Command Stand that provides leadership to the unit."
+            },
+            {
+                "name": "Standard Bearer",
+                "description": "The Regiment's Command Stand includes a Standard Bearer."
+            }
+        ],
+        "numericSpecialRules": {
+            "barrage": 5,
+            "barrageRange": 20
+        },
+        "drawEvents": [],
+        "points": 150,
+        "pointsPerAdditionalStand": 50
+    },
+    {
+        "name": "Desolation Drones",
+        "faction": "Spires",
+        "type": "infantry",
+        "regimentClass": "medium",
+        "characteristics": {
+            "march": 5,
+            "volley": 2,
+            "clash": 1,
+            "attacks": 4,
+            "wounds": 4,
+            "resolve": 3,
+            "defense": 2,
+            "evasion": 0
+        },
+        "specialRules": [
+            {
+                "name": "Lethal Demise",
+                "description": "For every Wound allocated to a Stand with this Special Rule as a result of a failed Defense Roll, the Enemy Regiment in contact with the Stand's Regiment that caused the Hits suffers a Hit."
+            },
+            {
+                "name": "Barrage (3) (14\", Armor Piercing (1), Deadly Shot, Torrential Fire, Reprocessing Agents)",
+                "description": "A Stand with this Special Rule contributes 3 Shots when its Regiment performs a Volley Action. When a Stand with this Special Rule performs a Volley or Spellcasting Action, any Hits caused by those attacks reduce the Target Regiment's Defense by 1. When a Stand with this Special Rule performs a Volley Action, any failed Defense Roll of \"6\" rolled by the Target Regiment causes it to suffer 2 Wounds instead of 1. When a Stand with this Special Rule performs a Volley Action against an Enemy Regiment within Effective Range, every two successful Hit Rolls (rounding up) cause an additional automatic Hit on the Target."
+            },
+            {
+                "name": "Reprocessing Agents",
+                "description": "At the end of this Regiment's Barrage after Defense Rolls have been made and any Wounds have been allocated to the Target Enemy Regiment by Stands with this Special Rule, that Enemy Regiment suffers a -1 to its Defense Characteristic until the end of the Round."
+            },
+            {
+                "name": "Leader",
+                "description": "The Regiment's Command Stand that provides leadership to the unit."
+            }
+        ],
+        "numericSpecialRules": {
+            "barrage": 3,
+            "barrageRange": 14,
+            "armorPiercing": 1
+        },
+        "drawEvents": [],
+        "points": 150,
+        "pointsPerAdditionalStand": 40
+    },
+    {
+        "name": "Avatara",
+        "faction": "Spires",
+        "type": "brute",
+        "regimentClass": "medium",
+        "characteristics": {
+            "march": 7,
+            "volley": 1,
+            "clash": 2,
+            "attacks": 4,
+            "wounds": 4,
+            "resolve": 4,
+            "defense": 4,
+            "evasion": 2
+        },
+        "specialRules": [
+            {
+                "name": "Cleave (1)",
+                "description": "When a Stand with this Special Rule performs a Clash or Duel Action, any Hits caused by those Attacks reduce the Target's Defense by 1 for the purposes of making Defense Rolls against those Attacks."
+            },
+            {
+                "name": "Impact (2)",
+                "description": "Stands with this Special Rule perform Impact Attacks equal to 2."
+            },
+            {
+                "name": "Support (2)",
+                "description": "This Regiment's Stands contribute 2 Supporting Attacks during a Clash Action instead of 1."
+            },
+            {
+                "name": "Flawless Technique",
+                "description": "While the Regiment has the Inspired Special Rule it also gains the Flawless Strikes Special Rule."
+            },
+            {
+                "name": "Leader",
+                "description": "The Regiment's Command Stand that provides leadership to the unit."
+            },
+            {
+                "name": "Standard Bearer",
+                "description": "The Regiment's Command Stand includes a Standard Bearer."
+            }
+        ],
+        "numericSpecialRules": {
+            "cleave": 1,
+            "impact": 2,
+            "support": 2
+        },
+        "drawEvents": [],
+        "points": 160,
+        "pointsPerAdditionalStand": 50
+    },
+    {
+        "name": "Onslaught Drones",
+        "faction": "Spires",
+        "type": "infantry",
+        "regimentClass": "medium",
+        "characteristics": {
+            "march": 5,
+            "volley": 1,
+            "clash": 2,
+            "attacks": 5,
+            "wounds": 4,
+            "resolve": 2,
+            "defense": 2,
+            "evasion": 0
+        },
+        "specialRules": [
+            {
+                "name": "Linebreaker",
+                "description": "A Stand with this Special Rule ignores the Shield Special Rule and Bastion (X) Draw Event, when performing a Clash or Duel Action, or when resolving Impact Attacks."
+            },
+            {
+                "name": "Leader",
+                "description": "The Regiment's Command Stand that provides leadership to the unit."
+            }
+        ],
+        "numericSpecialRules": {},
+        "drawEvents": [
+            {
+                "name": "Burnout",
+                "description": "Stands in this Regiment gain +1 Clash and +2 March Characteristic, as well as the Decay (3) Special Rule, until the end of the Round."
+            }
+        ],
+        "points": 110,
+        "pointsPerAdditionalStand": 30,
+        "officerUpgrades": "Any Onslaught Drone Regiment may take the following Officers: Catabolic Node (20 points)"
+    },
+    {
+        "name": "Brute Drones",
+        "faction": "Spires",
+        "type": "brute",
+        "regimentClass": "medium",
+        "characteristics": {
+            "march": 6,
+            "volley": 1,
+            "clash": 2,
+            "attacks": 5,
+            "wounds": 5,
+            "resolve": 4,
+            "defense": 3,
+            "evasion": 0
+        },
+        "specialRules": [
+            {
+                "name": "Flurry",
+                "description": "A Stand with this Special Rule Re-Rolls all failed Hit Rolls when performing a Clash or Duel Action."
+            },
+            {
+                "name": "Impact (3)",
+                "description": "Stands with this Special Rule perform Impact Attacks equal to 3."
+            },
+            {
+                "name": "Oblivious",
+                "description": "Regiments with this Special Rule receive only 1 Wound for every 2 failed Morale Tests, rounding up."
+            },
+            {
+                "name": "Unstoppable",
+                "description": "This Regiment may Re-Roll failed Charge Rolls."
+            }
+        ],
+        "numericSpecialRules": {
+            "impact": 3
+        },
+        "drawEvents": [],
+        "points": 170,
+        "pointsPerAdditionalStand": 50
+    },
+    {
+        "name": "Leonine Avatara",
+        "faction": "Spires",
+        "type": "cavalry",
+        "regimentClass": "medium",
+        "characteristics": {
+            "march": 7,
+            "volley": 3,
+            "clash": 2,
+            "attacks": 4,
+            "wounds": 4,
+            "resolve": 4,
+            "defense": 3,
+            "evasion": 2
+        },
+        "specialRules": [
+            {
+                "name": "Barrage (3) (14\", Armor Piercing (2), Deadly Shot)",
+                "description": "A Stand with this Special Rule contributes 3 Shots when its Regiment performs a Volley Action. When a Stand with this Special Rule performs a Volley or Spellcasting Action, any Hits caused by those attacks reduce the Target Regiment's Defense by 2. When a Stand with this Special Rule performs a Volley Action, any failed Defense Roll of \"6\" rolled by the Target Regiment causes it to suffer 2 Wounds instead of 1."
+            },
+            {
+                "name": "Fluid Formation",
+                "description": "This Regiment may perform a free additional Reform Action during its Activation. This free Reform Action must be performed before the Regiment takes its first Action, or at the end of its Activation after all other Actions have been resolved."
+            },
+            {
+                "name": "Impact (2)",
+                "description": "Stands with this Special Rule perform Impact Attacks equal to 2."
+            },
+            {
+                "name": "Leader",
+                "description": "The Regiment's Command Stand that provides leadership to the unit."
+            }
+        ],
+        "numericSpecialRules": {
+            "barrage": 3,
+            "barrageRange": 14,
+            "armorPiercing": 2,
+            "impact": 2
+        },
+        "drawEvents": [],
+        "points": 180,
+        "pointsPerAdditionalStand": 60
+    },
+    {
+        "name": "Incarnate Sentinels",
+        "faction": "Spires",
+        "type": "brute",
+        "regimentClass": "heavy",
+        "characteristics": {
+            "march": 7,
+            "volley": 1,
+            "clash": 3,
+            "attacks": 5,
+            "wounds": 6,
+            "resolve": 3,
+            "defense": 4,
+            "evasion": 1
+        },
+        "specialRules": [
+            {
+                "name": "Cleave (2)",
+                "description": "When a Stand with this Special Rule performs a Clash or Duel Action, any Hits caused by those Attacks reduce the Target's Defense by 2 for the purposes of making Defense Rolls against those Attacks."
+            },
+            {
+                "name": "Impact (3)",
+                "description": "Stands with this Special Rule perform Impact Attacks equal to 3."
+            },
+            {
+                "name": "Leader",
+                "description": "The Regiment's Command Stand that provides leadership to the unit."
+            }
+        ],
+        "numericSpecialRules": {
+            "cleave": 2,
+            "impact": 3
+        },
+        "drawEvents": [],
+        "points": 210,
+        "pointsPerAdditionalStand": 70
+    },
+    {
+        "name": "Prowlers",
+        "faction": "Spires",
+        "type": "cavalry",
+        "regimentClass": "light",
+        "characteristics": {
+            "march": 9,
+            "volley": 0,
+            "clash": 2,
+            "attacks": 5,
+            "wounds": 3,
+            "resolve": 2,
+            "defense": 0,
+            "evasion": 2
+        },
+        "specialRules": [
+            {
+                "name": "Fluid Formation",
+                "description": "This Regiment may perform a free additional Reform Action during its Activation. This free Reform Action must be performed before the Regiment takes its first Action, or at the end of its Activation after all other Actions have been resolved."
+            },
+            {
+                "name": "Irregular",
+                "description": "This Regiment does not affect Friendly and Enemy Reinforcement Lines. A Stand without this Special Rule may not join this Regiment."
+            },
+            {
+                "name": "Opportunists",
+                "description": "A Stand with this Special Rule may re-roll failed Hit Rolls when performing a Clash or Volley Action against an Enemy Regiment's Flank or Rear Arc."
+            },
+            {
+                "name": "Deadly Blades",
+                "description": "When a Stand with this Special Rule performs a Clash or Duel Action, any failed Defense Roll of \"6\" rolled by the Target Regiment causes it to suffer 2 Wounds instead of 1."
+            },
+            {
+                "name": "Loose Formation",
+                "description": "When a Stand performs a Volley Action against a Regiment with this Special Rule it halves the X value in its Barrage (X) Special Rule (rounding up) to a minimum of 1. In addition, Spells will only inflict half their number of Hits (rounding up) against a Stand with this Special Rule."
+            }
+        ],
+        "numericSpecialRules": {},
+        "drawEvents": [],
+        "points": 165,
+        "pointsPerAdditionalStand": 55
+    },
+    {
+        "name": "Centaur Avatara",
+        "faction": "Spires",
+        "type": "cavalry",
+        "regimentClass": "heavy",
+        "characteristics": {
+            "march": 8,
+            "volley": 0,
+            "clash": 3,
+            "attacks": 5,
+            "wounds": 5,
+            "resolve": 4,
+            "defense": 3,
+            "evasion": 1
+        },
+        "specialRules": [
+            {
+                "name": "Brutal Impact (2)",
+                "description": "When a Stand with this Special Rule inflicts Impact Attacks, those Impact Attacks reduce the Target Enemy Regiment's Defense by 2 for the purposes of making Defense Rolls against those Impact Attacks."
+            },
+            {
+                "name": "Flurry",
+                "description": "A Stand with this Special Rule Re-Rolls all failed Hit Rolls when performing a Clash or Duel Action."
+            },
+            {
+                "name": "Impact (3)",
+                "description": "Stands with this Special Rule perform Impact Attacks equal to 3."
+            },
+            {
+                "name": "Shield",
+                "description": "Stands in this Regiment, including Character Stands, count their Defense Characteristic as 1 point higher against all Hits originating from the Regiment's front Arc."
+            },
+            {
+                "name": "Leader",
+                "description": "The Regiment's Command Stand that provides leadership to the unit."
+            },
+            {
+                "name": "Standard Bearer",
+                "description": "The Regiment's Command Stand includes a Standard Bearer."
+            }
+        ],
+        "numericSpecialRules": {
+            "brutalImpact": 2,
+            "impact": 3,
+            "shield": true
+        },
+        "drawEvents": [],
+        "points": 190,
+        "pointsPerAdditionalStand": 60
+    },
+    {
+        "name": "Abomination",
+        "faction": "Spires",
+        "type": "monster",
+        "regimentClass": "medium",
+        "characteristics": {
+            "march": 10,
+            "volley": 0,
+            "clash": 2,
+            "attacks": 10,
+            "wounds": 10,
+            "resolve": 4,
+            "defense": 3,
+            "evasion": 0
+        },
+        "specialRules": [
+            {
+                "name": "Cleave (1)",
+                "description": "When a Stand with this Special Rule performs a Clash or Duel Action, any Hits caused by those Attacks reduce the Target's Defense by 1 for the purposes of making Defense Rolls against those Attacks."
+            },
+            {
+                "name": "Flurry",
+                "description": "A Stand with this Special Rule Re-Rolls all failed Hit Rolls when performing a Clash or Duel Action."
+            },
+            {
+                "name": "Terrifying (1)",
+                "description": "Regiments in contact with Stands with this Special Rule reduce their Resolve Characteristic by 1, for the purposes of making Morale Tests against Wounds taken from that Regiment."
+            },
+            {
+                "name": "Impact (5)",
+                "description": "Stands with this Special Rule perform Impact Attacks equal to 5."
+            },
+            {
+                "name": "Unstoppable",
+                "description": "This Regiment may Re-Roll failed Charge Rolls."
+            }
+        ],
+        "numericSpecialRules": {
+            "cleave": 1,
+            "terrifying": 1,
+            "impact": 5
+        },
+        "drawEvents": [],
+        "points": 150
+    },
+    {
+        "name": "Desolation Beast",
+        "faction": "Spires",
+        "type": "monster",
+        "regimentClass": "heavy",
+        "characteristics": {
+            "march": 7,
+            "volley": 3,
+            "clash": 1,
+            "attacks": 6,
+            "wounds": 12,
+            "resolve": 4,
+            "defense": 2,
+            "evasion": 0
+        },
+        "specialRules": [
+            {
+                "name": "Aura of Death (8)",
+                "description": "At the start of an Enemy Regiment's \"Draw Command Card\" step, if it is in contact with one or more Enemy Regiment with this Special Rule, it suffers 8 Hits. Wounds resulting from these Hits do not trigger Morale Tests."
+            },
+            {
+                "name": "Barrage (10) (16\", Armor Piercing (1), Deadly Shot, Torrential Fire)",
+                "description": "A Stand with this Special Rule contributes 10 Shots when its Regiment performs a Volley Action. When a Stand with this Special Rule performs a Volley or Spellcasting Action, any Hits caused by those attacks reduce the Target Regiment's Defense by 1. When a Stand with this Special Rule performs a Volley Action, any failed Defense Roll of \"6\" rolled by the Target Regiment causes it to suffer 2 Wounds instead of 1. When a Stand with this Special Rule performs a Volley Action against an Enemy Regiment within Effective Range, every two successful Hit Rolls (rounding up) cause an additional automatic Hit on the Target."
+            },
+            {
+                "name": "Lethal Demise",
+                "description": "For every Wound allocated to a Stand with this Special Rule as a result of a failed Defense Roll, the Enemy Regiment in contact with the Stand's Regiment that caused the Hits suffers a Hit."
+            },
+            {
+                "name": "Terrifying (1)",
+                "description": "Regiments in contact with Stands with this Special Rule reduce their Resolve Characteristic by 1, for the purposes of making Morale Tests against Wounds taken from that Regiment."
+            }
+        ],
+        "numericSpecialRules": {
+            "auraOfDeath": 8,
+            "barrage": 10,
+            "barrageRange": 16,
+            "armorPiercing": 1,
+            "terrifying": 1
+        },
+        "drawEvents": [],
+        "points": 170
+    },
+    {
+        "name": "Siegebreaker Behemoth",
+        "faction": "Spires",
+        "type": "monster",
+        "regimentClass": "heavy",
+        "characteristics": {
+            "march": 7,
+            "volley": 0,
+            "clash": 3,
+            "attacks": 10,
+            "wounds": 16,
+            "resolve": 4,
+            "defense": 4,
+            "evasion": 0
+        },
+        "specialRules": [
+            {
+                "name": "Brutal Impact (3)",
+                "description": "When a Stand with this Special Rule inflicts Impact Attacks, those Impact Attacks reduce the Target Enemy Regiment's Defense by 3 for the purposes of making Defense Rolls against those Impact Attacks."
+            },
+            {
+                "name": "Fearless",
+                "description": "A Regiment with this Special Rule ignores the effects of the Fearsome and Terrifying (X) Special Rules."
+            },
+            {
+                "name": "Impact (5)",
+                "description": "Stands with this Special Rule perform Impact Attacks equal to 5."
+            },
+            {
+                "name": "Smite",
+                "description": "Enemy Regiments count their total Defense Characteristic as 0 against Hits caused by a Stand with this Special Rule during a Clash Action."
+            },
+            {
+                "name": "Terrifying (2)",
+                "description": "Regiments in contact with Stands with this Special Rule reduce their Resolve Characteristic by 2, for the purposes of making Morale Tests against Wounds taken from that Regiment."
+            },
+            {
+                "name": "Unstoppable",
+                "description": "This Regiment may Re-Roll failed Charge Rolls."
+            }
+        ],
+        "numericSpecialRules": {
+            "brutalImpact": 3,
+            "impact": 5,
+            "terrifying": 2
+        },
+        "drawEvents": [],
+        "points": 210
+    },
+    {
+        "name": "Pteraphon Surveyor",
+        "faction": "Spires",
+        "type": "monster",
+        "regimentClass": "medium",
+        "characteristics": {
+            "march": 8,
+            "volley": 3,
+            "clash": 2,
+            "attacks": 10,
+            "wounds": 15,
+            "resolve": 3,
+            "defense": 3,
+            "evasion": 2
+        },
+        "specialRules": [
+            {
+                "name": "Barrage (10) (12\")",
+                "description": "A Stand with this Special Rule contributes 10 Shots when its Regiment performs a Volley Action."
+            },
+            {
+                "name": "Fly",
+                "description": "A Regiment containing only Stands with this Special Rule can March and Charge over other Regiments, regardless of whether they are Engaged, as well as Impassable and Garrison Terrain, provided the Regiment does not end its Activation overlapping any Regiments or Impassable Terrain."
+            },
+            {
+                "name": "Impact (6)",
+                "description": "Stands with this Special Rule perform Impact Attacks equal to 6."
+            },
+            {
+                "name": "Irregular",
+                "description": "This Regiment does not affect Friendly and Enemy Reinforcement Lines. A Stand without this Special Rule may not join this Regiment."
+            },
+            {
+                "name": "Eye in the Sky",
+                "description": "Once the Regiment's Activation is completed you may choose to immediately Draw your next Command Card and reveal it. If the Command Card belongs to a Regiment that is arriving from Reinforcements this Round, you may immediately Activate it and it gains the Vanguard (4) Special Rule."
+            },
+            {
+                "name": "Neural-Link",
+                "description": "Friendly Regiments currently within 8\" Roll 2D6 and pick the highest when determining their Charge Distance."
+            },
+            {
+                "name": "Phero-Trails",
+                "description": "The Pteraphon gains access to the Pheromone Gland Burst, Induced Lethargy and Mend Flesh Actions, as listed on the Pheromancer and Biomancer Army List Entries. The Pteraphon may perform one of them during its Activation as a free-additional Action."
+            }
+        ],
+        "numericSpecialRules": {
+            "barrage": 10,
+            "barrageRange": 12,
+            "impact": 6
+        },
+        "drawEvents": [],
+        "points": 170
+    },
+    {
+        "name": "Biomancer",
+        "faction": "Spires",
+        "type": "infantry",
+        "regimentClass": "character",
+        "characteristics": {
+            "march": null,
+            "volley": null,
+            "clash": 2,
+            "attacks": 2,
+            "wounds": 2,
+            "resolve": 4,
+            "defense": 3,
+            "evasion": 2
+        },
+        "specialRules": [
+            {
+                "name": "Mend Flesh",
+                "description": "Target Friendly Regiment within 8\" of this Character Stand Heals for two Wounds. A Regiment cannot Heal as a result of Mend Flesh more than once per Round."
+            },
+            {
+                "name": "Biomancies",
+                "description": "A Biomancer knows all of the following Biomancies at no additional cost and may resolve one Biomancy each Round: Unstable Enhancement, Harvest Essence, Catalytic Rupture, Grant Virulence, Essence Transfer."
+            }
+        ],
+        "numericSpecialRules": {},
+        "drawEvents": [
+            {
+                "name": "Biotic Renewal",
+                "description": "Roll a D6. This Regiment Heals a number of Wounds equal to the result. If the Regiment affected is not Infantry, reduce the Healing value to D3."
+            }
+        ],
+        "points": 100
+    },
+    {
+        "name": "High Clone Executor",
+        "faction": "Spires",
+        "type": "infantry",
+        "regimentClass": "character",
+        "characteristics": {
+            "march": null,
+            "volley": null,
+            "clash": 3,
+            "attacks": 3,
+            "wounds": 5,
+            "resolve": 4,
+            "defense": 4,
+            "evasion": 1
+        },
+        "specialRules": [
+            {
+                "name": "Cleave (1)",
+                "description": "When a Stand with this Special Rule performs a Clash or Duel Action, any Hits caused by those Attacks reduce the Target's Defense by 1 for the purposes of making Defense Rolls against those Attacks."
+            },
+            {
+                "name": "Flawless Strikes",
+                "description": "When a Stand with this Special Rule performs a Clash or Duel Action, all Hit Rolls of \"1\" count the Target's Defense as 0 for that Attack."
+            },
+            {
+                "name": "Tactics",
+                "description": "May select two of the following abilities at no additional cost: 1) Suppress Pain: The Regiment this Character Stand is currently attached to gains the Bastion (1) Draw Event. 2) Overtax Nervous System: The Regiment this Character is currently attached to gains the Double Time Draw Event. 3) Disperse: The Regiment this Character is currently attached to gains the Loose Formation Special Rule."
+            }
+        ],
+        "numericSpecialRules": {
+            "cleave": 1
+        },
+        "drawEvents": [],
+        "points": 100
+    },
+    {
+        "name": "Lineage Highborne",
+        "faction": "Spires",
+        "type": "brute",
+        "regimentClass": "character",
+        "characteristics": {
+            "march": null,
+            "volley": null,
+            "clash": 2,
+            "attacks": 3,
+            "wounds": 6,
+            "resolve": 6,
+            "defense": 4,
+            "evasion": 2
+        },
+        "specialRules": [
+            {
+                "name": "Cleave (1)",
+                "description": "When a Stand with this Special Rule performs a Clash or Duel Action, any Hits caused by those Attacks reduce the Target's Defense by 1 for the purposes of making Defense Rolls against those Attacks."
+            },
+            {
+                "name": "Impact (3)",
+                "description": "Stands with this Special Rule perform Impact Attacks equal to 3."
+            }
+        ],
+        "numericSpecialRules": {
+            "cleave": 1,
+            "impact": 3
+        },
+        "drawEvents": [],
+        "points": 120
+    },
+    {
+        "name": "Lineage Prideborne",
+        "faction": "Spires",
+        "type": "cavalry",
+        "regimentClass": "character",
+        "characteristics": {
+            "march": null,
+            "volley": null,
+            "clash": 3,
+            "attacks": 3,
+            "wounds": 6,
+            "resolve": 6,
+            "defense": 4,
+            "evasion": 2
+        },
+        "specialRules": [
+            {
+                "name": "Barrage (4) (14\", Armor Piercing (2), Deadly Shot)",
+                "description": "A Stand with this Special Rule contributes 4 Shots when its Regiment performs a Volley Action. When a Stand with this Special Rule performs a Volley or Spellcasting Action, any Hits caused by those attacks reduce the Target Regiment's Defense by 2. When a Stand with this Special Rule performs a Volley Action, any failed Defense Roll of \"6\" rolled by the Target Regiment causes it to suffer 2 Wounds instead of 1."
+            },
+            {
+                "name": "Impact (3)",
+                "description": "Stands with this Special Rule perform Impact Attacks equal to 3."
+            },
+            {
+                "name": "Ruthless Sovereigns",
+                "description": "This Character Stand's Warband may not contain more than two Regiments of Leonine Avatara and no more than two Regiments of Centaur Avatara."
+            },
+            {
+                "name": "Hunter-Killer Teams",
+                "description": "While the Character Stand is on the Battlefield, when a Friendly Leonine Avatara Regiment performs a Volley Action against an Enemy Regiment, that Enemy Regiment becomes \"Prey\" until the end of the Round. When a Friendly Cavalry Regiment performs a successful Charge against a \"Prey\" Enemy Regiment, it gains the Impact (+2) Special Rule until the end of the Round."
+            }
+        ],
+        "numericSpecialRules": {
+            "barrage": 4,
+            "barrageRange": 14,
+            "armorPiercing": 2,
+            "impact": 3
+        },
+        "drawEvents": [],
+        "points": 120
+    },
+    {
+        "name": "Pheromancer",
+        "faction": "Spires",
+        "type": "infantry",
+        "regimentClass": "character",
+        "characteristics": {
+            "march": null,
+            "volley": null,
+            "clash": 2,
+            "attacks": 2,
+            "wounds": 2,
+            "resolve": 4,
+            "defense": 3,
+            "evasion": 2
+        },
+        "specialRules": [
+            {
+                "name": "Pheromone Gland Burst",
+                "description": "Target Friendly Regiment within 8\" of this Character Stand adds +1 to either its March or Resolve Characteristic until the end of the Round. A Regiment cannot be the target of the Pheromone Gland Burst Action more than once per Round."
+            },
+            {
+                "name": "Induced Lethargy",
+                "description": "Target Enemy Regiment within 8\" of this Character Stand suffers -1 to its Defense Characteristic (to a minimum of 1) until the end of the Round. A Regiment cannot be affected by Induced Lethargy more than once per Round."
+            },
+            {
+                "name": "Pheromancies",
+                "description": "A Pheromancer knows all the following Pheromancies at no additional cost and may resolve one Pheromancy each Round: Siphon Strength, Accelerated Hibernation, Pheromantic Drive, Induced Vigor, Pheromantic Compulsion."
+            }
+        ],
+        "numericSpecialRules": {},
+        "drawEvents": [],
+        "points": 90
+    },
+    {
+        "name": "Mimetic Assassin",
+        "faction": "Spires",
+        "type": "infantry",
+        "regimentClass": "character",
+        "characteristics": {
+            "march": null,
+            "volley": null,
+            "clash": 2,
+            "attacks": 4,
+            "wounds": 5,
+            "resolve": 4,
+            "defense": 3,
+            "evasion": 2
+        },
+        "specialRules": [
+            {
+                "name": "Forward Force",
+                "description": "The non-Monster Regiment this Character Stand is currently attached to gains the Flank Special Rule."
+            },
+            {
+                "name": "Flurry",
+                "description": "A Stand with this Special Rule Re-Rolls all failed Hit Rolls when performing a Clash or Duel Action."
+            },
+            {
+                "name": "Quicksilver Strike",
+                "description": "A Character Stand with this Special Rule resolves all of its Attacks first during a Duel Action. If both Character Stands in the Duel Action have this Special Rule, the Attacks are resolved simultaneously."
+            },
+            {
+                "name": "Right Place - Right Time",
+                "description": "The Character Stand may perform this Action to leave their current Regiment and join another friendly Regiment that they can legally join regardless of the Warband the Regiment belongs to."
+            },
+            {
+                "name": "Purity of Purpose",
+                "description": "When this Character Stand performs a Duel Action, until the end of that Action, each failed Defense roll made by the Enemy Character Stand causes two Wounds instead of one. This Special Rule does not stack with the Deadly Blades Special Rule."
+            }
+        ],
+        "numericSpecialRules": {},
+        "drawEvents": [],
+        "points": 90
+    }
+]

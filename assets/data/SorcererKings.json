@@ -1,0 +1,1052 @@
+[
+    {
+        "name": "Maharajah",
+        "faction": "Sorcerer Kings",
+        "type": "infantry",
+        "regimentClass": "character",
+        "characteristics": {
+            "march": null,
+            "volley": 2,
+            "clash": 3,
+            "attacks": 5,
+            "wounds": 5,
+            "resolve": 4,
+            "defense": 3,
+            "evasion": 2
+        },
+        "specialRules": [
+            {
+                "name": "Wizard (8)",
+                "description": "This Character Stand can perform the Spellcasting Action during its Activation with 8 dice."
+            }
+        ],
+        "numericSpecialRules": {
+            "spellDice": 8
+        },
+        "drawEvents": [],
+        "points": 120,
+        "supremacyAbility": "Elemental Confluence"
+    },
+    {
+        "name": "Sorcerer",
+        "faction": "Sorcerer Kings",
+        "type": "infantry",
+        "regimentClass": "character",
+        "characteristics": {
+            "march": null,
+            "volley": 3,
+            "clash": 2,
+            "attacks": 4,
+            "wounds": 4,
+            "resolve": 3,
+            "defense": 2,
+            "evasion": 2
+        },
+        "specialRules": [
+            {
+                "name": "Barrage (3) (14\")",
+                "description": "This Character contributes 3 Shots when performing a Volley Action with 14\" range."
+            },
+            {
+                "name": "Wizard (7)",
+                "description": "This Character Stand can perform the Spellcasting Action during its Activation with 7 dice."
+            }
+        ],
+        "numericSpecialRules": {
+            "barrage": 3,
+            "barrageRange": 14,
+            "spellDice": 7
+        },
+        "drawEvents": [],
+        "points": 90,
+        "supremacyAbility": "Omnipotence"
+    },
+    {
+        "name": "Raj",
+        "faction": "Sorcerer Kings",
+        "type": "infantry",
+        "regimentClass": "character",
+        "characteristics": {
+            "march": null,
+            "volley": 2,
+            "clash": 3,
+            "attacks": 5,
+            "wounds": 4,
+            "resolve": 4,
+            "defense": 3,
+            "evasion": 2
+        },
+        "specialRules": [
+            {
+                "name": "Flurry",
+                "description": "A Stand with this Special Rule Re-Rolls all failed Hit Rolls when performing a Clash or Duel Action."
+            },
+            {
+                "name": "Wizard (7)",
+                "description": "This Character Stand can perform the Spellcasting Action during its Activation with 7 dice."
+            },
+            {
+                "name": "Forward Force",
+                "description": "The non-Monster Regiment this Character Stand is currently attached to gains the Flank Special Rule."
+            }
+        ],
+        "numericSpecialRules": {
+            "spellDice": 7
+        },
+        "drawEvents": [],
+        "points": 120,
+        "supremacyAbility": "Elemental Dominion"
+    },
+    {
+        "name": "Mahabharati Sardar",
+        "faction": "Sorcerer Kings",
+        "type": "infantry",
+        "regimentClass": "character",
+        "characteristics": {
+            "march": null,
+            "volley": 2,
+            "clash": 3,
+            "attacks": 5,
+            "wounds": 4,
+            "resolve": 3,
+            "defense": 3,
+            "evasion": 1
+        },
+        "specialRules": [
+            {
+                "name": "Cleave (1)",
+                "description": "When a Stand with this Special Rule performs a Clash or Duel Action, any Hits caused by those attacks reduce the Target's Defense by 1."
+            },
+            {
+                "name": "Flawless Strikes",
+                "description": "When a Stand with this Special Rule performs a Clash or Duel Action, all Hit Rolls of \"1\" count the Target's Defense as 0 for that Attack."
+            }
+        ],
+        "numericSpecialRules": {
+            "cleave": 1
+        },
+        "drawEvents": [
+            {
+                "name": "Elemental Assault",
+                "description": "The Character may immediately remove 3 Ritual Markers from a Ritual that is currently Being Prepared, to have Target Friendly Regiment within 12\" gain either the Untouchable or Relentless Blows Special Rule."
+            }
+        ],
+        "points": 120
+    },
+    {
+        "name": "Mahabharati Initiates",
+        "faction": "Sorcerer Kings",
+        "type": "infantry",
+        "regimentClass": "medium",
+        "characteristics": {
+            "march": 6,
+            "volley": 1,
+            "clash": 3,
+            "attacks": 5,
+            "wounds": 4,
+            "resolve": 4,
+            "defense": 2,
+            "evasion": 2
+        },
+        "specialRules": [
+            {
+                "name": "Cleave (1)",
+                "description": "When a Stand with this Special Rule performs a Clash or Duel Action, any Hits caused by those attacks reduce the Target's Defense by 1."
+            },
+            {
+                "name": "Linebreaker",
+                "description": "A Stand with this Special Rule ignores the Shield Special Rule and Bastion (X) Draw Event, when performing a Clash or Duel Action, or when resolving Impact Attacks."
+            },
+            {
+                "name": "Wizard (1)",
+                "description": "This Regiment can perform the Spellcasting Action during its Activation with 1 die."
+            },
+            {
+                "name": "Leader",
+                "description": "A command stand containing a leader adds +1 attack to the command stands characteristic profile."
+            },
+            {
+                "name": "Standard Bearer",
+                "description": "A regiment with a Standard Bearer gains the unstoppable special rule."
+            }
+        ],
+        "numericSpecialRules": {
+            "cleave": 1,
+            "spellDice": 1
+        },
+        "drawEvents": [
+            {
+                "name": "Elemental Conduit",
+                "description": "This Regiment adds one Ritual Marker to a Ritual of the same Court currently Being Prepared."
+            }
+        ],
+        "points": 160,
+        "pointsPerAdditionalStand": 50
+    },
+    {
+        "name": "Mahabharati Sorcerer Saints",
+        "faction": "Sorcerer Kings",
+        "type": "cavalry",
+        "regimentClass": "heavy",
+        "characteristics": {
+            "march": 7,
+            "volley": 1,
+            "clash": 3,
+            "attacks": 7,
+            "wounds": 5,
+            "resolve": 4,
+            "defense": 3,
+            "evasion": 2
+        },
+        "specialRules": [
+            {
+                "name": "Cleave (1)",
+                "description": "When a Stand with this Special Rule performs a Clash or Duel Action, any Hits caused by those attacks reduce the Target's Defense by 1."
+            },
+            {
+                "name": "Impact (3)",
+                "description": "Stands with this Special Rule perform Impact Attacks equal to 3."
+            },
+            {
+                "name": "Vanguard (3)",
+                "description": "When a Regiment with this Special Rule enters the Battlefield from Reinforcements, add +3 to its March Characteristic for the first March Action this Activation."
+            },
+            {
+                "name": "Terrifying (1)",
+                "description": "Regiments in contact with Stands with this Special Rule reduce their Resolve Characteristic by 1 for the purposes of making Morale Tests."
+            },
+            {
+                "name": "Untouchable",
+                "description": "This Regiment Re-Rolls failed Defense Rolls of \"6\"."
+            },
+            {
+                "name": "Leader",
+                "description": "A command stand containing a leader adds +1 attack to the command stands characteristic profile."
+            }
+        ],
+        "numericSpecialRules": {
+            "cleave": 1,
+            "impact": 3,
+            "vanguard": 3,
+            "terrifying": 1
+        },
+        "drawEvents": [
+            {
+                "name": "Elemental Prowess",
+                "description": "The Regiment may immediately remove 3 Ritual Markers from a Ritual that is currently Being Prepared, to have Target Friendly Regiment within 12\" immediately Heal 4 Wounds."
+            }
+        ],
+        "points": 230
+    },
+    {
+        "name": "Dhanur Disciples",
+        "faction": "Sorcerer Kings",
+        "type": "infantry",
+        "regimentClass": "medium",
+        "characteristics": {
+            "march": 6,
+            "volley": 2,
+            "clash": 1,
+            "attacks": 4,
+            "wounds": 4,
+            "resolve": 3,
+            "defense": 2,
+            "evasion": 0
+        },
+        "specialRules": [
+            {
+                "name": "Barrage (5) (18\")",
+                "description": "A Stand with this Special Rule contributes 5 Shots when its Regiment performs a Volley Action with 18\" range."
+            },
+            {
+                "name": "Arcing Fire",
+                "description": "Until the end of this Regiment's Activation, if the Regiment has the Aimed Shot Special Rule and is not currently occupying a piece of Garrison terrain, instead of performing a Volley Action as normal it may perform special arcing fire."
+            },
+            {
+                "name": "Leader",
+                "description": "A command stand containing a leader adds +1 attack to the command stands characteristic profile."
+            },
+            {
+                "name": "Standard Bearer",
+                "description": "A regiment with a Standard Bearer gains the unstoppable special rule."
+            }
+        ],
+        "numericSpecialRules": {
+            "barrage": 5,
+            "barrageRange": 18
+        },
+        "drawEvents": [],
+        "points": 140,
+        "pointsPerAdditionalStand": 40
+    },
+    {
+        "name": "Rajakur",
+        "faction": "Sorcerer Kings",
+        "type": "infantry",
+        "regimentClass": "medium",
+        "characteristics": {
+            "march": 5,
+            "volley": 1,
+            "clash": 2,
+            "attacks": 4,
+            "wounds": 4,
+            "resolve": 3,
+            "defense": 2,
+            "evasion": 0
+        },
+        "specialRules": [
+            {
+                "name": "Hardened (1)",
+                "description": "When this Regiment makes a Defense Roll, reduce any Cleave (X), Brutal Impact (X) or Armor Piercing (X) Special Rule by 1 when resolving that Defense Roll."
+            },
+            {
+                "name": "Shield",
+                "description": "Stands in this Regiment count their Defense Characteristic as 1 point higher against all Hits originating from the Regiment's front Arc."
+            },
+            {
+                "name": "Leader",
+                "description": "A command stand containing a leader adds +1 attack to the command stands characteristic profile."
+            },
+            {
+                "name": "Standard Bearer",
+                "description": "A regiment with a Standard Bearer gains the unstoppable special rule."
+            }
+        ],
+        "numericSpecialRules": {
+            "hardened": 1,
+            "shield": true
+        },
+        "drawEvents": [],
+        "points": 120,
+        "pointsPerAdditionalStand": 40
+    },
+    {
+        "name": "Ghols",
+        "faction": "Sorcerer Kings",
+        "type": "infantry",
+        "regimentClass": "light",
+        "characteristics": {
+            "march": 5,
+            "volley": 1,
+            "clash": 2,
+            "attacks": 6,
+            "wounds": 4,
+            "resolve": 2,
+            "defense": 2,
+            "evasion": 1
+        },
+        "specialRules": [
+            {
+                "name": "Unstoppable",
+                "description": "This Regiment may Re-Roll failed Charge Rolls."
+            },
+            {
+                "name": "Vanguard (4)",
+                "description": "When a Regiment with this Special Rule enters the Battlefield from Reinforcements, add +4 to its March Characteristic for the first March Action this Activation."
+            },
+            {
+                "name": "Leader",
+                "description": "A command stand containing a leader adds +1 attack to the command stands characteristic profile."
+            }
+        ],
+        "numericSpecialRules": {
+            "vanguard": 4
+        },
+        "drawEvents": [
+            {
+                "name": "Elemental Conduit",
+                "description": "This Regiment adds one Ritual Marker to a Ritual of the same Court currently Being Prepared."
+            }
+        ],
+        "points": 110,
+        "pointsPerAdditionalStand": 30
+    },
+    {
+        "name": "Efreet Flamecasters",
+        "faction": "Sorcerer Kings",
+        "type": "brute",
+        "regimentClass": "medium",
+        "characteristics": {
+            "march": 6,
+            "volley": 2,
+            "clash": 2,
+            "attacks": 5,
+            "wounds": 5,
+            "resolve": 3,
+            "defense": 3,
+            "evasion": 1
+        },
+        "specialRules": [
+            {
+                "name": "Barrage (5) (14\")",
+                "description": "A Stand with this Special Rule contributes 5 Shots when its Regiment performs a Volley Action with 14\" range."
+            },
+            {
+                "name": "Impact (3)",
+                "description": "Stands with this Special Rule perform Impact Attacks equal to 3."
+            },
+            {
+                "name": "Rapid Volley",
+                "description": "When a Stand with this Special Rule performs a Volley Action, each Hit Roll of \"1\" causes an additional automatic Hit on the Target."
+            },
+            {
+                "name": "Leader",
+                "description": "A command stand containing a leader adds +1 attack to the command stands characteristic profile."
+            }
+        ],
+        "numericSpecialRules": {
+            "barrage": 5,
+            "barrageRange": 14,
+            "impact": 3
+        },
+        "drawEvents": [
+            {
+                "name": "Elemental Conduit",
+                "description": "This Regiment adds one Ritual Marker to a Ritual of the same Court currently Being Prepared."
+            }
+        ],
+        "points": 170,
+        "pointsPerAdditionalStand": 50
+    },
+    {
+        "name": "Efreet Sword Dancers",
+        "faction": "Sorcerer Kings",
+        "type": "brute",
+        "regimentClass": "medium",
+        "characteristics": {
+            "march": 6,
+            "volley": 1,
+            "clash": 3,
+            "attacks": 6,
+            "wounds": 5,
+            "resolve": 3,
+            "defense": 3,
+            "evasion": 1
+        },
+        "specialRules": [
+            {
+                "name": "Impact (3)",
+                "description": "Stands with this Special Rule perform Impact Attacks equal to 3."
+            },
+            {
+                "name": "Relentless Blows",
+                "description": "When a Stand with this Special Rule performs a Clash or Duel Action, each Hit Roll of \"1\" causes an additional automatic Hit on the Target."
+            },
+            {
+                "name": "Leader",
+                "description": "A command stand containing a leader adds +1 attack to the command stands characteristic profile."
+            }
+        ],
+        "numericSpecialRules": {
+            "impact": 3
+        },
+        "drawEvents": [
+            {
+                "name": "Elemental Conduit",
+                "description": "This Regiment adds one Ritual Marker to a Ritual of the same Court currently Being Prepared."
+            }
+        ],
+        "points": 170,
+        "pointsPerAdditionalStand": 50
+    },
+    {
+        "name": "Rakshasa Bakasura",
+        "faction": "Sorcerer Kings",
+        "type": "monster",
+        "regimentClass": "heavy",
+        "characteristics": {
+            "march": 7,
+            "volley": 1,
+            "clash": 3,
+            "attacks": 15,
+            "wounds": 16,
+            "resolve": 4,
+            "defense": 3,
+            "evasion": 1
+        },
+        "specialRules": [
+            {
+                "name": "Aura of Death (6)",
+                "description": "At the start of an Enemy Regiment's \"Draw Command Card\" step, if it is in contact with one or more Enemy Regiment with this Special Rule, it suffers 6 Hits."
+            },
+            {
+                "name": "Cleave (1)",
+                "description": "When a Stand with this Special Rule performs a Clash or Duel Action, any Hits caused by those attacks reduce the Target's Defense by 1."
+            },
+            {
+                "name": "Impact (5)",
+                "description": "Stands with this Special Rule perform Impact Attacks equal to 5."
+            },
+            {
+                "name": "Terrifying (1)",
+                "description": "Regiments in contact with Stands with this Special Rule reduce their Resolve Characteristic by 1 for the purposes of making Morale Tests."
+            },
+            {
+                "name": "Fearless",
+                "description": "A Regiment with this Special Rule ignores the effects of the Fearsome and Terrifying (X) Special Rules."
+            }
+        ],
+        "numericSpecialRules": {
+            "auraOfDeath": 6,
+            "cleave": 1,
+            "impact": 5,
+            "terrifying": 1
+        },
+        "drawEvents": [
+            {
+                "name": "Elemental Conduit",
+                "description": "This Regiment adds one Ritual Marker to a Ritual of the same Court currently Being Prepared."
+            }
+        ],
+        "points": 250
+    },
+    {
+        "name": "Rakshasa Ravanar",
+        "faction": "Sorcerer Kings",
+        "type": "monster",
+        "regimentClass": "heavy",
+        "characteristics": {
+            "march": 7,
+            "volley": 1,
+            "clash": 3,
+            "attacks": 12,
+            "wounds": 16,
+            "resolve": 4,
+            "defense": 3,
+            "evasion": 1
+        },
+        "specialRules": [
+            {
+                "name": "Aura of Death (6)",
+                "description": "At the start of an Enemy Regiment's \"Draw Command Card\" step, if it is in contact with one or more Enemy Regiment with this Special Rule, it suffers 6 Hits."
+            },
+            {
+                "name": "Cleave (2)",
+                "description": "When a Stand with this Special Rule performs a Clash or Duel Action, any Hits caused by those attacks reduce the Target's Defense by 2."
+            },
+            {
+                "name": "Fearless",
+                "description": "A Regiment with this Special Rule ignores the effects of the Fearsome and Terrifying (X) Special Rules."
+            },
+            {
+                "name": "Fiend Hunter",
+                "description": "Stands with this Special Rule may Re-Roll all failed Hit Rolls against Monster and Brute Regiments."
+            },
+            {
+                "name": "Impact (5)",
+                "description": "Stands with this Special Rule perform Impact Attacks equal to 5."
+            },
+            {
+                "name": "Terrifying (1)",
+                "description": "Regiments in contact with Stands with this Special Rule reduce their Resolve Characteristic by 1 for the purposes of making Morale Tests."
+            }
+        ],
+        "numericSpecialRules": {
+            "auraOfDeath": 6,
+            "cleave": 2,
+            "impact": 5,
+            "terrifying": 1
+        },
+        "drawEvents": [
+            {
+                "name": "Elemental Conduit",
+                "description": "This Regiment adds one Ritual Marker to a Ritual of the same Court currently Being Prepared."
+            }
+        ],
+        "points": 220
+    },
+    {
+        "name": "Steelheart Djinn",
+        "faction": "Sorcerer Kings",
+        "type": "brute",
+        "regimentClass": "medium",
+        "characteristics": {
+            "march": 7,
+            "volley": 1,
+            "clash": 3,
+            "attacks": 5,
+            "wounds": 5,
+            "resolve": 3,
+            "defense": 3,
+            "evasion": 1
+        },
+        "specialRules": [
+            {
+                "name": "Cleave (2)",
+                "description": "When a Stand with this Special Rule performs a Clash or Duel Action, any Hits caused by those attacks reduce the Target's Defense by 2."
+            },
+            {
+                "name": "Impact (3)",
+                "description": "Stands with this Special Rule perform Impact Attacks equal to 3."
+            },
+            {
+                "name": "Leader",
+                "description": "A command stand containing a leader adds +1 attack to the command stands characteristic profile."
+            }
+        ],
+        "numericSpecialRules": {
+            "cleave": 2,
+            "impact": 3
+        },
+        "drawEvents": [
+            {
+                "name": "Elemental Conduit",
+                "description": "This Regiment adds one Ritual Marker to a Ritual of the same Court currently Being Prepared."
+            }
+        ],
+        "points": 180,
+        "pointsPerAdditionalStand": 60
+    },
+    {
+        "name": "Windborne Djinn",
+        "faction": "Sorcerer Kings",
+        "type": "brute",
+        "regimentClass": "medium",
+        "characteristics": {
+            "march": 7,
+            "volley": 3,
+            "clash": 2,
+            "attacks": 4,
+            "wounds": 5,
+            "resolve": 3,
+            "defense": 3,
+            "evasion": 1
+        },
+        "specialRules": [
+            {
+                "name": "Barrage (3) (18\", Armor Piercing (1))",
+                "description": "A Stand with this Special Rule contributes 3 Shots when its Regiment performs a Volley Action with 18\" range and Armor Piercing (1)."
+            },
+            {
+                "name": "Impact (3)",
+                "description": "Stands with this Special Rule perform Impact Attacks equal to 3."
+            },
+            {
+                "name": "Leader",
+                "description": "A command stand containing a leader adds +1 attack to the command stands characteristic profile."
+            }
+        ],
+        "numericSpecialRules": {
+            "barrage": 3,
+            "barrageRange": 18,
+            "armorPiercing": true,
+            "armorPiercingValue": 1,
+            "impact": 3
+        },
+        "drawEvents": [
+            {
+                "name": "Elemental Conduit",
+                "description": "This Regiment adds one Ritual Marker to a Ritual of the same Court currently Being Prepared."
+            }
+        ],
+        "points": 180,
+        "pointsPerAdditionalStand": 70
+    },
+    {
+        "name": "Trinavarta Sabhagrih",
+        "faction": "Sorcerer Kings",
+        "type": "monster",
+        "regimentClass": "medium",
+        "characteristics": {
+            "march": 8,
+            "volley": 1,
+            "clash": 3,
+            "attacks": 14,
+            "wounds": 16,
+            "resolve": 4,
+            "defense": 3,
+            "evasion": 3
+        },
+        "specialRules": [
+            {
+                "name": "Loose Formation",
+                "description": "When a Stand performs a Volley Action against a Regiment with this Special Rule it halves the X value in its Barrage (X) Special Rule (rounding up) to a minimum of 1."
+            },
+            {
+                "name": "Unstoppable",
+                "description": "This Regiment may Re-Roll failed Charge Rolls."
+            },
+            {
+                "name": "Fly",
+                "description": "A Regiment containing only Stands with this Special Rule can March and Charge over other Regiments, regardless of whether they are Engaged, as well as Impassable and Garrison Terrain."
+            },
+            {
+                "name": "Relentless Blows",
+                "description": "When a Stand with this Special Rule performs a Clash or Duel Action, each Hit Roll of \"1\" causes an additional automatic Hit on the Target."
+            }
+        ],
+        "numericSpecialRules": {},
+        "drawEvents": [
+            {
+                "name": "Elemental Conduit",
+                "description": "This Regiment adds one Ritual Marker to a Ritual of the same Court currently Being Prepared."
+            }
+        ],
+        "points": 230
+    },
+    {
+        "name": "Trinavarta Chandavat",
+        "faction": "Sorcerer Kings",
+        "type": "monster",
+        "regimentClass": "medium",
+        "characteristics": {
+            "march": 8,
+            "volley": 2,
+            "clash": 2,
+            "attacks": 10,
+            "wounds": 17,
+            "resolve": 4,
+            "defense": 3,
+            "evasion": 2
+        },
+        "specialRules": [
+            {
+                "name": "Aimed Shot",
+                "description": "Stands in this Regiment add +1 to their Volley Characteristic for the next Volley Action it takes this Activation."
+            },
+            {
+                "name": "Barrage (10) (12\", Torrential Fire)",
+                "description": "A Stand with this Special Rule contributes 10 Shots when its Regiment performs a Volley Action with 12\" range and Torrential Fire."
+            },
+            {
+                "name": "Loose Formation",
+                "description": "When a Stand performs a Volley Action against a Regiment with this Special Rule it halves the X value in its Barrage (X) Special Rule (rounding up) to a minimum of 1."
+            },
+            {
+                "name": "Fly",
+                "description": "A Regiment containing only Stands with this Special Rule can March and Charge over other Regiments, regardless of whether they are Engaged, as well as Impassable and Garrison Terrain."
+            },
+            {
+                "name": "Wizard (7)",
+                "description": "This Regiment can perform the Spellcasting Action during its Activation with 7 dice."
+            }
+        ],
+        "numericSpecialRules": {
+            "barrage": 10,
+            "barrageRange": 12,
+            "spellDice": 7
+        },
+        "drawEvents": [
+            {
+                "name": "Elemental Conduit",
+                "description": "This Regiment adds one Ritual Marker to a Ritual of the same Court currently Being Prepared."
+            }
+        ],
+        "points": 240
+    },
+    {
+        "name": "Eternal Eidolons",
+        "faction": "Sorcerer Kings",
+        "type": "brute",
+        "regimentClass": "medium",
+        "characteristics": {
+            "march": 6,
+            "volley": 1,
+            "clash": 3,
+            "attacks": 5,
+            "wounds": 6,
+            "resolve": 3,
+            "defense": 3,
+            "evasion": 1
+        },
+        "specialRules": [
+            {
+                "name": "Impact (3)",
+                "description": "Stands with this Special Rule perform Impact Attacks equal to 3."
+            },
+            {
+                "name": "Vanguard (3)",
+                "description": "When a Regiment with this Special Rule enters the Battlefield from Reinforcements, add +3 to its March Characteristic for the first March Action this Activation."
+            },
+            {
+                "name": "Terrifying (1)",
+                "description": "Regiments in contact with Stands with this Special Rule reduce their Resolve Characteristic by 1 for the purposes of making Morale Tests."
+            },
+            {
+                "name": "Dread",
+                "description": "Enemy Regiments in contact with Stands with this Special Rule cannot benefit from the effects of the \"Inspired\" Special Rule."
+            },
+            {
+                "name": "Leader",
+                "description": "A command stand containing a leader adds +1 attack to the command stands characteristic profile."
+            }
+        ],
+        "numericSpecialRules": {
+            "impact": 3,
+            "vanguard": 3,
+            "terrifying": 1
+        },
+        "drawEvents": [
+            {
+                "name": "Elemental Conduit",
+                "description": "This Regiment adds one Ritual Marker to a Ritual of the same Court currently Being Prepared."
+            }
+        ],
+        "points": 200,
+        "pointsPerAdditionalStand": 60
+    },
+    {
+        "name": "Mahut",
+        "faction": "Sorcerer Kings",
+        "type": "monster",
+        "regimentClass": "heavy",
+        "characteristics": {
+            "march": 6,
+            "volley": 2,
+            "clash": 2,
+            "attacks": 10,
+            "wounds": 20,
+            "resolve": 3,
+            "defense": 3,
+            "evasion": 2
+        },
+        "specialRules": [
+            {
+                "name": "Barrage (10) (20\")",
+                "description": "A Stand with this Special Rule contributes 10 Shots when its Regiment performs a Volley Action with 20\" range."
+            },
+            {
+                "name": "Brutal Impact (2)",
+                "description": "When a Stand with this Special Rule inflicts Impact Attacks, those Impact Attacks reduce the Target Enemy Regiment's Defense by 2."
+            },
+            {
+                "name": "Cleave (1)",
+                "description": "When a Stand with this Special Rule performs a Clash or Duel Action, any Hits caused by those attacks reduce the Target's Defense by 1."
+            },
+            {
+                "name": "Hardened (1)",
+                "description": "When this Regiment makes a Defense Roll, reduce any Cleave (X), Brutal Impact (X) or Armor Piercing (X) Special Rule by 1."
+            },
+            {
+                "name": "Impact (5)",
+                "description": "Stands with this Special Rule perform Impact Attacks equal to 5."
+            },
+            {
+                "name": "Linebreaker",
+                "description": "A Stand with this Special Rule ignores the Shield Special Rule and Bastion (X) Draw Event, when performing a Clash or Duel Action, or when resolving Impact Attacks."
+            },
+            {
+                "name": "Oblivious",
+                "description": "Regiments with this Special Rule receive only 1 Wound for every 2 failed Morale Tests, rounding up."
+            },
+            {
+                "name": "Trample (5)",
+                "description": "At the end of this Regiment's Activation, if this Regiment is in Contact with an Enemy Regiment in its front arc, Stands in the Regiment with this Special Rule cause 5 additional Hits."
+            },
+            {
+                "name": "Dread",
+                "description": "Enemy Regiments in contact with Stands with this Special Rule cannot benefit from the effects of the \"Inspired\" Special Rule."
+            }
+        ],
+        "numericSpecialRules": {
+            "barrage": 10,
+            "barrageRange": 20,
+            "brutalImpact": 2,
+            "cleave": 1,
+            "hardened": 1,
+            "impact": 5,
+            "trample": 5
+        },
+        "drawEvents": [
+            {
+                "name": "Elemental Conduit",
+                "description": "This Regiment adds one Ritual Marker to a Ritual of the same Court currently Being Prepared."
+            }
+        ],
+        "points": 240
+    },
+    {
+        "name": "Marid Lancers",
+        "faction": "Sorcerer Kings",
+        "type": "cavalry",
+        "regimentClass": "medium",
+        "characteristics": {
+            "march": 7,
+            "volley": 1,
+            "clash": 3,
+            "attacks": 5,
+            "wounds": 5,
+            "resolve": 3,
+            "defense": 3,
+            "evasion": 1
+        },
+        "specialRules": [
+            {
+                "name": "Fluid Formation",
+                "description": "This Regiment may perform a free additional Reform Action during its Activation."
+            },
+            {
+                "name": "Brutal Impact (1)",
+                "description": "When a Stand with this Special Rule inflicts Impact Attacks, those Impact Attacks reduce the Target Enemy Regiment's Defense by 1."
+            },
+            {
+                "name": "Impact (3)",
+                "description": "Stands with this Special Rule perform Impact Attacks equal to 3."
+            },
+            {
+                "name": "Vanguard (3)",
+                "description": "When a Regiment with this Special Rule enters the Battlefield from Reinforcements, add +3 to its March Characteristic for the first March Action this Activation."
+            },
+            {
+                "name": "Leader",
+                "description": "A command stand containing a leader adds +1 attack to the command stands characteristic profile."
+            }
+        ],
+        "numericSpecialRules": {
+            "brutalImpact": 1,
+            "impact": 3,
+            "vanguard": 3
+        },
+        "drawEvents": [
+            {
+                "name": "Elemental Conduit",
+                "description": "This Regiment adds one Ritual Marker to a Ritual of the same Court currently Being Prepared."
+            }
+        ],
+        "points": 190,
+        "pointsPerAdditionalStand": 60
+    },
+    {
+        "name": "Marid Sahar",
+        "faction": "Sorcerer Kings",
+        "type": "cavalry",
+        "regimentClass": "medium",
+        "characteristics": {
+            "march": 7,
+            "volley": 2,
+            "clash": 2,
+            "attacks": 4,
+            "wounds": 5,
+            "resolve": 3,
+            "defense": 3,
+            "evasion": 1
+        },
+        "specialRules": [
+            {
+                "name": "Barrage (4) (12\")",
+                "description": "A Stand with this Special Rule contributes 4 Shots when its Regiment performs a Volley Action with 12\" range."
+            },
+            {
+                "name": "Fluid Formation",
+                "description": "This Regiment may perform a free additional Reform Action during its Activation."
+            },
+            {
+                "name": "Wizard (5)",
+                "description": "This Regiment can perform the Spellcasting Action during its Activation with 5 dice."
+            },
+            {
+                "name": "Leader",
+                "description": "A command stand containing a leader adds +1 attack to the command stands characteristic profile."
+            }
+        ],
+        "numericSpecialRules": {
+            "barrage": 4,
+            "barrageRange": 12,
+            "spellDice": 5
+        },
+        "drawEvents": [
+            {
+                "name": "Elemental Conduit",
+                "description": "This Regiment adds one Ritual Marker to a Ritual of the same Court currently Being Prepared."
+            }
+        ],
+        "points": 170,
+        "pointsPerAdditionalStand": 60
+    },
+    {
+        "name": "Marid Lord",
+        "faction": "Sorcerer Kings",
+        "type": "monster",
+        "regimentClass": "medium",
+        "characteristics": {
+            "march": 7,
+            "volley": 2,
+            "clash": 3,
+            "attacks": 11,
+            "wounds": 17,
+            "resolve": 4,
+            "defense": 3,
+            "evasion": 1
+        },
+        "specialRules": [
+            {
+                "name": "Cleave (1)",
+                "description": "When a Stand with this Special Rule performs a Clash or Duel Action, any Hits caused by those attacks reduce the Target's Defense by 1."
+            },
+            {
+                "name": "Flurry",
+                "description": "A Stand with this Special Rule Re-Rolls all failed Hit Rolls when performing a Clash or Duel Action."
+            },
+            {
+                "name": "Impact (6)",
+                "description": "Stands with this Special Rule perform Impact Attacks equal to 6."
+            }
+        ],
+        "numericSpecialRules": {
+            "cleave": 1,
+            "impact": 6
+        },
+        "drawEvents": [
+            {
+                "name": "Elemental Conduit",
+                "description": "This Regiment adds one Ritual Marker to a Ritual of the same Court currently Being Prepared."
+            }
+        ],
+        "points": 210
+    },
+    {
+        "name": "Eternal Oppressors",
+        "faction": "Sorcerer Kings",
+        "type": "brute",
+        "regimentClass": "medium",
+        "characteristics": {
+            "march": 6,
+            "volley": 1,
+            "clash": 3,
+            "attacks": 5,
+            "wounds": 6,
+            "resolve": 3,
+            "defense": 3,
+            "evasion": 1
+        },
+        "specialRules": [
+            {
+                "name": "Impact (3)",
+                "description": "Stands with this Special Rule perform Impact Attacks equal to 3."
+            },
+            {
+                "name": "Vanguard (3)",
+                "description": "When a Regiment with this Special Rule enters the Battlefield from Reinforcements, add +3 to its March Characteristic for the first March Action this Activation."
+            },
+            {
+                "name": "Terrifying (1)",
+                "description": "Regiments in contact with Stands with this Special Rule reduce their Resolve Characteristic by 1 for the purposes of making Morale Tests."
+            },
+            {
+                "name": "Dread",
+                "description": "Enemy Regiments in contact with Stands with this Special Rule cannot benefit from the effects of the \"Inspired\" Special Rule."
+            },
+            {
+                "name": "Unstoppable",
+                "description": "This Regiment may Re-Roll failed Charge Rolls."
+            },
+            {
+                "name": "Leader",
+                "description": "A command stand containing a leader adds +1 attack to the command stands characteristic profile."
+            }
+        ],
+        "numericSpecialRules": {
+            "impact": 3,
+            "vanguard": 3,
+            "terrifying": 1
+        },
+        "drawEvents": [
+            {
+                "name": "Elemental Conduit",
+                "description": "This Regiment adds one Ritual Marker to a Ritual of the same Court currently Being Prepared."
+            }
+        ],
+        "points": 200,
+        "pointsPerAdditionalStand": 60
+    }
+]

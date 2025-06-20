@@ -1,0 +1,1025 @@
+[
+    {
+        "name": "Cultists",
+        "faction": "Old Dominion",
+        "type": "infantry",
+        "regimentClass": "light",
+        "characteristics": {
+            "march": 6,
+            "volley": 2,
+            "clash": 1,
+            "attacks": 4,
+            "wounds": 4,
+            "resolve": 3,
+            "defense": 1,
+            "evasion": 1
+        },
+        "specialRules": [
+            {
+                "name": "Barrage (4) (12\")",
+                "description": "This Regiment may perform a Volley Action, making a number of Attack rolls equal to its Barrage value multiplied by the Regiment's number of Stands."
+            },
+            {
+                "name": "Loose Formation",
+                "description": "When a Stand performs a Volley Action against a Regiment with this Special Rule it halves the X value in its Barrage (X) Special Rule (rounding up) to a minimum of 1."
+            },
+            {
+                "name": "Leader",
+                "description": "The Regiment's Command Stand that provides leadership to the unit."
+            }
+        ],
+        "numericSpecialRules": {
+            "barrage": 4,
+            "barrageRange": 12
+        },
+        "drawEvents": [],
+        "points": 90,
+        "pointsPerAdditionalStand": 30
+    },
+    {
+        "name": "Hashashin",
+        "faction": "Old Dominion",
+        "type": "infantry",
+        "regimentClass": "light",
+        "characteristics": {
+            "march": 6,
+            "volley": 1,
+            "clash": 2,
+            "attacks": 6,
+            "wounds": 4,
+            "resolve": 3,
+            "defense": 1,
+            "evasion": 2
+        },
+        "specialRules": [
+            {
+                "name": "Cleave (1)",
+                "description": "Enemy Stands in contact with this Stand reduce their Defense Characteristic by 1 when making Defense rolls against Hits inflicted by this Stand."
+            },
+            {
+                "name": "Deadly Blades",
+                "description": "When a Stand with this Special Rule performs a Clash or Duel Action, any failed Defense Roll of \"6\" rolled by the Target Regiment causes it to suffer 2 Wounds instead of 1."
+            },
+            {
+                "name": "Vanguard (4)",
+                "description": "When a Regiment with this Special Rule enters the Battlefield from Reinforcements, add +4 to its March Characteristic for the first March Action this Activation."
+            },
+            {
+                "name": "Leader",
+                "description": "The Regiment's Command Stand that provides leadership to the unit."
+            }
+        ],
+        "numericSpecialRules": {
+            "cleave": 1,
+            "vanguard": 4
+        },
+        "drawEvents": [],
+        "points": 150,
+        "pointsPerAdditionalStand": 50
+    },
+    {
+        "name": "Kheres",
+        "faction": "Old Dominion",
+        "type": "infantry",
+        "regimentClass": "light",
+        "characteristics": {
+            "march": 6,
+            "volley": 2,
+            "clash": 1,
+            "attacks": 4,
+            "wounds": 4,
+            "resolve": null,
+            "defense": 0,
+            "evasion": 2
+        },
+        "specialRules": [
+            {
+                "name": "Animate Vessel",
+                "description": "All Regiments and Character Stands in the Army with the Animate Vessel Special Rule gain the Terrifying (1) Special Rule and may not perform the Inspire Action."
+            },
+            {
+                "name": "Barrage (3) (12\", Sureshot)",
+                "description": "This Regiment may perform a Volley Action, making a number of Attack rolls equal to its Barrage value multiplied by the Regiment's number of Stands. Has Sureshot special rule."
+            },
+            {
+                "name": "Devout",
+                "description": "When a Regiment with this Special Rule is the Target of a Priest (X)'s Spellcasting Action, one failed Spellcasting die is converted to a success."
+            },
+            {
+                "name": "Loose Formation",
+                "description": "When a Stand performs a Volley Action against a Regiment with this Special Rule it halves the X value in its Barrage (X) Special Rule (rounding up) to a minimum of 1."
+            },
+            {
+                "name": "Priest (Variable)",
+                "description": "This Regiment can perform the Spellcasting Action during its Activation. Gains the Priest (X) Special Rule where X is +2 per Stand to a maximum of Priest (12)."
+            }
+        ],
+        "numericSpecialRules": {
+            "barrage": 3,
+            "barrageRange": 12,
+            "spellDice": "variable"
+        },
+        "drawEvents": [],
+        "points": 160,
+        "pointsPerAdditionalStand": 50
+    },
+    {
+        "name": "Moroi",
+        "faction": "Old Dominion",
+        "type": "infantry",
+        "regimentClass": "light",
+        "characteristics": {
+            "march": 6,
+            "volley": 0,
+            "clash": 2,
+            "attacks": 6,
+            "wounds": 4,
+            "resolve": null,
+            "defense": 0,
+            "evasion": 2
+        },
+        "specialRules": [
+            {
+                "name": "Animate Vessel",
+                "description": "All Regiments and Character Stands in the Army with the Animate Vessel Special Rule gain the Terrifying (1) Special Rule and may not perform the Inspire Action."
+            },
+            {
+                "name": "Aura of Death (5)",
+                "description": "At the start of an Enemy Regiment's \"Draw Command Card\" step, if it is in contact with one or more Enemy Regiment with this Special Rule, it suffers 5 Hits."
+            },
+            {
+                "name": "Devout",
+                "description": "When a Regiment with this Special Rule is the Target of a Priest (X)'s Spellcasting Action, one failed Spellcasting die is converted to a success."
+            },
+            {
+                "name": "Loose Formation",
+                "description": "When a Stand performs a Volley Action against a Regiment with this Special Rule it halves the X value in its Barrage (X) Special Rule (rounding up) to a minimum of 1."
+            },
+            {
+                "name": "Cleave (1)",
+                "description": "Enemy Stands in contact with this Stand reduce their Defense Characteristic by 1 when making Defense rolls against Hits inflicted by this Stand."
+            },
+            {
+                "name": "Priest (Variable)",
+                "description": "This Regiment can perform the Spellcasting Action during its Activation. Gains the Priest (X) Special Rule where X is +2 per Stand to a maximum of Priest (12)."
+            }
+        ],
+        "numericSpecialRules": {
+            "auraOfDeath": 5,
+            "cleave": 1,
+            "spellDice": "variable"
+        },
+        "drawEvents": [],
+        "points": 180,
+        "pointsPerAdditionalStand": 60
+    },
+    {
+        "name": "Legionnaires",
+        "faction": "Old Dominion",
+        "type": "infantry",
+        "regimentClass": "medium",
+        "characteristics": {
+            "march": 5,
+            "volley": 0,
+            "clash": 2,
+            "attacks": 4,
+            "wounds": 4,
+            "resolve": null,
+            "defense": 1,
+            "evasion": 1
+        },
+        "specialRules": [
+            {
+                "name": "Animate Vessel",
+                "description": "All Regiments and Character Stands in the Army with the Animate Vessel Special Rule gain the Terrifying (1) Special Rule and may not perform the Inspire Action."
+            },
+            {
+                "name": "Shield",
+                "description": "Stands in this Regiment, including Character Stands, count their Defense Characteristic as 1 point higher against all Hits originating from the Regiment's front Arc."
+            },
+            {
+                "name": "Support (2)",
+                "description": "This Regiment's Stands contribute 2 Supporting Attacks during a Clash Action instead of 1."
+            },
+            {
+                "name": "Leader",
+                "description": "The Regiment's Command Stand that provides leadership to the unit."
+            },
+            {
+                "name": "Standard Bearer",
+                "description": "The Regiment's Command Stand includes a Standard Bearer."
+            }
+        ],
+        "numericSpecialRules": {
+            "support": 2,
+            "shield": true
+        },
+        "drawEvents": [],
+        "points": 100,
+        "pointsPerAdditionalStand": 40,
+        "officerUpgrades": "Any Legionnaires Regiment may take one of the following Officers: Dark Cenotaph (20 points), Profane Reliquary (25 points), Optio (15 points)"
+    },
+    {
+        "name": "Praetorian Guard",
+        "faction": "Old Dominion",
+        "type": "infantry",
+        "regimentClass": "medium",
+        "characteristics": {
+            "march": 5,
+            "volley": 0,
+            "clash": 2,
+            "attacks": 5,
+            "wounds": 5,
+            "resolve": null,
+            "defense": 2,
+            "evasion": 1
+        },
+        "specialRules": [
+            {
+                "name": "Animate Vessel",
+                "description": "All Regiments and Character Stands in the Army with the Animate Vessel Special Rule gain the Terrifying (1) Special Rule and may not perform the Inspire Action."
+            },
+            {
+                "name": "Shield",
+                "description": "Stands in this Regiment, including Character Stands, count their Defense Characteristic as 1 point higher against all Hits originating from the Regiment's front Arc."
+            },
+            {
+                "name": "Leader",
+                "description": "The Regiment's Command Stand that provides leadership to the unit."
+            }
+        ],
+        "numericSpecialRules": {
+            "shield": true
+        },
+        "drawEvents": [
+            {
+                "name": "Bastion (+1)",
+                "description": "Until the end of the Round, all Stands in this Regiment gain +1 Defense."
+            }
+        ],
+        "points": 160,
+        "pointsPerAdditionalStand": 45,
+        "officerUpgrades": "Any Praetorian Guard Regiment may take one of the following Officers: Standard Bearer (10 points), Icon Bearer (10 points), Dark Cenotaph (25 points), Profane Reliquary (25 points)"
+    },
+    {
+        "name": "Athanatoi",
+        "faction": "Old Dominion",
+        "type": "infantry",
+        "regimentClass": "medium",
+        "characteristics": {
+            "march": 6,
+            "volley": 1,
+            "clash": 3,
+            "attacks": 6,
+            "wounds": 4,
+            "resolve": null,
+            "defense": 2,
+            "evasion": 1
+        },
+        "specialRules": [
+            {
+                "name": "Animate Vessel",
+                "description": "All Regiments and Character Stands in the Army with the Animate Vessel Special Rule gain the Terrifying (1) Special Rule and may not perform the Inspire Action."
+            },
+            {
+                "name": "Flurry",
+                "description": "A Stand with this Special Rule Re-Rolls all failed Hit Rolls when performing a Clash or Duel Action."
+            },
+            {
+                "name": "Tenacious (1)",
+                "description": "Whenever this Regiment makes a Defense Roll, treat 1 failed results as successes."
+            },
+            {
+                "name": "Leader",
+                "description": "The Regiment's Command Stand that provides leadership to the unit."
+            },
+            {
+                "name": "Standard Bearer",
+                "description": "The Regiment's Command Stand includes a Standard Bearer."
+            }
+        ],
+        "numericSpecialRules": {
+            "tenacious": 1
+        },
+        "drawEvents": [
+            {
+                "name": "Parry",
+                "description": "Enemy Stands engaged with a Stand with this Special Rule cannot Re-Roll failed Hit Rolls."
+            }
+        ],
+        "points": 170,
+        "pointsPerAdditionalStand": 40
+    },
+    {
+        "name": "Varangian Guard",
+        "faction": "Old Dominion",
+        "type": "infantry",
+        "regimentClass": "heavy",
+        "characteristics": {
+            "march": 5,
+            "volley": 0,
+            "clash": 3,
+            "attacks": 4,
+            "wounds": 5,
+            "resolve": null,
+            "defense": 3,
+            "evasion": 1
+        },
+        "specialRules": [
+            {
+                "name": "Animate Vessel",
+                "description": "All Regiments and Character Stands in the Army with the Animate Vessel Special Rule gain the Terrifying (1) Special Rule and may not perform the Inspire Action."
+            },
+            {
+                "name": "Cleave (2)",
+                "description": "Enemy Stands in contact with this Stand reduce their Defense Characteristic by 2 when making Defense rolls against Hits inflicted by this Stand."
+            },
+            {
+                "name": "Hardened (1)",
+                "description": "When this Regiment makes a Defense Roll, reduce any Cleave (X), Brutal Impact (X) or Armor Piercing (X) Special Rule by 1 when resolving that Defense Roll."
+            },
+            {
+                "name": "Leader",
+                "description": "The Regiment's Command Stand that provides leadership to the unit."
+            }
+        ],
+        "numericSpecialRules": {
+            "cleave": 2,
+            "hardened": 1
+        },
+        "drawEvents": [
+            {
+                "name": "Cleave (+1) and Linebreaker",
+                "description": "This Regiment gains Cleave (+1) and Linebreaker Special Rules until the end of the Round."
+            }
+        ],
+        "points": 200,
+        "pointsPerAdditionalStand": 55,
+        "officerUpgrades": "Any Varangian Guard Regiment may take the following Officer: Standard Bearer (10 points), Dark Cenotaph (25 points)"
+    },
+    {
+        "name": "Karyatids",
+        "faction": "Old Dominion",
+        "type": "brute",
+        "regimentClass": "medium",
+        "characteristics": {
+            "march": 6,
+            "volley": 2,
+            "clash": 2,
+            "attacks": 4,
+            "wounds": 5,
+            "resolve": null,
+            "defense": 3,
+            "evasion": 1
+        },
+        "specialRules": [
+            {
+                "name": "Animate Vessel",
+                "description": "All Regiments and Character Stands in the Army with the Animate Vessel Special Rule gain the Terrifying (1) Special Rule and may not perform the Inspire Action."
+            },
+            {
+                "name": "Barrage (3) (20\", Armor Piercing (2))",
+                "description": "This Regiment may perform a Volley Action, making a number of Attack rolls equal to its Barrage value. Has Armor Piercing (2) special rule."
+            },
+            {
+                "name": "Divine Shard",
+                "description": "When a Stand with this Special Rule is destroyed, if the Power Token gained from it is allocated to the Fallen Pantheon Pool add an additional Power Token to that same Pool."
+            }
+        ],
+        "numericSpecialRules": {
+            "barrage": 3,
+            "barrageRange": 20,
+            "armorPiercing": true,
+            "armorPiercingValue": 2
+        },
+        "drawEvents": [
+            {
+                "name": "Barrage (+1) and Fluid Formation",
+                "description": "This Regiment gains Barrage (+1) and Fluid Formation Special Rules until the end of the Round."
+            }
+        ],
+        "points": 200,
+        "pointsPerAdditionalStand": 65
+    },
+    {
+        "name": "Kanephors",
+        "faction": "Old Dominion",
+        "type": "brute",
+        "regimentClass": "heavy",
+        "characteristics": {
+            "march": 6,
+            "volley": 0,
+            "clash": 3,
+            "attacks": 5,
+            "wounds": 5,
+            "resolve": null,
+            "defense": 3,
+            "evasion": 2
+        },
+        "specialRules": [
+            {
+                "name": "Animate Vessel",
+                "description": "All Regiments and Character Stands in the Army with the Animate Vessel Special Rule gain the Terrifying (1) Special Rule and may not perform the Inspire Action."
+            },
+            {
+                "name": "Blessed",
+                "description": "Once per Round, Stands with this Special Rule may choose to Re-Roll all their failed Hit Rolls or all of their failed Defense Rolls during a Clash or Charge Action."
+            },
+            {
+                "name": "Cleave (1)",
+                "description": "Enemy Stands in contact with this Stand reduce their Defense Characteristic by 1 when making Defense rolls against Hits inflicted by this Stand."
+            },
+            {
+                "name": "Hardened (1)",
+                "description": "When this Regiment makes a Defense Roll, reduce any Cleave (X), Brutal Impact (X) or Armor Piercing (X) Special Rule by 1 when resolving that Defense Roll."
+            },
+            {
+                "name": "Impact (2)",
+                "description": "When this Stand performs a successful Charge Action, before its Clash Action, it inflicts a number of automatic Hits equal to its Impact value."
+            },
+            {
+                "name": "Divine Shard",
+                "description": "When a Stand with this Special Rule is destroyed, if the Power Token gained from it is allocated to the Fallen Pantheon Pool add an additional Power Token to that same Pool."
+            }
+        ],
+        "numericSpecialRules": {
+            "cleave": 1,
+            "hardened": 1,
+            "impact": 2
+        },
+        "drawEvents": [
+            {
+                "name": "Flawless Strikes",
+                "description": "When a Stand with this Special Rule performs a Clash or Duel Action, all Hit Rolls of \"1\" count the Target's Defense as 0 for that Attack."
+            }
+        ],
+        "points": 210,
+        "pointsPerAdditionalStand": 70
+    },
+    {
+        "name": "Bone Golems",
+        "faction": "Old Dominion",
+        "type": "brute",
+        "regimentClass": "heavy",
+        "characteristics": {
+            "march": 6,
+            "volley": 0,
+            "clash": 2,
+            "attacks": 4,
+            "wounds": 6,
+            "resolve": null,
+            "defense": 3,
+            "evasion": 0
+        },
+        "specialRules": [
+            {
+                "name": "Animate Vessel",
+                "description": "All Regiments and Character Stands in the Army with the Animate Vessel Special Rule gain the Terrifying (1) Special Rule and may not perform the Inspire Action."
+            },
+            {
+                "name": "Aura of Death (5)",
+                "description": "At the start of an Enemy Regiment's \"Draw Command Card\" step, if it is in contact with one or more Enemy Regiment with this Special Rule, it suffers 5 Hits."
+            },
+            {
+                "name": "Cleave (2)",
+                "description": "Enemy Stands in contact with this Stand reduce their Defense Characteristic by 2 when making Defense rolls against Hits inflicted by this Stand."
+            },
+            {
+                "name": "Hardened (1)",
+                "description": "When this Regiment makes a Defense Roll, reduce any Cleave (X), Brutal Impact (X) or Armor Piercing (X) Special Rule by 1 when resolving that Defense Roll."
+            },
+            {
+                "name": "Impact (2)",
+                "description": "When this Stand performs a successful Charge Action, before its Clash Action, it inflicts a number of automatic Hits equal to its Impact value."
+            },
+            {
+                "name": "Relentless Blows",
+                "description": "When a Stand with this Special Rule performs a Clash or Duel Action, each Hit Roll of \"1\" causes an additional automatic Hit on the Target."
+            },
+            {
+                "name": "Unstoppable",
+                "description": "This Regiment may Re-Roll failed Charge Rolls."
+            }
+        ],
+        "numericSpecialRules": {
+            "auraOfDeath": 5,
+            "cleave": 2,
+            "hardened": 1,
+            "impact": 2
+        },
+        "drawEvents": [
+            {
+                "name": "Aura of Death (+3)",
+                "description": "This Regiment gains Aura of Death (+3) Special Rule until the end of the Round."
+            }
+        ],
+        "points": 210,
+        "pointsPerAdditionalStand": 65
+    },
+    {
+        "name": "Buccephaloi",
+        "faction": "Old Dominion",
+        "type": "brute",
+        "regimentClass": "heavy",
+        "characteristics": {
+            "march": 6,
+            "volley": 0,
+            "clash": 3,
+            "attacks": 4,
+            "wounds": 6,
+            "resolve": null,
+            "defense": 3,
+            "evasion": 2
+        },
+        "specialRules": [
+            {
+                "name": "Animate Vessel",
+                "description": "All Regiments and Character Stands in the Army with the Animate Vessel Special Rule gain the Terrifying (1) Special Rule and may not perform the Inspire Action."
+            },
+            {
+                "name": "Brutal Impact (1)",
+                "description": "When this Stand inflicts Impact Attacks, those Impact Attacks reduce the Target Enemy Regiment's Defense by 1 for the purposes of making Defense Rolls against those Impact Attacks."
+            },
+            {
+                "name": "Cleave (3)",
+                "description": "Enemy Stands in contact with this Stand reduce their Defense Characteristic by 3 when making Defense rolls against Hits inflicted by this Stand."
+            },
+            {
+                "name": "Devout",
+                "description": "When a Regiment with this Special Rule is the Target of a Priest (X)'s Spellcasting Action, one failed Spellcasting die is converted to a success."
+            },
+            {
+                "name": "Impact (3)",
+                "description": "When this Stand performs a successful Charge Action, before its Clash Action, it inflicts a number of automatic Hits equal to its Impact value."
+            },
+            {
+                "name": "Tenacious (1)",
+                "description": "Whenever this Regiment makes a Defense Roll, treat 1 failed results as successes."
+            },
+            {
+                "name": "Unstoppable",
+                "description": "This Regiment may Re-Roll failed Charge Rolls."
+            }
+        ],
+        "numericSpecialRules": {
+            "brutalImpact": 1,
+            "cleave": 3,
+            "impact": 3,
+            "tenacious": 1
+        },
+        "drawEvents": [
+            {
+                "name": "Brutal Impact (+1)",
+                "description": "This Regiment gains Brutal Impact (+1) Special Rule until the end of the Round."
+            }
+        ],
+        "points": 220,
+        "pointsPerAdditionalStand": 75
+    },
+    {
+        "name": "Centaur Prodromoi",
+        "faction": "Old Dominion",
+        "type": "cavalry",
+        "regimentClass": "medium",
+        "characteristics": {
+            "march": 8,
+            "volley": 0,
+            "clash": 2,
+            "attacks": 4,
+            "wounds": 4,
+            "resolve": null,
+            "defense": 2,
+            "evasion": 1
+        },
+        "specialRules": [
+            {
+                "name": "Animate Vessel",
+                "description": "All Regiments and Character Stands in the Army with the Animate Vessel Special Rule gain the Terrifying (1) Special Rule and may not perform the Inspire Action."
+            },
+            {
+                "name": "Cleave (1)",
+                "description": "Enemy Stands in contact with this Stand reduce their Defense Characteristic by 1 when making Defense rolls against Hits inflicted by this Stand."
+            },
+            {
+                "name": "Shield",
+                "description": "Stands in this Regiment, including Character Stands, count their Defense Characteristic as 1 point higher against all Hits originating from the Regiment's front Arc."
+            },
+            {
+                "name": "Impact (2)",
+                "description": "When this Stand performs a successful Charge Action, before its Clash Action, it inflicts a number of automatic Hits equal to its Impact value."
+            },
+            {
+                "name": "Leader",
+                "description": "The Regiment's Command Stand that provides leadership to the unit."
+            }
+        ],
+        "numericSpecialRules": {
+            "cleave": 1,
+            "shield": true,
+            "impact": 2
+        },
+        "drawEvents": [
+            {
+                "name": "Brutal Impact (1) and Impact (+2)",
+                "description": "This Regiment gains Brutal Impact (1) and Impact (+2) Special Rules until the end of the Round."
+            }
+        ],
+        "points": 150,
+        "pointsPerAdditionalStand": 50
+    },
+    {
+        "name": "Centaur Kerykes",
+        "faction": "Old Dominion",
+        "type": "cavalry",
+        "regimentClass": "light",
+        "characteristics": {
+            "march": 8,
+            "volley": 2,
+            "clash": 2,
+            "attacks": 4,
+            "wounds": 4,
+            "resolve": null,
+            "defense": 3,
+            "evasion": 1
+        },
+        "specialRules": [
+            {
+                "name": "Animate Vessel",
+                "description": "All Regiments and Character Stands in the Army with the Animate Vessel Special Rule gain the Terrifying (1) Special Rule and may not perform the Inspire Action."
+            },
+            {
+                "name": "Barrage (4) (14\", Deadly Shot)",
+                "description": "This Regiment may perform a Volley Action, making a number of Attack rolls equal to its Barrage value. Has Deadly Shot special rule."
+            },
+            {
+                "name": "Leader",
+                "description": "The Regiment's Command Stand that provides leadership to the unit."
+            }
+        ],
+        "numericSpecialRules": {
+            "barrage": 4,
+            "barrageRange": 14
+        },
+        "drawEvents": [
+            {
+                "name": "Armor Piercing (1) and Sureshot",
+                "description": "This Regiment gains Armor Piercing (1) and Sureshot Special Rules until the end of the Round."
+            }
+        ],
+        "points": 180,
+        "pointsPerAdditionalStand": 60
+    },
+    {
+        "name": "Kataphraktoi",
+        "faction": "Old Dominion",
+        "type": "cavalry",
+        "regimentClass": "medium",
+        "characteristics": {
+            "march": 7,
+            "volley": 0,
+            "clash": 2,
+            "attacks": 5,
+            "wounds": 4,
+            "resolve": null,
+            "defense": 3,
+            "evasion": 1
+        },
+        "specialRules": [
+            {
+                "name": "Animate Vessel",
+                "description": "All Regiments and Character Stands in the Army with the Animate Vessel Special Rule gain the Terrifying (1) Special Rule and may not perform the Inspire Action."
+            },
+            {
+                "name": "Brutal Impact (2)",
+                "description": "When this Stand inflicts Impact Attacks, those Impact Attacks reduce the Target Enemy Regiment's Defense by 2 for the purposes of making Defense Rolls against those Impact Attacks."
+            },
+            {
+                "name": "Impact (3)",
+                "description": "When this Stand performs a successful Charge Action, before its Clash Action, it inflicts a number of automatic Hits equal to its Impact value."
+            },
+            {
+                "name": "Shield",
+                "description": "Stands in this Regiment, including Character Stands, count their Defense Characteristic as 1 point higher against all Hits originating from the Regiment's front Arc."
+            },
+            {
+                "name": "Leader",
+                "description": "The Regiment's Command Stand that provides leadership to the unit."
+            }
+        ],
+        "numericSpecialRules": {
+            "brutalImpact": 2,
+            "impact": 3,
+            "shield": true
+        },
+        "drawEvents": [
+            {
+                "name": "Impact (+1) and Shock",
+                "description": "This Regiment gains Impact (+1) and Shock Special Rules until the end of the Round."
+            }
+        ],
+        "points": 200,
+        "pointsPerAdditionalStand": 65,
+        "officerUpgrades": "Any Kataphraktoi Regiment may take the following Officers: Standard Bearer (10 points), Hetairos (10 points)"
+    },
+    {
+        "name": "Profane Sepulcher",
+        "faction": "Old Dominion",
+        "type": "monster",
+        "regimentClass": "medium",
+        "characteristics": {
+            "march": 5,
+            "volley": 0,
+            "clash": 2,
+            "attacks": 8,
+            "wounds": 36,
+            "resolve": null,
+            "defense": 3,
+            "evasion": 2
+        },
+        "specialRules": [
+            {
+                "name": "Animate Vessel",
+                "description": "All Regiments and Character Stands in the Army with the Animate Vessel Special Rule gain the Terrifying (1) Special Rule and may not perform the Inspire Action."
+            },
+            {
+                "name": "Devout",
+                "description": "When a Regiment with this Special Rule is the Target of a Priest (X)'s Spellcasting Action, one failed Spellcasting die is converted to a success."
+            },
+            {
+                "name": "Unhallowed Ground",
+                "description": "This Regiment cannot be Healed and counts as being Size (2) regardless of its Type. In addition, this Regiment counts as five Stands for the purposes of Seizing Objective Zones."
+            }
+        ],
+        "numericSpecialRules": {},
+        "drawEvents": [
+            {
+                "name": "Exhortation of Eternal Faith",
+                "description": "When performing this Draw Event choose one of several effects that each inflict wounds on this Regiment but provide various bonuses."
+            }
+        ],
+        "points": 270
+    },
+    {
+        "name": "Xhiliarch",
+        "faction": "Old Dominion",
+        "type": "infantry",
+        "regimentClass": "character",
+        "characteristics": {
+            "march": null,
+            "volley": 0,
+            "clash": 3,
+            "attacks": 6,
+            "wounds": 5,
+            "resolve": null,
+            "defense": 2,
+            "evasion": 1
+        },
+        "specialRules": [
+            {
+                "name": "Animate Vessel",
+                "description": "All Regiments and Character Stands in the Army with the Animate Vessel Special Rule gain the Terrifying (1) Special Rule and may not perform the Inspire Action."
+            },
+            {
+                "name": "Cleave (1)",
+                "description": "Enemy Stands in contact with this Stand reduce their Defense Characteristic by 1 when making Defense rolls against Hits inflicted by this Stand."
+            },
+            {
+                "name": "Flurry",
+                "description": "A Stand with this Special Rule Re-Rolls all failed Hit Rolls when performing a Clash or Duel Action."
+            }
+        ],
+        "numericSpecialRules": {
+            "cleave": 1
+        },
+        "drawEvents": [
+            {
+                "name": "Regeneration (1)",
+                "description": "This Regiment immediately Heals 1 Wounds."
+            }
+        ],
+        "points": 100
+    },
+    {
+        "name": "Strategos",
+        "faction": "Old Dominion",
+        "type": "infantry",
+        "regimentClass": "character",
+        "characteristics": {
+            "march": null,
+            "volley": 0,
+            "clash": 3,
+            "attacks": 5,
+            "wounds": 5,
+            "resolve": null,
+            "defense": 2,
+            "evasion": 1
+        },
+        "specialRules": [
+            {
+                "name": "Animate Vessel",
+                "description": "All Regiments and Character Stands in the Army with the Animate Vessel Special Rule gain the Terrifying (1) Special Rule and may not perform the Inspire Action."
+            },
+            {
+                "name": "Forward Force",
+                "description": "The non-Monster Regiment this Character Stand is currently attached to gains the Flank Special Rule."
+            },
+            {
+                "name": "Shield",
+                "description": "Stands in this Regiment, including Character Stands, count their Defense Characteristic as 1 point higher against all Hits originating from the Regiment's front Arc."
+            }
+        ],
+        "numericSpecialRules": {
+            "shield": true
+        },
+        "drawEvents": [
+            {
+                "name": "Regeneration (1)",
+                "description": "This Regiment immediately Heals 1 Wounds."
+            }
+        ],
+        "points": 85
+    },
+    {
+        "name": "Mounted Strategos",
+        "faction": "Old Dominion",
+        "type": "cavalry",
+        "regimentClass": "character",
+        "characteristics": {
+            "march": null,
+            "volley": 0,
+            "clash": 3,
+            "attacks": 6,
+            "wounds": 6,
+            "resolve": null,
+            "defense": 3,
+            "evasion": 1
+        },
+        "specialRules": [
+            {
+                "name": "Animate Vessel",
+                "description": "All Regiments and Character Stands in the Army with the Animate Vessel Special Rule gain the Terrifying (1) Special Rule and may not perform the Inspire Action."
+            },
+            {
+                "name": "Brutal Impact (2)",
+                "description": "When this Stand inflicts Impact Attacks, those Impact Attacks reduce the Target Enemy Regiment's Defense by 2 for the purposes of making Defense Rolls against those Impact Attacks."
+            },
+            {
+                "name": "Impact (2)",
+                "description": "When this Stand performs a successful Charge Action, before its Clash Action, it inflicts a number of automatic Hits equal to its Impact value."
+            },
+            {
+                "name": "Shield",
+                "description": "Stands in this Regiment, including Character Stands, count their Defense Characteristic as 1 point higher against all Hits originating from the Regiment's front Arc."
+            }
+        ],
+        "numericSpecialRules": {
+            "brutalImpact": 2,
+            "impact": 2,
+            "shield": true
+        },
+        "drawEvents": [
+            {
+                "name": "Regeneration (1)",
+                "description": "This Regiment immediately Heals 1 Wounds."
+            }
+        ],
+        "points": 100
+    },
+    {
+        "name": "Hierodeacon",
+        "faction": "Old Dominion",
+        "type": "infantry",
+        "regimentClass": "character",
+        "characteristics": {
+            "march": null,
+            "volley": 0,
+            "clash": 1,
+            "attacks": 3,
+            "wounds": 4,
+            "resolve": null,
+            "defense": 1,
+            "evasion": 2
+        },
+        "specialRules": [
+            {
+                "name": "Animate Vessel",
+                "description": "All Regiments and Character Stands in the Army with the Animate Vessel Special Rule gain the Terrifying (1) Special Rule and may not perform the Inspire Action."
+            },
+            {
+                "name": "Devout",
+                "description": "When a Regiment with this Special Rule is the Target of a Priest (X)'s Spellcasting Action, one failed Spellcasting die is converted to a success."
+            },
+            {
+                "name": "Priest (6)",
+                "description": "This Regiment or Character Stand can perform the Spellcasting Action during its Activation. The 6 value is this Stand's Magic Level."
+            }
+        ],
+        "numericSpecialRules": {
+            "spellDice": 6
+        },
+        "drawEvents": [
+            {
+                "name": "Regeneration (1)",
+                "description": "This Regiment immediately Heals 1 Wounds."
+            },
+            {
+                "name": "Dark Shepherd",
+                "description": "The Character Stand may select a friendly Regiment within 12\" and immediately destroy one of its Stands."
+            }
+        ],
+        "points": 90
+    },
+    {
+        "name": "Archimandrite",
+        "faction": "Old Dominion",
+        "type": "infantry",
+        "regimentClass": "character",
+        "characteristics": {
+            "march": null,
+            "volley": 1,
+            "clash": 1,
+            "attacks": 3,
+            "wounds": 4,
+            "resolve": null,
+            "defense": 1,
+            "evasion": 2
+        },
+        "specialRules": [
+            {
+                "name": "Animate Vessel",
+                "description": "All Regiments and Character Stands in the Army with the Animate Vessel Special Rule gain the Terrifying (1) Special Rule and may not perform the Inspire Action."
+            },
+            {
+                "name": "Devout",
+                "description": "When a Regiment with this Special Rule is the Target of a Priest (X)'s Spellcasting Action, one failed Spellcasting die is converted to a success."
+            },
+            {
+                "name": "Priest (7)",
+                "description": "This Regiment or Character Stand can perform the Spellcasting Action during its Activation. The 7 value is this Stand's Magic Level."
+            }
+        ],
+        "numericSpecialRules": {
+            "spellDice": 7
+        },
+        "drawEvents": [
+            {
+                "name": "Regeneration (1)",
+                "description": "This Regiment immediately Heals 1 Wounds."
+            }
+        ],
+        "points": 110
+    },
+    {
+        "name": "Fallen Divinity",
+        "faction": "Old Dominion",
+        "type": "monster",
+        "regimentClass": "character",
+        "characteristics": {
+            "march": 5,
+            "volley": 2,
+            "clash": 2,
+            "attacks": 8,
+            "wounds": 12,
+            "resolve": null,
+            "defense": 2,
+            "evasion": 3
+        },
+        "specialRules": [
+            {
+                "name": "Animate Vessel",
+                "description": "All Regiments and Character Stands in the Army with the Animate Vessel Special Rule gain the Terrifying (1) Special Rule and may not perform the Inspire Action."
+            },
+            {
+                "name": "Blessed",
+                "description": "Once per Round, Stands with this Special Rule may choose to Re-Roll all their failed Hit Rolls or all of their failed Defense Rolls during a Clash or Charge Action."
+            },
+            {
+                "name": "Cleave (1)",
+                "description": "Enemy Stands in contact with this Stand reduce their Defense Characteristic by 1 when making Defense rolls against Hits inflicted by this Stand."
+            },
+            {
+                "name": "Flank",
+                "description": "This Regiment does not contribute a die to the Reinforcement Roll."
+            },
+            {
+                "name": "Font of Dark Power",
+                "description": "Any Power Tokens generated from the removal of a Stand belonging to a Friendly Regiment within 10\" of the Fallen Divinity, must be allocated to the Fallen Pantheon Empowerment Pool."
+            },
+            {
+                "name": "Hardened (1)",
+                "description": "When this Regiment makes a Defense Roll, reduce any Cleave (X), Brutal Impact (X) or Armor Piercing (X) Special Rule by 1 when resolving that Defense Roll."
+            },
+            {
+                "name": "Impact (4)",
+                "description": "When this Stand performs a successful Charge Action, before its Clash Action, it inflicts a number of automatic Hits equal to its Impact value."
+            }
+        ],
+        "numericSpecialRules": {
+            "cleave": 1,
+            "hardened": 1,
+            "impact": 4
+        },
+        "drawEvents": [],
+        "points": 300
+    }
+]
