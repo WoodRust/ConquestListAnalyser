@@ -779,7 +779,7 @@
             "clash": 2,
             "attacks": 4,
             "wounds": 5,
-            "resolve": null,
+            "resolve": 0,
             "defense": 4,
             "evasion": 2
         },

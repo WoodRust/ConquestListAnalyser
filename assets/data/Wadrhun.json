@@ -332,8 +332,8 @@
             "cleave": 1
         },
         "drawEvents": [],
-        "points": null,
-        "pointsPerAdditionalStand": null,
+        "points": 1,
+        "pointsPerAdditionalStand": 1,
         "note": "PREVIEW - Points not available"
     },
     {
