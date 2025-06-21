@@ -12,6 +12,7 @@ void main() {
     late Unit testUnitWithCleave;
     late Unit testUnitWithBarrage;
     late Unit testUnitWithBoth;
+    late Unit testUnitWithRange;
 
     setUp(() {
       scoringEngine = ScoringEngine();
@@ -120,6 +121,30 @@ void main() {
         drawEvents: const [],
         points: 180,
       );
+
+      testUnitWithRange = Unit(
+        name: 'Long Range Artillery',
+        faction: 'Test',
+        type: 'siege',
+        regimentClass: 'heavy',
+        characteristics: const UnitCharacteristics(
+          march: 3,
+          volley: 5,
+          clash: 1,
+          attacks: 2,
+          wounds: 6,
+          resolve: 4,
+          defense: 3,
+          evasion: 1,
+        ),
+        specialRules: const [],
+        numericSpecialRules: const {
+          'barrage': 3,
+          'barrageRange': 36
+        }, // Has long range
+        drawEvents: const [],
+        points: 280,
+      );
     });
 
     test('should calculate total wounds correctly', () {
@@ -212,27 +237,52 @@ void main() {
       expect(score.rangedExpectedHits, closeTo(2.0, 0.1));
     });
 
-    test('should calculate mixed army with all capabilities', () {
+    test('should calculate max range correctly', () {
+      final regiments = [
+        Regiment(
+            unit: testUnitWithRange, stands: 1, pointsCost: 280), // Range 36
+        Regiment(
+            unit: testUnitWithBarrage,
+            stands: 2,
+            pointsCost: 280), // No range specified (0)
+        Regiment(unit: testUnit1, stands: 1, pointsCost: 120), // No barrage (0)
+      ];
+
+      final armyList = ArmyList(
+        name: 'Test Army',
+        faction: 'Test',
+        totalPoints: 680,
+        pointsLimit: 2000,
+        regiments: regiments,
+      );
+
+      final score = scoringEngine.calculateScores(armyList);
+      expect(score.maxRange, equals(36)); // Highest range in the army
+    });
+
+    test(
+        'should calculate mixed army with all capabilities including max range',
+        () {
       final regiments = [
         Regiment(
             unit: testUnitWithBoth,
             stands: 2,
-            pointsCost: 360), // Both cleave and barrage
+            pointsCost: 360), // Both cleave and barrage, no range
         Regiment(
             unit: testUnitWithCleave,
             stands: 1,
             pointsCost: 200), // Only cleave
         Regiment(
-            unit: testUnitWithBarrage,
+            unit: testUnitWithRange,
             stands: 1,
-            pointsCost: 140), // Only barrage
+            pointsCost: 280), // Barrage with range 36
         Regiment(unit: testUnit1, stands: 2, pointsCost: 160), // Neither
       ];
 
       final armyList = ArmyList(
         name: 'Mixed Army',
         faction: 'Test',
-        totalPoints: 860,
+        totalPoints: 1000,
         pointsLimit: 2000,
         regiments: regiments,
       );
@@ -245,10 +295,11 @@ void main() {
       expect(score.expectedHitVolume, greaterThan(0.0));
       expect(score.cleaveRating, greaterThan(0.0)); // From cleave units
       expect(score.rangedExpectedHits, greaterThan(0.0)); // From barrage units
+      expect(score.maxRange, equals(36)); // From artillery unit
 
-      // Verify the score includes ranged hits in the shareable text
+      // Verify the score includes max range in the shareable text
       final shareableText = score.toShareableText();
-      expect(shareableText, contains('Ranged Expected Hits'));
+      expect(shareableText, contains('Max Range: 36'));
     });
 
     test('should handle empty army list', () {
@@ -266,6 +317,7 @@ void main() {
       expect(score.expectedHitVolume, equals(0.0));
       expect(score.cleaveRating, equals(0.0));
       expect(score.rangedExpectedHits, equals(0.0));
+      expect(score.maxRange, equals(0)); // No units, no range
     });
 
     test('should handle units without cleave or barrage correctly', () {
@@ -283,9 +335,12 @@ void main() {
       );
 
       final score = scoringEngine.calculateScores(armyList);
+
       // Both units have no cleave or barrage, so should be 0
       expect(score.cleaveRating, equals(0.0));
       expect(score.rangedExpectedHits, equals(0.0));
+      expect(score.maxRange, equals(0)); // No units with range
+
       // But should still have expected hit volume
       expect(score.expectedHitVolume, greaterThan(0.0));
     });
@@ -338,17 +393,19 @@ void main() {
       expect(score.cleaveRating, greaterThan(0.0));
       // But no ranged hits because no units have barrage capability
       expect(score.rangedExpectedHits, equals(0.0));
+      // And no max range because no units have ranged capability
+      expect(score.maxRange, equals(0));
       // Should still have expected hit volume from melee combat
       expect(score.expectedHitVolume, greaterThan(0.0));
     });
 
-    test('should include ranged hits in shareable text format', () {
+    test('should include max range in shareable text format', () {
       final regiments = [
-        Regiment(unit: testUnitWithBarrage, stands: 2, pointsCost: 280),
+        Regiment(unit: testUnitWithRange, stands: 1, pointsCost: 280),
       ];
 
       final armyList = ArmyList(
-        name: 'Archer Army',
+        name: 'Artillery Army',
         faction: 'Test',
         totalPoints: 280,
         pointsLimit: 2000,
@@ -358,7 +415,7 @@ void main() {
       final score = scoringEngine.calculateScores(armyList);
       final shareableText = score.toShareableText();
 
-      expect(shareableText, contains('Army List Analysis: Archer Army'));
+      expect(shareableText, contains('Army List Analysis: Artillery Army'));
       expect(shareableText, contains('Faction: Test'));
       expect(shareableText, contains('Points: 280/2000'));
       expect(shareableText, contains('Total Wounds:'));
@@ -366,6 +423,7 @@ void main() {
       expect(shareableText, contains('Expected Hit Volume:'));
       expect(shareableText, contains('Cleave Rating:'));
       expect(shareableText, contains('Ranged Expected Hits:'));
+      expect(shareableText, contains('Max Range: 36'));
       expect(shareableText, contains('Calculated:'));
     });
 
@@ -387,7 +445,11 @@ void main() {
           evasion: 2,
         ),
         specialRules: const [],
-        numericSpecialRules: const {'cleave': 3, 'barrage': 1},
+        numericSpecialRules: const {
+          'cleave': 3,
+          'barrage': 1,
+          'barrageRange': 12
+        },
         drawEvents: const [],
         points: 150,
       );
@@ -411,12 +473,185 @@ void main() {
       // Wounds should only count non-character regiments
       expect(score.totalWounds,
           equals(10)); // 2 stands * 5 wounds from testUnitWithBoth
-
       // But hit volumes and ratings should include character
       expect(score.expectedHitVolume, greaterThan(0.0));
       expect(score.cleaveRating, greaterThan(0.0)); // Both units have cleave
       expect(score.rangedExpectedHits,
           greaterThan(0.0)); // Both units have barrage
+      expect(score.maxRange, equals(12)); // Character has 12" range
+    });
+
+    test('should handle multiple units with different ranges correctly', () {
+      final shortRangeUnit = Unit(
+        name: 'Short Range Unit',
+        faction: 'Test',
+        type: 'infantry',
+        regimentClass: 'light',
+        characteristics: const UnitCharacteristics(
+          march: 6,
+          volley: 4,
+          clash: 3,
+          attacks: 3,
+          wounds: 4,
+          resolve: 2,
+          defense: 1,
+          evasion: 1,
+        ),
+        specialRules: const [],
+        numericSpecialRules: const {
+          'barrage': 2,
+          'barrageRange': 8
+        }, // Short range
+        drawEvents: const [],
+        points: 120,
+      );
+
+      final mediumRangeUnit = Unit(
+        name: 'Medium Range Unit',
+        faction: 'Test',
+        type: 'infantry',
+        regimentClass: 'medium',
+        characteristics: const UnitCharacteristics(
+          march: 5,
+          volley: 3,
+          clash: 2,
+          attacks: 3,
+          wounds: 5,
+          resolve: 3,
+          defense: 2,
+          evasion: 1,
+        ),
+        specialRules: const [],
+        numericSpecialRules: const {
+          'barrage': 2,
+          'barrageRange': 18
+        }, // Medium range
+        drawEvents: const [],
+        points: 160,
+      );
+
+      final regiments = [
+        Regiment(unit: shortRangeUnit, stands: 2, pointsCost: 160), // Range 8
+        Regiment(unit: mediumRangeUnit, stands: 1, pointsCost: 160), // Range 18
+        Regiment(
+            unit: testUnitWithRange, stands: 1, pointsCost: 280), // Range 36
+        Regiment(unit: testUnit1, stands: 1, pointsCost: 120), // No range
+      ];
+
+      final armyList = ArmyList(
+        name: 'Multi-Range Army',
+        faction: 'Test',
+        totalPoints: 720,
+        pointsLimit: 2000,
+        regiments: regiments,
+      );
+
+      final score = scoringEngine.calculateScores(armyList);
+
+      // Should pick the highest range (36 from artillery)
+      expect(score.maxRange, equals(36));
+      expect(score.rangedExpectedHits, greaterThan(0.0));
+    });
+
+    test('should handle army with only melee units (no ranged)', () {
+      final regiments = [
+        Regiment(unit: testUnit1, stands: 3, pointsCost: 200),
+        Regiment(unit: testUnitWithCleave, stands: 2, pointsCost: 400),
+      ];
+
+      final armyList = ArmyList(
+        name: 'Melee Only Army',
+        faction: 'Test',
+        totalPoints: 600,
+        pointsLimit: 2000,
+        regiments: regiments,
+      );
+
+      final score = scoringEngine.calculateScores(armyList);
+
+      expect(score.totalWounds, greaterThan(0));
+      expect(score.expectedHitVolume, greaterThan(0.0));
+      expect(score.cleaveRating, greaterThan(0.0)); // From cleave unit
+      expect(score.rangedExpectedHits, equals(0.0)); // No ranged units
+      expect(score.maxRange, equals(0)); // No ranged units
+    });
+
+    test(
+        'should correctly calculate max range when some units have barrage but no range',
+        () {
+      final regiments = [
+        Regiment(
+            unit: testUnitWithBarrage,
+            stands: 2,
+            pointsCost: 280), // Has barrage, no range specified (0)
+        Regiment(
+            unit: testUnitWithRange,
+            stands: 1,
+            pointsCost: 280), // Has barrage and range 36
+      ];
+
+      final armyList = ArmyList(
+        name: 'Mixed Range Army',
+        faction: 'Test',
+        totalPoints: 560,
+        pointsLimit: 2000,
+        regiments: regiments,
+      );
+
+      final score = scoringEngine.calculateScores(armyList);
+
+      // Should return the highest specified range, ignoring units with 0 range
+      expect(score.maxRange, equals(36));
+      expect(
+          score.rangedExpectedHits, greaterThan(0.0)); // Both units can shoot
+    });
+
+    test('should handle edge case where all ranged units have 0 range', () {
+      final zeroRangeUnit = Unit(
+        name: 'Zero Range Unit',
+        faction: 'Test',
+        type: 'infantry',
+        regimentClass: 'light',
+        characteristics: const UnitCharacteristics(
+          march: 6,
+          volley: 3,
+          clash: 3,
+          attacks: 4,
+          wounds: 4,
+          resolve: 2,
+          defense: 1,
+          evasion: 1,
+        ),
+        specialRules: const [],
+        numericSpecialRules: const {
+          'barrage': 1,
+          'barrageRange': 0
+        }, // Explicitly 0 range
+        drawEvents: const [],
+        points: 100,
+      );
+
+      final regiments = [
+        Regiment(unit: zeroRangeUnit, stands: 2, pointsCost: 140),
+        Regiment(
+            unit: testUnitWithBarrage,
+            stands: 1,
+            pointsCost: 140), // Also 0 range (not specified)
+      ];
+
+      final armyList = ArmyList(
+        name: 'Zero Range Army',
+        faction: 'Test',
+        totalPoints: 280,
+        pointsLimit: 2000,
+        regiments: regiments,
+      );
+
+      final score = scoringEngine.calculateScores(armyList);
+
+      expect(score.maxRange, equals(0)); // All units have 0 range
+      expect(score.rangedExpectedHits,
+          greaterThan(0.0)); // But they can still shoot
     });
   });
 }

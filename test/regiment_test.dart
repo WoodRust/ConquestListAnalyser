@@ -9,6 +9,7 @@ void main() {
     late Unit unitWithFlurry;
     late Unit unitWithBarrage;
     late Unit unitWithBarrageAndLeader;
+    late Unit unitWithBarrageRange;
 
     setUp(() {
       unitWithCleave = Unit(
@@ -131,6 +132,31 @@ void main() {
         points: 180,
         pointsPerAdditionalStand: 60,
       );
+
+      unitWithBarrageRange = Unit(
+        name: 'Long Range Archers',
+        faction: 'Test',
+        type: 'infantry',
+        regimentClass: 'heavy',
+        characteristics: const UnitCharacteristics(
+          march: 5,
+          volley: 4,
+          clash: 2,
+          attacks: 2,
+          wounds: 4,
+          resolve: 3,
+          defense: 2,
+          evasion: 1,
+        ),
+        specialRules: const [],
+        numericSpecialRules: const {
+          'barrage': 2,
+          'barrageRange': 24
+        }, // Barrage(2) with 24" range
+        drawEvents: const [],
+        points: 160,
+        pointsPerAdditionalStand: 55,
+      );
     });
 
     test('should return correct cleave value from numeric special rules', () {
@@ -139,6 +165,7 @@ void main() {
         stands: 2,
         pointsCost: 240,
       );
+
       final regimentWithoutCleave = Regiment(
         unit: unitWithoutCleave,
         stands: 3,
@@ -155,6 +182,7 @@ void main() {
         stands: 2,
         pointsCost: 230,
       );
+
       final regimentWithoutBarrage = Regiment(
         unit: unitWithoutCleave,
         stands: 3,
@@ -163,6 +191,32 @@ void main() {
 
       expect(regimentWithBarrage.barrageValue, equals(2));
       expect(regimentWithoutBarrage.barrageValue, equals(0));
+    });
+
+    test('should return correct barrage range from numeric special rules', () {
+      final regimentWithRange = Regiment(
+        unit: unitWithBarrageRange,
+        stands: 2,
+        pointsCost: 270,
+      );
+
+      final regimentWithoutRange = Regiment(
+        unit: unitWithBarrage,
+        stands: 2,
+        pointsCost: 230,
+      );
+
+      final regimentWithNoRangedCapability = Regiment(
+        unit: unitWithoutCleave,
+        stands: 3,
+        pointsCost: 200,
+      );
+
+      expect(regimentWithRange.barrageRange, equals(24));
+      expect(regimentWithoutRange.barrageRange,
+          equals(0)); // Has barrage but no range specified
+      expect(regimentWithNoRangedCapability.barrageRange,
+          equals(0)); // No ranged capability
     });
 
     test('should calculate ranged expected hits correctly', () {
@@ -258,6 +312,7 @@ void main() {
       // Cleave rating = 5.33 * 3 = 16.0
       final expectedHitVolume = regiment.expectedHitVolume;
       final cleaveRating = regiment.cleaveRating;
+
       expect(expectedHitVolume, closeTo(5.33, 0.1));
       expect(cleaveRating, closeTo(16.0, 0.5));
     });
@@ -291,6 +346,7 @@ void main() {
       // Cleave rating = 7.5 * 1 = 7.5
       final expectedHitVolume = regiment.expectedHitVolume;
       final cleaveRating = regiment.cleaveRating;
+
       expect(expectedHitVolume, closeTo(7.5, 0.1));
       expect(cleaveRating, closeTo(7.5, 0.1));
     });
@@ -347,6 +403,18 @@ void main() {
       expect(regiment.cleaveRating, greaterThan(0.0));
       expect(regiment.calculateRangedExpectedHits(),
           closeTo(1.0, 0.1)); // 2 * 1 * (3/6)
+    });
+
+    test('should handle units with barrage range correctly', () {
+      final regiment = Regiment(
+        unit: unitWithBarrageRange,
+        stands: 2,
+        pointsCost: 270,
+      );
+
+      expect(regiment.barrageValue, equals(2));
+      expect(regiment.barrageRange, equals(24));
+      expect(regiment.calculateRangedExpectedHits(), greaterThan(0.0));
     });
 
     test('should handle edge cases correctly', () {
@@ -480,6 +548,55 @@ void main() {
       // Expected ranged hits = 3 * 0.167 = 0.5
       final rangedHits = regiment.calculateRangedExpectedHits();
       expect(rangedHits, closeTo(0.5, 0.1));
+    });
+
+    test('should handle max range calculations correctly', () {
+      final unitWithHighRange = Unit(
+        name: 'Artillery Unit',
+        faction: 'Test',
+        type: 'siege',
+        regimentClass: 'heavy',
+        characteristics: const UnitCharacteristics(
+          march: 3,
+          volley: 5,
+          clash: 1,
+          attacks: 1,
+          wounds: 6,
+          resolve: 4,
+          defense: 3,
+          evasion: 1,
+        ),
+        specialRules: const [],
+        numericSpecialRules: const {
+          'barrage': 4,
+          'barrageRange': 36
+        }, // Very long range
+        drawEvents: const [],
+        points: 300,
+        pointsPerAdditionalStand: 100,
+      );
+
+      final artilleryRegiment = Regiment(
+        unit: unitWithHighRange,
+        stands: 1,
+        pointsCost: 300,
+      );
+
+      expect(artilleryRegiment.barrageRange, equals(36));
+      expect(artilleryRegiment.barrageValue, equals(4));
+    });
+
+    test('should update toString with range information', () {
+      final regiment = Regiment(
+        unit: unitWithBarrageRange,
+        stands: 2,
+        pointsCost: 270,
+      );
+
+      final stringOutput = regiment.toString();
+      expect(stringOutput, contains('range: 24'));
+      expect(stringOutput, contains('barrage: 2'));
+      expect(stringOutput, contains('Long Range Archers'));
     });
   });
 }

@@ -29,6 +29,9 @@ class Regiment {
   /// Barrage value for this regiment from numeric special rules
   int get barrageValue => unit.numericSpecialRules['barrage'] as int? ?? 0;
 
+  /// Barrage range value for this regiment from numeric special rules
+  int get barrageRange => unit.numericSpecialRules['barrageRange'] as int? ?? 0;
+
   /// Calculate cleave rating for this regiment (Expected Hit Volume * Cleave)
   double get cleaveRating => expectedHitVolume * cleaveValue;
 
@@ -114,5 +117,5 @@ class Regiment {
 
   @override
   String toString() =>
-      'Regiment(${unit.name}, stands: $stands, cost: $pointsCost, wounds: $totalWounds, cleave: $cleaveValue, barrage: $barrageValue)';
+      'Regiment(${unit.name}, stands: $stands, cost: $pointsCost, wounds: $totalWounds, cleave: $cleaveValue, barrage: $barrageValue, range: $barrageRange)';
 }

@@ -130,12 +130,27 @@ class ScoreDisplayWidget extends StatelessWidget {
           ],
         ),
         const SizedBox(height: 12),
-        // Third row - Ranged Expected Hits (full width)
-        _buildScoreCard(
-          'Ranged Expected Hits',
-          score.rangedExpectedHits.toStringAsFixed(1),
-          Icons.my_location,
-          Colors.purple,
+        // Third row of score cards
+        Row(
+          children: [
+            Expanded(
+              child: _buildScoreCard(
+                'Ranged Expected Hits',
+                score.rangedExpectedHits.toStringAsFixed(1),
+                Icons.my_location,
+                Colors.purple,
+              ),
+            ),
+            const SizedBox(width: 12),
+            Expanded(
+              child: _buildScoreCard(
+                'Max Range',
+                score.maxRange.toString(),
+                Icons.radar,
+                Colors.teal,
+              ),
+            ),
+          ],
         ),
       ],
     );
@@ -239,6 +254,10 @@ class ScoreDisplayWidget extends StatelessWidget {
                         flex: 1,
                         child: Text('Ranged',
                             style: TextStyle(fontWeight: FontWeight.bold))),
+                    Expanded(
+                        flex: 1,
+                        child: Text('Range',
+                            style: TextStyle(fontWeight: FontWeight.bold))),
                   ],
                 ),
               ),
@@ -301,6 +320,11 @@ class ScoreDisplayWidget extends StatelessWidget {
                           child: Text(regiment
                               .calculateRangedExpectedHits()
                               .toStringAsFixed(1))),
+                      Expanded(
+                          flex: 1,
+                          child: Text(regiment.barrageRange > 0
+                              ? regiment.barrageRange.toString()
+                              : '-')),
                     ],
                   ),
                 );

@@ -11,6 +11,7 @@ class ScoringEngine {
     final expectedHitVolume = _calculateExpectedHitVolume(armyList);
     final cleaveRating = _calculateCleaveRating(armyList);
     final rangedExpectedHits = _calculateRangedExpectedHits(armyList);
+    final maxRange = _calculateMaxRange(armyList);
 
     return ListScore(
       armyList: armyList,
@@ -19,6 +20,7 @@ class ScoringEngine {
       expectedHitVolume: expectedHitVolume,
       cleaveRating: cleaveRating,
       rangedExpectedHits: rangedExpectedHits,
+      maxRange: maxRange,
       calculatedAt: DateTime.now(),
     );
   }
@@ -66,6 +68,16 @@ class ScoringEngine {
     return armyList.regiments.fold(0.0, (total, regiment) {
       // Include ALL regiments (including characters) in ranged calculation
       return total + regiment.calculateRangedExpectedHits();
+    });
+  }
+
+  /// Calculate maximum barrage range across all regiments
+  int _calculateMaxRange(ArmyList armyList) {
+    if (armyList.regiments.isEmpty) return 0;
+
+    return armyList.regiments.fold(0, (maxRange, regiment) {
+      final regimentRange = regiment.barrageRange;
+      return regimentRange > maxRange ? regimentRange : maxRange;
     });
   }
 
