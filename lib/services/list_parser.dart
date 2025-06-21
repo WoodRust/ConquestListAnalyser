@@ -2,12 +2,13 @@ import '../models/unit.dart';
 import '../models/regiment.dart';
 import '../models/army_list.dart';
 import 'unit_database.dart';
+import 'unit_database_interface.dart';
 
 /// Service for parsing flat text army lists into structured data
 class ListParser {
-  final UnitDatabase _database;
+  final UnitDatabaseInterface _database;
 
-  ListParser({UnitDatabase? database})
+  ListParser({UnitDatabaseInterface? database})
       : _database = database ?? UnitDatabase.instance;
 
   /// Parse a flat text army list into an ArmyList object
@@ -54,16 +55,6 @@ class ListParser {
         final character = _parseCharacterLine(line);
         if (character != null) {
           regiments.add(character);
-        }
-      } else if (line.startsWith('== ')) {
-        // Character line: "== Vargyr Lord [160]: Wild Beasts"
-        print('Found character line: $line');
-        final character = _parseCharacterLine(line);
-        if (character != null) {
-          print('Successfully parsed character: ${character.unit.name}');
-          regiments.add(character);
-        } else {
-          print('Failed to parse character line');
         }
       } else if (line.startsWith('* ')) {
         // Regiment line: "* Goltr Beastpack (3) [160]: "
