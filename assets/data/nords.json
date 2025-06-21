@@ -207,8 +207,7 @@
             }
         ],
         "numericSpecialRules": {
-            "impact": 2,
-            "shield": true
+            "impact": 2
         },
         "drawEvents": [],
         "points": 150,
@@ -348,8 +347,7 @@
             }
         ],
         "numericSpecialRules": {
-            "support": 2,
-            "shield": true
+            "support": 2
         },
         "drawEvents": [],
         "points": 150,
@@ -638,7 +636,6 @@
         "numericSpecialRules": {
             "barrage": 6,
             "barrageRange": 8,
-            "armorPiercing": true,
             "armorPiercingValue": 1,
             "cleave": 2,
             "terrifying": 1,
@@ -796,7 +793,6 @@
             }
         ],
         "numericSpecialRules": {
-            "shield": true,
             "impact": 2
         },
         "drawEvents": [],

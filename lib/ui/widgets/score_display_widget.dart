@@ -144,12 +144,29 @@ class ScoreDisplayWidget extends StatelessWidget {
             const SizedBox(width: 12),
             Expanded(
               child: _buildScoreCard(
+                'Ranged Armor Piercing',
+                score.rangedArmorPiercingRating.toStringAsFixed(1),
+                Icons.shield,
+                Colors.indigo,
+              ),
+            ),
+          ],
+        ),
+        const SizedBox(height: 12),
+        // Fourth row of score cards
+        Row(
+          children: [
+            Expanded(
+              child: _buildScoreCard(
                 'Max Range',
                 score.maxRange.toString(),
                 Icons.radar,
                 Colors.teal,
               ),
             ),
+            const SizedBox(width: 12),
+            // Empty space to maintain layout symmetry
+            const Expanded(child: SizedBox()),
           ],
         ),
       ],
@@ -256,6 +273,10 @@ class ScoreDisplayWidget extends StatelessWidget {
                             style: TextStyle(fontWeight: FontWeight.bold))),
                     Expanded(
                         flex: 1,
+                        child: Text('AP',
+                            style: TextStyle(fontWeight: FontWeight.bold))),
+                    Expanded(
+                        flex: 1,
                         child: Text('Range',
                             style: TextStyle(fontWeight: FontWeight.bold))),
                   ],
@@ -319,6 +340,11 @@ class ScoreDisplayWidget extends StatelessWidget {
                           flex: 1,
                           child: Text(regiment
                               .calculateRangedExpectedHits()
+                              .toStringAsFixed(1))),
+                      Expanded(
+                          flex: 1,
+                          child: Text(regiment
+                              .calculateRangedArmorPiercingRating()
                               .toStringAsFixed(1))),
                       Expanded(
                           flex: 1,

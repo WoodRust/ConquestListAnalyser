@@ -11,6 +11,8 @@ class ScoringEngine {
     final expectedHitVolume = _calculateExpectedHitVolume(armyList);
     final cleaveRating = _calculateCleaveRating(armyList);
     final rangedExpectedHits = _calculateRangedExpectedHits(armyList);
+    final rangedArmorPiercingRating =
+        _calculateRangedArmorPiercingRating(armyList);
     final maxRange = _calculateMaxRange(armyList);
 
     return ListScore(
@@ -20,6 +22,7 @@ class ScoringEngine {
       expectedHitVolume: expectedHitVolume,
       cleaveRating: cleaveRating,
       rangedExpectedHits: rangedExpectedHits,
+      rangedArmorPiercingRating: rangedArmorPiercingRating,
       maxRange: maxRange,
       calculatedAt: DateTime.now(),
     );
@@ -68,6 +71,14 @@ class ScoringEngine {
     return armyList.regiments.fold(0.0, (total, regiment) {
       // Include ALL regiments (including characters) in ranged calculation
       return total + regiment.calculateRangedExpectedHits();
+    });
+  }
+
+  /// Calculate total ranged armor piercing rating for the entire list
+  double _calculateRangedArmorPiercingRating(ArmyList armyList) {
+    return armyList.regiments.fold(0.0, (total, regiment) {
+      // Include ALL regiments (including characters) in ranged armor piercing calculation
+      return total + regiment.calculateRangedArmorPiercingRating();
     });
   }
 

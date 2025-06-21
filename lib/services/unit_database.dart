@@ -23,7 +23,7 @@ class UnitDatabase implements UnitDatabaseInterface {
     'cityStates',
     'spires',
     'hundredKingdoms',
-    'wHorrors',
+    'Yoroni',
   ];
 
   @override

@@ -32,11 +32,19 @@ class Regiment {
   /// Barrage range value for this regiment from numeric special rules
   int get barrageRange => unit.numericSpecialRules['barrageRange'] as int? ?? 0;
 
+  /// Armor piercing value for this regiment from numeric special rules
+  int get armorPiercingValue =>
+      unit.numericSpecialRules['armorPiercingValue'] as int? ?? 0;
+
   /// Calculate cleave rating for this regiment (Expected Hit Volume * Cleave)
   double get cleaveRating => expectedHitVolume * cleaveValue;
 
   /// Calculate ranged expected hits for this regiment
   double get rangedExpectedHits => calculateRangedExpectedHits();
+
+  /// Calculate ranged armor piercing rating for this regiment (Ranged Expected Hits * Armor Piercing)
+  double get rangedArmorPiercingRating =>
+      rangedExpectedHits * armorPiercingValue;
 
   /// Calculate expected hit volume for this regiment
   double calculateExpectedHitVolume({List<Regiment>? armyRegiments}) {
@@ -115,7 +123,13 @@ class Regiment {
     return hitVolume * cleaveValue;
   }
 
+  /// Calculate ranged armor piercing rating for this regiment with army context
+  double calculateRangedArmorPiercingRating() {
+    final rangedHits = calculateRangedExpectedHits();
+    return rangedHits * armorPiercingValue;
+  }
+
   @override
   String toString() =>
-      'Regiment(${unit.name}, stands: $stands, cost: $pointsCost, wounds: $totalWounds, cleave: $cleaveValue, barrage: $barrageValue, range: $barrageRange)';
+      'Regiment(${unit.name}, stands: $stands, cost: $pointsCost, wounds: $totalWounds, cleave: $cleaveValue, barrage: $barrageValue, range: $barrageRange, armorPiercing: $armorPiercingValue)';
 }

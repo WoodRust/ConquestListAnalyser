@@ -8,6 +8,7 @@ class ListScore {
   final double expectedHitVolume;
   final double cleaveRating;
   final double rangedExpectedHits;
+  final double rangedArmorPiercingRating;
   final int maxRange;
   final DateTime calculatedAt;
 
@@ -18,6 +19,7 @@ class ListScore {
     required this.expectedHitVolume,
     required this.cleaveRating,
     required this.rangedExpectedHits,
+    required this.rangedArmorPiercingRating,
     required this.maxRange,
     required this.calculatedAt,
   });
@@ -35,6 +37,7 @@ Points per Wound: ${pointsPerWound.toStringAsFixed(2)}
 Expected Hit Volume: ${expectedHitVolume.toStringAsFixed(1)}
 Cleave Rating: ${cleaveRating.toStringAsFixed(1)}
 Ranged Expected Hits: ${rangedExpectedHits.toStringAsFixed(1)}
+Ranged Armor Piercing: ${rangedArmorPiercingRating.toStringAsFixed(1)}
 Max Range: $maxRange
 
 Calculated: ${calculatedAt.toString().split('.')[0]}
@@ -43,5 +46,5 @@ Calculated: ${calculatedAt.toString().split('.')[0]}
 
   @override
   String toString() =>
-      'ListScore(wounds: $totalWounds, ppw: ${pointsPerWound.toStringAsFixed(2)}, ehv: ${expectedHitVolume.toStringAsFixed(1)}, cleave: ${cleaveRating.toStringAsFixed(1)}, ranged: ${rangedExpectedHits.toStringAsFixed(1)}, maxRange: $maxRange)';
+      'ListScore(wounds: $totalWounds, ppw: ${pointsPerWound.toStringAsFixed(2)}, ehv: ${expectedHitVolume.toStringAsFixed(1)}, cleave: ${cleaveRating.toStringAsFixed(1)}, ranged: ${rangedExpectedHits.toStringAsFixed(1)}, armorPiercing: ${rangedArmorPiercingRating.toStringAsFixed(1)}, maxRange: $maxRange)';
 }
