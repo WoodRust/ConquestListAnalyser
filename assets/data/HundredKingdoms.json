@@ -1,0 +1,1299 @@
+[
+    {
+        "name": "Imperial Ranger Corps",
+        "faction": "Hundred Kingdoms",
+        "type": "infantry",
+        "regimentClass": "light",
+        "characteristics": {
+            "march": 6,
+            "volley": 3,
+            "clash": 1,
+            "attacks": 4,
+            "wounds": 4,
+            "resolve": 2,
+            "defense": 1,
+            "evasion": 1
+        },
+        "specialRules": [
+            {
+                "name": "Fluid Formation",
+                "description": "This Regiment may perform a free additional Reform Action during its Activation. This free Reform Action must be performed before the Regiment takes its first Action, or at the end of its Activation after all other Actions have been resolved."
+            },
+            {
+                "name": "Vanguard (3)",
+                "description": "When a Regiment with this Special Rule enters the Battlefield from Reinforcements, add +3 to its March Characteristic for the first March Action this Activation."
+            },
+            {
+                "name": "Barrage (3) (16\")",
+                "description": "A Stand with this Special Rule contributes 3 Shots when its Regiment performs a Volley Action at 16\" range."
+            },
+            {
+                "name": "Leader",
+                "description": "A command stand containing a leader adds +1 attack to the command stands characteristic profile."
+            },
+            {
+                "name": "Advanced Scout Training",
+                "description": "Should this Regiment has the [Veteran] Battlefield Role, it always counts as Obscured against Enemy Volley Actions."
+            }
+        ],
+        "numericSpecialRules": {
+            "barrage": 3,
+            "barrageRange": 16,
+            "vanguard": 3
+        },
+        "drawEvents": [],
+        "points": 120,
+        "pointsPerAdditionalStand": 40,
+        "veteranUpgrade": 15,
+        "battlefieldRoles": [
+            "Imperial"
+        ]
+    },
+    {
+        "name": "Mercenary Crossbowmen",
+        "faction": "Hundred Kingdoms",
+        "type": "infantry",
+        "regimentClass": "light",
+        "characteristics": {
+            "march": 5,
+            "volley": 2,
+            "clash": 1,
+            "attacks": 4,
+            "wounds": 4,
+            "resolve": 2,
+            "defense": 1,
+            "evasion": 0
+        },
+        "specialRules": [
+            {
+                "name": "Barrage (3) (16\", Armor Piercing (1))",
+                "description": "A Stand with this Special Rule contributes 3 Shots when its Regiment performs a Volley Action at 16\" range with Armor Piercing (1)."
+            },
+            {
+                "name": "Leader",
+                "description": "A command stand containing a leader adds +1 attack to the command stands characteristic profile."
+            },
+            {
+                "name": "Standard Bearer",
+                "description": "A regiment with a Standard Bearer gains the unstoppable special rule."
+            },
+            {
+                "name": "Advanced Target Training",
+                "description": "Should this Regiment has the [Veteran] Battlefield Role, when its Stands contribute Shots against a Target within Effective Range they add +1 to their Volley Characteristic until the end of that Action."
+            }
+        ],
+        "numericSpecialRules": {
+            "barrage": 3,
+            "barrageRange": 16,
+            "armorPiercing": true,
+            "armorPiercingValue": 1
+        },
+        "drawEvents": [],
+        "points": 110,
+        "pointsPerAdditionalStand": 35,
+        "veteranUpgrade": 15,
+        "battlefieldRoles": [
+            "Imperial"
+        ]
+    },
+    {
+        "name": "Hunter Cadre",
+        "faction": "Hundred Kingdoms",
+        "type": "infantry",
+        "regimentClass": "medium",
+        "characteristics": {
+            "march": 6,
+            "volley": 2,
+            "clash": 3,
+            "attacks": 4,
+            "wounds": 4,
+            "resolve": 3,
+            "defense": 1,
+            "evasion": 2
+        },
+        "specialRules": [
+            {
+                "name": "Barrage (3) (16\", Armor Piercing (1))",
+                "description": "A Stand with this Special Rule contributes 3 Shots when its Regiment performs a Volley Action at 16\" range with Armor Piercing (1)."
+            },
+            {
+                "name": "Cleave (1)",
+                "description": "When a Stand with this Special Rule performs a Clash or Duel Action, any Hits caused by those Attacks reduce the Target's Defense by 1."
+            },
+            {
+                "name": "Fearless",
+                "description": "A Regiment with this Special Rule ignores the effects of the Fearsome and Terrifying (X) Special Rules."
+            },
+            {
+                "name": "Fiend Hunter",
+                "description": "Stands with this Special Rule may Re-Roll all failed Hit Rolls against Monster and Brute Regiments."
+            },
+            {
+                "name": "Flank",
+                "description": "This Regiment does not contribute a die to the Reinforcement Roll."
+            },
+            {
+                "name": "Leader",
+                "description": "A command stand containing a leader adds +1 attack to the command stands characteristic profile."
+            },
+            {
+                "name": "Standard Bearer",
+                "description": "A regiment with a Standard Bearer gains the unstoppable special rule."
+            }
+        ],
+        "numericSpecialRules": {
+            "barrage": 3,
+            "barrageRange": 16,
+            "armorPiercing": true,
+            "armorPiercingValue": 1,
+            "cleave": 1
+        },
+        "drawEvents": [],
+        "points": 160,
+        "pointsPerAdditionalStand": 50,
+        "battlefieldRoles": [
+            "Veteran",
+            "Imperial"
+        ],
+        "officerUpgrades": "Any Hunter Cadre Regiment may take the following Officer: Null Mage (20 points)"
+    },
+    {
+        "name": "Men-At-Arms",
+        "faction": "Hundred Kingdoms",
+        "type": "infantry",
+        "regimentClass": "medium",
+        "characteristics": {
+            "march": 5,
+            "volley": 1,
+            "clash": 2,
+            "attacks": 4,
+            "wounds": 4,
+            "resolve": 2,
+            "defense": 2,
+            "evasion": 0
+        },
+        "specialRules": [
+            {
+                "name": "Shield",
+                "description": "Stands in this Regiment count their Defense Characteristic as 1 point higher against all Hits originating from the Regiment's front Arc."
+            },
+            {
+                "name": "Leader",
+                "description": "A command stand containing a leader adds +1 attack to the command stands characteristic profile."
+            },
+            {
+                "name": "Standard Bearer",
+                "description": "A regiment with a Standard Bearer gains the unstoppable special rule."
+            },
+            {
+                "name": "Leader",
+                "description": "A command stand containing a leader adds +1 attack to the command stands characteristic profile."
+            },
+            {
+                "name": "Standard Bearer",
+                "description": "A regiment with a Standard Bearer gains the unstoppable special rule."
+            },
+            {
+                "name": "Advanced Infantry Training",
+                "description": "Should this Regiment has the [Veteran] Battlefield Role, it gains the Support (+1) Special Rule. If the Regiment does not already have the Support (X) Special Rule it gains the Support (2) Special Rule instead."
+            }
+        ],
+        "numericSpecialRules": {
+            "shield": true
+        },
+        "drawEvents": [],
+        "points": 110,
+        "pointsPerAdditionalStand": 30,
+        "veteranUpgrade": 10,
+        "battlefieldRoles": [
+            "Imperial",
+            "Feudal"
+        ],
+        "officerUpgrades": "Any Men-At-Arms Regiment may take the following Officer: Neophyte (20 points), Seasoned Veteran (15 points)"
+    },
+    {
+        "name": "Gilded Legion",
+        "faction": "Hundred Kingdoms",
+        "type": "infantry",
+        "regimentClass": "heavy",
+        "characteristics": {
+            "march": 5,
+            "volley": 1,
+            "clash": 3,
+            "attacks": 4,
+            "wounds": 4,
+            "resolve": 4,
+            "defense": 3,
+            "evasion": 0
+        },
+        "specialRules": [
+            {
+                "name": "Cleave (1)",
+                "description": "When a Stand with this Special Rule performs a Clash or Duel Action, any Hits caused by those Attacks reduce the Target's Defense by 1."
+            },
+            {
+                "name": "Iron Discipline",
+                "description": "When this Regiment is Engaged or suffers Wounds from the Sides or Rear, it does not lose the Support (X) Special Rule and does not Re-Roll successful Morale Tests."
+            },
+            {
+                "name": "Support (3)",
+                "description": "This Regiment's Stands contribute 3 Supporting Attacks during a Clash Action instead of 1."
+            },
+            {
+                "name": "Pike Formation",
+                "description": "Enemy Regiments suffer -3 to their Impact (X) Special Rule (to a minimum of 0) when in contact with this Regiment's front arc. In addition, Enemy Regiments that have performed a successful Charge against this Regiment's front arc do not benefit from the Inspired and Shock Special Rules until the end of the Round."
+            },
+            {
+                "name": "Leader",
+                "description": "A command stand containing a leader adds +1 attack to the command stands characteristic profile."
+            },
+            {
+                "name": "Standard Bearer",
+                "description": "A regiment with a Standard Bearer gains the unstoppable special rule."
+            }
+        ],
+        "numericSpecialRules": {
+            "cleave": 1,
+            "support": 3
+        },
+        "drawEvents": [
+            {
+                "name": "Bastion (1)",
+                "description": "Until the end of the Round, all Stands in this Regiment gain +1 Defense."
+            }
+        ],
+        "points": 160,
+        "pointsPerAdditionalStand": 40,
+        "battlefieldRoles": [
+            "Veteran",
+            "Imperial"
+        ],
+        "officerUpgrades": "Any Gilded Legion Regiment may take the following Officer: Drillmaster (20 points)"
+    },
+    {
+        "name": "Steel Legion",
+        "faction": "Hundred Kingdoms",
+        "type": "infantry",
+        "regimentClass": "heavy",
+        "characteristics": {
+            "march": 5,
+            "volley": 1,
+            "clash": 3,
+            "attacks": 5,
+            "wounds": 4,
+            "resolve": 3,
+            "defense": 3,
+            "evasion": 0
+        },
+        "specialRules": [
+            {
+                "name": "Bravery",
+                "description": "Stands in this Regiment ignore the Fearsome and Terrifying (X) Special Rules. In addition, at the start of the Regiment's Activation, remove the Broken status from this Regiment."
+            },
+            {
+                "name": "Cleave (2)",
+                "description": "When a Stand with this Special Rule performs a Clash or Duel Action, any Hits caused by those Attacks reduce the Target's Defense by 2."
+            },
+            {
+                "name": "Hardened (1)",
+                "description": "When this Regiment makes a Defense Roll, reduce any Cleave (X), Brutal Impact (X) or Armor Piercing (X) Special Rule by 1."
+            },
+            {
+                "name": "Oblivious",
+                "description": "Regiments with this Special Rule receive only 1 Wound for every 2 failed Morale Tests, rounding up."
+            },
+            {
+                "name": "Support (2)",
+                "description": "This Regiment's Stands contribute 2 Supporting Attacks during a Clash Action instead of 1."
+            },
+            {
+                "name": "Leader",
+                "description": "A command stand containing a leader adds +1 attack to the command stands characteristic profile."
+            },
+            {
+                "name": "Standard Bearer",
+                "description": "A regiment with a Standard Bearer gains the unstoppable special rule."
+            }
+        ],
+        "numericSpecialRules": {
+            "cleave": 2,
+            "hardened": 1,
+            "support": 2
+        },
+        "drawEvents": [],
+        "points": 160,
+        "pointsPerAdditionalStand": 50,
+        "battlefieldRoles": [
+            "Veteran",
+            "Imperial"
+        ],
+        "officerUpgrades": "Any Steel Legion Regiment may take the following Officer: Drillmaster (20 points)"
+    },
+    {
+        "name": "Longbowmen",
+        "faction": "Hundred Kingdoms",
+        "type": "infantry",
+        "regimentClass": "light",
+        "characteristics": {
+            "march": 6,
+            "volley": 2,
+            "clash": 1,
+            "attacks": 4,
+            "wounds": 4,
+            "resolve": 2,
+            "defense": 1,
+            "evasion": 0
+        },
+        "specialRules": [
+            {
+                "name": "Barrage (3) (22\", Arcing Fire, Armor Piercing (1))",
+                "description": "A Stand with this Special Rule contributes 3 Shots when its Regiment performs a Volley Action at 22\" range with Arcing Fire and Armor Piercing (1)."
+            },
+            {
+                "name": "Cleave (1)",
+                "description": "When a Stand with this Special Rule performs a Clash or Duel Action, any Hits caused by those Attacks reduce the Target's Defense by 1."
+            },
+            {
+                "name": "Leader",
+                "description": "A command stand containing a leader adds +1 attack to the command stands characteristic profile."
+            },
+            {
+                "name": "Standard Bearer",
+                "description": "A regiment with a Standard Bearer gains the unstoppable special rule."
+            },
+            {
+                "name": "Advanced Target Training",
+                "description": "Should this Regiment has the [Veteran] Battlefield Role, when its Stands contribute Shots against a Target within Effective Range they add +1 to their Volley Characteristic until the end of that Action."
+            }
+        ],
+        "numericSpecialRules": {
+            "barrage": 3,
+            "barrageRange": 22,
+            "armorPiercing": true,
+            "armorPiercingValue": 1,
+            "cleave": 1
+        },
+        "drawEvents": [],
+        "points": 140,
+        "pointsPerAdditionalStand": 40,
+        "veteranUpgrade": 10,
+        "battlefieldRoles": [
+            "Feudal"
+        ]
+    },
+    {
+        "name": "Militia",
+        "faction": "Hundred Kingdoms",
+        "type": "infantry",
+        "regimentClass": "light",
+        "characteristics": {
+            "march": 5,
+            "volley": 1,
+            "clash": 2,
+            "attacks": 4,
+            "wounds": 4,
+            "resolve": 2,
+            "defense": 1,
+            "evasion": 0
+        },
+        "specialRules": [
+            {
+                "name": "Shield",
+                "description": "Stands in this Regiment count their Defense Characteristic as 1 point higher against all Hits originating from the Regiment's front Arc."
+            },
+            {
+                "name": "Support (2)",
+                "description": "This Regiment's Stands contribute 2 Supporting Attacks during a Clash Action instead of 1."
+            },
+            {
+                "name": "Leader",
+                "description": "A command stand containing a leader adds +1 attack to the command stands characteristic profile."
+            },
+            {
+                "name": "Standard Bearer",
+                "description": "A regiment with a Standard Bearer gains the unstoppable special rule."
+            },
+            {
+                "name": "Advanced Infantry Training",
+                "description": "Should this Regiment has the [Veteran] Battlefield Role, it gains the Support (+1) Special Rule. If the Regiment does not already have the Support (X) Special Rule it gains the Support (2) Special Rule instead."
+            }
+        ],
+        "numericSpecialRules": {
+            "shield": true,
+            "support": 2
+        },
+        "drawEvents": [],
+        "points": 100,
+        "pointsPerAdditionalStand": 30,
+        "veteranUpgrade": 5,
+        "battlefieldRoles": [
+            "Feudal",
+            "Theist"
+        ],
+        "officerUpgrades": "Any Militia Regiment may take one of the following Officers: Servite (15 points), Neophyte (10 points)"
+    },
+    {
+        "name": "Militia Bowmen",
+        "faction": "Hundred Kingdoms",
+        "type": "infantry",
+        "regimentClass": "light",
+        "characteristics": {
+            "march": 5,
+            "volley": 1,
+            "clash": 1,
+            "attacks": 3,
+            "wounds": 4,
+            "resolve": 2,
+            "defense": 1,
+            "evasion": 0
+        },
+        "specialRules": [
+            {
+                "name": "Barrage (3) (16\")",
+                "description": "A Stand with this Special Rule contributes 3 Shots when its Regiment performs a Volley Action at 16\" range."
+            },
+            {
+                "name": "Leader",
+                "description": "A command stand containing a leader adds +1 attack to the command stands characteristic profile."
+            },
+            {
+                "name": "Standard Bearer",
+                "description": "A regiment with a Standard Bearer gains the unstoppable special rule."
+            }
+        ],
+        "numericSpecialRules": {
+            "barrage": 3,
+            "barrageRange": 16
+        },
+        "drawEvents": [],
+        "points": 80,
+        "pointsPerAdditionalStand": 25,
+        "battlefieldRoles": [
+            "Feudal",
+            "Theist"
+        ],
+        "officerUpgrades": "Any Militia Bowmen Regiment may take one of the following Officers: Servite (15 points), Neophyte (10 points)"
+    },
+    {
+        "name": "Mounted Squires",
+        "faction": "Hundred Kingdoms",
+        "type": "cavalry",
+        "regimentClass": "light",
+        "characteristics": {
+            "march": 9,
+            "volley": 1,
+            "clash": 2,
+            "attacks": 4,
+            "wounds": 4,
+            "resolve": 2,
+            "defense": 2,
+            "evasion": 0
+        },
+        "specialRules": [
+            {
+                "name": "Shield",
+                "description": "Stands in this Regiment count their Defense Characteristic as 1 point higher against all Hits originating from the Regiment's front Arc."
+            },
+            {
+                "name": "Impact (2)",
+                "description": "Stands with this Special Rule perform Impact Attacks equal to 2."
+            },
+            {
+                "name": "Opportunists",
+                "description": "A Stand with this Special Rule may re-roll failed Hit Rolls when performing a Clash or Volley Action against an Enemy Regiment's Flank or Rear Arc."
+            },
+            {
+                "name": "Leader",
+                "description": "A command stand containing a leader adds +1 attack to the command stands characteristic profile."
+            },
+            {
+                "name": "Standard Bearer",
+                "description": "A regiment with a Standard Bearer gains the unstoppable special rule."
+            },
+            {
+                "name": "Advanced Vanguard Training",
+                "description": "Should this Regiment has the [Veteran] Battlefield Role, when this Regiment becomes the Target of an Enemy Regiment's Volley Action it gains the Tenacious (2) Special Rule until the end of that Action."
+            }
+        ],
+        "numericSpecialRules": {
+            "shield": true,
+            "impact": 2
+        },
+        "drawEvents": [],
+        "points": 130,
+        "pointsPerAdditionalStand": 40,
+        "veteranUpgrade": 10,
+        "battlefieldRoles": [
+            "Feudal"
+        ]
+    },
+    {
+        "name": "Household Knights",
+        "faction": "Hundred Kingdoms",
+        "type": "cavalry",
+        "regimentClass": "medium",
+        "characteristics": {
+            "march": 7,
+            "volley": 1,
+            "clash": 2,
+            "attacks": 5,
+            "wounds": 4,
+            "resolve": 3,
+            "defense": 3,
+            "evasion": 0
+        },
+        "specialRules": [
+            {
+                "name": "Brutal Impact (1)",
+                "description": "When a Stand with this Special Rule inflicts Impact Attacks, those Impact Attacks reduce the Target Enemy Regiment's Defense by 1."
+            },
+            {
+                "name": "Impact (3)",
+                "description": "Stands with this Special Rule perform Impact Attacks equal to 3."
+            },
+            {
+                "name": "Shield",
+                "description": "Stands in this Regiment count their Defense Characteristic as 1 point higher against all Hits originating from the Regiment's front Arc."
+            },
+            {
+                "name": "Leader",
+                "description": "A command stand containing a leader adds +1 attack to the command stands characteristic profile."
+            },
+            {
+                "name": "Standard Bearer",
+                "description": "A regiment with a Standard Bearer gains the unstoppable special rule."
+            },
+            {
+                "name": "Advanced Cavalry Training",
+                "description": "Should this Regiment has the [Veteran] Battlefield Role then the Regiment adds +1 to its Clash Characteristic."
+            }
+        ],
+        "numericSpecialRules": {
+            "brutalImpact": 1,
+            "impact": 3,
+            "shield": true
+        },
+        "drawEvents": [],
+        "points": 170,
+        "pointsPerAdditionalStand": 55,
+        "battlefieldRoles": [
+            "Feudal"
+        ]
+    },
+    {
+        "name": "Household Guard",
+        "faction": "Hundred Kingdoms",
+        "type": "infantry",
+        "regimentClass": "medium",
+        "characteristics": {
+            "march": 5,
+            "volley": 1,
+            "clash": 2,
+            "attacks": 4,
+            "wounds": 4,
+            "resolve": 3,
+            "defense": 3,
+            "evasion": 0
+        },
+        "specialRules": [
+            {
+                "name": "Cleave (1)",
+                "description": "When a Stand with this Special Rule performs a Clash or Duel Action, any Hits caused by those Attacks reduce the Target's Defense by 1."
+            },
+            {
+                "name": "Support (2)",
+                "description": "This Regiment's Stands contribute 2 Supporting Attacks during a Clash Action instead of 1."
+            },
+            {
+                "name": "Leader",
+                "description": "A command stand containing a leader adds +1 attack to the command stands characteristic profile."
+            },
+            {
+                "name": "Standard Bearer",
+                "description": "A regiment with a Standard Bearer gains the unstoppable special rule."
+            },
+            {
+                "name": "Advanced Infantry Training",
+                "description": "Should this Regiment has the [Veteran] Battlefield Role, it gains the Support (+1) Special Rule."
+            }
+        ],
+        "numericSpecialRules": {
+            "cleave": 1,
+            "support": 2
+        },
+        "drawEvents": [],
+        "points": 150,
+        "pointsPerAdditionalStand": 40,
+        "veteranUpgrade": 10,
+        "battlefieldRoles": [
+            "Feudal"
+        ],
+        "officerUpgrades": "Any Household Guard Regiment may take the following Officer: Armsmaster (15 points)"
+    },
+    {
+        "name": "Sicarii",
+        "faction": "Hundred Kingdoms",
+        "type": "infantry",
+        "regimentClass": "medium",
+        "characteristics": {
+            "march": 6,
+            "volley": 1,
+            "clash": 3,
+            "attacks": 5,
+            "wounds": 4,
+            "resolve": 4,
+            "defense": 2,
+            "evasion": 2
+        },
+        "specialRules": [
+            {
+                "name": "Cleave (1)",
+                "description": "When a Stand with this Special Rule performs a Clash or Duel Action, any Hits caused by those Attacks reduce the Target's Defense by 1."
+            },
+            {
+                "name": "Devout",
+                "description": "When a Regiment with this Special Rule is the Target of a Priest (X)'s Spellcasting Action, one failed Spellcasting die is converted to a success."
+            },
+            {
+                "name": "Divine Purpose",
+                "description": "When this Regiment becomes the Target of a Friendly Theist Priest's Spell, during its Activation the Regiment may choose to either add +2\" to its first March Action OR +2\" to its Charge Distance until the end of the Round."
+            },
+            {
+                "name": "Support (2)",
+                "description": "This Regiment's Stands contribute 2 Supporting Attacks during a Clash Action instead of 1."
+            },
+            {
+                "name": "Leader",
+                "description": "A command stand containing a leader adds +1 attack to the command stands characteristic profile."
+            }
+        ],
+        "numericSpecialRules": {
+            "cleave": 1,
+            "support": 2
+        },
+        "drawEvents": [],
+        "points": 160,
+        "pointsPerAdditionalStand": 40,
+        "battlefieldRoles": [
+            "Veteran",
+            "Theist"
+        ]
+    },
+    {
+        "name": "Crusaders",
+        "faction": "Hundred Kingdoms",
+        "type": "infantry",
+        "regimentClass": "medium",
+        "characteristics": {
+            "march": 5,
+            "volley": 1,
+            "clash": 2,
+            "attacks": 4,
+            "wounds": 4,
+            "resolve": 3,
+            "defense": 2,
+            "evasion": 0
+        },
+        "specialRules": [
+            {
+                "name": "Devout",
+                "description": "When a Regiment with this Special Rule is the Target of a Priest (X)'s Spellcasting Action, one failed Spellcasting die is converted to a success."
+            },
+            {
+                "name": "Shield",
+                "description": "Stands in this Regiment count their Defense Characteristic as 1 point higher against all Hits originating from the Regiment's front Arc."
+            },
+            {
+                "name": "Hardened (1)",
+                "description": "When this Regiment makes a Defense Roll, reduce any Cleave (X), Brutal Impact (X) or Armor Piercing (X) Special Rule by 1."
+            },
+            {
+                "name": "Support (2)",
+                "description": "This Regiment's Stands contribute 2 Supporting Attacks during a Clash Action instead of 1."
+            },
+            {
+                "name": "Leader",
+                "description": "A command stand containing a leader adds +1 attack to the command stands characteristic profile."
+            },
+            {
+                "name": "Standard Bearer",
+                "description": "A regiment with a Standard Bearer gains the unstoppable special rule."
+            },
+            {
+                "name": "Veteran Bonus",
+                "description": "Should this Regiment has the [Veteran] Battlefield Role, it gains the Flawless Strikes Special Rule."
+            }
+        ],
+        "numericSpecialRules": {
+            "shield": true,
+            "hardened": 1,
+            "support": 2
+        },
+        "drawEvents": [],
+        "points": 130,
+        "pointsPerAdditionalStand": 40,
+        "veteranUpgrade": 10,
+        "battlefieldRoles": [
+            "Theist"
+        ]
+    },
+    {
+        "name": "Archangel",
+        "faction": "Hundred Kingdoms",
+        "type": "monster",
+        "regimentClass": "heavy",
+        "characteristics": {
+            "march": 7,
+            "volley": 1,
+            "clash": 3,
+            "attacks": 12,
+            "wounds": 18,
+            "resolve": 4,
+            "defense": 3,
+            "evasion": 2
+        },
+        "specialRules": [
+            {
+                "name": "Cleave (2)",
+                "description": "When a Stand with this Special Rule performs a Clash or Duel Action, any Hits caused by those Attacks reduce the Target's Defense by 2."
+            },
+            {
+                "name": "Devout",
+                "description": "When a Regiment with this Special Rule is the Target of a Priest (X)'s Spellcasting Action, one failed Spellcasting die is converted to a success."
+            },
+            {
+                "name": "Divine Purpose",
+                "description": "When this Regiment becomes the Target of a Friendly Theist Priest's Spell, during its Activation the Regiment may choose to either add +2\" to its first March Action OR +2\" to its Charge Distance until the end of the Round."
+            },
+            {
+                "name": "Fearless",
+                "description": "A Regiment with this Special Rule ignores the effects of the Fearsome and Terrifying (X) Special Rules."
+            },
+            {
+                "name": "Impact (5)",
+                "description": "Stands with this Special Rule perform Impact Attacks equal to 5."
+            },
+            {
+                "name": "Terrifying (1)",
+                "description": "Regiments in contact with Stands with this Special Rule reduce their Resolve Characteristic by 1."
+            },
+            {
+                "name": "The Spirit Glimmers",
+                "description": "Friendly Regiments currently within 12\" of the Archangel count their Divine Purpose Special Rule as active regardless of whether the Regiment has been the Target of a Theist Priest's Spell or not."
+            },
+            {
+                "name": "Aspect Choice",
+                "description": "The Archangel must select either Aspect of the Avenger or Aspect of the Redeemer."
+            }
+        ],
+        "numericSpecialRules": {
+            "cleave": 2,
+            "impact": 5,
+            "terrifying": 1
+        },
+        "drawEvents": [],
+        "points": 260,
+        "battlefieldRoles": [
+            "Theist"
+        ]
+    },
+    {
+        "name": "Order of the Sealed Temple",
+        "faction": "Hundred Kingdoms",
+        "type": "cavalry",
+        "regimentClass": "medium",
+        "characteristics": {
+            "march": 8,
+            "volley": 1,
+            "clash": 3,
+            "attacks": 4,
+            "wounds": 4,
+            "resolve": 4,
+            "defense": 3,
+            "evasion": 0
+        },
+        "specialRules": [
+            {
+                "name": "Fluid Formation",
+                "description": "This Regiment may perform a free additional Reform Action during its Activation. This free Reform Action must be performed before the Regiment takes its first Action, or at the end of its Activation after all other Actions have been resolved."
+            },
+            {
+                "name": "Impact (4)",
+                "description": "Stands with this Special Rule perform Impact Attacks equal to 4."
+            },
+            {
+                "name": "Shield",
+                "description": "Stands in this Regiment count their Defense Characteristic as 1 point higher against all Hits originating from the Regiment's front Arc."
+            },
+            {
+                "name": "Leader",
+                "description": "A command stand containing a leader adds +1 attack to the command stands characteristic profile."
+            },
+            {
+                "name": "Standard Bearer",
+                "description": "A regiment with a Standard Bearer gains the unstoppable special rule."
+            }
+        ],
+        "numericSpecialRules": {
+            "impact": 4,
+            "shield": true
+        },
+        "drawEvents": [],
+        "points": 200,
+        "pointsPerAdditionalStand": 70,
+        "battlefieldRoles": [
+            "Veteran",
+            "The Orders"
+        ]
+    },
+    {
+        "name": "Order of the Ashen Dawn",
+        "faction": "Hundred Kingdoms",
+        "type": "cavalry",
+        "regimentClass": "heavy",
+        "characteristics": {
+            "march": 7,
+            "volley": 1,
+            "clash": 4,
+            "attacks": 5,
+            "wounds": 6,
+            "resolve": 5,
+            "defense": 4,
+            "evasion": 0
+        },
+        "specialRules": [
+            {
+                "name": "Blessed",
+                "description": "Once per Round, Stands with this Special Rule may choose to Re-Roll all their failed Hit Rolls or all of their failed Defense Rolls during a Clash or Charge Action."
+            },
+            {
+                "name": "Cleave (1)",
+                "description": "When a Stand with this Special Rule performs a Clash or Duel Action, any Hits caused by those Attacks reduce the Target's Defense by 1."
+            },
+            {
+                "name": "Fearless",
+                "description": "A Regiment with this Special Rule ignores the effects of the Fearsome and Terrifying (X) Special Rules."
+            },
+            {
+                "name": "Impact (3)",
+                "description": "Stands with this Special Rule perform Impact Attacks equal to 3."
+            },
+            {
+                "name": "Leader",
+                "description": "A command stand containing a leader adds +1 attack to the command stands characteristic profile."
+            },
+            {
+                "name": "Standard Bearer",
+                "description": "A regiment with a Standard Bearer gains the unstoppable special rule."
+            }
+        ],
+        "numericSpecialRules": {
+            "cleave": 1,
+            "impact": 3
+        },
+        "drawEvents": [],
+        "points": 260,
+        "battlefieldRoles": [
+            "Veteran",
+            "The Orders"
+        ]
+    },
+    {
+        "name": "Order of the Crimson Tower",
+        "faction": "Hundred Kingdoms",
+        "type": "cavalry",
+        "regimentClass": "heavy",
+        "characteristics": {
+            "march": 7,
+            "volley": 1,
+            "clash": 3,
+            "attacks": 5,
+            "wounds": 5,
+            "resolve": 4,
+            "defense": 3,
+            "evasion": 0
+        },
+        "specialRules": [
+            {
+                "name": "Brutal Impact (2)",
+                "description": "When a Stand with this Special Rule inflicts Impact Attacks, those Impact Attacks reduce the Target Enemy Regiment's Defense by 2."
+            },
+            {
+                "name": "Impact (4)",
+                "description": "Stands with this Special Rule perform Impact Attacks equal to 4."
+            },
+            {
+                "name": "Shield",
+                "description": "Stands in this Regiment count their Defense Characteristic as 1 point higher against all Hits originating from the Regiment's front Arc."
+            },
+            {
+                "name": "Terrifying (1)",
+                "description": "Regiments in contact with Stands with this Special Rule reduce their Resolve Characteristic by 1."
+            },
+            {
+                "name": "Wedge!",
+                "description": "After performing a successful Charge, this Regiment gains the Cleave (+1) Special Rule until the end of the Round."
+            },
+            {
+                "name": "Devastating Charge",
+                "description": "Should the Regiment perform a March Action immediately followed by a Charge Action, the Regiment gains the Impact (+1) and Linebreaker Special Rules."
+            },
+            {
+                "name": "Leader",
+                "description": "A command stand containing a leader adds +1 attack to the command stands characteristic profile."
+            },
+            {
+                "name": "Standard Bearer",
+                "description": "A regiment with a Standard Bearer gains the unstoppable special rule."
+            }
+        ],
+        "numericSpecialRules": {
+            "brutalImpact": 2,
+            "impact": 4,
+            "shield": true,
+            "terrifying": 1
+        },
+        "drawEvents": [],
+        "points": 210,
+        "pointsPerAdditionalStand": 70,
+        "battlefieldRoles": [
+            "Veteran",
+            "The Orders"
+        ]
+    },
+    {
+        "name": "Imperial Officer",
+        "faction": "Hundred Kingdoms",
+        "type": "infantry",
+        "regimentClass": "character",
+        "characteristics": {
+            "march": null,
+            "volley": 2,
+            "clash": 2,
+            "attacks": 4,
+            "wounds": 4,
+            "resolve": 3,
+            "defense": 3,
+            "evasion": 0
+        },
+        "specialRules": [
+            {
+                "name": "Forward Force",
+                "description": "The non-Monster Regiment this Character Stand is currently attached to gains the Flank Special Rule."
+            },
+            {
+                "name": "Battlefield Drills",
+                "description": "At the end of the Round's Supremacy Phase select up to two target Friendly Infantry Regiments within 12\" of this [Character] Stand can each receive one of the following benefits: Brace for Impact, On Your Feet, Point Secure, or Aim For the Head."
+            }
+        ],
+        "numericSpecialRules": {},
+        "drawEvents": [],
+        "points": 100,
+        "supremacyAbility": "Rapid Deployment",
+        "battlefieldRoles": [
+            "Character",
+            "Imperial"
+        ]
+    },
+    {
+        "name": "Chapter Mage",
+        "faction": "Hundred Kingdoms",
+        "type": "infantry",
+        "regimentClass": "character",
+        "characteristics": {
+            "march": null,
+            "volley": 3,
+            "clash": 1,
+            "attacks": 3,
+            "wounds": 4,
+            "resolve": 2,
+            "defense": 1,
+            "evasion": 0
+        },
+        "specialRules": [
+            {
+                "name": "Barrage (4) (18\")",
+                "description": "A Stand with this Special Rule contributes 4 Shots when its Regiment performs a Volley Action at 18\" range."
+            },
+            {
+                "name": "Wizard (6)",
+                "description": "This Regiment or Character Stand can perform the Spellcasting Action during its Activation. The X value is this Stand's Magic Level."
+            }
+        ],
+        "numericSpecialRules": {
+            "barrage": 4,
+            "barrageRange": 18,
+            "spellDice": 6
+        },
+        "drawEvents": [],
+        "points": 80,
+        "battlefieldRoles": [
+            "Character",
+            "Imperial"
+        ],
+        "cannotBeWarlord": true
+    },
+    {
+        "name": "Noble Lord",
+        "faction": "Hundred Kingdoms",
+        "type": "infantry",
+        "regimentClass": "character",
+        "characteristics": {
+            "march": null,
+            "volley": 1,
+            "clash": 3,
+            "attacks": 4,
+            "wounds": 4,
+            "resolve": 3,
+            "defense": 3,
+            "evasion": 0
+        },
+        "specialRules": [
+            {
+                "name": "Personal Bodyguard",
+                "description": "You may select an Infantry Regiment in this Character's Warband to gain the [Veteran] Battlefield Role if they do not already have it."
+            },
+            {
+                "name": "Weapon Arts",
+                "description": "May select two of the following Weapon Arts, gaining the listed Special Rule(s)."
+            }
+        ],
+        "numericSpecialRules": {},
+        "drawEvents": [],
+        "points": 80,
+        "supremacyAbility": "Professional Troops",
+        "battlefieldRoles": [
+            "Character",
+            "Feudal"
+        ]
+    },
+    {
+        "name": "Mounted Noble Lord",
+        "faction": "Hundred Kingdoms",
+        "type": "cavalry",
+        "regimentClass": "character",
+        "characteristics": {
+            "march": null,
+            "volley": 1,
+            "clash": 3,
+            "attacks": 5,
+            "wounds": 5,
+            "resolve": 3,
+            "defense": 3,
+            "evasion": 0
+        },
+        "specialRules": [
+            {
+                "name": "Brutal Impact (2)",
+                "description": "When a Stand with this Special Rule inflicts Impact Attacks, those Impact Attacks reduce the Target Enemy Regiment's Defense by 2."
+            },
+            {
+                "name": "Impact (3)",
+                "description": "Stands with this Special Rule perform Impact Attacks equal to 3."
+            },
+            {
+                "name": "Shield",
+                "description": "Stands in this Regiment count their Defense Characteristic as 1 point higher against all Hits originating from the Regiment's front Arc."
+            },
+            {
+                "name": "Personal Entourage",
+                "description": "You may select a Household Knight Regiment in this Character's Warband to gain the [Veteran] Battlefield Role if they do not already have it."
+            },
+            {
+                "name": "Weapon Arts",
+                "description": "May select up to one of the following Weapon Arts, gaining the listed Special Rule(s)."
+            }
+        ],
+        "numericSpecialRules": {
+            "brutalImpact": 2,
+            "impact": 3,
+            "shield": true
+        },
+        "drawEvents": [],
+        "points": 130,
+        "supremacyAbility": "Professional Troops",
+        "battlefieldRoles": [
+            "Character",
+            "Feudal"
+        ]
+    },
+    {
+        "name": "Crusading Noble Lord",
+        "faction": "Hundred Kingdoms",
+        "type": "infantry",
+        "regimentClass": "character",
+        "characteristics": {
+            "march": null,
+            "volley": 1,
+            "clash": 3,
+            "attacks": 5,
+            "wounds": 4,
+            "resolve": 4,
+            "defense": 3,
+            "evasion": 0
+        },
+        "specialRules": [
+            {
+                "name": "Cleave (2)",
+                "description": "When a Stand with this Special Rule performs a Clash or Duel Action, any Hits caused by those Attacks reduce the Target's Defense by 2."
+            },
+            {
+                "name": "Flurry",
+                "description": "A Stand with this Special Rule Re-Rolls all failed Hit Rolls when performing a Clash or Duel Action."
+            },
+            {
+                "name": "Devout",
+                "description": "When a Regiment with this Special Rule is the Target of a Priest (X)'s Spellcasting Action, one failed Spellcasting die is converted to a success."
+            },
+            {
+                "name": "Path of Righteousness",
+                "description": "Regiments in this [Character]'s Warband gain the [Theist] Battlefield Role and Indomitable (+1) Special Rule (to a maximum of 2)."
+            },
+            {
+                "name": "Crusading Bulls",
+                "description": "May select one of the following Crusading Bulls gaining the listed Special Rule(s)."
+            }
+        ],
+        "numericSpecialRules": {
+            "cleave": 2
+        },
+        "drawEvents": [],
+        "points": 100,
+        "supremacyAbility": "The Spirit Shines",
+        "battlefieldRoles": [
+            "Character",
+            "Theist"
+        ]
+    },
+    {
+        "name": "Theist Priest",
+        "faction": "Hundred Kingdoms",
+        "type": "infantry",
+        "regimentClass": "character",
+        "characteristics": {
+            "march": null,
+            "volley": 1,
+            "clash": 2,
+            "attacks": 4,
+            "wounds": 4,
+            "resolve": 3,
+            "defense": 3,
+            "evasion": 0
+        },
+        "specialRules": [
+            {
+                "name": "Cleave (1)",
+                "description": "When a Stand with this Special Rule performs a Clash or Duel Action, any Hits caused by those Attacks reduce the Target's Defense by 1."
+            },
+            {
+                "name": "Devout",
+                "description": "When a Regiment with this Special Rule is the Target of a Priest (X)'s Spellcasting Action, one failed Spellcasting die is converted to a success."
+            },
+            {
+                "name": "Fearless",
+                "description": "A Regiment with this Special Rule ignores the effects of the Fearsome and Terrifying (X) Special Rules."
+            },
+            {
+                "name": "Priest (6)",
+                "description": "This Regiment or Character Stand can perform the Spellcasting Action during its Activation. The X value is this Stand's Magic Level."
+            }
+        ],
+        "numericSpecialRules": {
+            "cleave": 1,
+            "spellDice": 6
+        },
+        "drawEvents": [],
+        "points": 90,
+        "supremacyAbility": "The Spirit Shines",
+        "battlefieldRoles": [
+            "Character",
+            "Theist"
+        ]
+    },
+    {
+        "name": "Priory Commander",
+        "faction": "Hundred Kingdoms",
+        "type": "cavalry",
+        "regimentClass": "character",
+        "characteristics": {
+            "march": null,
+            "volley": 1,
+            "clash": 4,
+            "attacks": 6,
+            "wounds": 6,
+            "resolve": 4,
+            "defense": 4,
+            "evasion": 0
+        },
+        "specialRules": [
+            {
+                "name": "Impact (4)",
+                "description": "Stands with this Special Rule perform Impact Attacks equal to 4."
+            },
+            {
+                "name": "Order Choice",
+                "description": "The Character must belong in one of the following Orders gaining its benefits."
+            }
+        ],
+        "numericSpecialRules": {
+            "impact": 4
+        },
+        "drawEvents": [],
+        "points": 120,
+        "supremacyAbility": "The First Blessing",
+        "battlefieldRoles": [
+            "Character",
+            "The Orders"
+        ]
+    },
+    {
+        "name": "Errant of the Order of the Shield",
+        "faction": "Hundred Kingdoms",
+        "type": "infantry",
+        "regimentClass": "character",
+        "characteristics": {
+            "march": null,
+            "volley": 1,
+            "clash": 3,
+            "attacks": 5,
+            "wounds": 4,
+            "resolve": 4,
+            "defense": 3,
+            "evasion": 0
+        },
+        "specialRules": [
+            {
+                "name": "Cleave (2)",
+                "description": "When a Stand with this Special Rule performs a Clash or Duel Action, any Hits caused by those Attacks reduce the Target's Defense by 2."
+            },
+            {
+                "name": "Shield",
+                "description": "Stands in this Regiment count their Defense Characteristic as 1 point higher against all Hits originating from the Regiment's front Arc."
+            },
+            {
+                "name": "Up In Arms!",
+                "description": "This [Character] may add one additional Mainstay Regiment in their Warband, ignoring the usual allowance of four Regiments per Warband, to a maximum of five. Infantry Regiments in this [Character]'s Warband gain the [Veteran] Battlefield Role."
+            },
+            {
+                "name": "Drive for Justice",
+                "description": "The Infantry Regiment this [Character] is currently attached to gains the Fearless Special Rule."
+            },
+            {
+                "name": "Like Gods Among Men",
+                "description": "[Always Active]: When a Friendly Cavalry [The Orders] Regiment successfully completes a Charge against an Enemy Regiment, all Infantry Regiments currently within 8\" of that Friendly [The Orders] Regiment immediately perform a free, out-of-sequence Rally or Combat Rally Action and gain the Inspired Special Rule until the end of the Round."
+            }
+        ],
+        "numericSpecialRules": {
+            "cleave": 2,
+            "shield": true
+        },
+        "drawEvents": [],
+        "points": 100,
+        "supremacyAbility": "The First Blessing",
+        "battlefieldRoles": [
+            "Character",
+            "The Orders"
+        ],
+        "oncePerArmy": true
+    }
+]

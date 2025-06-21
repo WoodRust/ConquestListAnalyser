@@ -1,0 +1,738 @@
+[
+    {
+        "name": "Daimyo",
+        "faction": "Yoroni",
+        "type": "brute",
+        "regimentClass": "character",
+        "characteristics": {
+            "march": null,
+            "volley": 1,
+            "clash": 4,
+            "attacks": 6,
+            "wounds": 7,
+            "resolve": 4,
+            "defense": 3,
+            "evasion": 2
+        },
+        "specialRules": [
+            {
+                "name": "Cleave (2)",
+                "description": "Enemy Stands in contact with this Stand reduce their Defense Characteristic by 2 when making Defense rolls against Hits inflicted by this Stand."
+            },
+            {
+                "name": "Impact (3)",
+                "description": "When this Stand performs a successful Charge Action, before its Clash Action, it inflicts a number of automatic Hits equal to its Impact value."
+            },
+            {
+                "name": "Powerful Presence",
+                "description": "This [Character] Stand counts as 3 Stands for the purposes of Seizing Objective Zones."
+            }
+        ],
+        "numericSpecialRules": {
+            "cleave": 2,
+            "impact": 3
+        },
+        "drawEvents": [],
+        "points": 110,
+        "supremacyAbility": "Lord of Roaring Flames",
+        "battlefieldRole": "[Character] - Must select [Ka], [Chi], [Sui] or [Fu]"
+    },
+    {
+        "name": "Oyabun",
+        "faction": "Yoroni",
+        "type": "brute",
+        "regimentClass": "character",
+        "characteristics": {
+            "march": null,
+            "volley": 1,
+            "clash": 3,
+            "attacks": 6,
+            "wounds": 7,
+            "resolve": 4,
+            "defense": 3,
+            "evasion": 2
+        },
+        "specialRules": [
+            {
+                "name": "Cleave (1)",
+                "description": "Enemy Stands in contact with this Stand reduce their Defense Characteristic by 1 when making Defense rolls against Hits inflicted by this Stand."
+            },
+            {
+                "name": "Impact (3)",
+                "description": "When this Stand performs a successful Charge Action, before its Clash Action, it inflicts a number of automatic Hits equal to its Impact value."
+            },
+            {
+                "name": "Forward Force",
+                "description": "The non-Monster Regiment this Character Stand is currently attached to gains the Flank Special Rule."
+            },
+            {
+                "name": "Quicksilver Strike",
+                "description": "A Character Stand with this Special Rule resolves all of its Attacks first during a Duel Action."
+            },
+            {
+                "name": "Powerful Presence",
+                "description": "This [Character] Stand counts as 3 Stands for the purposes of Seizing Objective Zones."
+            }
+        ],
+        "numericSpecialRules": {
+            "cleave": 1,
+            "impact": 3
+        },
+        "drawEvents": [],
+        "points": 110,
+        "supremacyAbility": "Lord of the Eternal Mountain",
+        "battlefieldRole": "[Character], [Chi]"
+    },
+    {
+        "name": "Kitsune Bakasu",
+        "faction": "Yoroni",
+        "type": "brute",
+        "regimentClass": "character",
+        "characteristics": {
+            "march": null,
+            "volley": 1,
+            "clash": 4,
+            "attacks": 8,
+            "wounds": 6,
+            "resolve": 4,
+            "defense": 3,
+            "evasion": 2
+        },
+        "specialRules": [
+            {
+                "name": "Deadly Blades",
+                "description": "When a Stand with this Special Rule performs a Clash or Duel Action, any failed Defense Roll of \"6\" rolled by the Target Regiment causes it to suffer 2 Wounds instead of 1."
+            },
+            {
+                "name": "Impact (3)",
+                "description": "When this Stand performs a successful Charge Action, before its Clash Action, it inflicts a number of automatic Hits equal to its Impact value."
+            },
+            {
+                "name": "Powerful Presence",
+                "description": "This [Character] Stand counts as 3 Stands for the purposes of Seizing Objective Zones."
+            }
+        ],
+        "numericSpecialRules": {
+            "impact": 3
+        },
+        "drawEvents": [],
+        "points": 110,
+        "supremacyAbility": "Mistress of Azure Gales",
+        "battlefieldRole": "[Character], [Fu]"
+    },
+    {
+        "name": "Kitsune Onmyoji",
+        "faction": "Yoroni",
+        "type": "brute",
+        "regimentClass": "character",
+        "characteristics": {
+            "march": null,
+            "volley": 3,
+            "clash": 2,
+            "attacks": 5,
+            "wounds": 6,
+            "resolve": 4,
+            "defense": 3,
+            "evasion": 2
+        },
+        "specialRules": [
+            {
+                "name": "Barrage (3) (14\", Deadly Shot)",
+                "description": "This Regiment may perform a Volley Action, making a number of Attack rolls equal to its Barrage value. Has Deadly Shot special rule."
+            },
+            {
+                "name": "Impact (3)",
+                "description": "When this Stand performs a successful Charge Action, before its Clash Action, it inflicts a number of automatic Hits equal to its Impact value."
+            },
+            {
+                "name": "Priest (6)",
+                "description": "This Regiment or Character Stand can perform the Spellcasting Action during its Activation with 6 dice."
+            },
+            {
+                "name": "Powerful Presence",
+                "description": "This [Character] Stand counts as 3 Stands for the purposes of Seizing Objective Zones."
+            }
+        ],
+        "numericSpecialRules": {
+            "barrage": 3,
+            "barrageRange": 14,
+            "impact": 3,
+            "spellDice": 6
+        },
+        "drawEvents": [],
+        "points": 110,
+        "supremacyAbility": "Mistress of Winsome Mists",
+        "battlefieldRole": "[Character], [Sui]",
+        "spells": [
+            "Iron Soul of Discipline",
+            "Hesitation, Bane of Deeds",
+            "Blossom in the Wind",
+            "Misery of Failure Envisioned"
+        ]
+    },
+    {
+        "name": "Jorogumo Mahotsu",
+        "faction": "Yoroni",
+        "type": "monster",
+        "regimentClass": "character",
+        "characteristics": {
+            "march": 7,
+            "volley": 1,
+            "clash": 3,
+            "attacks": 11,
+            "wounds": 18,
+            "resolve": 4,
+            "defense": 3,
+            "evasion": 2
+        },
+        "specialRules": [
+            {
+                "name": "Cleave (1)",
+                "description": "Enemy Stands in contact with this Stand reduce their Defense Characteristic by 1 when making Defense rolls against Hits inflicted by this Stand."
+            },
+            {
+                "name": "Fearless",
+                "description": "A Regiment with this Special Rule ignores the effects of the Fearsome and Terrifying (X) Special Rules."
+            },
+            {
+                "name": "Impact (5)",
+                "description": "When this Stand performs a successful Charge Action, before its Clash Action, it inflicts a number of automatic Hits equal to its Impact value."
+            },
+            {
+                "name": "Priest (6)",
+                "description": "This Regiment or Character Stand can perform the Spellcasting Action during its Activation with 6 dice."
+            },
+            {
+                "name": "Tenacious (1)",
+                "description": "Whenever this Regiment makes a Defense Roll, treat 1 failed result as a success."
+            },
+            {
+                "name": "Terrifying (1)",
+                "description": "Regiments in contact with Stands with this Special Rule reduce their Resolve Characteristic by 1 for the purposes of making Morale Tests."
+            }
+        ],
+        "numericSpecialRules": {
+            "cleave": 1,
+            "impact": 5,
+            "spellDice": 6,
+            "tenacious": 1,
+            "terrifying": 1
+        },
+        "drawEvents": [],
+        "points": 300,
+        "supremacyAbility": "Mistress of the Ghostly Reikai",
+        "battlefieldRole": "[Character], [Mu]",
+        "spells": [
+            "Repose in Healing Spring",
+            "Honor, a Void of Self",
+            "Blossom in the Wind",
+            "Witness of the Void"
+        ]
+    },
+    {
+        "name": "Jorogumo Geisha",
+        "faction": "Yoroni",
+        "type": "monster",
+        "regimentClass": "character",
+        "characteristics": {
+            "march": 7,
+            "volley": 1,
+            "clash": 3,
+            "attacks": 14,
+            "wounds": 18,
+            "resolve": 4,
+            "defense": 3,
+            "evasion": 2
+        },
+        "specialRules": [
+            {
+                "name": "Cleave (1)",
+                "description": "Enemy Stands in contact with this Stand reduce their Defense Characteristic by 1 when making Defense rolls against Hits inflicted by this Stand."
+            },
+            {
+                "name": "Deadly Blades",
+                "description": "When a Stand with this Special Rule performs a Clash or Duel Action, any failed Defense Roll of \"6\" rolled by the Target Regiment causes it to suffer 2 Wounds instead of 1."
+            },
+            {
+                "name": "Fearless",
+                "description": "A Regiment with this Special Rule ignores the effects of the Fearsome and Terrifying (X) Special Rules."
+            },
+            {
+                "name": "Impact (5)",
+                "description": "When this Stand performs a successful Charge Action, before its Clash Action, it inflicts a number of automatic Hits equal to its Impact value."
+            },
+            {
+                "name": "Tenacious (1)",
+                "description": "Whenever this Regiment makes a Defense Roll, treat 1 failed result as a success."
+            },
+            {
+                "name": "Terrifying (2)",
+                "description": "Regiments in contact with Stands with this Special Rule reduce their Resolve Characteristic by 2 for the purposes of making Morale Tests."
+            }
+        ],
+        "numericSpecialRules": {
+            "cleave": 1,
+            "impact": 5,
+            "tenacious": 1,
+            "terrifying": 2
+        },
+        "drawEvents": [
+            {
+                "name": "Monstrous Inspiration",
+                "description": "Pick one Ideal Card Effect this [Character] is currently under the effects of. Until the end of the Round, while a Friendly Regiment is within 8\" of this [Character] it gains the benefits of that Ideal Card Effect."
+            }
+        ],
+        "points": 280,
+        "supremacyAbility": "Mistress of the Ghostly Reikai",
+        "battlefieldRole": "[Character], [Mu]"
+    },
+    {
+        "name": "Oni Ayakashi",
+        "faction": "Yoroni",
+        "type": "brute",
+        "regimentClass": "medium",
+        "characteristics": {
+            "march": 6,
+            "volley": 1,
+            "clash": 3,
+            "attacks": 5,
+            "wounds": 7,
+            "resolve": 3,
+            "defense": 3,
+            "evasion": 1
+        },
+        "specialRules": [
+            {
+                "name": "Cleave (2)",
+                "description": "Enemy Stands in contact with this Stand reduce their Defense Characteristic by 2 when making Defense rolls against Hits inflicted by this Stand."
+            },
+            {
+                "name": "Impact (2)",
+                "description": "When this Stand performs a successful Charge Action, before its Clash Action, it inflicts a number of automatic Hits equal to its Impact value."
+            },
+            {
+                "name": "Enlightened",
+                "description": "The first time this Regiment would become Broken during the Battle, the Regiment performs an out-of-sequence Rally or Combat Rally Action at the end of the Action that caused it to become Broken."
+            }
+        ],
+        "numericSpecialRules": {
+            "cleave": 2,
+            "impact": 2
+        },
+        "drawEvents": [],
+        "points": 80,
+        "battlefieldRole": "[Ka]",
+        "isModularStand": true,
+        "commandSpecialRules": [
+            {
+                "name": "Enhanced Attacks",
+                "description": "The Regiment adds +1 to its Attacks Characteristic and gains the Juggernaut Special Rule."
+            }
+        ]
+    },
+    {
+        "name": "Kami Ayakashi",
+        "faction": "Yoroni",
+        "type": "brute",
+        "regimentClass": "medium",
+        "characteristics": {
+            "march": 6,
+            "volley": 1,
+            "clash": 3,
+            "attacks": 5,
+            "wounds": 7,
+            "resolve": 3,
+            "defense": 3,
+            "evasion": 1
+        },
+        "specialRules": [
+            {
+                "name": "Trample (2)",
+                "description": "At the end of this Regiment's Activation, if this Regiment is in Contact with an Enemy Regiment in its front arc, this Special Rule causes 2 additional Hits."
+            },
+            {
+                "name": "Impact (2)",
+                "description": "When this Stand performs a successful Charge Action, before its Clash Action, it inflicts a number of automatic Hits equal to its Impact value."
+            },
+            {
+                "name": "Enlightened",
+                "description": "The first time this Regiment would become Broken during the Battle, the Regiment performs an out-of-sequence Rally or Combat Rally Action at the end of the Action that caused it to become Broken."
+            }
+        ],
+        "numericSpecialRules": {
+            "trample": 2,
+            "impact": 2
+        },
+        "drawEvents": [],
+        "points": 80,
+        "battlefieldRole": "[Chi]",
+        "isModularStand": true,
+        "commandSpecialRules": [
+            {
+                "name": "Enhanced Evasion",
+                "description": "Stands in the Regiment add +1 to their Evasion Characteristic and gain the Tenacious (1) Special Rule."
+            }
+        ]
+    },
+    {
+        "name": "Tengu Bushi",
+        "faction": "Yoroni",
+        "type": "brute",
+        "regimentClass": "medium",
+        "characteristics": {
+            "march": 7,
+            "volley": 1,
+            "clash": 3,
+            "attacks": 6,
+            "wounds": 6,
+            "resolve": 3,
+            "defense": 3,
+            "evasion": 1
+        },
+        "specialRules": [
+            {
+                "name": "Flawless Strikes",
+                "description": "When a Stand with this Special Rule performs a Clash or Duel Action, all Hit Rolls of \"1\" count the Target's Defense as 0 for that Attack."
+            },
+            {
+                "name": "Impact (2)",
+                "description": "When this Stand performs a successful Charge Action, before its Clash Action, it inflicts a number of automatic Hits equal to its Impact value."
+            },
+            {
+                "name": "Enlightened",
+                "description": "The first time this Regiment would become Broken during the Battle, the Regiment performs an out-of-sequence Rally or Combat Rally Action at the end of the Action that caused it to become Broken."
+            }
+        ],
+        "numericSpecialRules": {
+            "impact": 2
+        },
+        "drawEvents": [],
+        "points": 75,
+        "battlefieldRole": "[Fu]",
+        "isModularStand": true,
+        "commandSpecialRules": [
+            {
+                "name": "Terrain Mastery",
+                "description": "The Regiment ignores the effects of Hindering Terrain and gains the Vanguard (4) Special Rule."
+            }
+        ]
+    },
+    {
+        "name": "Tengu Ayakashi",
+        "faction": "Yoroni",
+        "type": "brute",
+        "regimentClass": "medium",
+        "characteristics": {
+            "march": 7,
+            "volley": 3,
+            "clash": 2,
+            "attacks": 4,
+            "wounds": 5,
+            "resolve": 3,
+            "defense": 3,
+            "evasion": 1
+        },
+        "specialRules": [
+            {
+                "name": "Barrage (4) (14\", Armor Piercing (1), Rapid Volley)",
+                "description": "This Regiment may perform a Volley Action, making 4 Attack rolls. Has Armor Piercing (1) and Rapid Volley special rules."
+            },
+            {
+                "name": "Enlightened",
+                "description": "The first time this Regiment would become Broken during the Battle, the Regiment performs an out-of-sequence Rally or Combat Rally Action at the end of the Action that caused it to become Broken."
+            }
+        ],
+        "numericSpecialRules": {
+            "barrage": 4,
+            "barrageRange": 14,
+            "armorPiercing": 1
+        },
+        "drawEvents": [],
+        "points": 80,
+        "battlefieldRole": "[Fu]",
+        "isModularStand": true,
+        "commandSpecialRules": [
+            {
+                "name": "Defensive Resilience",
+                "description": "When this Regiment becomes the Target of an Enemy Regiment's Volley Action it gains the Tenacious (1) Special Rule until the end of that Action. In addition, the Regiment gains the Vanguard (4) Special Rule."
+            }
+        ]
+    },
+    {
+        "name": "Kappa Bushi",
+        "faction": "Yoroni",
+        "type": "brute",
+        "regimentClass": "medium",
+        "characteristics": {
+            "march": 6,
+            "volley": 1,
+            "clash": 3,
+            "attacks": 5,
+            "wounds": 7,
+            "resolve": 3,
+            "defense": 3,
+            "evasion": 1
+        },
+        "specialRules": [
+            {
+                "name": "Cleave (1)",
+                "description": "Enemy Stands in contact with this Stand reduce their Defense Characteristic by 1 when making Defense rolls against Hits inflicted by this Stand."
+            },
+            {
+                "name": "Impact (2)",
+                "description": "When this Stand performs a successful Charge Action, before its Clash Action, it inflicts a number of automatic Hits equal to its Impact value."
+            },
+            {
+                "name": "Flurry",
+                "description": "A Stand with this Special Rule Re-Rolls all failed Hit Rolls when performing a Clash or Duel Action."
+            },
+            {
+                "name": "Enlightened",
+                "description": "The first time this Regiment would become Broken during the Battle, the Regiment performs an out-of-sequence Rally or Combat Rally Action at the end of the Action that caused it to become Broken."
+            }
+        ],
+        "numericSpecialRules": {
+            "cleave": 1,
+            "impact": 2
+        },
+        "drawEvents": [],
+        "points": 75,
+        "battlefieldRole": "[Sui]",
+        "isModularStand": true,
+        "commandSpecialRules": [
+            {
+                "name": "Ideal Card Flexibility",
+                "description": "The Regiment can be Activated and gain the effects of any Ideal Card Regardless of the Regiment's Battlefield Role."
+            }
+        ]
+    },
+    {
+        "name": "Origami Warriors",
+        "faction": "Yoroni",
+        "type": "brute",
+        "regimentClass": "light",
+        "characteristics": {
+            "march": 6,
+            "volley": 1,
+            "clash": 2,
+            "attacks": 5,
+            "wounds": 6,
+            "resolve": 3,
+            "defense": 3,
+            "evasion": 1
+        },
+        "specialRules": [
+            {
+                "name": "Lethal Demise",
+                "description": "For every Wound allocated to a Stand with this Special Rule as a result of a failed Defense Roll, the Enemy Regiment in contact with the Stand's Regiment that caused the Hits suffers a Hit."
+            },
+            {
+                "name": "Enlightened",
+                "description": "The first time this Regiment would become Broken during the Battle, the Regiment performs an out-of-sequence Rally or Combat Rally Action at the end of the Action that caused it to become Broken."
+            }
+        ],
+        "numericSpecialRules": {},
+        "drawEvents": [],
+        "points": 60,
+        "battlefieldRole": "[Mu]",
+        "isModularStand": true,
+        "commandSpecialRules": [
+            {
+                "name": "Volley Defense",
+                "description": "When this Regiment becomes the Target of an Enemy Regiment's Volley Action it gains the Tenacious (2) Special Rule until the end of that Action. Origami Warrior Stands being destroyed do not count towards the Regiment becoming Broken."
+            }
+        ]
+    },
+    {
+        "name": "Domaru-damashi",
+        "faction": "Yoroni",
+        "type": "brute",
+        "regimentClass": "light",
+        "characteristics": {
+            "march": 7,
+            "volley": 1,
+            "clash": 2,
+            "attacks": 6,
+            "wounds": 4,
+            "resolve": 3,
+            "defense": 2,
+            "evasion": 1
+        },
+        "specialRules": [
+            {
+                "name": "Flurry",
+                "description": "A Stand with this Special Rule Re-Rolls all failed Hit Rolls when performing a Clash or Duel Action."
+            },
+            {
+                "name": "Impact (2)",
+                "description": "When this Stand performs a successful Charge Action, before its Clash Action, it inflicts a number of automatic Hits equal to its Impact value."
+            },
+            {
+                "name": "Unstoppable",
+                "description": "This Regiment may Re-Roll failed Charge Rolls."
+            },
+            {
+                "name": "Visage",
+                "description": "Friendly Regiments can draw Line of Sight through this Regiment. When this Regiment becomes the Target of an Enemy Regiment's Volley Action it gains the Tenacious (2) Special Rule until the end of that Action."
+            },
+            {
+                "name": "Leader",
+                "description": "The Regiment's Command Stand that provides leadership to the unit."
+            }
+        ],
+        "numericSpecialRules": {
+            "impact": 2
+        },
+        "drawEvents": [],
+        "points": 140,
+        "pointsPerAdditionalStand": 40,
+        "battlefieldRole": "[Mu]"
+    },
+    {
+        "name": "Shikigami",
+        "faction": "Yoroni",
+        "type": "brute",
+        "regimentClass": "light",
+        "characteristics": {
+            "march": 6,
+            "volley": 1,
+            "clash": 2,
+            "attacks": 4,
+            "wounds": 4,
+            "resolve": 2,
+            "defense": 2,
+            "evasion": 1
+        },
+        "specialRules": [
+            {
+                "name": "Fearless",
+                "description": "A Regiment with this Special Rule ignores the effects of the Fearsome and Terrifying (X) Special Rules."
+            },
+            {
+                "name": "Unstoppable",
+                "description": "This Regiment may Re-Roll failed Charge Rolls."
+            },
+            {
+                "name": "Leader",
+                "description": "The Regiment's Command Stand that provides leadership to the unit."
+            }
+        ],
+        "numericSpecialRules": {},
+        "drawEvents": [],
+        "points": 120,
+        "pointsPerAdditionalStand": 40,
+        "battlefieldRole": "[Mu]",
+        "specialNotes": "This Regiment cannot be joined by a [Character] Stand. Stands in this Regiment counts as being Size 1."
+    },
+    {
+        "name": "Dai Yokai",
+        "faction": "Yoroni",
+        "type": "monster",
+        "regimentClass": "heavy",
+        "characteristics": {
+            "march": 7,
+            "volley": 1,
+            "clash": 4,
+            "attacks": 12,
+            "wounds": 18,
+            "resolve": 4,
+            "defense": 3,
+            "evasion": 2
+        },
+        "specialRules": [
+            {
+                "name": "Cleave (1)",
+                "description": "Enemy Stands in contact with this Stand reduce their Defense Characteristic by 1 when making Defense rolls against Hits inflicted by this Stand."
+            },
+            {
+                "name": "Fearless",
+                "description": "A Regiment with this Special Rule ignores the effects of the Fearsome and Terrifying (X) Special Rules."
+            },
+            {
+                "name": "Impact (5)",
+                "description": "When this Stand performs a successful Charge Action, before its Clash Action, it inflicts a number of automatic Hits equal to its Impact value."
+            },
+            {
+                "name": "Terrifying (1)",
+                "description": "Regiments in contact with Stands with this Special Rule reduce their Resolve Characteristic by 1 for the purposes of making Morale Tests."
+            },
+            {
+                "name": "Vanguard (3)",
+                "description": "When a Regiment with this Special Rule enters the Battlefield from Reinforcements, add +3 to its March Characteristic for the first March Action this Activation."
+            },
+            {
+                "name": "Unstoppable",
+                "description": "This Regiment may Re-Roll failed Charge Rolls."
+            },
+            {
+                "name": "Sweeping Step",
+                "description": "This Action can only be performed as the Regiment's first Action. The Dai Yokai immediately performs a March up to 12\" directly forward ignoring all intervening Regiments and [Character]'s."
+            }
+        ],
+        "numericSpecialRules": {
+            "cleave": 1,
+            "impact": 5,
+            "terrifying": 1,
+            "vanguard": 3
+        },
+        "drawEvents": [],
+        "points": 230,
+        "battlefieldRole": "[Ka], [Chi], [Fu], [Sui] and [Mu] - Same as Warlord's Battlefield Role",
+        "specialNotes": "This Regiment can perform a free Duel Action during its Activation as if it was a [Character]."
+    },
+    {
+        "name": "Genya no Yokai",
+        "faction": "Yoroni",
+        "type": "monster",
+        "regimentClass": "heavy",
+        "characteristics": {
+            "march": 7,
+            "volley": 1,
+            "clash": 3,
+            "attacks": 11,
+            "wounds": 18,
+            "resolve": 4,
+            "defense": 3,
+            "evasion": 2
+        },
+        "specialRules": [
+            {
+                "name": "Cleave (3)",
+                "description": "Enemy Stands in contact with this Stand reduce their Defense Characteristic by 3 when making Defense rolls against Hits inflicted by this Stand."
+            },
+            {
+                "name": "Fearless",
+                "description": "A Regiment with this Special Rule ignores the effects of the Fearsome and Terrifying (X) Special Rules."
+            },
+            {
+                "name": "Impact (7)",
+                "description": "When this Stand performs a successful Charge Action, before its Clash Action, it inflicts a number of automatic Hits equal to its Impact value."
+            },
+            {
+                "name": "Terrifying (1)",
+                "description": "Regiments in contact with Stands with this Special Rule reduce their Resolve Characteristic by 1 for the purposes of making Morale Tests."
+            },
+            {
+                "name": "Vanguard (3)",
+                "description": "When a Regiment with this Special Rule enters the Battlefield from Reinforcements, add +3 to its March Characteristic for the first March Action this Activation."
+            },
+            {
+                "name": "Unstoppable",
+                "description": "This Regiment may Re-Roll failed Charge Rolls."
+            },
+            {
+                "name": "Enlightening Fury",
+                "description": "Every time the Genya no Yokai gains the benefits of an Ideal Card it keeps those effects until the end of the Battle."
+            }
+        ],
+        "numericSpecialRules": {
+            "cleave": 3,
+            "impact": 7,
+            "terrifying": 1,
+            "vanguard": 3
+        },
+        "drawEvents": [],
+        "points": 260,
+        "battlefieldRole": "[Ka], [Chi], [Fu], [Sui] and [Mu] - Same as Warlord's Battlefield Role"
+    }
+]

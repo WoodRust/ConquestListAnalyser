@@ -1,0 +1,1232 @@
+[
+    {
+        "name": "Braves",
+        "faction": "W'adrhun",
+        "type": "infantry",
+        "regimentClass": "medium",
+        "characteristics": {
+            "march": 5,
+            "volley": 1,
+            "clash": 2,
+            "attacks": 4,
+            "wounds": 5,
+            "resolve": 3,
+            "defense": 2,
+            "evasion": 0
+        },
+        "specialRules": [
+            {
+                "name": "Shield",
+                "description": "This Stand adds +1 to its Defense Characteristic against Attacks originating from its front arc."
+            },
+            {
+                "name": "Support (2)",
+                "description": "Unengaged Stands in this Regiment inflict 2 Attacks as support."
+            },
+            {
+                "name": "Blood to be Spilled [Chant]",
+                "description": "When this Regiment Chants the Battlecry, it gains the Impact (+2) Special Rule until the end of the Round."
+            },
+            {
+                "name": "Leader",
+                "description": "The Regiment's Command Stand that provides leadership to the unit."
+            },
+            {
+                "name": "Standard Bearer",
+                "description": "The Regiment's Command Stand includes a Standard Bearer."
+            }
+        ],
+        "numericSpecialRules": {
+            "support": 2,
+            "shield": true
+        },
+        "drawEvents": [],
+        "points": 125,
+        "pointsPerAdditionalStand": 35,
+        "officerUpgrades": "Any Braves Regiment may take the following Officer: Aberration (20 points)"
+    },
+    {
+        "name": "Blooded",
+        "faction": "W'adrhun",
+        "type": "infantry",
+        "regimentClass": "medium",
+        "characteristics": {
+            "march": 5,
+            "volley": 1,
+            "clash": 2,
+            "attacks": 6,
+            "wounds": 5,
+            "resolve": 3,
+            "defense": 2,
+            "evasion": 1
+        },
+        "specialRules": [
+            {
+                "name": "Proven Warriors [Chant]",
+                "description": "When this Regiment Chants the Battlecry, it adds +2\" to its Charge Distance until the end of the Round."
+            },
+            {
+                "name": "Leader",
+                "description": "The Regiment's Command Stand that provides leadership to the unit."
+            },
+            {
+                "name": "Standard Bearer",
+                "description": "The Regiment's Command Stand includes a Standard Bearer."
+            }
+        ],
+        "numericSpecialRules": {},
+        "drawEvents": [],
+        "points": 130,
+        "pointsPerAdditionalStand": 40,
+        "officerUpgrades": "Any Blooded Regiment may take the following Officer: Aberration (20 points)"
+    },
+    {
+        "name": "Hunters",
+        "faction": "W'adrhun",
+        "type": "infantry",
+        "regimentClass": "light",
+        "characteristics": {
+            "march": 6,
+            "volley": 2,
+            "clash": 2,
+            "attacks": 5,
+            "wounds": 5,
+            "resolve": 3,
+            "defense": 1,
+            "evasion": 0
+        },
+        "specialRules": [
+            {
+                "name": "Barrage (4) (14\", Armor Piercing (1), Deadly Shot, Sureshot)",
+                "description": "This Regiment may perform a Volley Action, making a number of Attack rolls equal to its Barrage value. The Barrage has Armor Piercing (1), Deadly Shot, and Sureshot special rules."
+            },
+            {
+                "name": "Loose Formation",
+                "description": "This Regiment may March and Charge through other Friendly Regiments."
+            },
+            {
+                "name": "Momentum [Chant]",
+                "description": "Should the Regiment perform a March Action as its first Action and move directly forward, add +X\" (to a maximum of +4\") to the Regiment's Barrage Range until the end of Round where X is the number of inches Marched directly forward Rounded down."
+            },
+            {
+                "name": "Leader",
+                "description": "The Regiment's Command Stand that provides leadership to the unit."
+            },
+            {
+                "name": "Standard Bearer",
+                "description": "The Regiment's Command Stand includes a Standard Bearer."
+            }
+        ],
+        "numericSpecialRules": {
+            "barrage": 4,
+            "barrageRange": 14,
+            "armorPiercing": true,
+            "armorPiercingValue": 1
+        },
+        "drawEvents": [],
+        "points": 150,
+        "pointsPerAdditionalStand": 40
+    },
+    {
+        "name": "Veterans",
+        "faction": "W'adrhun",
+        "type": "infantry",
+        "regimentClass": "medium",
+        "characteristics": {
+            "march": 5,
+            "volley": 1,
+            "clash": 3,
+            "attacks": 5,
+            "wounds": 6,
+            "resolve": 3,
+            "defense": 2,
+            "evasion": 1
+        },
+        "specialRules": [
+            {
+                "name": "Shield",
+                "description": "This Stand adds +1 to its Defense Characteristic against Attacks originating from its front arc."
+            },
+            {
+                "name": "Show the Path [Chant]",
+                "description": "When this Regiment Chants the Battlecry, other Friendly [The Tribes] Regiments within 8\" gain +1 to their Clash Characteristic (to a maximum of 4) until the end of the Round."
+            },
+            {
+                "name": "Leader",
+                "description": "The Regiment's Command Stand that provides leadership to the unit."
+            },
+            {
+                "name": "Standard Bearer",
+                "description": "The Regiment's Command Stand includes a Standard Bearer."
+            }
+        ],
+        "numericSpecialRules": {
+            "shield": true
+        },
+        "drawEvents": [],
+        "points": 170,
+        "pointsPerAdditionalStand": 50
+    },
+    {
+        "name": "Chosen of Conquest",
+        "faction": "W'adrhun",
+        "type": "infantry",
+        "regimentClass": "medium",
+        "characteristics": {
+            "march": 6,
+            "volley": 1,
+            "clash": 3,
+            "attacks": 5,
+            "wounds": 6,
+            "resolve": 4,
+            "defense": 3,
+            "evasion": 1
+        },
+        "specialRules": [
+            {
+                "name": "Cleave (1)",
+                "description": "Enemy Stands in contact with this Stand reduce their Defense Characteristic by 1 when making Defense rolls against Hits inflicted by this Stand."
+            },
+            {
+                "name": "Impact (2)",
+                "description": "When this Stand performs a successful Charge Action, before its Clash Action, it inflicts a number of automatic Hits equal to its Impact value."
+            },
+            {
+                "name": "Cultists of Conquest [Chant]",
+                "description": "This Regiment must always follow the Cult of Conquest and can only Chant from the Cult they follow. In addition when this Regiment Chants the Battlecry, add +3 to their March Characteristic for the first Action it performs this Activation."
+            },
+            {
+                "name": "Leader",
+                "description": "The Regiment's Command Stand that provides leadership to the unit."
+            },
+            {
+                "name": "Standard Bearer",
+                "description": "The Regiment's Command Stand includes a Standard Bearer."
+            }
+        ],
+        "numericSpecialRules": {
+            "cleave": 1,
+            "impact": 2
+        },
+        "drawEvents": [],
+        "points": 200,
+        "pointsPerAdditionalStand": 60
+    },
+    {
+        "name": "Slingers",
+        "faction": "W'adrhun",
+        "type": "infantry",
+        "regimentClass": "light",
+        "characteristics": {
+            "march": 6,
+            "volley": 3,
+            "clash": 2,
+            "attacks": 4,
+            "wounds": 5,
+            "resolve": 3,
+            "defense": 1,
+            "evasion": 0
+        },
+        "specialRules": [
+            {
+                "name": "Barrage (4) (18\")",
+                "description": "This Regiment may perform a Volley Action, making a number of Attack rolls equal to its Barrage value."
+            },
+            {
+                "name": "Singing Bullets [Chant]",
+                "description": "When this Regiment Chants the Battlecry, their entire Barrage Range counts as their Effective Range until the end of the Round."
+            },
+            {
+                "name": "Leader",
+                "description": "The Regiment's Command Stand that provides leadership to the unit."
+            },
+            {
+                "name": "Standard Bearer",
+                "description": "The Regiment's Command Stand includes a Standard Bearer."
+            }
+        ],
+        "numericSpecialRules": {
+            "barrage": 4,
+            "barrageRange": 18
+        },
+        "drawEvents": [],
+        "points": 165,
+        "pointsPerAdditionalStand": 50
+    },
+    {
+        "name": "Chosen of Death",
+        "faction": "W'adrhun",
+        "type": "infantry",
+        "regimentClass": "medium",
+        "characteristics": {
+            "march": 6,
+            "volley": 1,
+            "clash": 3,
+            "attacks": 6,
+            "wounds": 5,
+            "resolve": 3,
+            "defense": 0,
+            "evasion": 2
+        },
+        "specialRules": [
+            {
+                "name": "Flurry",
+                "description": "This Stand may re-roll failed Hit rolls when performing a Clash Action."
+            },
+            {
+                "name": "Cultists of Death [Chant]",
+                "description": "This Regiment must always follow the Cult of Death and can only Chant from the Cult they follow. In addition, when this Regiment Chants the Battlecry, the Regiment gains the Flawless Strikes Special Rule until the end of the Round."
+            },
+            {
+                "name": "Visage of Death",
+                "description": "When this Regiment becomes the Target of an Enemy Regiment's Volley Action it gains the Tenacious (2) Special Rule until the end of that Action."
+            },
+            {
+                "name": "Leader",
+                "description": "The Regiment's Command Stand that provides leadership to the unit."
+            },
+            {
+                "name": "Standard Bearer",
+                "description": "The Regiment's Command Stand includes a Standard Bearer."
+            }
+        ],
+        "numericSpecialRules": {},
+        "drawEvents": [],
+        "points": 180,
+        "pointsPerAdditionalStand": 70
+    },
+    {
+        "name": "Chosen of Famine",
+        "faction": "W'adrhun",
+        "type": "infantry",
+        "regimentClass": "medium",
+        "characteristics": {
+            "march": 6,
+            "volley": 1,
+            "clash": 3,
+            "attacks": 6,
+            "wounds": 6,
+            "resolve": 4,
+            "defense": 0,
+            "evasion": 2
+        },
+        "specialRules": [
+            {
+                "name": "Cleave (1)",
+                "description": "Enemy Stands in contact with this Stand reduce their Defense Characteristic by 1 when making Defense rolls against Hits inflicted by this Stand."
+            },
+            {
+                "name": "Cultists of Famine [Chant]",
+                "description": "This Regiment must always follow the Cult of Famine and can only Chant from the Cult they follow. In addition when this Regiment Chants the Battlecry, it gains the Terrifying (1) Special Rule until the end of the Round."
+            },
+            {
+                "name": "Leader",
+                "description": "The Regiment's Command Stand that provides leadership to the unit."
+            },
+            {
+                "name": "Standard Bearer",
+                "description": "The Regiment's Command Stand includes a Standard Bearer."
+            }
+        ],
+        "numericSpecialRules": {
+            "cleave": 1
+        },
+        "drawEvents": [],
+        "points": null,
+        "pointsPerAdditionalStand": null,
+        "note": "PREVIEW - Points not available"
+    },
+    {
+        "name": "Hunting Pack",
+        "faction": "W'adrhun",
+        "type": "cavalry",
+        "regimentClass": "light",
+        "characteristics": {
+            "march": 7,
+            "volley": 1,
+            "clash": 2,
+            "attacks": 6,
+            "wounds": 3,
+            "resolve": 2,
+            "defense": 1,
+            "evasion": 1
+        },
+        "specialRules": [
+            {
+                "name": "Fluid Formation",
+                "description": "This Regiment can perform Volley Actions while in contact with Enemy Regiments."
+            },
+            {
+                "name": "Irregular",
+                "description": "This Regiment suffers a -1 modifier to its Resolve Characteristic for each lost Stand."
+            },
+            {
+                "name": "Opportunists",
+                "description": "This Regiment may perform a free March Action during its Activation."
+            },
+            {
+                "name": "Vanguard (4)",
+                "description": "This Regiment may perform a free March Action during its Activation with a maximum March Distance of 4\"."
+            },
+            {
+                "name": "Loose Formation",
+                "description": "This Regiment may March and Charge through other Friendly Regiments."
+            },
+            {
+                "name": "Swarm",
+                "description": "Stands in this Regiment counts as being Size 1 and cannot \"Chant the Battlecry\". The Regiment adds Chant Markers to the Sequence normally."
+            },
+            {
+                "name": "Leader",
+                "description": "The Regiment's Command Stand that provides leadership to the unit."
+            }
+        ],
+        "numericSpecialRules": {
+            "vanguard": 4
+        },
+        "drawEvents": [],
+        "points": 120,
+        "pointsPerAdditionalStand": 40,
+        "note": "A Hunting Pack Regiment cannot be joined by a Character Stand."
+    },
+    {
+        "name": "Warbred",
+        "faction": "W'adrhun",
+        "type": "brute",
+        "regimentClass": "medium",
+        "characteristics": {
+            "march": 6,
+            "volley": 1,
+            "clash": 3,
+            "attacks": 5,
+            "wounds": 6,
+            "resolve": 3,
+            "defense": 3,
+            "evasion": 0
+        },
+        "specialRules": [
+            {
+                "name": "Cleave (2)",
+                "description": "Enemy Stands in contact with this Stand reduce their Defense Characteristic by 2 when making Defense rolls against Hits inflicted by this Stand."
+            },
+            {
+                "name": "Impact (2)",
+                "description": "When this Stand performs a successful Charge Action, before its Clash Action, it inflicts a number of automatic Hits equal to its Impact value."
+            },
+            {
+                "name": "Penance [Chant]",
+                "description": "When this Regiments Chants the Battlecry it gains the Juggernaut Special Rule and is not affected by Hindering Terrain until the end of the Round."
+            },
+            {
+                "name": "Leader",
+                "description": "The Regiment's Command Stand that provides leadership to the unit."
+            }
+        ],
+        "numericSpecialRules": {
+            "cleave": 2,
+            "impact": 2
+        },
+        "drawEvents": [],
+        "points": 180,
+        "pointsPerAdditionalStand": 60
+    },
+    {
+        "name": "Raptor Riders",
+        "faction": "W'adrhun",
+        "type": "cavalry",
+        "regimentClass": "light",
+        "characteristics": {
+            "march": 8,
+            "volley": 2,
+            "clash": 2,
+            "attacks": 5,
+            "wounds": 5,
+            "resolve": 3,
+            "defense": 2,
+            "evasion": 2
+        },
+        "specialRules": [
+            {
+                "name": "Barrage (2) (12\", Armor Piercing (1))",
+                "description": "This Regiment may perform a Volley Action, making a number of Attack rolls equal to its Barrage value. The Barrage has Armor Piercing (1)."
+            },
+            {
+                "name": "Fluid Formation",
+                "description": "This Regiment can perform Volley Actions while in contact with Enemy Regiments."
+            },
+            {
+                "name": "Flurry",
+                "description": "This Stand may re-roll failed Hit rolls when performing a Clash Action."
+            },
+            {
+                "name": "Unstoppable",
+                "description": "This Regiment may re-roll all failed Charge rolls."
+            },
+            {
+                "name": "Mounted Riders [Chant]",
+                "description": "When this Regiment Chants the Battlecry, it may perform a free Volley Action during its Activation and gains the Aimed Shot Special Rule until the end of the Round."
+            },
+            {
+                "name": "Leader",
+                "description": "The Regiment's Command Stand that provides leadership to the unit."
+            }
+        ],
+        "numericSpecialRules": {
+            "barrage": 2,
+            "barrageRange": 12,
+            "armorPiercing": true,
+            "armorPiercingValue": 1
+        },
+        "drawEvents": [],
+        "points": 180,
+        "pointsPerAdditionalStand": 60
+    },
+    {
+        "name": "Thunder Riders",
+        "faction": "W'adrhun",
+        "type": "cavalry",
+        "regimentClass": "heavy",
+        "characteristics": {
+            "march": 6,
+            "volley": 1,
+            "clash": 3,
+            "attacks": 5,
+            "wounds": 6,
+            "resolve": 3,
+            "defense": 3,
+            "evasion": 0
+        },
+        "specialRules": [
+            {
+                "name": "Brutal Impact (2)",
+                "description": "When this Stand performs a successful Charge Action, it inflicts automatic Hits that reduce the Enemy Stands' Defense Characteristic by 2 when defending against them."
+            },
+            {
+                "name": "Impact (4)",
+                "description": "When this Stand performs a successful Charge Action, before its Clash Action, it inflicts a number of automatic Hits equal to its Impact value."
+            },
+            {
+                "name": "Linebreaker",
+                "description": "This Regiment may Charge and pass through Enemy Regiments with the Fodder Special Rule."
+            },
+            {
+                "name": "Trample (2)",
+                "description": "As part of a Move Action, this Stand may move through Enemy Stands with the Fodder Special Rule, inflicting 2 automatic Hits on them."
+            },
+            {
+                "name": "Juggernaut",
+                "description": "The Regiment's Charge Distance is always its March value +5\" and is not affected by rules that would add or reduce it."
+            },
+            {
+                "name": "Thundering Charge [Chant]",
+                "description": "When this Regiment Chants the Battlecry, should the Regiment perform a March Action immediately followed by a Charge Action during this Activation, the Regiment gains the Brutal Impact (+1) Special Rule until the end of the Round."
+            },
+            {
+                "name": "Leader",
+                "description": "The Regiment's Command Stand that provides leadership to the unit."
+            }
+        ],
+        "numericSpecialRules": {
+            "brutalImpact": 2,
+            "impact": 4,
+            "trample": 2
+        },
+        "drawEvents": [],
+        "points": 220,
+        "pointsPerAdditionalStand": 70
+    },
+    {
+        "name": "Chosen of War",
+        "faction": "W'adrhun",
+        "type": "brute",
+        "regimentClass": "heavy",
+        "characteristics": {
+            "march": 6,
+            "volley": 1,
+            "clash": 3,
+            "attacks": 6,
+            "wounds": 6,
+            "resolve": 4,
+            "defense": 4,
+            "evasion": 2
+        },
+        "specialRules": [
+            {
+                "name": "Cleave (1)",
+                "description": "Enemy Stands in contact with this Stand reduce their Defense Characteristic by 1 when making Defense rolls against Hits inflicted by this Stand."
+            },
+            {
+                "name": "Linebreaker",
+                "description": "This Regiment may Charge and pass through Enemy Regiments with the Fodder Special Rule."
+            },
+            {
+                "name": "Unstoppable",
+                "description": "This Regiment may re-roll all failed Charge rolls."
+            },
+            {
+                "name": "Impact (2)",
+                "description": "When this Stand performs a successful Charge Action, before its Clash Action, it inflicts a number of automatic Hits equal to its Impact value."
+            },
+            {
+                "name": "Cultists of War [Chant]",
+                "description": "This Regiment must always follow the Cult of War and can only Chant from the Cult they follow. In addition when this Regiment Chants the Battlecry, it gains the Terrifying (1) and Fearless Special Rules until the end of the Round."
+            },
+            {
+                "name": "Leader",
+                "description": "The Regiment's Command Stand that provides leadership to the unit."
+            }
+        ],
+        "numericSpecialRules": {
+            "cleave": 1,
+            "impact": 2
+        },
+        "drawEvents": [],
+        "points": 220,
+        "pointsPerAdditionalStand": 70
+    },
+    {
+        "name": "Apex Predator",
+        "faction": "W'adrhun",
+        "type": "monster",
+        "regimentClass": "heavy",
+        "characteristics": {
+            "march": 8,
+            "volley": 1,
+            "clash": 3,
+            "attacks": 11,
+            "wounds": 15,
+            "resolve": 4,
+            "defense": 3,
+            "evasion": 0
+        },
+        "specialRules": [
+            {
+                "name": "Cleave (2)",
+                "description": "Enemy Stands in contact with this Stand reduce their Defense Characteristic by 2 when making Defense rolls against Hits inflicted by this Stand."
+            },
+            {
+                "name": "Deadly Blades",
+                "description": "When this Stand performs a Clash Action, any failed Defense Roll of \"6\" rolled by the Target Regiment causes it to suffer 2 Wounds instead of 1."
+            },
+            {
+                "name": "Fearless",
+                "description": "This Regiment is immune to the effects of the Terrifying Special Rule."
+            },
+            {
+                "name": "Fiend Hunter",
+                "description": "This Regiment may re-roll all failed Hit rolls against [Fiend] targets."
+            },
+            {
+                "name": "Impact (5)",
+                "description": "When this Stand performs a successful Charge Action, before its Clash Action, it inflicts a number of automatic Hits equal to its Impact value."
+            },
+            {
+                "name": "Terrifying (2)",
+                "description": "Enemy Stands with 6 or fewer models than are in base contact with this Stand suffer -2 to their Resolve Characteristic."
+            },
+            {
+                "name": "Unstoppable",
+                "description": "This Regiment may re-roll all failed Charge rolls."
+            }
+        ],
+        "numericSpecialRules": {
+            "cleave": 2,
+            "impact": 5,
+            "terrifying": 2
+        },
+        "drawEvents": [],
+        "points": 190
+    },
+    {
+        "name": "Tontorr",
+        "faction": "W'adrhun",
+        "type": "monster",
+        "regimentClass": "heavy",
+        "characteristics": {
+            "march": 6,
+            "volley": 2,
+            "clash": 2,
+            "attacks": 16,
+            "wounds": 26,
+            "resolve": 4,
+            "defense": 3,
+            "evasion": 0
+        },
+        "specialRules": [
+            {
+                "name": "Brutal Impact (2)",
+                "description": "When this Stand performs a successful Charge Action, it inflicts automatic Hits that reduce the Enemy Stands' Defense Characteristic by 2 when defending against them."
+            },
+            {
+                "name": "Cleave (1)",
+                "description": "Enemy Stands in contact with this Stand reduce their Defense Characteristic by 1 when making Defense rolls against Hits inflicted by this Stand."
+            },
+            {
+                "name": "Impact (6)",
+                "description": "When this Stand performs a successful Charge Action, before its Clash Action, it inflicts a number of automatic Hits equal to its Impact value."
+            },
+            {
+                "name": "Linebreaker",
+                "description": "This Regiment may Charge and pass through Enemy Regiments with the Fodder Special Rule."
+            },
+            {
+                "name": "Fearless",
+                "description": "This Regiment is immune to the effects of the Terrifying Special Rule."
+            },
+            {
+                "name": "Trample (8)",
+                "description": "As part of a Move Action, this Stand may move through Enemy Stands with the Fodder Special Rule, inflicting 8 automatic Hits on them."
+            },
+            {
+                "name": "Oblivious",
+                "description": "This Regiment does not suffer penalties to its Clash value for charging through Hindering Terrain."
+            },
+            {
+                "name": "Inspired",
+                "description": "This Regiment adds +1 to its Clash Characteristic until the end of the Regiment's Activation."
+            },
+            {
+                "name": "Drum Beat",
+                "description": "When a Friendly Regiment - including the Drum Beast - currently within 10\" adds a Chant Marker to the Sequence, it may immediately choose to add an additional Chant Marker."
+            },
+            {
+                "name": "Primal Cacophony [Chant]",
+                "description": "When this Regiment Chants the Battlecry, Enemy [Characters] and Enemy Regiments within 12\" of the Drum Beast cannot Heal, perform a Rally action, and cannot Activate as a result of an Entourage Activation."
+            },
+            {
+                "name": "Towering Presence",
+                "description": "Stands in this Regiment counts as being Size 4."
+            },
+            {
+                "name": "March of Giants",
+                "description": "This Regiment's March Characteristic and March Distance cannot be negatively affected by abilities, Special Rules or Terrain."
+            }
+        ],
+        "numericSpecialRules": {
+            "brutalImpact": 2,
+            "cleave": 1,
+            "impact": 6,
+            "trample": 8
+        },
+        "drawEvents": [],
+        "points": 290
+    },
+    {
+        "name": "Matriarch Queen",
+        "faction": "W'adrhun",
+        "type": "infantry",
+        "regimentClass": "character",
+        "characteristics": {
+            "march": null,
+            "volley": 2,
+            "clash": 3,
+            "attacks": 5,
+            "wounds": 5,
+            "resolve": 4,
+            "defense": 3,
+            "evasion": 0
+        },
+        "specialRules": [
+            {
+                "name": "Cleave (1)",
+                "description": "Enemy Stands in contact with this Stand reduce their Defense Characteristic by 1 when making Defense rolls against Hits inflicted by this Stand."
+            },
+            {
+                "name": "Stoic",
+                "description": "The Regiment this Character Stand is currently attached to, gains the Indomitable (1) Special Rule."
+            }
+        ],
+        "numericSpecialRules": {
+            "cleave": 1
+        },
+        "drawEvents": [
+            {
+                "name": "To The Last Breath",
+                "description": "Select a friendly non-Monster Regiment within 10\" of this Character Stand. That Regiment Heals 4 Wounds. Each Regiment may be the target of To the Last Breath Draw Event only once per Round."
+            }
+        ],
+        "points": 100
+    },
+    {
+        "name": "Chieftain",
+        "faction": "W'adrhun",
+        "type": "infantry",
+        "regimentClass": "character",
+        "characteristics": {
+            "march": null,
+            "volley": 1,
+            "clash": 3,
+            "attacks": 6,
+            "wounds": 5,
+            "resolve": 3,
+            "defense": 3,
+            "evasion": 0
+        },
+        "specialRules": [
+            {
+                "name": "Cleave (2)",
+                "description": "Enemy Stands in contact with this Stand reduce their Defense Characteristic by 2 when making Defense rolls against Hits inflicted by this Stand."
+            },
+            {
+                "name": "Flurry",
+                "description": "This Stand may re-roll failed Hit rolls when performing a Clash Action."
+            },
+            {
+                "name": "Tribe's Pride",
+                "description": "The Regiment this [Character] is currently attached to gains the Flurry Special Rule."
+            },
+            {
+                "name": "Crushing Force",
+                "description": "While a Friendly [The Tribes] Regiments is within 8\" of this Character Stand gains the Trample (1) Special Rule."
+            },
+            {
+                "name": "Tempo",
+                "description": "Friendly [The Tribes] Regiments in this [Character] Warband gain the Vanguard (3) Special Rule."
+            }
+        ],
+        "numericSpecialRules": {
+            "cleave": 2
+        },
+        "drawEvents": [],
+        "points": 100
+    },
+    {
+        "name": "Thunder Chieftain",
+        "faction": "W'adrhun",
+        "type": "cavalry",
+        "regimentClass": "character",
+        "characteristics": {
+            "march": null,
+            "volley": 1,
+            "clash": 3,
+            "attacks": 6,
+            "wounds": 6,
+            "resolve": 3,
+            "defense": 4,
+            "evasion": 0
+        },
+        "specialRules": [
+            {
+                "name": "Brutal Impact (2)",
+                "description": "When this Stand performs a successful Charge Action, it inflicts automatic Hits that reduce the Enemy Stands' Defense Characteristic by 2 when defending against them."
+            },
+            {
+                "name": "Cleave (2)",
+                "description": "Enemy Stands in contact with this Stand reduce their Defense Characteristic by 2 when making Defense rolls against Hits inflicted by this Stand."
+            },
+            {
+                "name": "Impact (4)",
+                "description": "When this Stand performs a successful Charge Action, before its Clash Action, it inflicts a number of automatic Hits equal to its Impact value."
+            },
+            {
+                "name": "Linebreaker",
+                "description": "This Regiment may Charge and pass through Enemy Regiments with the Fodder Special Rule."
+            },
+            {
+                "name": "Trample (2)",
+                "description": "As part of a Move Action, this Stand may move through Enemy Stands with the Fodder Special Rule, inflicting 2 automatic Hits on them."
+            },
+            {
+                "name": "Ride the Lightning",
+                "description": "Thunder Rider Regiments in this Warband gain the Flank Special Rule."
+            }
+        ],
+        "numericSpecialRules": {
+            "brutalImpact": 2,
+            "cleave": 2,
+            "impact": 4,
+            "trample": 2
+        },
+        "drawEvents": [],
+        "points": 150
+    },
+    {
+        "name": "Predator",
+        "faction": "W'adrhun",
+        "type": "infantry",
+        "regimentClass": "character",
+        "characteristics": {
+            "march": null,
+            "volley": 3,
+            "clash": 3,
+            "attacks": 6,
+            "wounds": 5,
+            "resolve": 3,
+            "defense": 2,
+            "evasion": 1
+        },
+        "specialRules": [
+            {
+                "name": "Barrage (4) (18\", Armor Piercing (1), Deadly Shot)",
+                "description": "This Regiment may perform a Volley Action, making a number of Attack rolls equal to its Barrage value. The Barrage has Armor Piercing (1) and Deadly Shot special rules."
+            },
+            {
+                "name": "Fiend Hunter",
+                "description": "This Regiment may re-roll all failed Hit rolls against [Fiend] targets."
+            },
+            {
+                "name": "Ceaseless Hunt",
+                "description": "The Regiment this Character Stand is currently attached to gains the Fire and Advance Draw Event."
+            }
+        ],
+        "numericSpecialRules": {
+            "barrage": 4,
+            "barrageRange": 18,
+            "armorPiercing": true,
+            "armorPiercingValue": 1
+        },
+        "drawEvents": [],
+        "points": 100
+    },
+    {
+        "name": "Mounted Predator",
+        "faction": "W'adrhun",
+        "type": "cavalry",
+        "regimentClass": "character",
+        "characteristics": {
+            "march": null,
+            "volley": 3,
+            "clash": 3,
+            "attacks": 6,
+            "wounds": 6,
+            "resolve": 3,
+            "defense": 2,
+            "evasion": 1
+        },
+        "specialRules": [
+            {
+                "name": "Barrage (3) (18\", Armor Piercing (1), Deadly Shot)",
+                "description": "This Regiment may perform a Volley Action, making a number of Attack rolls equal to its Barrage value. The Barrage has Armor Piercing (1) and Deadly Shot special rules."
+            },
+            {
+                "name": "Fiend Hunter",
+                "description": "This Regiment may re-roll all failed Hit rolls against [Fiend] targets."
+            },
+            {
+                "name": "Expert Hunters",
+                "description": "Friendly [The Speakers] Regiments in this Warband ignore the effects of Hindering, Dangerous, Broken and Perilous Terrain."
+            }
+        ],
+        "numericSpecialRules": {
+            "barrage": 3,
+            "barrageRange": 18,
+            "armorPiercing": true,
+            "armorPiercingValue": 1
+        },
+        "drawEvents": [],
+        "points": 100
+    },
+    {
+        "name": "Winglord Predator",
+        "faction": "W'adrhun",
+        "type": "monster",
+        "regimentClass": "character",
+        "characteristics": {
+            "march": 9,
+            "volley": 3,
+            "clash": 3,
+            "attacks": 11,
+            "wounds": 16,
+            "resolve": 3,
+            "defense": 3,
+            "evasion": 2
+        },
+        "specialRules": [
+            {
+                "name": "Irregular",
+                "description": "This Regiment suffers a -1 modifier to its Resolve Characteristic for each lost Stand."
+            },
+            {
+                "name": "Barrage (7) (14\", Armor Piercing (1))",
+                "description": "This Regiment may perform a Volley Action, making a number of Attack rolls equal to its Barrage value. The Barrage has Armor Piercing (1)."
+            },
+            {
+                "name": "Fly",
+                "description": "A Regiment containing only Stands with this Special Rule can March and Charge over other Regiments."
+            },
+            {
+                "name": "Cleave (1)",
+                "description": "Enemy Stands in contact with this Stand reduce their Defense Characteristic by 1 when making Defense rolls against Hits inflicted by this Stand."
+            },
+            {
+                "name": "Impact (6)",
+                "description": "When this Stand performs a successful Charge Action, before its Clash Action, it inflicts a number of automatic Hits equal to its Impact value."
+            },
+            {
+                "name": "Mounted Hunters",
+                "description": "This Regiment may perform a free Volley Action during its Activation."
+            },
+            {
+                "name": "Bird of Prey",
+                "description": "Once per Round, when this Regiment Marches over a Size 1 Enemy Regiment, it inflicts 5 Hits. These Hits count as originating from the Enemy Regiment's Flank and do not trigger Morale Tests."
+            },
+            {
+                "name": "Death from Above",
+                "description": "This Regiment gains the Brutal Impact (2) Special Rule until the end of the Round when performing a successful Charge on an Enemy Regiment's Flank or Rear Arc."
+            },
+            {
+                "name": "Predatory Shriek [Chant]",
+                "description": "When the Regiment Chants the Battlecry it gains the Terrifying (+1) Special Rule until the end of the Round."
+            }
+        ],
+        "numericSpecialRules": {
+            "barrage": 7,
+            "barrageRange": 14,
+            "armorPiercing": true,
+            "armorPiercingValue": 1,
+            "cleave": 1,
+            "impact": 6
+        },
+        "drawEvents": [],
+        "points": 210,
+        "note": "The Winglord Predator is considered to be a Regiment by itself in addition to it also being a Character Stand. Cannot purchase any Artefacts or Masteries."
+    },
+    {
+        "name": "Scion of Conquest",
+        "faction": "W'adrhun",
+        "type": "infantry",
+        "regimentClass": "character",
+        "characteristics": {
+            "march": null,
+            "volley": 1,
+            "clash": 3,
+            "attacks": 5,
+            "wounds": 5,
+            "resolve": 4,
+            "defense": 2,
+            "evasion": 2
+        },
+        "specialRules": [
+            {
+                "name": "Cleave (2)",
+                "description": "Enemy Stands in contact with this Stand reduce their Defense Characteristic by 2 when making Defense rolls against Hits inflicted by this Stand."
+            },
+            {
+                "name": "Priest (6)",
+                "description": "This model may cast spells with 6 dice."
+            },
+            {
+                "name": "Cult of Conquest",
+                "description": "This [Character] counts as having chosen to follow the Cult of Conquest even if it is not the Army's Warlord."
+            }
+        ],
+        "numericSpecialRules": {
+            "cleave": 2,
+            "spellDice": 6
+        },
+        "drawEvents": [],
+        "points": 110
+    },
+    {
+        "name": "Scion of War",
+        "faction": "W'adrhun",
+        "type": "brute",
+        "regimentClass": "character",
+        "characteristics": {
+            "march": null,
+            "volley": 1,
+            "clash": 3,
+            "attacks": 6,
+            "wounds": 7,
+            "resolve": 4,
+            "defense": 3,
+            "evasion": 1
+        },
+        "specialRules": [
+            {
+                "name": "Cleave (2)",
+                "description": "Enemy Stands in contact with this Stand reduce their Defense Characteristic by 2 when making Defense rolls against Hits inflicted by this Stand."
+            },
+            {
+                "name": "Impact (3)",
+                "description": "When this Stand performs a successful Charge Action, before its Clash Action, it inflicts a number of automatic Hits equal to its Impact value."
+            },
+            {
+                "name": "Linebreaker",
+                "description": "This Regiment may Charge and pass through Enemy Regiments with the Fodder Special Rule."
+            },
+            {
+                "name": "Relentless Blows",
+                "description": "When this Stand performs a Clash Action, each Hit Roll of \"1\" causes an additional automatic Hit on the Target."
+            },
+            {
+                "name": "Cult of War",
+                "description": "This [Character] counts as having chosen to follow the Cult of War. In addition, Friendly Brute Regiments in this Warband gain the Relentless Blows Special Rule."
+            }
+        ],
+        "numericSpecialRules": {
+            "cleave": 2,
+            "impact": 3
+        },
+        "drawEvents": [],
+        "points": 140
+    },
+    {
+        "name": "Scion of Death",
+        "faction": "W'adrhun",
+        "type": "infantry",
+        "regimentClass": "character",
+        "characteristics": {
+            "march": null,
+            "volley": 1,
+            "clash": 3,
+            "attacks": 7,
+            "wounds": 5,
+            "resolve": 4,
+            "defense": 2,
+            "evasion": 2
+        },
+        "specialRules": [
+            {
+                "name": "Flawless Strikes",
+                "description": "When this Stand performs a Clash Action, all Hit Rolls of \"1\" count the Target's Defense as 0 for that Attack."
+            },
+            {
+                "name": "Flurry",
+                "description": "This Stand may re-roll failed Hit rolls when performing a Clash Action."
+            },
+            {
+                "name": "Cult of Death",
+                "description": "This [Character] counts as having chosen to follow the Cult of Death. In addition, Infantry Regiments in this Warband add +1 to their Evasion Characteristics (to a maximum of 3)."
+            }
+        ],
+        "numericSpecialRules": {},
+        "drawEvents": [],
+        "points": 120
+    },
+    {
+        "name": "Quatl",
+        "faction": "W'adrhun",
+        "type": "monster",
+        "regimentClass": "medium",
+        "characteristics": {
+            "march": 9,
+            "volley": 3,
+            "clash": 2,
+            "attacks": 9,
+            "wounds": 15,
+            "resolve": 3,
+            "defense": 3,
+            "evasion": 2
+        },
+        "specialRules": [
+            {
+                "name": "Irregular",
+                "description": "This Regiment suffers a -1 modifier to its Resolve Characteristic for each lost Stand."
+            },
+            {
+                "name": "Barrage (6) (14\", Armor Piercing (1))",
+                "description": "This Regiment may perform a Volley Action, making a number of Attack rolls equal to its Barrage value. The Barrage has Armor Piercing (1)."
+            },
+            {
+                "name": "Fly",
+                "description": "A Regiment containing only Stands with this Special Rule can March and Charge over other Regiments."
+            },
+            {
+                "name": "Cleave (1)",
+                "description": "Enemy Stands in contact with this Stand reduce their Defense Characteristic by 1 when making Defense rolls against Hits inflicted by this Stand."
+            },
+            {
+                "name": "Impact (6)",
+                "description": "When this Stand performs a successful Charge Action, before its Clash Action, it inflicts a number of automatic Hits equal to its Impact value."
+            },
+            {
+                "name": "Mounted Hunters",
+                "description": "This Regiment may perform a free Volley Action during its Activation."
+            },
+            {
+                "name": "Bird of Prey",
+                "description": "Once per Round, when this Regiment Marches over a Size 1 Enemy Regiment, it inflicts 5 Hits. These Hits count as originating from the Enemy Regiment's Flank and do not trigger Morale Tests."
+            },
+            {
+                "name": "Death from Above",
+                "description": "This Regiment gains the Brutal Impact (2) Special Rule until the end of the Round when performing a successful Charge on an Enemy Regiment's Flank or Rear Arc."
+            }
+        ],
+        "numericSpecialRules": {
+            "barrage": 6,
+            "barrageRange": 14,
+            "armorPiercing": true,
+            "armorPiercingValue": 1,
+            "cleave": 1,
+            "impact": 6
+        },
+        "drawEvents": [],
+        "points": 170
+    },
+    {
+        "name": "Drum Beast",
+        "faction": "W'adrhun",
+        "type": "monster",
+        "regimentClass": "heavy",
+        "characteristics": {
+            "march": 6,
+            "volley": 2,
+            "clash": 2,
+            "attacks": 12,
+            "wounds": 26,
+            "resolve": 4,
+            "defense": 3,
+            "evasion": 0
+        },
+        "specialRules": [
+            {
+                "name": "Brutal Impact (2)",
+                "description": "When this Stand performs a successful Charge Action, it inflicts automatic Hits that reduce the Enemy Stands' Defense Characteristic by 2 when defending against them."
+            },
+            {
+                "name": "Cleave (1)",
+                "description": "Enemy Stands in contact with this Stand reduce their Defense Characteristic by 1 when making Defense rolls against Hits inflicted by this Stand."
+            },
+            {
+                "name": "Impact (6)",
+                "description": "When this Stand performs a successful Charge Action, before its Clash Action, it inflicts a number of automatic Hits equal to its Impact value."
+            },
+            {
+                "name": "Linebreaker",
+                "description": "This Regiment may Charge and pass through Enemy Regiments with the Fodder Special Rule."
+            },
+            {
+                "name": "Fearless",
+                "description": "This Regiment is immune to the effects of the Terrifying Special Rule."
+            },
+            {
+                "name": "Trample (8)",
+                "description": "As part of a Move Action, this Stand may move through Enemy Stands with the Fodder Special Rule, inflicting 8 automatic Hits on them."
+            },
+            {
+                "name": "Relentless Blows",
+                "description": "When this Stand performs a Clash Action, each Hit Roll of \"1\" causes an additional automatic Hit on the Target."
+            },
+            {
+                "name": "Oblivious",
+                "description": "This Regiment does not suffer penalties to its Clash value for charging through Hindering Terrain."
+            },
+            {
+                "name": "Inspired",
+                "description": "This Regiment adds +1 to its Clash Characteristic until the end of the Regiment's Activation."
+            },
+            {
+                "name": "Dominating Presence [Chant]",
+                "description": "When this Regiment Chants the Battlecry it gains the Unyielding Special Rule until the end of the Round. In addition, until the end of the Round, the Monster Stand ignores the effects of Special Rules or Abilities that would have it count as less Stands for the purposes of Seizing Objective Zones or none at all."
+            },
+            {
+                "name": "Towering Presence",
+                "description": "Stands in this Regiment counts as being Size 4."
+            },
+            {
+                "name": "March of Giants",
+                "description": "This Regiment's March Characteristic and March Distance cannot be negatively affected by abilities, Special Rules or Terrain."
+            }
+        ],
+        "numericSpecialRules": {
+            "brutalImpact": 2,
+            "cleave": 1,
+            "impact": 6,
+            "trample": 8
+        },
+        "drawEvents": [],
+        "points": 310,
+        "note": "This Monster Stand counts as 6 for the purposes of Seizing Objective Zones."
+    }
+]
