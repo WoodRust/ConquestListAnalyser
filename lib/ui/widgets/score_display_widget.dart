@@ -18,11 +18,9 @@ class ScoreDisplayWidget extends StatelessWidget {
           // Army Info Section
           _buildInfoSection(),
           const SizedBox(height: 20),
-
           // Scores Section
           _buildScoresSection(),
           const SizedBox(height: 20),
-
           // Regiment Breakdown
           _buildRegimentBreakdown(),
         ],
@@ -86,6 +84,7 @@ class ScoreDisplayWidget extends StatelessWidget {
           ),
         ),
         const SizedBox(height: 12),
+        // First row of score cards
         Row(
           children: [
             Expanded(
@@ -105,13 +104,27 @@ class ScoreDisplayWidget extends StatelessWidget {
                 Colors.green,
               ),
             ),
-            const SizedBox(width: 12),
+          ],
+        ),
+        const SizedBox(height: 12),
+        // Second row of score cards
+        Row(
+          children: [
             Expanded(
               child: _buildScoreCard(
                 'Expected Hit Volume',
                 score.expectedHitVolume.toStringAsFixed(1),
                 Icons.gps_fixed,
                 Colors.blue,
+              ),
+            ),
+            const SizedBox(width: 12),
+            Expanded(
+              child: _buildScoreCard(
+                'Cleave Rating',
+                score.cleaveRating.toStringAsFixed(1),
+                Icons.cut,
+                Colors.orange,
               ),
             ),
           ],
@@ -210,6 +223,10 @@ class ScoreDisplayWidget extends StatelessWidget {
                         flex: 1,
                         child: Text('EHV',
                             style: TextStyle(fontWeight: FontWeight.bold))),
+                    Expanded(
+                        flex: 1,
+                        child: Text('Cleave',
+                            style: TextStyle(fontWeight: FontWeight.bold))),
                   ],
                 ),
               ),
@@ -218,7 +235,6 @@ class ScoreDisplayWidget extends StatelessWidget {
                 final index = entry.key;
                 final regiment = entry.value;
                 final isEven = index % 2 == 0;
-
                 return Container(
                   padding: const EdgeInsets.all(12),
                   color: isEven ? null : Colors.grey[50],
@@ -260,6 +276,12 @@ class ScoreDisplayWidget extends StatelessWidget {
                           flex: 1,
                           child: Text(regiment
                               .calculateExpectedHitVolume(
+                                  armyRegiments: score.armyList.regiments)
+                              .toStringAsFixed(1))),
+                      Expanded(
+                          flex: 1,
+                          child: Text(regiment
+                              .calculateCleaveRating(
                                   armyRegiments: score.armyList.regiments)
                               .toStringAsFixed(1))),
                     ],

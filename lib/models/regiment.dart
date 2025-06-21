@@ -23,6 +23,12 @@ class Regiment {
   /// Expected hit volume using army context (for display)
   double get expectedHitVolume => calculateExpectedHitVolume();
 
+  /// Cleave value for this regiment from numeric special rules
+  int get cleaveValue => unit.numericSpecialRules['cleave'] as int? ?? 0;
+
+  /// Calculate cleave rating for this regiment (Expected Hit Volume * Cleave)
+  double get cleaveRating => expectedHitVolume * cleaveValue;
+
   /// Calculate expected hit volume for this regiment
   double calculateExpectedHitVolume({List<Regiment>? armyRegiments}) {
     // Base attacks = attacks per stand * number of stands
@@ -50,10 +56,8 @@ class Regiment {
     if (!hasFlurry && armyRegiments != null) {
       final hasVargyrLord = armyRegiments
           .any((regiment) => regiment.unit.name.toLowerCase() == 'vargyr lord');
-
       if (hasVargyrLord) {
         final benefitsFromFeralHunters = unit.name.toLowerCase() == 'werewargs';
-
         if (benefitsFromFeralHunters) {
           hasFlurry = true;
         }
@@ -71,7 +75,13 @@ class Regiment {
     return expectedHits;
   }
 
+  /// Calculate cleave rating for this regiment with army context
+  double calculateCleaveRating({List<Regiment>? armyRegiments}) {
+    final hitVolume = calculateExpectedHitVolume(armyRegiments: armyRegiments);
+    return hitVolume * cleaveValue;
+  }
+
   @override
   String toString() =>
-      'Regiment(${unit.name}, stands: $stands, cost: $pointsCost, wounds: $totalWounds)';
+      'Regiment(${unit.name}, stands: $stands, cost: $pointsCost, wounds: $totalWounds, cleave: $cleaveValue)';
 }

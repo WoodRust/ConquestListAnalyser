@@ -9,12 +9,14 @@ class ScoringEngine {
     final totalWounds = _calculateTotalWounds(armyList);
     final pointsPerWound = _calculatePointsPerWound(armyList, totalWounds);
     final expectedHitVolume = _calculateExpectedHitVolume(armyList);
+    final cleaveRating = _calculateCleaveRating(armyList);
 
     return ListScore(
       armyList: armyList,
       totalWounds: totalWounds,
       pointsPerWound: pointsPerWound,
       expectedHitVolume: expectedHitVolume,
+      cleaveRating: cleaveRating,
       calculatedAt: DateTime.now(),
     );
   }
@@ -44,6 +46,16 @@ class ScoringEngine {
       return total +
           regiment.calculateExpectedHitVolume(
               armyRegiments: armyList.regiments);
+    });
+  }
+
+  /// Calculate total cleave rating for the entire list
+  double _calculateCleaveRating(ArmyList armyList) {
+    return armyList.regiments.fold(0.0, (total, regiment) {
+      // Include ALL regiments (including characters) in cleave rating calculation
+      // Pass army context for special rule interactions
+      return total +
+          regiment.calculateCleaveRating(armyRegiments: armyList.regiments);
     });
   }
 
