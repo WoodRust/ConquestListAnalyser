@@ -10,6 +10,8 @@ void main() {
     late Unit testUnit1;
     late Unit testUnit2;
     late Unit testUnitWithCleave;
+    late Unit testUnitWithBarrage;
+    late Unit testUnitWithBoth;
 
     setUp(() {
       scoringEngine = ScoringEngine();
@@ -30,7 +32,7 @@ void main() {
           evasion: 1,
         ),
         specialRules: const [],
-        numericSpecialRules: const {}, // No cleave
+        numericSpecialRules: const {}, // No cleave or barrage
         drawEvents: const [],
         points: 120,
       );
@@ -51,7 +53,7 @@ void main() {
           evasion: 1,
         ),
         specialRules: const [],
-        numericSpecialRules: const {}, // No cleave
+        numericSpecialRules: const {}, // No cleave or barrage
         drawEvents: const [],
         points: 170,
       );
@@ -75,6 +77,48 @@ void main() {
         numericSpecialRules: const {'cleave': 2}, // Has cleave(2)
         drawEvents: const [],
         points: 200,
+      );
+
+      testUnitWithBarrage = Unit(
+        name: 'Archer Unit',
+        faction: 'Test',
+        type: 'infantry',
+        regimentClass: 'light',
+        characteristics: const UnitCharacteristics(
+          march: 6,
+          volley: 3, // Good volley for ranged combat
+          clash: 2,
+          attacks: 3,
+          wounds: 4,
+          resolve: 2,
+          defense: 1,
+          evasion: 1,
+        ),
+        specialRules: const [],
+        numericSpecialRules: const {'barrage': 2}, // Has barrage(2)
+        drawEvents: const [],
+        points: 140,
+      );
+
+      testUnitWithBoth = Unit(
+        name: 'Hybrid Unit',
+        faction: 'Test',
+        type: 'infantry',
+        regimentClass: 'medium',
+        characteristics: const UnitCharacteristics(
+          march: 5,
+          volley: 4,
+          clash: 3,
+          attacks: 4,
+          wounds: 5,
+          resolve: 3,
+          defense: 2,
+          evasion: 1,
+        ),
+        specialRules: const [],
+        numericSpecialRules: const {'cleave': 1, 'barrage': 1}, // Has both
+        drawEvents: const [],
+        points: 180,
       );
     });
 
@@ -133,17 +177,78 @@ void main() {
       );
 
       final score = scoringEngine.calculateScores(armyList);
-
       // Test unit with cleave should contribute to cleave rating
       // Unit with cleave: 2 stands, 5 attacks per stand = 10 attacks
       // Hit chance with clash 3 = (3+1)/6 = 4/6 = 0.667
       // Expected hits = 10 * 0.667 = 6.67
       // Cleave rating = 6.67 * 2 = 13.33
-
       // Test unit 1: 1 stand, 4 attacks, clash 2 = (2+1)/6 = 0.5
       // Expected hits = 4 * 0.5 = 2, cleave = 0, so cleave rating = 0
-
       expect(score.cleaveRating, closeTo(13.33, 0.1));
+    });
+
+    test('should calculate ranged expected hits correctly', () {
+      final regiments = [
+        Regiment(
+            unit: testUnitWithBarrage,
+            stands: 2,
+            pointsCost: 280), // Barrage(2)
+        Regiment(unit: testUnit1, stands: 1, pointsCost: 120), // No barrage
+      ];
+
+      final armyList = ArmyList(
+        name: 'Test Army',
+        faction: 'Test',
+        totalPoints: 400,
+        pointsLimit: 2000,
+        regiments: regiments,
+      );
+
+      final score = scoringEngine.calculateScores(armyList);
+      // Unit with barrage: 2 stands * 2 barrage = 4 total barrage
+      // Volley 3 = 3/6 = 0.5 hit chance
+      // Expected ranged hits = 4 * 0.5 = 2.0
+      // Test unit 1: no barrage, so 0 ranged hits
+      expect(score.rangedExpectedHits, closeTo(2.0, 0.1));
+    });
+
+    test('should calculate mixed army with all capabilities', () {
+      final regiments = [
+        Regiment(
+            unit: testUnitWithBoth,
+            stands: 2,
+            pointsCost: 360), // Both cleave and barrage
+        Regiment(
+            unit: testUnitWithCleave,
+            stands: 1,
+            pointsCost: 200), // Only cleave
+        Regiment(
+            unit: testUnitWithBarrage,
+            stands: 1,
+            pointsCost: 140), // Only barrage
+        Regiment(unit: testUnit1, stands: 2, pointsCost: 160), // Neither
+      ];
+
+      final armyList = ArmyList(
+        name: 'Mixed Army',
+        faction: 'Test',
+        totalPoints: 860,
+        pointsLimit: 2000,
+        regiments: regiments,
+      );
+
+      final score = scoringEngine.calculateScores(armyList);
+
+      // Should have non-zero values for all metrics
+      expect(score.totalWounds, greaterThan(0));
+      expect(score.pointsPerWound, greaterThan(0.0));
+      expect(score.expectedHitVolume, greaterThan(0.0));
+      expect(score.cleaveRating, greaterThan(0.0)); // From cleave units
+      expect(score.rangedExpectedHits, greaterThan(0.0)); // From barrage units
+
+      // Verify the score includes ranged hits in the shareable text
+      final shareableText = score.toShareableText();
+      expect(shareableText, contains('Ranged Expected Hits'));
     });
 
     test('should handle empty army list', () {
@@ -160,16 +265,17 @@ void main() {
       expect(score.pointsPerWound, equals(0.0));
       expect(score.expectedHitVolume, equals(0.0));
       expect(score.cleaveRating, equals(0.0));
+      expect(score.rangedExpectedHits, equals(0.0));
     });
 
-    test('should handle units without cleave correctly', () {
+    test('should handle units without cleave or barrage correctly', () {
       final regiments = [
         Regiment(unit: testUnit1, stands: 2, pointsCost: 160),
         Regiment(unit: testUnit2, stands: 1, pointsCost: 170),
       ];
 
       final armyList = ArmyList(
-        name: 'No Cleave Army',
+        name: 'No Special Rules Army',
         faction: 'Nords',
         totalPoints: 330,
         pointsLimit: 2000,
@@ -177,25 +283,140 @@ void main() {
       );
 
       final score = scoringEngine.calculateScores(armyList);
-
-      // Both units have no cleave, so cleave rating should be 0
+      // Both units have no cleave or barrage, so should be 0
       expect(score.cleaveRating, equals(0.0));
-
+      expect(score.rangedExpectedHits, equals(0.0));
       // But should still have expected hit volume
       expect(score.expectedHitVolume, greaterThan(0.0));
     });
 
-    test('should calculate regiment cleave values correctly', () {
-      final regimentWithCleave =
-          Regiment(unit: testUnitWithCleave, stands: 1, pointsCost: 200);
-      final regimentWithoutCleave =
-          Regiment(unit: testUnit1, stands: 1, pointsCost: 120);
+    test('should not give ranged capability to leaders without barrage', () {
+      // Create a leader unit with no barrage capability
+      final leaderWithoutBarrage = Unit(
+        name: 'Melee Leader',
+        faction: 'Test',
+        type: 'character',
+        regimentClass: 'character',
+        characteristics: const UnitCharacteristics(
+          march: 6,
+          volley: 2,
+          clash: 4,
+          attacks: 6,
+          wounds: 3,
+          resolve: 4,
+          defense: 3,
+          evasion: 2,
+        ),
+        specialRules: const [
+          SpecialRule(
+            name: 'Leader',
+            description: 'This unit has a leader.',
+          )
+        ],
+        numericSpecialRules: const {'cleave': 2}, // Has cleave but no barrage
+        drawEvents: const [],
+        points: 120,
+      );
 
-      expect(regimentWithCleave.cleaveValue, equals(2));
-      expect(regimentWithoutCleave.cleaveValue, equals(0));
+      final regiments = [
+        Regiment(unit: leaderWithoutBarrage, stands: 1, pointsCost: 120),
+        Regiment(
+            unit: testUnit1, stands: 2, pointsCost: 160), // Also no barrage
+      ];
 
-      expect(regimentWithCleave.cleaveRating, greaterThan(0.0));
-      expect(regimentWithoutCleave.cleaveRating, equals(0.0));
+      final armyList = ArmyList(
+        name: 'Melee Army',
+        faction: 'Test',
+        totalPoints: 280,
+        pointsLimit: 2000,
+        regiments: regiments,
+      );
+
+      final score = scoringEngine.calculateScores(armyList);
+
+      // Should have cleave rating from the leader
+      expect(score.cleaveRating, greaterThan(0.0));
+      // But no ranged hits because no units have barrage capability
+      expect(score.rangedExpectedHits, equals(0.0));
+      // Should still have expected hit volume from melee combat
+      expect(score.expectedHitVolume, greaterThan(0.0));
+    });
+
+    test('should include ranged hits in shareable text format', () {
+      final regiments = [
+        Regiment(unit: testUnitWithBarrage, stands: 2, pointsCost: 280),
+      ];
+
+      final armyList = ArmyList(
+        name: 'Archer Army',
+        faction: 'Test',
+        totalPoints: 280,
+        pointsLimit: 2000,
+        regiments: regiments,
+      );
+
+      final score = scoringEngine.calculateScores(armyList);
+      final shareableText = score.toShareableText();
+
+      expect(shareableText, contains('Army List Analysis: Archer Army'));
+      expect(shareableText, contains('Faction: Test'));
+      expect(shareableText, contains('Points: 280/2000'));
+      expect(shareableText, contains('Total Wounds:'));
+      expect(shareableText, contains('Points per Wound:'));
+      expect(shareableText, contains('Expected Hit Volume:'));
+      expect(shareableText, contains('Cleave Rating:'));
+      expect(shareableText, contains('Ranged Expected Hits:'));
+      expect(shareableText, contains('Calculated:'));
+    });
+
+    test('should calculate complex army with characters correctly', () {
+      // Create a character unit (characters are not counted in wounds)
+      final characterUnit = Unit(
+        name: 'Test Character',
+        faction: 'Test',
+        type: 'character',
+        regimentClass: 'character',
+        characteristics: const UnitCharacteristics(
+          march: 6,
+          volley: 2,
+          clash: 4,
+          attacks: 6,
+          wounds: 3,
+          resolve: 4,
+          defense: 3,
+          evasion: 2,
+        ),
+        specialRules: const [],
+        numericSpecialRules: const {'cleave': 3, 'barrage': 1},
+        drawEvents: const [],
+        points: 150,
+      );
+
+      final regiments = [
+        Regiment(unit: characterUnit, stands: 1, pointsCost: 150), // Character
+        Regiment(
+            unit: testUnitWithBoth, stands: 2, pointsCost: 360), // Regular unit
+      ];
+
+      final armyList = ArmyList(
+        name: 'Army with Character',
+        faction: 'Test',
+        totalPoints: 510,
+        pointsLimit: 2000,
+        regiments: regiments,
+      );
+
+      final score = scoringEngine.calculateScores(armyList);
+
+      // Wounds should only count non-character regiments
+      expect(score.totalWounds,
+          equals(10)); // 2 stands * 5 wounds from testUnitWithBoth
+
+      // But hit volumes and ratings should include character
+      expect(score.expectedHitVolume, greaterThan(0.0));
+      expect(score.cleaveRating, greaterThan(0.0)); // Both units have cleave
+      expect(score.rangedExpectedHits,
+          greaterThan(0.0)); // Both units have barrage
     });
   });
 }

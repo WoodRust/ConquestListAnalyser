@@ -10,6 +10,7 @@ class ScoringEngine {
     final pointsPerWound = _calculatePointsPerWound(armyList, totalWounds);
     final expectedHitVolume = _calculateExpectedHitVolume(armyList);
     final cleaveRating = _calculateCleaveRating(armyList);
+    final rangedExpectedHits = _calculateRangedExpectedHits(armyList);
 
     return ListScore(
       armyList: armyList,
@@ -17,6 +18,7 @@ class ScoringEngine {
       pointsPerWound: pointsPerWound,
       expectedHitVolume: expectedHitVolume,
       cleaveRating: cleaveRating,
+      rangedExpectedHits: rangedExpectedHits,
       calculatedAt: DateTime.now(),
     );
   }
@@ -56,6 +58,14 @@ class ScoringEngine {
       // Pass army context for special rule interactions
       return total +
           regiment.calculateCleaveRating(armyRegiments: armyList.regiments);
+    });
+  }
+
+  /// Calculate total ranged expected hits for the entire list
+  double _calculateRangedExpectedHits(ArmyList armyList) {
+    return armyList.regiments.fold(0.0, (total, regiment) {
+      // Include ALL regiments (including characters) in ranged calculation
+      return total + regiment.calculateRangedExpectedHits();
     });
   }
 

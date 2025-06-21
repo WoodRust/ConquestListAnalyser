@@ -7,6 +7,7 @@ class ListScore {
   final double pointsPerWound;
   final double expectedHitVolume;
   final double cleaveRating;
+  final double rangedExpectedHits;
   final DateTime calculatedAt;
 
   const ListScore({
@@ -15,6 +16,7 @@ class ListScore {
     required this.pointsPerWound,
     required this.expectedHitVolume,
     required this.cleaveRating,
+    required this.rangedExpectedHits,
     required this.calculatedAt,
   });
 
@@ -30,6 +32,7 @@ Total Wounds: $totalWounds
 Points per Wound: ${pointsPerWound.toStringAsFixed(2)}
 Expected Hit Volume: ${expectedHitVolume.toStringAsFixed(1)}
 Cleave Rating: ${cleaveRating.toStringAsFixed(1)}
+Ranged Expected Hits: ${rangedExpectedHits.toStringAsFixed(1)}
 
 Calculated: ${calculatedAt.toString().split('.')[0]}
 ''';
@@ -37,5 +40,5 @@ Calculated: ${calculatedAt.toString().split('.')[0]}
 
   @override
   String toString() =>
-      'ListScore(wounds: $totalWounds, ppw: ${pointsPerWound.toStringAsFixed(2)}, ehv: ${expectedHitVolume.toStringAsFixed(1)}, cleave: ${cleaveRating.toStringAsFixed(1)})';
+      'ListScore(wounds: $totalWounds, ppw: ${pointsPerWound.toStringAsFixed(2)}, ehv: ${expectedHitVolume.toStringAsFixed(1)}, cleave: ${cleaveRating.toStringAsFixed(1)}, ranged: ${rangedExpectedHits.toStringAsFixed(1)})';
 }

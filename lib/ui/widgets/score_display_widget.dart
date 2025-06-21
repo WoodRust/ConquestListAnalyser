@@ -129,6 +129,14 @@ class ScoreDisplayWidget extends StatelessWidget {
             ),
           ],
         ),
+        const SizedBox(height: 12),
+        // Third row - Ranged Expected Hits (full width)
+        _buildScoreCard(
+          'Ranged Expected Hits',
+          score.rangedExpectedHits.toStringAsFixed(1),
+          Icons.my_location,
+          Colors.purple,
+        ),
       ],
     );
   }
@@ -227,6 +235,10 @@ class ScoreDisplayWidget extends StatelessWidget {
                         flex: 1,
                         child: Text('Cleave',
                             style: TextStyle(fontWeight: FontWeight.bold))),
+                    Expanded(
+                        flex: 1,
+                        child: Text('Ranged',
+                            style: TextStyle(fontWeight: FontWeight.bold))),
                   ],
                 ),
               ),
@@ -283,6 +295,11 @@ class ScoreDisplayWidget extends StatelessWidget {
                           child: Text(regiment
                               .calculateCleaveRating(
                                   armyRegiments: score.armyList.regiments)
+                              .toStringAsFixed(1))),
+                      Expanded(
+                          flex: 1,
+                          child: Text(regiment
+                              .calculateRangedExpectedHits()
                               .toStringAsFixed(1))),
                     ],
                   ),

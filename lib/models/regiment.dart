@@ -26,8 +26,14 @@ class Regiment {
   /// Cleave value for this regiment from numeric special rules
   int get cleaveValue => unit.numericSpecialRules['cleave'] as int? ?? 0;
 
+  /// Barrage value for this regiment from numeric special rules
+  int get barrageValue => unit.numericSpecialRules['barrage'] as int? ?? 0;
+
   /// Calculate cleave rating for this regiment (Expected Hit Volume * Cleave)
   double get cleaveRating => expectedHitVolume * cleaveValue;
+
+  /// Calculate ranged expected hits for this regiment
+  double get rangedExpectedHits => calculateRangedExpectedHits();
 
   /// Calculate expected hit volume for this regiment
   double calculateExpectedHitVolume({List<Regiment>? armyRegiments}) {
@@ -75,6 +81,31 @@ class Regiment {
     return expectedHits;
   }
 
+  /// Calculate ranged expected hits for this regiment
+  double calculateRangedExpectedHits() {
+    // If unit has no barrage capability, it cannot shoot at all
+    if (barrageValue == 0) {
+      return 0.0;
+    }
+
+    // Start with base barrage value from special rules multiplied by stands
+    int totalBarrage = barrageValue * stands;
+
+    // Add +1 barrage if regiment has leader (only if unit can already shoot)
+    final hasLeader = unit.specialRules
+        .any((rule) => rule.name.toLowerCase().contains('leader'));
+    if (hasLeader) {
+      totalBarrage += 1;
+    }
+
+    // Calculate hit chance: volley / 6
+    final volleyValue = unit.characteristics.volley;
+    final hitChance = volleyValue / 6.0;
+
+    // Calculate expected ranged hits
+    return totalBarrage * hitChance;
+  }
+
   /// Calculate cleave rating for this regiment with army context
   double calculateCleaveRating({List<Regiment>? armyRegiments}) {
     final hitVolume = calculateExpectedHitVolume(armyRegiments: armyRegiments);
@@ -83,5 +114,5 @@ class Regiment {
 
   @override
   String toString() =>
-      'Regiment(${unit.name}, stands: $stands, cost: $pointsCost, wounds: $totalWounds, cleave: $cleaveValue)';
+      'Regiment(${unit.name}, stands: $stands, cost: $pointsCost, wounds: $totalWounds, cleave: $cleaveValue, barrage: $barrageValue)';
 }
