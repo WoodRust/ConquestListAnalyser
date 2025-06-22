@@ -378,6 +378,79 @@ void main() {
       expect(find.byType(SingleChildScrollView), findsOneWidget);
     });
 
+    testWidgets('should display toughness tooltip when info icon is tapped',
+        (WidgetTester tester) async {
+      final regiments = [
+        Regiment(unit: mediumUnit, stands: 2, pointsCost: 200),
+        Regiment(unit: heavyUnit, stands: 1, pointsCost: 200),
+      ];
+
+      final armyList = ArmyList(
+        name: 'Tooltip Test Army',
+        faction: 'Test Faction',
+        totalPoints: 400,
+        pointsLimit: 2000,
+        regiments: regiments,
+      );
+
+      final score = ListScore(
+        armyList: armyList,
+        totalWounds: 16, // 2*5 + 1*6 = 16
+        pointsPerWound: 25.0,
+        expectedHitVolume: 20.0,
+        cleaveRating: 10.0,
+        rangedExpectedHits: 5.0,
+        rangedArmorPiercingRating: 2.0,
+        maxRange: 12,
+        averageSpeed: 4.5,
+        toughness: 2.6, // Specific value for tooltip test
+        calculatedAt: DateTime.now(),
+      );
+
+      // Use a larger test surface to ensure the widget is visible
+      await tester.binding.setSurfaceSize(const Size(800, 1200));
+      await tester.pumpWidget(createTestWidget(score));
+
+      // Verify toughness score card is displayed with info icon
+      expect(find.text('Toughness'), findsOneWidget);
+      expect(find.text('2.6'), findsOneWidget);
+      expect(find.byIcon(Icons.info_outline), findsOneWidget);
+
+      // Scroll down to ensure the toughness card is visible
+      await tester.drag(
+          find.byType(SingleChildScrollView), const Offset(0, -300));
+      await tester.pumpAndSettle();
+
+      // Verify no dialog is shown initially
+      expect(find.byType(AlertDialog), findsNothing);
+
+      // Tap the info icon to show tooltip
+      await tester.tap(find.byIcon(Icons.info_outline));
+      await tester.pumpAndSettle();
+
+      // Verify tooltip dialog is shown
+      expect(find.byType(AlertDialog), findsOneWidget);
+      expect(
+          find.text('Toughness'),
+          findsAtLeast(
+              1)); // Will find both the score card title and dialog title
+      expect(find.text('On average, each wound in your army has 2.6 defense.'),
+          findsOneWidget);
+      expect(find.text('OK'), findsOneWidget);
+
+      // Tap OK to close tooltip
+      await tester.tap(find.text('OK'));
+      await tester.pumpAndSettle();
+
+      // Verify tooltip is closed
+      expect(find.byType(AlertDialog), findsNothing);
+      expect(find.text('On average, each wound in your army has 2.6 defense.'),
+          findsNothing);
+
+      // Reset surface size
+      await tester.binding.setSurfaceSize(null);
+    });
+
     testWidgets('should display toughness score card',
         (WidgetTester tester) async {
       final regiments = [

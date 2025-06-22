@@ -19,7 +19,7 @@ class ScoreDisplayWidget extends StatelessWidget {
           _buildInfoSection(),
           const SizedBox(height: 20),
           // Scores Section
-          _buildScoresSection(),
+          _buildScoresSection(context),
           const SizedBox(height: 20),
           // Regiment Breakdown
           _buildRegimentBreakdown(),
@@ -96,7 +96,7 @@ class ScoreDisplayWidget extends StatelessWidget {
     );
   }
 
-  Widget _buildScoresSection() {
+  Widget _buildScoresSection(BuildContext context) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -204,11 +204,13 @@ class ScoreDisplayWidget extends StatelessWidget {
         Row(
           children: [
             Expanded(
-              child: _buildScoreCard(
+              child: _buildToughnessScoreCard(
                 'Toughness',
                 score.toughness.toStringAsFixed(1),
                 Icons.security,
                 Colors.brown,
+                score.toughness,
+                context,
               ),
             ),
             const SizedBox(width: 12),
@@ -252,6 +254,84 @@ class ScoreDisplayWidget extends StatelessWidget {
           ),
         ],
       ),
+    );
+  }
+
+  Widget _buildToughnessScoreCard(String title, String value, IconData icon,
+      Color color, double toughnessValue, BuildContext context) {
+    return Container(
+      padding: const EdgeInsets.all(16),
+      decoration: BoxDecoration(
+        color: color.withOpacity(0.1),
+        borderRadius: BorderRadius.circular(8),
+        border: Border.all(color: color.withOpacity(0.3)),
+      ),
+      child: Stack(
+        children: [
+          // Main content centered - explicitly center the column
+          Center(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                Icon(icon, color: color, size: 32),
+                const SizedBox(height: 8),
+                Text(
+                  value,
+                  style: TextStyle(
+                    fontSize: 24,
+                    fontWeight: FontWeight.bold,
+                    color: color,
+                  ),
+                ),
+                const SizedBox(height: 4),
+                Text(
+                  title,
+                  style: TextStyle(
+                    fontSize: 12,
+                    color: color.withOpacity(0.8),
+                  ),
+                  textAlign: TextAlign.center,
+                ),
+              ],
+            ),
+          ),
+          // Info icon positioned at top-right
+          Positioned(
+            top: 0,
+            right: 0,
+            child: GestureDetector(
+              onTap: () => _showToughnessTooltip(context, toughnessValue),
+              child: Icon(
+                Icons.info_outline,
+                color: color.withOpacity(0.7),
+                size: 16,
+              ),
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+
+  void _showToughnessTooltip(BuildContext context, double toughnessValue) {
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: const Text('Toughness'),
+          content: Text(
+            'On average, each wound in your army has ${toughnessValue.toStringAsFixed(1)} defense.',
+            style: const TextStyle(fontSize: 16),
+          ),
+          actions: [
+            TextButton(
+              onPressed: () => Navigator.of(context).pop(),
+              child: const Text('OK'),
+            ),
+          ],
+        );
+      },
     );
   }
 
