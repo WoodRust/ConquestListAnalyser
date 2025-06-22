@@ -111,13 +111,13 @@ void main() {
         totalWounds: 5,
         pointsPerWound: 32.0,
         expectedHitVolume: 10.0,
-        cleaveRating: 3.0,
-        rangedExpectedHits: 2.0,
+        cleaveRating: 3.1, // Changed to unique value
+        rangedExpectedHits: 2.3, // Changed to unique value
         rangedArmorPiercingRating: 1.0,
         maxRange: 8,
-        averageSpeed: 5.0,
-        toughness: 2.0,
-        evasion: 3.0,
+        averageSpeed: 5.1, // Changed to unique value
+        toughness: 2.4, // Changed to unique value
+        evasion: 3.7, // Changed to unique value
         calculatedAt: DateTime.now(),
       );
 
@@ -132,7 +132,7 @@ void main() {
 
       // Verify evasion card is displayed with info icon
       expect(find.text('Evasion'), findsOneWidget);
-      expect(find.text('3.0'), findsOneWidget);
+      expect(find.text('3.7'), findsOneWidget); // Updated to unique value
       expect(find.byIcon(Icons.info_outline),
           findsAtLeast(1)); // Both toughness and evasion have info icons
 
@@ -161,7 +161,7 @@ void main() {
       // Verify evasion tooltip dialog is shown
       expect(find.byType(AlertDialog), findsOneWidget);
       expect(find.text('Evasion'), findsAtLeast(1)); // Title and card
-      expect(find.text('On average, each wound in your army has 3.0 evasion.'),
+      expect(find.text('On average, each wound in your army has 3.7 evasion.'),
           findsOneWidget);
       expect(find.text('OK'), findsOneWidget);
 
@@ -171,7 +171,7 @@ void main() {
 
       // Verify tooltip is closed
       expect(find.byType(AlertDialog), findsNothing);
-      expect(find.text('On average, each wound in your army has 3.0 evasion.'),
+      expect(find.text('On average, each wound in your army has 3.7 evasion.'),
           findsNothing);
 
       // Reset surface size
@@ -422,14 +422,14 @@ void main() {
         armyList: armyList,
         totalWounds: 15,
         pointsPerWound: 20.0,
-        expectedHitVolume: 20.0,
-        cleaveRating: 8.0,
-        rangedExpectedHits: 4.0,
-        rangedArmorPiercingRating: 2.0,
+        expectedHitVolume: 19.5, // Changed to unique value
+        cleaveRating: 8.2, // Changed to unique value
+        rangedExpectedHits: 4.3, // Changed to unique value
+        rangedArmorPiercingRating: 2.1, // Changed to unique value
         maxRange: 15,
-        averageSpeed: 5.0,
-        toughness: 2.0,
-        evasion: 3.0,
+        averageSpeed: 5.3, // Changed to unique value
+        toughness: 2.6, // Changed to unique value
+        evasion: 3.8, // Changed to unique value
         calculatedAt: DateTime.now(),
       );
 
@@ -446,9 +446,9 @@ void main() {
       expect(toughnessWidget, isNotNull);
       expect(evasionWidget, isNotNull);
 
-      // Verify both have their respective values displayed
-      expect(find.text('2.0'), findsOneWidget);
-      expect(find.text('3.0'), findsOneWidget);
+      // Verify both have their respective values displayed (now unique)
+      expect(find.text('2.6'), findsOneWidget); // Toughness value
+      expect(find.text('3.8'), findsOneWidget); // Evasion value
     });
 
     testWidgets('should handle evasion tooltip with various decimal values',
@@ -579,14 +579,14 @@ void main() {
         armyList: armyList,
         totalWounds: 25,
         pointsPerWound: 20.0,
-        expectedHitVolume: 50.0,
-        cleaveRating: 15.0,
-        rangedExpectedHits: 8.0,
-        rangedArmorPiercingRating: 4.0,
+        expectedHitVolume: 48.5, // Changed to unique value
+        cleaveRating: 14.7, // Changed to unique value
+        rangedExpectedHits: 7.8, // Changed to unique value
+        rangedArmorPiercingRating: 3.9, // Changed to unique value
         maxRange: 18,
-        averageSpeed: 5.0,
-        toughness: 2.0,
-        evasion: 3.0,
+        averageSpeed: 5.2, // Changed to unique value
+        toughness: 2.7, // Changed to unique value
+        evasion: 3.9, // Changed to unique value
         calculatedAt: DateTime.now(),
       );
 

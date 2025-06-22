@@ -16,6 +16,7 @@ class ScoringEngine {
     final maxRange = _calculateMaxRange(armyList);
     final averageSpeed = _calculateAverageSpeed(armyList);
     final toughness = _calculateToughness(armyList);
+    final evasion = _calculateEvasion(armyList);
 
     return ListScore(
       armyList: armyList,
@@ -28,6 +29,7 @@ class ScoringEngine {
       maxRange: maxRange,
       averageSpeed: averageSpeed,
       toughness: toughness,
+      evasion: evasion,
       calculatedAt: DateTime.now(),
     );
   }
@@ -133,7 +135,6 @@ class ScoringEngine {
     for (final regiment in nonCharacterRegiments) {
       final regimentWounds = regiment.totalWounds;
       final regimentDefense = regiment.unit.characteristics.defense;
-
       totalDefenseWeighted += regimentDefense * regimentWounds;
       totalWounds += regimentWounds;
     }
@@ -141,6 +142,32 @@ class ScoringEngine {
     // Return wound-weighted average defense
     if (totalWounds == 0) return 0.0;
     return totalDefenseWeighted / totalWounds;
+  }
+
+  /// Calculate evasion (wound-weighted average evasion) for the entire list (excluding characters)
+  double _calculateEvasion(ArmyList armyList) {
+    // Get only non-character regiments
+    final nonCharacterRegiments = armyList.regiments
+        .where((regiment) => regiment.unit.regimentClass != 'character')
+        .toList();
+
+    // Return 0 if no regiments
+    if (nonCharacterRegiments.isEmpty) return 0.0;
+
+    // Calculate total evasion weighted by wounds
+    double totalEvasionWeighted = 0.0;
+    int totalWounds = 0;
+
+    for (final regiment in nonCharacterRegiments) {
+      final regimentWounds = regiment.totalWounds;
+      final regimentEvasion = regiment.unit.characteristics.evasion;
+      totalEvasionWeighted += regimentEvasion * regimentWounds;
+      totalWounds += regimentWounds;
+    }
+
+    // Return wound-weighted average evasion
+    if (totalWounds == 0) return 0.0;
+    return totalEvasionWeighted / totalWounds;
   }
 
   /// Calculate expected hit volume for a single regiment
