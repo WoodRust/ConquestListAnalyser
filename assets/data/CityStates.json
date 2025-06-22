@@ -330,7 +330,7 @@
             "clash": 2,
             "attacks": 4,
             "wounds": 5,
-            "resolve": null,
+            "resolve": 0,
             "defense": 3,
             "evasion": 1
         },
@@ -867,7 +867,7 @@
         "type": "brute",
         "regimentClass": "character",
         "characteristics": {
-            "march": null,
+            "march": 0,
             "volley": 1,
             "clash": 3,
             "attacks": 4,
@@ -907,7 +907,7 @@
         "type": "infantry",
         "regimentClass": "character",
         "characteristics": {
-            "march": null,
+            "march": 0,
             "volley": 2,
             "clash": 2,
             "attacks": 4,
@@ -938,7 +938,7 @@
         "type": "infantry",
         "regimentClass": "character",
         "characteristics": {
-            "march": null,
+            "march": 0,
             "volley": 1,
             "clash": 3,
             "attacks": 6,
@@ -977,7 +977,7 @@
         "type": "infantry",
         "regimentClass": "character",
         "characteristics": {
-            "march": null,
+            "march": 0,
             "volley": 1,
             "clash": 3,
             "attacks": 6,
@@ -1012,7 +1012,7 @@
         "type": "cavalry",
         "regimentClass": "character",
         "characteristics": {
-            "march": null,
+            "march": 0,
             "volley": 0,
             "clash": 3,
             "attacks": 6,
