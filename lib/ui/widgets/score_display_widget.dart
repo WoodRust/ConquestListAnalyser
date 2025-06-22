@@ -199,6 +199,23 @@ class ScoreDisplayWidget extends StatelessWidget {
             ),
           ],
         ),
+        const SizedBox(height: 12),
+        // Fifth row of score cards - Toughness
+        Row(
+          children: [
+            Expanded(
+              child: _buildScoreCard(
+                'Toughness',
+                score.toughness.toStringAsFixed(1),
+                Icons.security,
+                Colors.brown,
+              ),
+            ),
+            const SizedBox(width: 12),
+            // Empty space to maintain layout
+            const Expanded(child: SizedBox()),
+          ],
+        ),
       ],
     );
   }
@@ -283,6 +300,10 @@ class ScoreDisplayWidget extends StatelessWidget {
                             style: TextStyle(fontWeight: FontWeight.bold))),
                     Expanded(
                         flex: 1,
+                        child: Text('Defense',
+                            style: TextStyle(fontWeight: FontWeight.bold))),
+                    Expanded(
+                        flex: 1,
                         child: Text('Wounds',
                             style: TextStyle(fontWeight: FontWeight.bold))),
                     Expanded(
@@ -352,6 +373,10 @@ class ScoreDisplayWidget extends StatelessWidget {
                       Expanded(
                           flex: 1,
                           child: Text((regiment.unit.characteristics.march ?? 0)
+                              .toString())),
+                      Expanded(
+                          flex: 1,
+                          child: Text(regiment.unit.characteristics.defense
                               .toString())),
                       Expanded(
                           flex: 1,

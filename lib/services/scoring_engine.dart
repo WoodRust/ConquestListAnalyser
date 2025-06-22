@@ -15,6 +15,7 @@ class ScoringEngine {
         _calculateRangedArmorPiercingRating(armyList);
     final maxRange = _calculateMaxRange(armyList);
     final averageSpeed = _calculateAverageSpeed(armyList);
+    final toughness = _calculateToughness(armyList);
 
     return ListScore(
       armyList: armyList,
@@ -26,6 +27,7 @@ class ScoringEngine {
       rangedArmorPiercingRating: rangedArmorPiercingRating,
       maxRange: maxRange,
       averageSpeed: averageSpeed,
+      toughness: toughness,
       calculatedAt: DateTime.now(),
     );
   }
@@ -112,6 +114,33 @@ class ScoringEngine {
 
     // Return average march value
     return totalMarch / nonCharacterRegiments.length;
+  }
+
+  /// Calculate toughness (wound-weighted average defense) for the entire list (excluding characters)
+  double _calculateToughness(ArmyList armyList) {
+    // Get only non-character regiments
+    final nonCharacterRegiments = armyList.regiments
+        .where((regiment) => regiment.unit.regimentClass != 'character')
+        .toList();
+
+    // Return 0 if no regiments
+    if (nonCharacterRegiments.isEmpty) return 0.0;
+
+    // Calculate total defense weighted by wounds
+    double totalDefenseWeighted = 0.0;
+    int totalWounds = 0;
+
+    for (final regiment in nonCharacterRegiments) {
+      final regimentWounds = regiment.totalWounds;
+      final regimentDefense = regiment.unit.characteristics.defense;
+
+      totalDefenseWeighted += regimentDefense * regimentWounds;
+      totalWounds += regimentWounds;
+    }
+
+    // Return wound-weighted average defense
+    if (totalWounds == 0) return 0.0;
+    return totalDefenseWeighted / totalWounds;
   }
 
   /// Calculate expected hit volume for a single regiment

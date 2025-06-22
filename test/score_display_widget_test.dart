@@ -138,6 +138,7 @@ void main() {
         rangedArmorPiercingRating: 3.1,
         maxRange: 24,
         averageSpeed: 5.0,
+        toughness: 2.1, // Added toughness parameter
         calculatedAt: DateTime.now(),
       );
 
@@ -174,6 +175,7 @@ void main() {
         rangedArmorPiercingRating: 0.0,
         maxRange: 0,
         averageSpeed: 0.0,
+        toughness: 0.0, // Added toughness parameter
         calculatedAt: DateTime.now(),
       );
 
@@ -188,7 +190,6 @@ void main() {
     testWidgets('should display high counts correctly',
         (WidgetTester tester) async {
       final regiments = <Regiment>[];
-
       // Add many regiments of each type
       for (int i = 0; i < 15; i++) {
         regiments.add(Regiment(unit: lightUnit, stands: 1, pointsCost: 120));
@@ -218,6 +219,7 @@ void main() {
         rangedArmorPiercingRating: 8.2,
         maxRange: 18,
         averageSpeed: 5.0,
+        toughness: 1.6, // Added toughness parameter
         calculatedAt: DateTime.now(),
       );
 
@@ -255,6 +257,7 @@ void main() {
         rangedArmorPiercingRating: 1.5,
         maxRange: 12,
         averageSpeed: 5.0,
+        toughness: 2.0, // Added toughness parameter
         calculatedAt: DateTime.now(),
       );
 
@@ -277,7 +280,6 @@ void main() {
       final lightWidget = tester.widget<Text>(find.text('Light: 1'));
       final mediumWidget = tester.widget<Text>(find.text('Medium: 1'));
       final heavyWidget = tester.widget<Text>(find.text('Heavy: 1'));
-
       expect(lightWidget, isNotNull);
       expect(mediumWidget, isNotNull);
       expect(heavyWidget, isNotNull);
@@ -318,6 +320,7 @@ void main() {
         rangedArmorPiercingRating: 1.0,
         maxRange: 12,
         averageSpeed: 5.0,
+        toughness: 1.3, // Added toughness parameter (mostly light units)
         calculatedAt: DateTime.now(),
       );
 
@@ -360,6 +363,7 @@ void main() {
         rangedArmorPiercingRating: 15.0,
         maxRange: 24,
         averageSpeed: 6.0,
+        toughness: 1.0, // Added toughness parameter (all light units)
         calculatedAt: DateTime.now(),
       );
 
@@ -372,6 +376,102 @@ void main() {
 
       // Verify scrollable widget exists
       expect(find.byType(SingleChildScrollView), findsOneWidget);
+    });
+
+    testWidgets('should display toughness score card',
+        (WidgetTester tester) async {
+      final regiments = [
+        Regiment(unit: mediumUnit, stands: 2, pointsCost: 200),
+        Regiment(unit: heavyUnit, stands: 1, pointsCost: 200),
+      ];
+
+      final armyList = ArmyList(
+        name: 'Toughness Display Test',
+        faction: 'Test Faction',
+        totalPoints: 400,
+        pointsLimit: 2000,
+        regiments: regiments,
+      );
+
+      final score = ListScore(
+        armyList: armyList,
+        totalWounds: 16, // 2*5 + 1*6 = 16
+        pointsPerWound: 25.0,
+        expectedHitVolume: 20.0,
+        cleaveRating: 10.0,
+        rangedExpectedHits: 5.0,
+        rangedArmorPiercingRating: 2.0,
+        maxRange: 12,
+        averageSpeed: 4.5,
+        toughness: 2.3, // Medium-high toughness
+        calculatedAt: DateTime.now(),
+      );
+
+      await tester.pumpWidget(createTestWidget(score));
+
+      // Verify toughness score card is displayed
+      expect(find.text('Toughness'), findsOneWidget);
+      expect(find.text('2.3'), findsOneWidget);
+
+      // Verify the security icon is used for toughness
+      expect(find.byIcon(Icons.security), findsOneWidget);
+    });
+
+    testWidgets('should display all score cards including toughness',
+        (WidgetTester tester) async {
+      final regiments = [
+        Regiment(unit: lightUnit, stands: 1, pointsCost: 120),
+        Regiment(unit: mediumUnit, stands: 1, pointsCost: 160),
+        Regiment(unit: heavyUnit, stands: 1, pointsCost: 200),
+      ];
+
+      final armyList = ArmyList(
+        name: 'Complete Score Test',
+        faction: 'Test Faction',
+        totalPoints: 480,
+        pointsLimit: 2000,
+        regiments: regiments,
+      );
+
+      final score = ListScore(
+        armyList: armyList,
+        totalWounds: 15, // 4 + 5 + 6
+        pointsPerWound: 32.0,
+        expectedHitVolume: 18.5,
+        cleaveRating: 8.5,
+        rangedExpectedHits: 3.2,
+        rangedArmorPiercingRating: 1.5,
+        maxRange: 12,
+        averageSpeed: 5.0,
+        toughness:
+            2.1, // Changed to avoid collision with defense values in table
+        calculatedAt: DateTime.now(),
+      );
+
+      await tester.pumpWidget(createTestWidget(score));
+
+      // Verify all score cards are present
+      expect(find.text('Total Wounds'), findsOneWidget);
+      expect(find.text('Points per Wound'), findsOneWidget);
+      expect(find.text('Expected Hit Volume'), findsOneWidget);
+      expect(find.text('Cleave Rating'), findsOneWidget);
+      expect(find.text('Ranged Expected Hits'), findsOneWidget);
+      expect(find.text('Ranged Armor Piercing'), findsOneWidget);
+      expect(find.text('Max Range'), findsOneWidget);
+      expect(find.text('Average Speed'), findsOneWidget);
+      expect(find.text('Toughness'), findsOneWidget);
+
+      // Verify corresponding values (avoiding conflicts with defense values in breakdown table)
+      expect(find.text('15'), findsOneWidget);
+      expect(find.text('32.00'), findsOneWidget);
+      expect(find.text('18.5'), findsOneWidget);
+      expect(find.text('8.5'), findsOneWidget);
+      expect(find.text('3.2'), findsOneWidget);
+      expect(find.text('1.5'), findsOneWidget);
+      expect(find.text('12'), findsOneWidget);
+      expect(find.text('5.0'), findsOneWidget);
+      expect(find.text('2.1'),
+          findsOneWidget); // Changed from 2.0 to avoid collision
     });
   });
 }
