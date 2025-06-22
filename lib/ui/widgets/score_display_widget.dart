@@ -165,8 +165,14 @@ class ScoreDisplayWidget extends StatelessWidget {
               ),
             ),
             const SizedBox(width: 12),
-            // Empty space to maintain layout symmetry
-            const Expanded(child: SizedBox()),
+            Expanded(
+              child: _buildScoreCard(
+                'Average Speed',
+                score.averageSpeed.toStringAsFixed(1),
+                Icons.speed,
+                Colors.cyan,
+              ),
+            ),
           ],
         ),
       ],
@@ -249,6 +255,10 @@ class ScoreDisplayWidget extends StatelessWidget {
                             style: TextStyle(fontWeight: FontWeight.bold))),
                     Expanded(
                         flex: 1,
+                        child: Text('Move',
+                            style: TextStyle(fontWeight: FontWeight.bold))),
+                    Expanded(
+                        flex: 1,
                         child: Text('Wounds',
                             style: TextStyle(fontWeight: FontWeight.bold))),
                     Expanded(
@@ -315,6 +325,10 @@ class ScoreDisplayWidget extends StatelessWidget {
                       ),
                       Expanded(
                           flex: 1, child: Text(regiment.stands.toString())),
+                      Expanded(
+                          flex: 1,
+                          child: Text((regiment.unit.characteristics.march ?? 0)
+                              .toString())),
                       Expanded(
                           flex: 1,
                           child: Text(regiment.totalWounds.toString())),

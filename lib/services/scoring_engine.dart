@@ -14,6 +14,7 @@ class ScoringEngine {
     final rangedArmorPiercingRating =
         _calculateRangedArmorPiercingRating(armyList);
     final maxRange = _calculateMaxRange(armyList);
+    final averageSpeed = _calculateAverageSpeed(armyList);
 
     return ListScore(
       armyList: armyList,
@@ -24,6 +25,7 @@ class ScoringEngine {
       rangedExpectedHits: rangedExpectedHits,
       rangedArmorPiercingRating: rangedArmorPiercingRating,
       maxRange: maxRange,
+      averageSpeed: averageSpeed,
       calculatedAt: DateTime.now(),
     );
   }
@@ -85,11 +87,31 @@ class ScoringEngine {
   /// Calculate maximum barrage range across all regiments
   int _calculateMaxRange(ArmyList armyList) {
     if (armyList.regiments.isEmpty) return 0;
-
     return armyList.regiments.fold(0, (maxRange, regiment) {
       final regimentRange = regiment.barrageRange;
       return regimentRange > maxRange ? regimentRange : maxRange;
     });
+  }
+
+  /// Calculate average speed (march characteristic) across all regiments (excluding characters)
+  double _calculateAverageSpeed(ArmyList armyList) {
+    // Get only non-character regiments
+    final nonCharacterRegiments = armyList.regiments
+        .where((regiment) => regiment.unit.regimentClass != 'character')
+        .toList();
+
+    // Return 0 if no regiments
+    if (nonCharacterRegiments.isEmpty) return 0.0;
+
+    // Calculate total march value across all regiments
+    final totalMarch = nonCharacterRegiments.fold(0, (total, regiment) {
+      // Use march characteristic from unit, default to 0 if null
+      final marchValue = regiment.unit.characteristics.march ?? 0;
+      return total + marchValue;
+    });
+
+    // Return average march value
+    return totalMarch / nonCharacterRegiments.length;
   }
 
   /// Calculate expected hit volume for a single regiment
