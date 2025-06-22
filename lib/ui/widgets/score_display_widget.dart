@@ -67,6 +67,30 @@ class ScoreDisplayWidget extends StatelessWidget {
             'Activations: ${score.armyList.characters.length + score.armyList.nonCharacterRegiments.length}',
             style: const TextStyle(fontSize: 16),
           ),
+          const SizedBox(height: 8),
+          // Regiment Class Counts - using ArmyList getters
+          Row(
+            children: [
+              Expanded(
+                child: Text(
+                  'Light: ${score.armyList.lightRegimentCount}',
+                  style: const TextStyle(fontSize: 16),
+                ),
+              ),
+              Expanded(
+                child: Text(
+                  'Medium: ${score.armyList.mediumRegimentCount}',
+                  style: const TextStyle(fontSize: 16),
+                ),
+              ),
+              Expanded(
+                child: Text(
+                  'Heavy: ${score.armyList.heavyRegimentCount}',
+                  style: const TextStyle(fontSize: 16),
+                ),
+              ),
+            ],
+          ),
         ],
       ),
     );
