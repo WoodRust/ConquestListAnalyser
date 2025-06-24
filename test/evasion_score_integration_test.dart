@@ -42,12 +42,65 @@ void main() {
       );
     }
 
+    testWidgets('should display all score metrics including evasion',
+        (WidgetTester tester) async {
+      final regiments = [
+        Regiment(unit: testUnit, stands: 2, pointsCost: 200),
+      ];
+      final armyList = ArmyList(
+        name: 'Complete Metrics Test',
+        faction: 'Test Faction',
+        totalPoints: 200,
+        pointsLimit: 2000,
+        regiments: regiments,
+      );
+      final score = ListScore(
+        armyList: armyList,
+        totalWounds: 14, // Changed from 10 to unique value
+        pointsPerWound: 20.0,
+        expectedHitVolume: 15.0,
+        cleaveRating: 5.0,
+        rangedExpectedHits: 2.8, // Already unique
+        rangedArmorPiercingRating: 1.5,
+        maxRange: 18, // Changed from 12 to unique value
+        averageSpeed: 6.2, // Changed to unique value
+        toughness: 2.2, // Already unique
+        evasion: 3.4, // Already unique
+        calculatedAt: DateTime.now(),
+      );
+
+      await tester.pumpWidget(createTestWidget(score));
+
+      // Verify all score cards are present including the new evasion
+      expect(find.text('Total Wounds'), findsOneWidget);
+      expect(find.text('Points per Wound'), findsOneWidget);
+      expect(find.text('Expected Hit Volume'), findsOneWidget);
+      expect(find.text('Cleave Rating'), findsOneWidget);
+      expect(find.text('Ranged Expected Hits'), findsOneWidget);
+      expect(find.text('Ranged Armor Piercing'), findsOneWidget);
+      expect(find.text('Max Range'), findsOneWidget);
+      expect(find.text('Average Speed'), findsOneWidget);
+      expect(find.text('Toughness'), findsOneWidget);
+      expect(find.text('Evasion'), findsOneWidget); // New evasion card
+
+      // Verify all have appropriate unique values
+      expect(find.text('14'), findsOneWidget); // Total wounds
+      expect(find.text('20.00'), findsOneWidget); // Points per wound
+      expect(find.text('15.0'), findsOneWidget); // Expected hit volume
+      expect(find.text('5.0'), findsOneWidget); // Cleave rating
+      expect(find.text('2.8'), findsOneWidget); // Ranged hits
+      expect(find.text('1.5'), findsOneWidget); // Ranged armor piercing
+      expect(find.text('18'), findsOneWidget); // Max range
+      expect(find.text('6.2'), findsOneWidget); // Average speed
+      expect(find.text('2.2'), findsOneWidget); // Toughness
+      expect(find.text('3.4'), findsOneWidget); // Evasion
+    });
+
     testWidgets('should display evasion score card with correct value',
         (WidgetTester tester) async {
       final regiments = [
         Regiment(unit: testUnit, stands: 2, pointsCost: 200),
       ];
-
       final armyList = ArmyList(
         name: 'Evasion Test Army',
         faction: 'Test Faction',
@@ -55,7 +108,6 @@ void main() {
         pointsLimit: 2000,
         regiments: regiments,
       );
-
       final score = ListScore(
         armyList: armyList,
         totalWounds: 10,
@@ -98,7 +150,6 @@ void main() {
       final regiments = [
         Regiment(unit: testUnit, stands: 1, pointsCost: 160),
       ];
-
       final armyList = ArmyList(
         name: 'Evasion Info Test',
         faction: 'Test Faction',
@@ -106,19 +157,18 @@ void main() {
         pointsLimit: 2000,
         regiments: regiments,
       );
-
       final score = ListScore(
         armyList: armyList,
         totalWounds: 5,
         pointsPerWound: 32.0,
         expectedHitVolume: 10.0,
-        cleaveRating: 3.1, // Changed to unique value
-        rangedExpectedHits: 2.3, // Changed to unique value
+        cleaveRating: 3.1, // Changed from 3.0 to unique value
+        rangedExpectedHits: 2.0,
         rangedArmorPiercingRating: 1.0,
         maxRange: 8,
-        averageSpeed: 5.1, // Changed to unique value
-        toughness: 2.4, // Changed to unique value
-        evasion: 3.7, // Changed to unique value
+        averageSpeed: 5.0,
+        toughness: 2.3, // Changed from 2.0 to unique value
+        evasion: 3.7, // Changed from 3.0 to unique value
         calculatedAt: DateTime.now(),
       );
 
@@ -184,7 +234,6 @@ void main() {
       final regiments = [
         Regiment(unit: testUnit, stands: 2, pointsCost: 200),
       ];
-
       final armyList = ArmyList(
         name: 'Dual Score Test',
         faction: 'Test Faction',
@@ -192,7 +241,6 @@ void main() {
         pointsLimit: 2000,
         regiments: regiments,
       );
-
       final score = ListScore(
         armyList: armyList,
         totalWounds: 10,
@@ -229,7 +277,6 @@ void main() {
       final regiments = [
         Regiment(unit: testUnit, stands: 1, pointsCost: 160),
       ];
-
       final armyList = ArmyList(
         name: 'Share Test Army',
         faction: 'Test Faction',
@@ -237,7 +284,6 @@ void main() {
         pointsLimit: 2000,
         regiments: regiments,
       );
-
       final score = ListScore(
         armyList: armyList,
         totalWounds: 5,
@@ -289,7 +335,6 @@ void main() {
       final regiments = [
         Regiment(unit: characterUnit, stands: 1, pointsCost: 150),
       ];
-
       final armyList = ArmyList(
         name: 'Character Only Army',
         faction: 'Test Faction',
@@ -297,7 +342,6 @@ void main() {
         pointsLimit: 2000,
         regiments: regiments,
       );
-
       final score = ListScore(
         armyList: armyList,
         totalWounds: 0, // No non-character regiments
@@ -376,7 +420,6 @@ void main() {
             stands: 1,
             pointsCost: 150), // Evasion 4, 3 wounds
       ];
-
       final armyList = ArmyList(
         name: 'Precision Test Army',
         faction: 'Test Faction',
@@ -413,7 +456,6 @@ void main() {
       final regiments = [
         Regiment(unit: testUnit, stands: 3, pointsCost: 300),
       ];
-
       final armyList = ArmyList(
         name: 'Layout Test Army',
         faction: 'Test Faction',
@@ -421,19 +463,18 @@ void main() {
         pointsLimit: 2000,
         regiments: regiments,
       );
-
       final score = ListScore(
         armyList: armyList,
         totalWounds: 15,
         pointsPerWound: 20.0,
-        expectedHitVolume: 19.5, // Changed to unique value
-        cleaveRating: 8.2, // Changed to unique value
-        rangedExpectedHits: 4.3, // Changed to unique value
-        rangedArmorPiercingRating: 2.1, // Changed to unique value
+        expectedHitVolume: 20.0,
+        cleaveRating: 8.0,
+        rangedExpectedHits: 4.0,
+        rangedArmorPiercingRating: 2.0,
         maxRange: 15,
-        averageSpeed: 5.3, // Changed to unique value
-        toughness: 2.6, // Changed to unique value
-        evasion: 3.8, // Changed to unique value
+        averageSpeed: 5.0,
+        toughness: 2.8, // Changed from 2.0 to unique value
+        evasion: 3.6, // Changed from 3.0 to unique value
         calculatedAt: DateTime.now(),
       );
 
@@ -450,9 +491,9 @@ void main() {
       expect(toughnessWidget, isNotNull);
       expect(evasionWidget, isNotNull);
 
-      // Verify both have their respective values displayed (now unique)
-      expect(find.text('2.6'), findsOneWidget); // Toughness value
-      expect(find.text('3.8'), findsOneWidget); // Evasion value
+      // Verify both have their respective values displayed
+      expect(find.text('2.8'), findsOneWidget); // Toughness value
+      expect(find.text('3.6'), findsOneWidget); // Evasion value
     });
 
     testWidgets('should handle evasion tooltip with various decimal values',
@@ -460,7 +501,6 @@ void main() {
       final regiments = [
         Regiment(unit: testUnit, stands: 1, pointsCost: 160),
       ];
-
       final armyList = ArmyList(
         name: 'Decimal Test Army',
         faction: 'Test Faction',
@@ -468,7 +508,6 @@ void main() {
         pointsLimit: 2000,
         regiments: regiments,
       );
-
       final score = ListScore(
         armyList: armyList,
         totalWounds: 5,
@@ -495,7 +534,6 @@ void main() {
       // Find and tap the evasion info icon (should be the second one)
       final infoIcons = find.byIcon(Icons.info_outline);
       expect(infoIcons, findsAtLeast(2));
-
       await tester.tap(infoIcons.at(1)); // Second info icon should be evasion
       await tester.pumpAndSettle();
 
@@ -506,63 +544,7 @@ void main() {
 
       await tester.tap(find.text('OK'));
       await tester.pumpAndSettle();
-
       await tester.binding.setSurfaceSize(null);
-    });
-
-    testWidgets('should display all score metrics including evasion',
-        (WidgetTester tester) async {
-      final regiments = [
-        Regiment(unit: testUnit, stands: 2, pointsCost: 200),
-      ];
-
-      final armyList = ArmyList(
-        name: 'Complete Metrics Test',
-        faction: 'Test Faction',
-        totalPoints: 200,
-        pointsLimit: 2000,
-        regiments: regiments,
-      );
-
-      final score = ListScore(
-        armyList: armyList,
-        totalWounds: 10,
-        pointsPerWound: 20.0,
-        expectedHitVolume: 15.0,
-        cleaveRating: 5.0,
-        rangedExpectedHits: 2.8, // Changed to unique values
-        rangedArmorPiercingRating: 1.5,
-        maxRange: 12,
-        averageSpeed: 5.0,
-        toughness: 2.2, // Changed to unique values
-        evasion: 3.4, // Changed to unique values
-        calculatedAt: DateTime.now(),
-      );
-
-      await tester.pumpWidget(createTestWidget(score));
-
-      // Verify all score cards are present including the new evasion
-      expect(find.text('Total Wounds'), findsOneWidget);
-      expect(find.text('Points per Wound'), findsOneWidget);
-      expect(find.text('Expected Hit Volume'), findsOneWidget);
-      expect(find.text('Cleave Rating'), findsOneWidget);
-      expect(find.text('Ranged Expected Hits'), findsOneWidget);
-      expect(find.text('Ranged Armor Piercing'), findsOneWidget);
-      expect(find.text('Max Range'), findsOneWidget);
-      expect(find.text('Average Speed'), findsOneWidget);
-      expect(find.text('Toughness'), findsOneWidget);
-      expect(find.text('Evasion'), findsOneWidget); // New evasion card
-
-      // Verify all have appropriate values (using unique values to avoid conflicts)
-      expect(find.text('10'), findsOneWidget);
-      expect(find.text('20.00'), findsOneWidget);
-      expect(find.text('15.0'), findsOneWidget);
-      expect(find.text('5.0'), findsOneWidget); // Only one 5.0 now
-      expect(find.text('2.8'), findsOneWidget); // Unique ranged hits value
-      expect(find.text('1.5'), findsOneWidget);
-      expect(find.text('12'), findsOneWidget);
-      expect(find.text('2.2'), findsOneWidget); // Unique toughness value
-      expect(find.text('3.4'), findsOneWidget); // Unique evasion value
     });
 
     testWidgets('should handle scrolling with evasion card included',
@@ -570,7 +552,6 @@ void main() {
       final regiments = [
         Regiment(unit: testUnit, stands: 5, pointsCost: 500),
       ];
-
       final armyList = ArmyList(
         name: 'Scrolling Test Army',
         faction: 'Test Faction',
@@ -578,19 +559,18 @@ void main() {
         pointsLimit: 2000,
         regiments: regiments,
       );
-
       final score = ListScore(
         armyList: armyList,
         totalWounds: 25,
         pointsPerWound: 20.0,
-        expectedHitVolume: 48.5, // Changed to unique value
-        cleaveRating: 14.7, // Changed to unique value
-        rangedExpectedHits: 7.8, // Changed to unique value
-        rangedArmorPiercingRating: 3.9, // Changed to unique value
+        expectedHitVolume: 50.0,
+        cleaveRating: 15.0,
+        rangedExpectedHits: 8.0,
+        rangedArmorPiercingRating: 4.0,
         maxRange: 18,
-        averageSpeed: 5.2, // Changed to unique value
-        toughness: 2.7, // Changed to unique value
-        evasion: 3.9, // Changed to unique value
+        averageSpeed: 5.0,
+        toughness: 2.0,
+        evasion: 3.0,
         calculatedAt: DateTime.now(),
       );
 
