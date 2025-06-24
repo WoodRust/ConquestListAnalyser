@@ -33,6 +33,7 @@ void main() {
         ),
         specialRules: const [],
         numericSpecialRules: const {},
+        supremacyAbilities: const [],
         drawEvents: const [],
         points: 150,
       );
@@ -54,6 +55,7 @@ void main() {
         ),
         specialRules: const [],
         numericSpecialRules: const {},
+        supremacyAbilities: const [],
         drawEvents: const [],
         points: 140,
       );
@@ -75,6 +77,7 @@ void main() {
         ),
         specialRules: const [],
         numericSpecialRules: const {},
+        supremacyAbilities: const [],
         drawEvents: const [],
         points: 180,
       );
@@ -96,6 +99,7 @@ void main() {
         ),
         specialRules: const [],
         numericSpecialRules: const {},
+        supremacyAbilities: const [],
         drawEvents: const [],
         points: 120,
       );
@@ -117,6 +121,7 @@ void main() {
         ),
         specialRules: const [],
         numericSpecialRules: const {},
+        supremacyAbilities: const [],
         drawEvents: const [],
         points: 200,
       );
@@ -271,6 +276,7 @@ void main() {
         ),
         specialRules: const [],
         numericSpecialRules: const {},
+        supremacyAbilities: const [],
         drawEvents: const [],
         points: 160,
       );
@@ -292,6 +298,7 @@ void main() {
         ),
         specialRules: const [],
         numericSpecialRules: const {},
+        supremacyAbilities: const [],
         drawEvents: const [],
         points: 130,
       );
@@ -332,6 +339,7 @@ void main() {
         ),
         specialRules: const [],
         numericSpecialRules: const {},
+        supremacyAbilities: const [],
         drawEvents: const [],
         points: 160,
       );
@@ -353,6 +361,7 @@ void main() {
         ),
         specialRules: const [],
         numericSpecialRules: const {},
+        supremacyAbilities: const [],
         drawEvents: const [],
         points: 130,
       );
@@ -374,6 +383,7 @@ void main() {
         ),
         specialRules: const [],
         numericSpecialRules: const {},
+        supremacyAbilities: const [],
         drawEvents: const [],
         points: 180,
       );
@@ -502,6 +512,7 @@ void main() {
         ),
         specialRules: const [],
         numericSpecialRules: const {},
+        supremacyAbilities: const [],
         drawEvents: const [],
         points: 200,
       );
@@ -523,6 +534,7 @@ void main() {
         ),
         specialRules: const [],
         numericSpecialRules: const {},
+        supremacyAbilities: const [],
         drawEvents: const [],
         points: 300,
       );

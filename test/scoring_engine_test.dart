@@ -32,6 +32,7 @@ void main() {
         ),
         specialRules: const [],
         numericSpecialRules: const {},
+        supremacyAbilities: const [],
         drawEvents: const [],
         points: 140,
       );
@@ -53,6 +54,7 @@ void main() {
         ),
         specialRules: const [],
         numericSpecialRules: const {'cleave': 2},
+        supremacyAbilities: const [],
         drawEvents: const [],
         points: 200,
       );
@@ -78,6 +80,7 @@ void main() {
           'armorPiercingValue': 1,
           'barrageRange': 24
         },
+        supremacyAbilities: const [],
         drawEvents: const [],
         points: 160,
       );
@@ -99,6 +102,7 @@ void main() {
         ),
         specialRules: const [],
         numericSpecialRules: const {'cleave': 1, 'barrage': 1},
+        supremacyAbilities: const [],
         drawEvents: const [],
         points: 150,
       );
@@ -175,6 +179,7 @@ void main() {
         ),
         specialRules: const [],
         numericSpecialRules: const {},
+        supremacyAbilities: const [],
         drawEvents: const [],
         points: 100,
       );
@@ -196,6 +201,7 @@ void main() {
         ),
         specialRules: const [],
         numericSpecialRules: const {'cleave': 3},
+        supremacyAbilities: const [],
         drawEvents: const [],
         points: 250,
       );

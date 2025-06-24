@@ -1,11 +1,16 @@
 import '../models/army_list.dart';
 import '../models/regiment.dart';
 import '../models/list_score.dart';
+import '../models/unit.dart';
+import 'army_effect_manager.dart';
 
 /// Service for calculating army list scores
 class ScoringEngine {
   /// Calculate all scores for an army list
   ListScore calculateScores(ArmyList armyList) {
+    // Get active army effects first
+    final armyEffects = ArmyEffectManager.getActiveEffects(armyList);
+
     final totalWounds = _calculateTotalWounds(armyList);
     final pointsPerWound = _calculatePointsPerWound(armyList, totalWounds);
     final expectedHitVolume = _calculateExpectedHitVolume(armyList);
@@ -15,8 +20,8 @@ class ScoringEngine {
         _calculateRangedArmorPiercingRating(armyList);
     final maxRange = _calculateMaxRange(armyList);
     final averageSpeed = _calculateAverageSpeed(armyList);
-    final toughness = _calculateToughness(armyList);
-    final evasion = _calculateEvasion(armyList);
+    final toughness = _calculateToughness(armyList, armyEffects);
+    final evasion = _calculateEvasion(armyList, armyEffects);
 
     return ListScore(
       armyList: armyList,
@@ -119,7 +124,8 @@ class ScoringEngine {
   }
 
   /// Calculate toughness (wound-weighted average defense) for the entire list (excluding characters)
-  double _calculateToughness(ArmyList armyList) {
+  double _calculateToughness(
+      ArmyList armyList, List<CharacteristicModifier> armyEffects) {
     // Get only non-character regiments
     final nonCharacterRegiments = armyList.regiments
         .where((regiment) => regiment.unit.regimentClass != 'character')
@@ -134,8 +140,12 @@ class ScoringEngine {
 
     for (final regiment in nonCharacterRegiments) {
       final regimentWounds = regiment.totalWounds;
-      final regimentDefense = regiment.unit.characteristics.defense;
-      totalDefenseWeighted += regimentDefense * regimentWounds;
+
+      // Get effective defense considering army effects
+      final effectiveDefense = ArmyEffectManager.getEffectiveCharacteristic(
+          regiment, 'defense', armyEffects);
+
+      totalDefenseWeighted += effectiveDefense * regimentWounds;
       totalWounds += regimentWounds;
     }
 
@@ -145,7 +155,8 @@ class ScoringEngine {
   }
 
   /// Calculate evasion (wound-weighted average evasion) for the entire list (excluding characters)
-  double _calculateEvasion(ArmyList armyList) {
+  double _calculateEvasion(
+      ArmyList armyList, List<CharacteristicModifier> armyEffects) {
     // Get only non-character regiments
     final nonCharacterRegiments = armyList.regiments
         .where((regiment) => regiment.unit.regimentClass != 'character')
@@ -160,8 +171,12 @@ class ScoringEngine {
 
     for (final regiment in nonCharacterRegiments) {
       final regimentWounds = regiment.totalWounds;
-      final regimentEvasion = regiment.unit.characteristics.evasion;
-      totalEvasionWeighted += regimentEvasion * regimentWounds;
+
+      // Get effective evasion considering army effects
+      final effectiveEvasion = ArmyEffectManager.getEffectiveCharacteristic(
+          regiment, 'evasion', armyEffects);
+
+      totalEvasionWeighted += effectiveEvasion * regimentWounds;
       totalWounds += regimentWounds;
     }
 

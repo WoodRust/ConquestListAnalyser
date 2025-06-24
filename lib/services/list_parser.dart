@@ -51,7 +51,7 @@ class ListParser {
         // Faction line
         faction = line.trim();
       } else if (line.startsWith('== ')) {
-        // Character line: "== Vargyr Lord [160]: Wild Beasts"
+        // Character line: "== Vargyr Lord [160]: Wild Beasts" or "== (Warlord) Volva [100]: "
         final character = _parseCharacterLine(line);
         if (character != null) {
           regiments.add(character);
@@ -84,7 +84,7 @@ class ListParser {
   /// Parse a character line
   Regiment? _parseCharacterLine(String line) {
     // Format: "== Vargyr Lord [160]: Wild Beasts" or "== (Warlord) Volva [100]: "
-    final regexPattern = r'== (?:\([^)]+\)\s+)?(.+?) \[(\d+)\]:?(.*)';
+    final regexPattern = r'== (?:\(([^)]+)\)\s+)?(.+?) \[(\d+)\]:?(.*)';
     final regex = RegExp(regexPattern);
     final match = regex.firstMatch(line);
 
@@ -93,9 +93,13 @@ class ListParser {
       return null;
     }
 
-    final unitName = match.group(1)!.trim();
-    final pointsCost = int.parse(match.group(2)!);
-    final upgradesText = match.group(3)?.trim() ?? '';
+    final designation = match.group(1)?.trim(); // "Warlord" or null
+    final unitName = match.group(2)!.trim();
+    final pointsCost = int.parse(match.group(3)!);
+    final upgradesText = match.group(4)?.trim() ?? '';
+
+    // Check if this character is a warlord
+    final isWarlord = designation?.toLowerCase() == 'warlord';
 
     final unit = _database.findUnit(unitName);
     if (unit == null) {
@@ -116,6 +120,7 @@ class ListParser {
       stands: 1, // Characters are always 1 stand
       pointsCost: pointsCost,
       upgrades: upgrades,
+      isWarlord: isWarlord,
     );
   }
 
@@ -155,6 +160,7 @@ class ListParser {
       stands: stands,
       pointsCost: pointsCost,
       upgrades: upgrades,
+      isWarlord: false, // Regular regiments are never warlords
     );
   }
 }

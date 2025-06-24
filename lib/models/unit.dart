@@ -1,3 +1,5 @@
+import 'package:conquest_analyzer/models/regiment.dart';
+
 /// Represents the base characteristics and rules for a unit type
 class Unit {
   final String name;
@@ -7,6 +9,7 @@ class Unit {
   final UnitCharacteristics characteristics;
   final List<SpecialRule> specialRules;
   final Map<String, dynamic> numericSpecialRules;
+  final List<SupremacyAbility> supremacyAbilities;
   final List<DrawEvent> drawEvents;
   final int points;
   final int? pointsPerAdditionalStand;
@@ -20,6 +23,7 @@ class Unit {
     required this.characteristics,
     required this.specialRules,
     required this.numericSpecialRules,
+    required this.supremacyAbilities,
     required this.drawEvents,
     required this.points,
     this.pointsPerAdditionalStand,
@@ -39,6 +43,9 @@ class Unit {
           .toList(),
       numericSpecialRules:
           Map<String, dynamic>.from(json['numericSpecialRules']),
+      supremacyAbilities: (json['supremacyAbilities'] as List? ?? [])
+          .map((ability) => SupremacyAbility.fromJson(ability))
+          .toList(),
       drawEvents: (json['drawEvents'] as List)
           .map((event) => DrawEvent.fromJson(event))
           .toList(),
@@ -121,6 +128,95 @@ class SpecialRule {
       name: json['name'] as String,
       description: json['description'] as String,
     );
+  }
+}
+
+/// Supremacy ability definition
+class SupremacyAbility {
+  final String name;
+  final String condition;
+  final CharacteristicModifier effect;
+
+  const SupremacyAbility({
+    required this.name,
+    required this.condition,
+    required this.effect,
+  });
+
+  factory SupremacyAbility.fromJson(Map<String, dynamic> json) {
+    final effectJson = json['effect'] as Map<String, dynamic>;
+    return SupremacyAbility(
+      name: json['name'] as String,
+      condition: json['condition'] as String,
+      effect: CharacteristicModifier.fromJson(effectJson),
+    );
+  }
+}
+
+/// Characteristic modifier for supremacy abilities
+class CharacteristicModifier {
+  final String type;
+  final String target;
+  final String characteristic;
+  final String operation;
+  final int value;
+  final int? maximum;
+
+  const CharacteristicModifier({
+    required this.type,
+    required this.target,
+    required this.characteristic,
+    required this.operation,
+    required this.value,
+    this.maximum,
+  });
+
+  factory CharacteristicModifier.fromJson(Map<String, dynamic> json) {
+    final modifierJson = json['modifier'] as Map<String, dynamic>;
+    return CharacteristicModifier(
+      type: json['type'] as String,
+      target: json['target'] as String,
+      characteristic: modifierJson['characteristic'] as String,
+      operation: modifierJson['operation'] as String,
+      value: modifierJson['value'] as int,
+      maximum: modifierJson['maximum'] as int?,
+    );
+  }
+
+  /// Apply this modifier to a characteristic value
+  int applyToValue(int baseValue) {
+    int result = baseValue;
+
+    switch (operation) {
+      case 'add':
+        result = baseValue + value;
+        break;
+      case 'subtract':
+        result = baseValue - value;
+        break;
+      case 'multiply':
+        result = baseValue * value;
+        break;
+      case 'set':
+        result = value;
+        break;
+    }
+
+    // Apply maximum constraint if specified
+    if (maximum != null && result > maximum!) {
+      result = maximum!;
+    }
+
+    // Ensure minimum of 1 for characteristics
+    return result < 1 ? 1 : result;
+  }
+
+  /// Check if this modifier applies to a specific regiment
+  bool appliesTo(Regiment regiment) {
+    // For now, we only support "allFriendlyRegiments"
+    // This can be extended for more complex targeting
+    return target == 'allFriendlyRegiments' &&
+        regiment.unit.regimentClass != 'character';
   }
 }
 

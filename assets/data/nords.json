@@ -648,7 +648,7 @@
         "name": "Mountain Jotnar",
         "faction": "Nords",
         "type": "monster",
-        "regimentClass": "heavy",
+        "regimentClass": "medium",
         "characteristics": {
             "march": 7,
             "volley": 1,
@@ -859,6 +859,22 @@
         "numericSpecialRules": {
             "spellDice": 6
         },
+        "supremacyAbilities": [
+            {
+                "name": "Divine Protection",
+                "condition": "isWarlord",
+                "effect": {
+                    "type": "characteristicModifier",
+                    "target": "allFriendlyRegiments",
+                    "modifier": {
+                        "characteristic": "evasion",
+                        "operation": "add",
+                        "value": 1,
+                        "maximum": 2
+                    }
+                }
+            }
+        ],
         "drawEvents": [],
         "points": 80
     },
@@ -890,6 +906,22 @@
         "numericSpecialRules": {
             "spellDice": 6
         },
+        "supremacyAbilities": [
+            {
+                "name": "Divine Protection",
+                "condition": "isWarlord",
+                "effect": {
+                    "type": "characteristicModifier",
+                    "target": "allFriendlyRegiments",
+                    "modifier": {
+                        "characteristic": "evasion",
+                        "operation": "add",
+                        "value": 1,
+                        "maximum": 2
+                    }
+                }
+            }
+        ],
         "drawEvents": [],
         "points": 100
     },

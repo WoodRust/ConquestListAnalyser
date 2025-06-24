@@ -32,6 +32,7 @@ void main() {
         ),
         specialRules: const [],
         numericSpecialRules: const {'cleave': 3}, // Cleave(3)
+        supremacyAbilities: const [],
         drawEvents: const [],
         points: 180,
         pointsPerAdditionalStand: 60,
@@ -54,6 +55,7 @@ void main() {
         ),
         specialRules: const [],
         numericSpecialRules: const {}, // No cleave or armor piercing
+        supremacyAbilities: const [],
         drawEvents: const [],
         points: 120,
         pointsPerAdditionalStand: 40,
@@ -82,6 +84,7 @@ void main() {
           )
         ],
         numericSpecialRules: const {'cleave': 1}, // Has both flurry and cleave
+        supremacyAbilities: const [],
         drawEvents: const [],
         points: 150,
         pointsPerAdditionalStand: 50,
@@ -106,6 +109,7 @@ void main() {
         numericSpecialRules: const {
           'barrage': 2
         }, // Barrage(2), no armor piercing
+        supremacyAbilities: const [],
         drawEvents: const [],
         points: 140,
         pointsPerAdditionalStand: 45,
@@ -135,6 +139,7 @@ void main() {
         numericSpecialRules: const {
           'barrage': 3
         }, // Barrage(3), no armor piercing
+        supremacyAbilities: const [],
         drawEvents: const [],
         points: 180,
         pointsPerAdditionalStand: 60,
@@ -160,6 +165,7 @@ void main() {
           'barrage': 2,
           'barrageRange': 24
         }, // Barrage(2) with 24" range, no armor piercing
+        supremacyAbilities: const [],
         drawEvents: const [],
         points: 160,
         pointsPerAdditionalStand: 55,
@@ -185,6 +191,7 @@ void main() {
           'barrage': 2,
           'armorPiercingValue': 2
         }, // Barrage(2) with ArmorPiercing(2)
+        supremacyAbilities: const [],
         drawEvents: const [],
         points: 170,
         pointsPerAdditionalStand: 55,
@@ -211,6 +218,7 @@ void main() {
           'armorPiercingValue': 3,
           'barrageRange': 18
         }, // High armor piercing with range
+        supremacyAbilities: const [],
         drawEvents: const [],
         points: 200,
         pointsPerAdditionalStand: 65,
@@ -243,6 +251,7 @@ void main() {
           'armorPiercingValue': 2,
           'barrageRange': 12
         }, // Has everything
+        supremacyAbilities: const [],
         drawEvents: const [],
         points: 250,
         pointsPerAdditionalStand: 80,
@@ -321,6 +330,7 @@ void main() {
           'cleave': 3,
           'armorPiercingValue': 2
         }, // Has armor piercing but no barrage
+        supremacyAbilities: const [],
         drawEvents: const [],
         points: 200,
         pointsPerAdditionalStand: 65,
@@ -378,6 +388,7 @@ void main() {
           'armorPiercingValue': 5,
           'barrageRange': 36
         }, // Very high armor piercing
+        supremacyAbilities: const [],
         drawEvents: const [],
         points: 350,
       );
@@ -595,6 +606,7 @@ void main() {
           )
         ],
         numericSpecialRules: const {}, // No barrage - cannot shoot
+        supremacyAbilities: const [],
         drawEvents: const [],
         points: 160,
         pointsPerAdditionalStand: 50,
@@ -629,6 +641,7 @@ void main() {
         ),
         specialRules: const [],
         numericSpecialRules: const {'barrage': 3},
+        supremacyAbilities: const [],
         drawEvents: const [],
         points: 220,
         pointsPerAdditionalStand: 70,
@@ -665,6 +678,7 @@ void main() {
         ),
         specialRules: const [],
         numericSpecialRules: const {'barrage': 1},
+        supremacyAbilities: const [],
         drawEvents: const [],
         points: 90,
         pointsPerAdditionalStand: 30,
@@ -702,6 +716,7 @@ void main() {
         ),
         specialRules: const [],
         numericSpecialRules: const {'cleave': 2, 'barrage': 1},
+        supremacyAbilities: const [],
         drawEvents: const [],
         points: 200,
         pointsPerAdditionalStand: 65,
@@ -770,6 +785,7 @@ void main() {
           'barrage': 4,
           'barrageRange': 36
         }, // Very long range
+        supremacyAbilities: const [],
         drawEvents: const [],
         points: 300,
         pointsPerAdditionalStand: 100,
@@ -818,6 +834,7 @@ void main() {
         ),
         specialRules: const [],
         numericSpecialRules: const {'cleave': 10}, // Very high cleave
+        supremacyAbilities: const [],
         drawEvents: const [],
         points: 300,
       );
@@ -867,6 +884,7 @@ void main() {
           'armorPiercingValue': 10,
           'barrageRange': 48
         }, // Extreme values
+        supremacyAbilities: const [],
         drawEvents: const [],
         points: 500,
       );

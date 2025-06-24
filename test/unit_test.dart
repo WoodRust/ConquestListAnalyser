@@ -30,11 +30,11 @@ void main() {
           }
         ],
         'numericSpecialRules': {'impact': 2, 'tenacious': 1},
+        'supremacyAbilities': [], // Add empty array for tests
         'drawEvents': [],
         'points': 120,
         'pointsPerAdditionalStand': 40
       };
-
       testUnit = Unit.fromJson(testUnitJson);
     });
 
@@ -43,6 +43,7 @@ void main() {
       expect(testUnit.faction, equals('Nords'));
       expect(testUnit.woundsPerStand, equals(4));
       expect(testUnit.points, equals(120));
+      expect(testUnit.supremacyAbilities, isEmpty); // Test new field
     });
 
     test('should calculate points cost correctly', () {
@@ -58,6 +59,14 @@ void main() {
 
       expect(singleStandUnit.calculatePointsCost(1), equals(120));
       expect(singleStandUnit.calculatePointsCost(3), equals(120));
+    });
+
+    test('should handle JSON without supremacyAbilities field', () {
+      final jsonWithoutSupremacy = Map<String, dynamic>.from(testUnitJson);
+      jsonWithoutSupremacy.remove('supremacyAbilities');
+
+      final unitWithoutSupremacy = Unit.fromJson(jsonWithoutSupremacy);
+      expect(unitWithoutSupremacy.supremacyAbilities, isEmpty);
     });
   });
 }

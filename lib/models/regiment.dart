@@ -6,12 +6,14 @@ class Regiment {
   final int stands;
   final int pointsCost;
   final List<String> upgrades;
+  final bool isWarlord;
 
   const Regiment({
     required this.unit,
     required this.stands,
     required this.pointsCost,
     this.upgrades = const [],
+    this.isWarlord = false,
   });
 
   /// Total wounds for this regiment (wounds per stand * number of stands)
@@ -45,6 +47,32 @@ class Regiment {
   /// Calculate ranged armor piercing rating for this regiment (Ranged Expected Hits * Armor Piercing)
   double get rangedArmorPiercingRating =>
       rangedExpectedHits * armorPiercingValue;
+
+  /// Get effective evasion considering army-wide effects
+  int getEffectiveEvasion(List<CharacteristicModifier> armyEffects) {
+    int effectiveEvasion = unit.characteristics.evasion;
+
+    for (final effect in armyEffects) {
+      if (effect.characteristic == 'evasion' && effect.appliesTo(this)) {
+        effectiveEvasion = effect.applyToValue(effectiveEvasion);
+      }
+    }
+
+    return effectiveEvasion;
+  }
+
+  /// Get effective defense considering army-wide effects
+  int getEffectiveDefense(List<CharacteristicModifier> armyEffects) {
+    int effectiveDefense = unit.characteristics.defense;
+
+    for (final effect in armyEffects) {
+      if (effect.characteristic == 'defense' && effect.appliesTo(this)) {
+        effectiveDefense = effect.applyToValue(effectiveDefense);
+      }
+    }
+
+    return effectiveDefense;
+  }
 
   /// Calculate expected hit volume for this regiment
   double calculateExpectedHitVolume({List<Regiment>? armyRegiments}) {
@@ -131,5 +159,5 @@ class Regiment {
 
   @override
   String toString() =>
-      'Regiment(${unit.name}, stands: $stands, cost: $pointsCost, wounds: $totalWounds, cleave: $cleaveValue, barrage: $barrageValue, range: $barrageRange, armorPiercing: $armorPiercingValue)';
+      'Regiment(${unit.name}, stands: $stands, cost: $pointsCost, wounds: $totalWounds, cleave: $cleaveValue, barrage: $barrageValue, range: $barrageRange, armorPiercing: $armorPiercingValue, warlord: $isWarlord)';
 }
