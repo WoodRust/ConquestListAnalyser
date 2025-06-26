@@ -226,6 +226,26 @@ class ScoreDisplayWidget extends StatelessWidget {
             ),
           ],
         ),
+        const SizedBox(height: 12),
+        // Sixth row of score cards - Effective Wounds
+        Row(
+          children: [
+            Expanded(
+              child: _buildEffectiveWoundsScoreCard(
+                'Effective Wounds',
+                score.effectiveWounds.toStringAsFixed(1),
+                Icons.favorite_border,
+                Colors.deepPurple,
+                score.effectiveWounds,
+                context,
+              ),
+            ),
+            const SizedBox(width: 12),
+            Expanded(
+              child: Container(), // Empty space for symmetry
+            ),
+          ],
+        ),
       ],
     );
   }
@@ -379,6 +399,69 @@ class ScoreDisplayWidget extends StatelessWidget {
     );
   }
 
+  Widget _buildEffectiveWoundsScoreCard(
+      String title,
+      String value,
+      IconData icon,
+      Color color,
+      double effectiveWoundsValue,
+      BuildContext context) {
+    return Container(
+      padding: const EdgeInsets.all(16),
+      decoration: BoxDecoration(
+        color: color.withOpacity(0.1),
+        borderRadius: BorderRadius.circular(8),
+        border: Border.all(color: color.withOpacity(0.3)),
+      ),
+      child: Stack(
+        children: [
+          // Main content centered - explicitly center the column
+          Center(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                Icon(icon, color: color, size: 32),
+                const SizedBox(height: 8),
+                Text(
+                  value,
+                  style: TextStyle(
+                    fontSize: 24,
+                    fontWeight: FontWeight.bold,
+                    color: color,
+                  ),
+                ),
+                const SizedBox(height: 4),
+                Text(
+                  title,
+                  style: TextStyle(
+                    fontSize: 12,
+                    color: color.withOpacity(0.8),
+                  ),
+                  textAlign: TextAlign.center,
+                ),
+              ],
+            ),
+          ),
+          // Info icon positioned at top-right
+          Positioned(
+            top: 0,
+            right: 0,
+            child: GestureDetector(
+              onTap: () =>
+                  _showEffectiveWoundsTooltip(context, effectiveWoundsValue),
+              child: Icon(
+                Icons.info_outline,
+                color: color.withOpacity(0.7),
+                size: 16,
+              ),
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+
   void _showToughnessTooltip(BuildContext context, double toughnessValue) {
     showDialog(
       context: context,
@@ -409,6 +492,75 @@ class ScoreDisplayWidget extends StatelessWidget {
           content: Text(
             'On average, each wound in your army has ${evasionValue.toStringAsFixed(1)} evasion.',
             style: const TextStyle(fontSize: 16),
+          ),
+          actions: [
+            TextButton(
+              onPressed: () => Navigator.of(context).pop(),
+              child: const Text('OK'),
+            ),
+          ],
+        );
+      },
+    );
+  }
+
+  void _showEffectiveWoundsTooltip(
+      BuildContext context, double effectiveWoundsValue) {
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: const Text('Effective Wounds'),
+          content: Column(
+            mainAxisSize: MainAxisSize.min,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              const Text(
+                'Effective Wounds represents how much damage your army can actually absorb, accounting for defensive characteristics.',
+                style: TextStyle(fontSize: 16),
+              ),
+              const SizedBox(height: 12),
+              const Text(
+                'Formula: Sum of (Regiment Wounds × (6 ÷ (6 - Best Defense)))',
+                style: TextStyle(fontSize: 14, fontWeight: FontWeight.bold),
+              ),
+              const SizedBox(height: 8),
+              const Text(
+                'Best Defense = Highest of Defense or Evasion (including army bonuses)',
+                style: TextStyle(fontSize: 14),
+              ),
+              const SizedBox(height: 12),
+              const Text(
+                'Examples:',
+                style: TextStyle(fontSize: 14, fontWeight: FontWeight.bold),
+              ),
+              const Text(
+                '• Defense/Evasion 1: 6÷5 = 1.2× wounds',
+                style: TextStyle(fontSize: 14),
+              ),
+              const Text(
+                '• Defense/Evasion 2: 6÷4 = 1.5× wounds',
+                style: TextStyle(fontSize: 14),
+              ),
+              const Text(
+                '• Defense/Evasion 3: 6÷3 = 2.0× wounds',
+                style: TextStyle(fontSize: 14),
+              ),
+              const Text(
+                '• Defense/Evasion 4: 6÷2 = 3.0× wounds',
+                style: TextStyle(fontSize: 14),
+              ),
+              const Text(
+                '• Defense/Evasion 5: 6÷1 = 6.0× wounds',
+                style: TextStyle(fontSize: 14),
+              ),
+              const SizedBox(height: 12),
+              Text(
+                'Your army has ${effectiveWoundsValue.toStringAsFixed(1)} effective wounds vs ${score.totalWounds} raw wounds.',
+                style:
+                    const TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+              ),
+            ],
           ),
           actions: [
             TextButton(
