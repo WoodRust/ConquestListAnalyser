@@ -31,6 +31,12 @@ class ArmyList {
   List<Regiment> get nonCharacterRegiments =>
       regiments.where((r) => r.unit.regimentClass != 'character').toList();
 
+  /// Get all character monsters (regimentClass == 'character' AND type == 'monster')
+  List<Regiment> get characterMonsters => regiments
+      .where((r) =>
+          r.unit.regimentClass == 'character' && r.unit.type == 'monster')
+      .toList();
+
   /// Get count of light regiments (excluding characters)
   int get lightRegimentCount => nonCharacterRegiments
       .where((r) => r.unit.regimentClass.toLowerCase() == 'light')

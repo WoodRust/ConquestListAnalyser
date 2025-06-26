@@ -40,13 +40,22 @@ class ScoringEngine {
   }
 
   /// Calculate total wounds across all regiments
+  /// Includes: all non-character regiments + character monsters
   int _calculateTotalWounds(ArmyList armyList) {
     return armyList.regiments.fold(0, (total, regiment) {
-      // Exclude characters from wound calculation
-      if (regiment.unit.regimentClass == 'character') {
-        return total;
+      // Include non-character regiments
+      if (regiment.unit.regimentClass != 'character') {
+        return total + regiment.totalWounds;
       }
-      return total + regiment.totalWounds;
+
+      // Include character monsters
+      if (regiment.unit.regimentClass == 'character' &&
+          regiment.unit.type == 'monster') {
+        return total + regiment.totalWounds;
+      }
+
+      // Exclude regular characters
+      return total;
     });
   }
 
@@ -96,55 +105,77 @@ class ScoringEngine {
   /// Calculate maximum barrage range across all regiments
   int _calculateMaxRange(ArmyList armyList) {
     if (armyList.regiments.isEmpty) return 0;
+
     return armyList.regiments.fold(0, (maxRange, regiment) {
       final regimentRange = regiment.barrageRange;
       return regimentRange > maxRange ? regimentRange : maxRange;
     });
   }
 
-  /// Calculate average speed (march characteristic) across all regiments (excluding characters)
+  /// Calculate average speed (march characteristic) across all regiments
+  /// Includes: non-character regiments + character monsters
+  /// Excludes: regular characters
   double _calculateAverageSpeed(ArmyList armyList) {
-    // Get only non-character regiments
-    final nonCharacterRegiments = armyList.regiments
-        .where((regiment) => regiment.unit.regimentClass != 'character')
-        .toList();
+    // Get regiments for speed calculation: non-characters + character monsters
+    final regimentsForSpeed = armyList.regiments.where((regiment) {
+      // Include non-character regiments
+      if (regiment.unit.regimentClass != 'character') {
+        return true;
+      }
+      // Include character monsters
+      if (regiment.unit.regimentClass == 'character' &&
+          regiment.unit.type == 'monster') {
+        return true;
+      }
+      // Exclude regular characters
+      return false;
+    }).toList();
 
     // Return 0 if no regiments
-    if (nonCharacterRegiments.isEmpty) return 0.0;
+    if (regimentsForSpeed.isEmpty) return 0.0;
 
     // Calculate total march value across all regiments
-    final totalMarch = nonCharacterRegiments.fold(0, (total, regiment) {
+    final totalMarch = regimentsForSpeed.fold(0, (total, regiment) {
       // Use march characteristic from unit, default to 0 if null
       final marchValue = regiment.unit.characteristics.march ?? 0;
       return total + marchValue;
     });
 
     // Return average march value
-    return totalMarch / nonCharacterRegiments.length;
+    return totalMarch / regimentsForSpeed.length;
   }
 
-  /// Calculate toughness (wound-weighted average defense) for the entire list (excluding characters)
+  /// Calculate toughness (wound-weighted average defense) for the entire list
+  /// Excludes characters (but includes character monsters)
   double _calculateToughness(
       ArmyList armyList, List<CharacteristicModifier> armyEffects) {
-    // Get only non-character regiments
-    final nonCharacterRegiments = armyList.regiments
-        .where((regiment) => regiment.unit.regimentClass != 'character')
-        .toList();
+    // Get regiments for toughness calculation: non-characters + character monsters
+    final regimentsForToughness = armyList.regiments.where((regiment) {
+      // Include non-character regiments
+      if (regiment.unit.regimentClass != 'character') {
+        return true;
+      }
+      // Include character monsters
+      if (regiment.unit.regimentClass == 'character' &&
+          regiment.unit.type == 'monster') {
+        return true;
+      }
+      // Exclude regular characters
+      return false;
+    }).toList();
 
     // Return 0 if no regiments
-    if (nonCharacterRegiments.isEmpty) return 0.0;
+    if (regimentsForToughness.isEmpty) return 0.0;
 
     // Calculate total defense weighted by wounds
     double totalDefenseWeighted = 0.0;
     int totalWounds = 0;
 
-    for (final regiment in nonCharacterRegiments) {
+    for (final regiment in regimentsForToughness) {
       final regimentWounds = regiment.totalWounds;
-
       // Get effective defense considering army effects
       final effectiveDefense = ArmyEffectManager.getEffectiveCharacteristic(
           regiment, 'defense', armyEffects);
-
       totalDefenseWeighted += effectiveDefense * regimentWounds;
       totalWounds += regimentWounds;
     }
@@ -154,28 +185,37 @@ class ScoringEngine {
     return totalDefenseWeighted / totalWounds;
   }
 
-  /// Calculate evasion (wound-weighted average evasion) for the entire list (excluding characters)
+  /// Calculate evasion (wound-weighted average evasion) for the entire list
+  /// Excludes characters (but includes character monsters)
   double _calculateEvasion(
       ArmyList armyList, List<CharacteristicModifier> armyEffects) {
-    // Get only non-character regiments
-    final nonCharacterRegiments = armyList.regiments
-        .where((regiment) => regiment.unit.regimentClass != 'character')
-        .toList();
+    // Get regiments for evasion calculation: non-characters + character monsters
+    final regimentsForEvasion = armyList.regiments.where((regiment) {
+      // Include non-character regiments
+      if (regiment.unit.regimentClass != 'character') {
+        return true;
+      }
+      // Include character monsters
+      if (regiment.unit.regimentClass == 'character' &&
+          regiment.unit.type == 'monster') {
+        return true;
+      }
+      // Exclude regular characters
+      return false;
+    }).toList();
 
     // Return 0 if no regiments
-    if (nonCharacterRegiments.isEmpty) return 0.0;
+    if (regimentsForEvasion.isEmpty) return 0.0;
 
     // Calculate total evasion weighted by wounds
     double totalEvasionWeighted = 0.0;
     int totalWounds = 0;
 
-    for (final regiment in nonCharacterRegiments) {
+    for (final regiment in regimentsForEvasion) {
       final regimentWounds = regiment.totalWounds;
-
       // Get effective evasion considering army effects
       final effectiveEvasion = ArmyEffectManager.getEffectiveCharacteristic(
           regiment, 'evasion', armyEffects);
-
       totalEvasionWeighted += effectiveEvasion * regimentWounds;
       totalWounds += regimentWounds;
     }

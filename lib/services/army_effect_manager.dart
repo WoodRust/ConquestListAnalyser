@@ -57,7 +57,6 @@ class ArmyEffectManager {
     List<CharacteristicModifier> armyEffects,
   ) {
     int baseValue;
-
     // Get base characteristic value
     switch (characteristic) {
       case 'march':
@@ -102,20 +101,17 @@ class ArmyEffectManager {
   /// Debug method to get a summary of active effects
   static String getEffectsSummary(ArmyList armyList) {
     final effects = getActiveEffects(armyList);
-
     if (effects.isEmpty) {
       return 'No army-wide effects active';
     }
 
     final buffer = StringBuffer();
     buffer.writeln('Active Army Effects:');
-
     for (final effect in effects) {
       buffer.writeln(
           '- ${effect.characteristic} ${effect.operation} ${effect.value}'
           '${effect.maximum != null ? ' (max ${effect.maximum})' : ''}');
     }
-
     return buffer.toString();
   }
 }

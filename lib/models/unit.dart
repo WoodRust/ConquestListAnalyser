@@ -186,7 +186,6 @@ class CharacteristicModifier {
   /// Apply this modifier to a characteristic value
   int applyToValue(int baseValue) {
     int result = baseValue;
-
     switch (operation) {
       case 'add':
         result = baseValue + value;
@@ -215,8 +214,23 @@ class CharacteristicModifier {
   bool appliesTo(Regiment regiment) {
     // For now, we only support "allFriendlyRegiments"
     // This can be extended for more complex targeting
-    return target == 'allFriendlyRegiments' &&
-        regiment.unit.regimentClass != 'character';
+
+    // Apply to non-character regiments and character monsters
+    if (target == 'allFriendlyRegiments') {
+      // Include non-character regiments
+      if (regiment.unit.regimentClass != 'character') {
+        return true;
+      }
+      // Include character monsters
+      if (regiment.unit.regimentClass == 'character' &&
+          regiment.unit.type == 'monster') {
+        return true;
+      }
+      // Exclude regular characters
+      return false;
+    }
+
+    return false;
   }
 }
 
