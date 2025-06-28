@@ -4,95 +4,13 @@ import '../../models/list_score.dart';
 class ScoreDisplayWidget extends StatelessWidget {
   final ListScore score;
 
-  const ScoreDisplayWidget({
-    super.key,
-    required this.score,
-  });
+  const ScoreDisplayWidget({super.key, required this.score});
 
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          // Army Info Section
-          _buildInfoSection(),
-          const SizedBox(height: 20),
-          // Scores Section
-          _buildScoresSection(context),
-          const SizedBox(height: 20),
-          // Regiment Breakdown
-          _buildRegimentBreakdown(),
-        ],
-      ),
-    );
-  }
-
-  Widget _buildInfoSection() {
-    return Container(
-      padding: const EdgeInsets.all(16),
-      decoration: BoxDecoration(
-        color: Colors.blue[50],
-        borderRadius: BorderRadius.circular(8),
-        border: Border.all(color: Colors.blue[200]!),
-      ),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Text(
-            score.armyList.name,
-            style: const TextStyle(
-              fontSize: 20,
-              fontWeight: FontWeight.bold,
-            ),
-          ),
-          const SizedBox(height: 4),
-          Text(
-            'Faction: ${score.armyList.faction}',
-            style: const TextStyle(fontSize: 16),
-          ),
-          Text(
-            'Points: ${score.armyList.totalPoints}/${score.armyList.pointsLimit}',
-            style: const TextStyle(fontSize: 16),
-          ),
-          Text(
-            'Regiments: ${score.armyList.regiments.length}',
-            style: const TextStyle(fontSize: 16),
-          ),
-          Text(
-            'Characters: ${score.armyList.characters.length}',
-            style: const TextStyle(fontSize: 16),
-          ),
-          Text(
-            'Activations: ${score.armyList.characters.length + score.armyList.nonCharacterRegiments.length}',
-            style: const TextStyle(fontSize: 16),
-          ),
-          const SizedBox(height: 8),
-          // Regiment Class Counts - using ArmyList getters
-          Row(
-            children: [
-              Expanded(
-                child: Text(
-                  'Light: ${score.armyList.lightRegimentCount}',
-                  style: const TextStyle(fontSize: 16),
-                ),
-              ),
-              Expanded(
-                child: Text(
-                  'Medium: ${score.armyList.mediumRegimentCount}',
-                  style: const TextStyle(fontSize: 16),
-                ),
-              ),
-              Expanded(
-                child: Text(
-                  'Heavy: ${score.armyList.heavyRegimentCount}',
-                  style: const TextStyle(fontSize: 16),
-                ),
-              ),
-            ],
-          ),
-        ],
-      ),
+      padding: const EdgeInsets.all(16.0),
+      child: _buildScoresSection(context),
     );
   }
 
@@ -100,6 +18,11 @@ class ScoreDisplayWidget extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
+        // Army Summary Section
+        _buildArmySummary(),
+        const SizedBox(height: 20),
+
+        // Scores Section
         const Text(
           'Scores',
           style: TextStyle(
@@ -108,103 +31,232 @@ class ScoreDisplayWidget extends StatelessWidget {
           ),
         ),
         const SizedBox(height: 12),
-        // First row of score cards
+        // Compact grid layout - 3 columns instead of 2
+        _buildScoreGrid(context),
+      ],
+    );
+  }
+
+  Widget _buildArmySummary() {
+    final armyList = score.armyList;
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        // Army name and faction
+        Text(
+          armyList.name,
+          style: const TextStyle(
+            fontSize: 20,
+            fontWeight: FontWeight.bold,
+          ),
+        ),
+        const SizedBox(height: 4),
+        Text(
+          '${armyList.faction} • ${armyList.totalPoints}/${armyList.pointsLimit} points',
+          style: TextStyle(
+            fontSize: 14,
+            color: Colors.grey[600],
+          ),
+        ),
+        const SizedBox(height: 12),
+
+        // Regiment breakdown in compact rows
         Row(
           children: [
             Expanded(
-              child: _buildScoreCard(
+              child: _buildSummaryCard(
+                'Regiments',
+                armyList.regiments.length.toString(),
+                Icons.group,
+                Colors.blue,
+              ),
+            ),
+            const SizedBox(width: 8),
+            Expanded(
+              child: _buildSummaryCard(
+                'Characters',
+                armyList.characters.length.toString(),
+                Icons.person,
+                Colors.purple,
+              ),
+            ),
+            const SizedBox(width: 8),
+            Expanded(
+              child: _buildSummaryCard(
+                'Activations',
+                (armyList.regiments.length + armyList.characters.length)
+                    .toString(),
+                Icons.play_arrow,
+                Colors.green,
+              ),
+            ),
+          ],
+        ),
+        const SizedBox(height: 8),
+
+        // Regiment class breakdown
+        Row(
+          children: [
+            Expanded(
+              child: _buildSummaryCard(
+                'Light',
+                armyList.lightRegimentCount.toString(),
+                Icons.flash_on,
+                Colors.orange,
+              ),
+            ),
+            const SizedBox(width: 8),
+            Expanded(
+              child: _buildSummaryCard(
+                'Medium',
+                armyList.mediumRegimentCount.toString(),
+                Icons.shield,
+                Colors.amber,
+              ),
+            ),
+            const SizedBox(width: 8),
+            Expanded(
+              child: _buildSummaryCard(
+                'Heavy',
+                armyList.heavyRegimentCount.toString(),
+                Icons.security,
+                Colors.red,
+              ),
+            ),
+          ],
+        ),
+      ],
+    );
+  }
+
+  Widget _buildSummaryCard(
+      String title, String value, IconData icon, Color color) {
+    return Container(
+      padding: const EdgeInsets.all(8),
+      decoration: BoxDecoration(
+        color: color.withOpacity(0.1),
+        borderRadius: BorderRadius.circular(6),
+        border: Border.all(color: color.withOpacity(0.3)),
+      ),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Icon(icon, color: color, size: 16),
+          const SizedBox(width: 4),
+          Text(
+            value,
+            style: TextStyle(
+              fontSize: 16,
+              fontWeight: FontWeight.bold,
+              color: color,
+            ),
+          ),
+          const SizedBox(width: 4),
+          Flexible(
+            child: Text(
+              title,
+              style: TextStyle(
+                fontSize: 11,
+                color: color.withOpacity(0.8),
+              ),
+              overflow: TextOverflow.ellipsis,
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget _buildScoreGrid(BuildContext context) {
+    return Column(
+      children: [
+        // First row - Basic metrics
+        Row(
+          children: [
+            Expanded(
+              child: _buildCompactScoreCard(
                 'Total Wounds',
                 score.totalWounds.toString(),
                 Icons.favorite,
                 Colors.red,
               ),
             ),
-            const SizedBox(width: 12),
+            const SizedBox(width: 8),
             Expanded(
-              child: _buildScoreCard(
-                'Points per Wound',
-                score.pointsPerWound.toStringAsFixed(2),
+              child: _buildCompactScoreCard(
+                'Points/Wound',
+                score.pointsPerWound.toStringAsFixed(1),
                 Icons.trending_up,
                 Colors.green,
               ),
             ),
+            const SizedBox(width: 8),
+            Expanded(
+              child: _buildCompactScoreCard(
+                'Avg Speed',
+                score.averageSpeed.toStringAsFixed(1),
+                Icons.directions_run,
+                Colors.amber,
+              ),
+            ),
           ],
         ),
-        const SizedBox(height: 12),
-        // Second row of score cards
+        const SizedBox(height: 8),
+        // Second row - Combat metrics
         Row(
           children: [
             Expanded(
-              child: _buildScoreCard(
-                'Expected Hit Volume',
+              child: _buildCompactScoreCard(
+                'Hit Volume',
                 score.expectedHitVolume.toStringAsFixed(1),
                 Icons.gps_fixed,
                 Colors.blue,
               ),
             ),
-            const SizedBox(width: 12),
+            const SizedBox(width: 8),
             Expanded(
-              child: _buildScoreCard(
-                'Cleave Rating',
+              child: _buildCompactScoreCard(
+                'Cleave',
                 score.cleaveRating.toStringAsFixed(1),
                 Icons.cut,
                 Colors.orange,
               ),
             ),
-          ],
-        ),
-        const SizedBox(height: 12),
-        // Third row of score cards
-        Row(
-          children: [
+            const SizedBox(width: 8),
             Expanded(
-              child: _buildScoreCard(
-                'Ranged Expected Hits',
-                score.rangedExpectedHits.toStringAsFixed(1),
-                Icons.my_location,
-                Colors.purple,
-              ),
-            ),
-            const SizedBox(width: 12),
-            Expanded(
-              child: _buildScoreCard(
-                'Ranged Armor Piercing',
-                score.rangedArmorPiercingRating.toStringAsFixed(1),
-                Icons.shield,
-                Colors.indigo,
-              ),
-            ),
-          ],
-        ),
-        const SizedBox(height: 12),
-        // Fourth row of score cards
-        Row(
-          children: [
-            Expanded(
-              child: _buildScoreCard(
+              child: _buildCompactScoreCard(
                 'Max Range',
                 score.maxRange.toString(),
-                Icons.radar,
-                Colors.teal,
-              ),
-            ),
-            const SizedBox(width: 12),
-            Expanded(
-              child: _buildScoreCard(
-                'Average Speed',
-                score.averageSpeed.toStringAsFixed(1),
                 Icons.speed,
                 Colors.cyan,
               ),
             ),
           ],
         ),
-        const SizedBox(height: 12),
-        // Fifth row of score cards - Toughness and Evasion
+        const SizedBox(height: 8),
+        // Third row - Ranged metrics
         Row(
           children: [
             Expanded(
-              child: _buildToughnessScoreCard(
+              child: _buildCompactScoreCard(
+                'Ranged Hits',
+                score.rangedExpectedHits.toStringAsFixed(1),
+                Icons.my_location,
+                Colors.purple,
+              ),
+            ),
+            const SizedBox(width: 8),
+            Expanded(
+              child: _buildCompactScoreCard(
+                'Armor Pierce',
+                score.rangedArmorPiercingRating.toStringAsFixed(1),
+                Icons.shield,
+                Colors.indigo,
+              ),
+            ),
+            const SizedBox(width: 8),
+            Expanded(
+              child: _buildToughnessCompactScoreCard(
                 'Toughness',
                 score.toughness.toStringAsFixed(1),
                 Icons.security,
@@ -213,36 +265,43 @@ class ScoreDisplayWidget extends StatelessWidget {
                 context,
               ),
             ),
-            const SizedBox(width: 12),
+          ],
+        ),
+        const SizedBox(height: 8),
+        // Fourth row - Defensive metrics
+        Row(
+          children: [
             Expanded(
-              child: _buildEvasionScoreCard(
+              child: _buildEvasionCompactScoreCard(
                 'Evasion',
                 score.evasion.toStringAsFixed(1),
                 Icons.flash_on,
-                Colors.amber,
+                Colors.lime,
                 score.evasion,
                 context,
               ),
             ),
-          ],
-        ),
-        const SizedBox(height: 12),
-        // Sixth row of score cards - Effective Wounds
-        Row(
-          children: [
+            const SizedBox(width: 8),
             Expanded(
-              child: _buildEffectiveWoundsScoreCard(
-                'Effective Wounds',
-                score.effectiveWounds.toStringAsFixed(1),
+              child: _buildEffectiveWoundsDefenseCompactScoreCard(
+                'Eff. Wounds (Def)',
+                score.effectiveWoundsDefense.toStringAsFixed(1),
                 Icons.favorite_border,
                 Colors.deepPurple,
-                score.effectiveWounds,
+                score.effectiveWoundsDefense,
                 context,
               ),
             ),
-            const SizedBox(width: 12),
+            const SizedBox(width: 8),
             Expanded(
-              child: Container(), // Empty space for symmetry
+              child: _buildEffectiveWoundsDefenseResolveCompactScoreCard(
+                'Eff. Wounds (D&R)',
+                score.effectiveWoundsDefenseResolve.toStringAsFixed(1),
+                Icons.shield_outlined,
+                Colors.teal,
+                score.effectiveWoundsDefenseResolve,
+                context,
+              ),
             ),
           ],
         ),
@@ -250,10 +309,10 @@ class ScoreDisplayWidget extends StatelessWidget {
     );
   }
 
-  Widget _buildScoreCard(
+  Widget _buildCompactScoreCard(
       String title, String value, IconData icon, Color color) {
     return Container(
-      padding: const EdgeInsets.all(16),
+      padding: const EdgeInsets.all(12),
       decoration: BoxDecoration(
         color: color.withOpacity(0.1),
         borderRadius: BorderRadius.circular(8),
@@ -261,34 +320,36 @@ class ScoreDisplayWidget extends StatelessWidget {
       ),
       child: Column(
         children: [
-          Icon(icon, color: color, size: 32),
-          const SizedBox(height: 8),
+          Icon(icon, color: color, size: 24),
+          const SizedBox(height: 6),
           Text(
             value,
             style: TextStyle(
-              fontSize: 24,
+              fontSize: 18,
               fontWeight: FontWeight.bold,
               color: color,
             ),
           ),
-          const SizedBox(height: 4),
+          const SizedBox(height: 2),
           Text(
             title,
             style: TextStyle(
-              fontSize: 12,
+              fontSize: 10,
               color: color.withOpacity(0.8),
             ),
             textAlign: TextAlign.center,
+            maxLines: 2,
+            overflow: TextOverflow.ellipsis,
           ),
         ],
       ),
     );
   }
 
-  Widget _buildToughnessScoreCard(String title, String value, IconData icon,
-      Color color, double toughnessValue, BuildContext context) {
+  Widget _buildToughnessCompactScoreCard(String title, String value,
+      IconData icon, Color color, double toughnessValue, BuildContext context) {
     return Container(
-      padding: const EdgeInsets.all(16),
+      padding: const EdgeInsets.all(12),
       decoration: BoxDecoration(
         color: color.withOpacity(0.1),
         borderRadius: BorderRadius.circular(8),
@@ -296,30 +357,31 @@ class ScoreDisplayWidget extends StatelessWidget {
       ),
       child: Stack(
         children: [
-          // Main content centered - explicitly center the column
+          // Main content centered
           Center(
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
-              crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                Icon(icon, color: color, size: 32),
-                const SizedBox(height: 8),
+                Icon(icon, color: color, size: 24),
+                const SizedBox(height: 6),
                 Text(
                   value,
                   style: TextStyle(
-                    fontSize: 24,
+                    fontSize: 18,
                     fontWeight: FontWeight.bold,
                     color: color,
                   ),
                 ),
-                const SizedBox(height: 4),
+                const SizedBox(height: 2),
                 Text(
                   title,
                   style: TextStyle(
-                    fontSize: 12,
+                    fontSize: 10,
                     color: color.withOpacity(0.8),
                   ),
                   textAlign: TextAlign.center,
+                  maxLines: 2,
+                  overflow: TextOverflow.ellipsis,
                 ),
               ],
             ),
@@ -333,7 +395,7 @@ class ScoreDisplayWidget extends StatelessWidget {
               child: Icon(
                 Icons.info_outline,
                 color: color.withOpacity(0.7),
-                size: 16,
+                size: 12,
               ),
             ),
           ),
@@ -342,10 +404,10 @@ class ScoreDisplayWidget extends StatelessWidget {
     );
   }
 
-  Widget _buildEvasionScoreCard(String title, String value, IconData icon,
-      Color color, double evasionValue, BuildContext context) {
+  Widget _buildEvasionCompactScoreCard(String title, String value,
+      IconData icon, Color color, double evasionValue, BuildContext context) {
     return Container(
-      padding: const EdgeInsets.all(16),
+      padding: const EdgeInsets.all(12),
       decoration: BoxDecoration(
         color: color.withOpacity(0.1),
         borderRadius: BorderRadius.circular(8),
@@ -353,30 +415,31 @@ class ScoreDisplayWidget extends StatelessWidget {
       ),
       child: Stack(
         children: [
-          // Main content centered - explicitly center the column
+          // Main content centered
           Center(
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
-              crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                Icon(icon, color: color, size: 32),
-                const SizedBox(height: 8),
+                Icon(icon, color: color, size: 24),
+                const SizedBox(height: 6),
                 Text(
                   value,
                   style: TextStyle(
-                    fontSize: 24,
+                    fontSize: 18,
                     fontWeight: FontWeight.bold,
                     color: color,
                   ),
                 ),
-                const SizedBox(height: 4),
+                const SizedBox(height: 2),
                 Text(
                   title,
                   style: TextStyle(
-                    fontSize: 12,
+                    fontSize: 10,
                     color: color.withOpacity(0.8),
                   ),
                   textAlign: TextAlign.center,
+                  maxLines: 2,
+                  overflow: TextOverflow.ellipsis,
                 ),
               ],
             ),
@@ -390,7 +453,7 @@ class ScoreDisplayWidget extends StatelessWidget {
               child: Icon(
                 Icons.info_outline,
                 color: color.withOpacity(0.7),
-                size: 16,
+                size: 12,
               ),
             ),
           ),
@@ -399,7 +462,7 @@ class ScoreDisplayWidget extends StatelessWidget {
     );
   }
 
-  Widget _buildEffectiveWoundsScoreCard(
+  Widget _buildEffectiveWoundsDefenseCompactScoreCard(
       String title,
       String value,
       IconData icon,
@@ -407,7 +470,7 @@ class ScoreDisplayWidget extends StatelessWidget {
       double effectiveWoundsValue,
       BuildContext context) {
     return Container(
-      padding: const EdgeInsets.all(16),
+      padding: const EdgeInsets.all(12),
       decoration: BoxDecoration(
         color: color.withOpacity(0.1),
         borderRadius: BorderRadius.circular(8),
@@ -415,30 +478,31 @@ class ScoreDisplayWidget extends StatelessWidget {
       ),
       child: Stack(
         children: [
-          // Main content centered - explicitly center the column
+          // Main content centered
           Center(
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
-              crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                Icon(icon, color: color, size: 32),
-                const SizedBox(height: 8),
+                Icon(icon, color: color, size: 24),
+                const SizedBox(height: 6),
                 Text(
                   value,
                   style: TextStyle(
-                    fontSize: 24,
+                    fontSize: 18,
                     fontWeight: FontWeight.bold,
                     color: color,
                   ),
                 ),
-                const SizedBox(height: 4),
+                const SizedBox(height: 2),
                 Text(
                   title,
                   style: TextStyle(
-                    fontSize: 12,
+                    fontSize: 10,
                     color: color.withOpacity(0.8),
                   ),
                   textAlign: TextAlign.center,
+                  maxLines: 2,
+                  overflow: TextOverflow.ellipsis,
                 ),
               ],
             ),
@@ -448,12 +512,76 @@ class ScoreDisplayWidget extends StatelessWidget {
             top: 0,
             right: 0,
             child: GestureDetector(
-              onTap: () =>
-                  _showEffectiveWoundsTooltip(context, effectiveWoundsValue),
+              onTap: () => _showEffectiveWoundsDefenseTooltip(
+                  context, effectiveWoundsValue),
               child: Icon(
                 Icons.info_outline,
                 color: color.withOpacity(0.7),
-                size: 16,
+                size: 12,
+              ),
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget _buildEffectiveWoundsDefenseResolveCompactScoreCard(
+      String title,
+      String value,
+      IconData icon,
+      Color color,
+      double effectiveWoundsValue,
+      BuildContext context) {
+    return Container(
+      padding: const EdgeInsets.all(12),
+      decoration: BoxDecoration(
+        color: color.withOpacity(0.1),
+        borderRadius: BorderRadius.circular(8),
+        border: Border.all(color: color.withOpacity(0.3)),
+      ),
+      child: Stack(
+        children: [
+          // Main content centered
+          Center(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Icon(icon, color: color, size: 24),
+                const SizedBox(height: 6),
+                Text(
+                  value,
+                  style: TextStyle(
+                    fontSize: 18,
+                    fontWeight: FontWeight.bold,
+                    color: color,
+                  ),
+                ),
+                const SizedBox(height: 2),
+                Text(
+                  title,
+                  style: TextStyle(
+                    fontSize: 10,
+                    color: color.withOpacity(0.8),
+                  ),
+                  textAlign: TextAlign.center,
+                  maxLines: 2,
+                  overflow: TextOverflow.ellipsis,
+                ),
+              ],
+            ),
+          ),
+          // Info icon positioned at top-right
+          Positioned(
+            top: 0,
+            right: 0,
+            child: GestureDetector(
+              onTap: () => _showEffectiveWoundsDefenseResolveTooltip(
+                  context, effectiveWoundsValue),
+              child: Icon(
+                Icons.info_outline,
+                color: color.withOpacity(0.7),
+                size: 12,
               ),
             ),
           ),
@@ -504,19 +632,19 @@ class ScoreDisplayWidget extends StatelessWidget {
     );
   }
 
-  void _showEffectiveWoundsTooltip(
+  void _showEffectiveWoundsDefenseTooltip(
       BuildContext context, double effectiveWoundsValue) {
     showDialog(
       context: context,
       builder: (BuildContext context) {
         return AlertDialog(
-          title: const Text('Effective Wounds'),
+          title: const Text('Effective Wounds (Defense)'),
           content: Column(
             mainAxisSize: MainAxisSize.min,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               const Text(
-                'Effective Wounds represents how much damage your army can actually absorb, accounting for defensive characteristics.',
+                'Effective Wounds represents how much damage your army can absorb, accounting for defensive characteristics only.',
                 style: TextStyle(fontSize: 16),
               ),
               const SizedBox(height: 12),
@@ -558,7 +686,7 @@ class ScoreDisplayWidget extends StatelessWidget {
               Text(
                 'Your army has ${effectiveWoundsValue.toStringAsFixed(1)} effective wounds vs ${score.totalWounds} raw wounds.',
                 style:
-                    const TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+                    const TextStyle(fontSize: 14, fontStyle: FontStyle.italic),
               ),
             ],
           ),
@@ -573,173 +701,81 @@ class ScoreDisplayWidget extends StatelessWidget {
     );
   }
 
-  Widget _buildRegimentBreakdown() {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        const Text(
-          'Regiment Breakdown',
-          style: TextStyle(
-            fontSize: 18,
-            fontWeight: FontWeight.bold,
-          ),
-        ),
-        const SizedBox(height: 12),
-        Container(
-          decoration: BoxDecoration(
-            border: Border.all(color: Colors.grey[300]!),
-            borderRadius: BorderRadius.circular(8),
-          ),
-          child: Column(
+  void _showEffectiveWoundsDefenseResolveTooltip(
+      BuildContext context, double effectiveWoundsValue) {
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: const Text('Effective Wounds (Defense & Resolve)'),
+          content: Column(
+            mainAxisSize: MainAxisSize.min,
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              // Header
-              Container(
-                padding: const EdgeInsets.all(12),
-                decoration: BoxDecoration(
-                  color: Colors.grey[100],
-                  borderRadius: const BorderRadius.only(
-                    topLeft: Radius.circular(8),
-                    topRight: Radius.circular(8),
-                  ),
-                ),
-                child: const Row(
-                  children: [
-                    Expanded(
-                        flex: 3,
-                        child: Text('Unit',
-                            style: TextStyle(fontWeight: FontWeight.bold))),
-                    Expanded(
-                        flex: 1,
-                        child: Text('Stands',
-                            style: TextStyle(fontWeight: FontWeight.bold))),
-                    Expanded(
-                        flex: 1,
-                        child: Text('Move',
-                            style: TextStyle(fontWeight: FontWeight.bold))),
-                    Expanded(
-                        flex: 1,
-                        child: Text('Defense',
-                            style: TextStyle(fontWeight: FontWeight.bold))),
-                    Expanded(
-                        flex: 1,
-                        child: Text('Wounds',
-                            style: TextStyle(fontWeight: FontWeight.bold))),
-                    Expanded(
-                        flex: 1,
-                        child: Text('Points',
-                            style: TextStyle(fontWeight: FontWeight.bold))),
-                    Expanded(
-                        flex: 1,
-                        child: Text('PPW',
-                            style: TextStyle(fontWeight: FontWeight.bold))),
-                    Expanded(
-                        flex: 1,
-                        child: Text('EHV',
-                            style: TextStyle(fontWeight: FontWeight.bold))),
-                    Expanded(
-                        flex: 1,
-                        child: Text('Cleave',
-                            style: TextStyle(fontWeight: FontWeight.bold))),
-                    Expanded(
-                        flex: 1,
-                        child: Text('Ranged',
-                            style: TextStyle(fontWeight: FontWeight.bold))),
-                    Expanded(
-                        flex: 1,
-                        child: Text('AP',
-                            style: TextStyle(fontWeight: FontWeight.bold))),
-                    Expanded(
-                        flex: 1,
-                        child: Text('Range',
-                            style: TextStyle(fontWeight: FontWeight.bold))),
-                  ],
-                ),
+              const Text(
+                'This shows your army\'s true survivability, accounting for both defense and resolve characteristics.',
+                style: TextStyle(fontSize: 16),
               ),
-              // Regiment rows
-              ...score.armyList.regiments.asMap().entries.map((entry) {
-                final index = entry.key;
-                final regiment = entry.value;
-                final isEven = index % 2 == 0;
-                return Container(
-                  padding: const EdgeInsets.all(12),
-                  color: isEven ? null : Colors.grey[50],
-                  child: Row(
-                    children: [
-                      Expanded(
-                        flex: 3,
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Text(
-                              regiment.unit.name,
-                              style:
-                                  const TextStyle(fontWeight: FontWeight.w500),
-                            ),
-                            if (regiment.upgrades.isNotEmpty)
-                              Text(
-                                regiment.upgrades.join(', '),
-                                style: TextStyle(
-                                  fontSize: 12,
-                                  color: Colors.grey[600],
-                                ),
-                              ),
-                          ],
-                        ),
-                      ),
-                      Expanded(
-                          flex: 1, child: Text(regiment.stands.toString())),
-                      Expanded(
-                          flex: 1,
-                          child: Text((regiment.unit.characteristics.march ?? 0)
-                              .toString())),
-                      Expanded(
-                          flex: 1,
-                          child: Text(regiment.unit.characteristics.defense
-                              .toString())),
-                      Expanded(
-                          flex: 1,
-                          child: Text(regiment.totalWounds.toString())),
-                      Expanded(
-                          flex: 1, child: Text(regiment.pointsCost.toString())),
-                      Expanded(
-                          flex: 1,
-                          child:
-                              Text(regiment.pointsPerWound.toStringAsFixed(1))),
-                      Expanded(
-                          flex: 1,
-                          child: Text(regiment
-                              .calculateExpectedHitVolume(
-                                  armyRegiments: score.armyList.regiments)
-                              .toStringAsFixed(1))),
-                      Expanded(
-                          flex: 1,
-                          child: Text(regiment
-                              .calculateCleaveRating(
-                                  armyRegiments: score.armyList.regiments)
-                              .toStringAsFixed(1))),
-                      Expanded(
-                          flex: 1,
-                          child: Text(regiment
-                              .calculateRangedExpectedHits()
-                              .toStringAsFixed(1))),
-                      Expanded(
-                          flex: 1,
-                          child: Text(regiment
-                              .calculateRangedArmorPiercingRating()
-                              .toStringAsFixed(1))),
-                      Expanded(
-                          flex: 1,
-                          child: Text(regiment.barrageRange > 0
-                              ? regiment.barrageRange.toString()
-                              : '-')),
-                    ],
-                  ),
-                );
-              }).toList(),
+              const SizedBox(height: 12),
+              const Text(
+                'How it works:',
+                style: TextStyle(fontSize: 14, fontWeight: FontWeight.bold),
+              ),
+              const Text(
+                '1. Failed defense rolls = wounds taken',
+                style: TextStyle(fontSize: 14),
+              ),
+              const Text(
+                '2. Each wound triggers a resolve roll',
+                style: TextStyle(fontSize: 14),
+              ),
+              const Text(
+                '3. Failed resolve rolls = additional wounds',
+                style: TextStyle(fontSize: 14),
+              ),
+              const SizedBox(height: 12),
+              const Text(
+                'Formula: Wounds ÷ (Defense Failure Rate × Wound Multiplier)',
+                style: TextStyle(fontSize: 14, fontWeight: FontWeight.bold),
+              ),
+              const SizedBox(height: 8),
+              const Text(
+                'Where Wound Multiplier = 1 + (Failed Resolve Rate)',
+                style: TextStyle(fontSize: 14),
+              ),
+              const SizedBox(height: 12),
+              const Text(
+                'Examples (Defense 3):',
+                style: TextStyle(fontSize: 14, fontWeight: FontWeight.bold),
+              ),
+              const Text(
+                '• Resolve 2: Takes 67% more wounds than defense-only',
+                style: TextStyle(fontSize: 14),
+              ),
+              const Text(
+                '• Resolve 4: Takes 33% more wounds than defense-only',
+                style: TextStyle(fontSize: 14),
+              ),
+              const Text(
+                '• Resolve 6: Takes same wounds as defense-only',
+                style: TextStyle(fontSize: 14),
+              ),
+              const SizedBox(height: 12),
+              Text(
+                'Your army has ${effectiveWoundsValue.toStringAsFixed(1)} true effective wounds vs ${score.effectiveWoundsDefense.toStringAsFixed(1)} defense-only effective wounds.',
+                style:
+                    const TextStyle(fontSize: 14, fontStyle: FontStyle.italic),
+              ),
             ],
           ),
-        ),
-      ],
+          actions: [
+            TextButton(
+              onPressed: () => Navigator.of(context).pop(),
+              child: const Text('OK'),
+            ),
+          ],
+        );
+      },
     );
   }
 }
