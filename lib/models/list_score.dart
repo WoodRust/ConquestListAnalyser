@@ -15,6 +15,8 @@ class ListScore {
   final double evasion;
   final double effectiveWoundsDefense; // Renamed from effectiveWounds
   final double effectiveWoundsDefenseResolve; // New field
+  final double
+      resolveImpactPercentage; // New field - percentage impact of resolve
   final DateTime calculatedAt;
 
   const ListScore({
@@ -31,6 +33,7 @@ class ListScore {
     required this.evasion,
     required this.effectiveWoundsDefense,
     required this.effectiveWoundsDefenseResolve,
+    required this.resolveImpactPercentage,
     required this.calculatedAt,
   });
 
@@ -54,6 +57,7 @@ Toughness: ${toughness.toStringAsFixed(1)}
 Evasion: ${evasion.toStringAsFixed(1)}
 Effective Wounds (Defense): ${effectiveWoundsDefense.toStringAsFixed(1)}
 Effective Wounds (Defense & Resolve): ${effectiveWoundsDefenseResolve.toStringAsFixed(1)}
+Resolve Impact: ${resolveImpactPercentage.toStringAsFixed(1)}%
 
 Calculated: ${calculatedAt.toString().split('.')[0]}
 ''';
@@ -61,5 +65,5 @@ Calculated: ${calculatedAt.toString().split('.')[0]}
 
   @override
   String toString() =>
-      'ListScore(wounds: $totalWounds, ppw: ${pointsPerWound.toStringAsFixed(2)}, ehv: ${expectedHitVolume.toStringAsFixed(1)}, cleave: ${cleaveRating.toStringAsFixed(1)}, ranged: ${rangedExpectedHits.toStringAsFixed(1)}, armorPiercing: ${rangedArmorPiercingRating.toStringAsFixed(1)}, maxRange: $maxRange, avgSpeed: ${averageSpeed.toStringAsFixed(1)}, toughness: ${toughness.toStringAsFixed(1)}, evasion: ${evasion.toStringAsFixed(1)}, effectiveWoundsDefense: ${effectiveWoundsDefense.toStringAsFixed(1)}, effectiveWoundsDefenseResolve: ${effectiveWoundsDefenseResolve.toStringAsFixed(1)})';
+      'ListScore(wounds: $totalWounds, ppw: ${pointsPerWound.toStringAsFixed(2)}, ehv: ${expectedHitVolume.toStringAsFixed(1)}, cleave: ${cleaveRating.toStringAsFixed(1)}, ranged: ${rangedExpectedHits.toStringAsFixed(1)}, armorPiercing: ${rangedArmorPiercingRating.toStringAsFixed(1)}, maxRange: $maxRange, avgSpeed: ${averageSpeed.toStringAsFixed(1)}, toughness: ${toughness.toStringAsFixed(1)}, evasion: ${evasion.toStringAsFixed(1)}, effectiveWoundsDefense: ${effectiveWoundsDefense.toStringAsFixed(1)}, effectiveWoundsDefenseResolve: ${effectiveWoundsDefenseResolve.toStringAsFixed(1)}, resolveImpact: ${resolveImpactPercentage.toStringAsFixed(1)}%)';
 }

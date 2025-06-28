@@ -10,30 +10,25 @@ class ScoreDisplayWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return SingleChildScrollView(
       padding: const EdgeInsets.all(16.0),
-      child: _buildScoresSection(context),
-    );
-  }
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          // Army Summary Section
+          _buildArmySummary(),
+          const SizedBox(height: 20),
 
-  Widget _buildScoresSection(BuildContext context) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        // Army Summary Section
-        _buildArmySummary(),
-        const SizedBox(height: 20),
-
-        // Scores Section
-        const Text(
-          'Scores',
-          style: TextStyle(
-            fontSize: 18,
-            fontWeight: FontWeight.bold,
+          // Scores Section
+          const Text(
+            'Scores',
+            style: TextStyle(
+              fontSize: 18,
+              fontWeight: FontWeight.bold,
+            ),
           ),
-        ),
-        const SizedBox(height: 12),
-        // Compact grid layout - 3 columns instead of 2
-        _buildScoreGrid(context),
-      ],
+          const SizedBox(height: 12),
+          _buildScoreGrid(context),
+        ],
+      ),
     );
   }
 
@@ -305,6 +300,30 @@ class ScoreDisplayWidget extends StatelessWidget {
             ),
           ],
         ),
+        const SizedBox(height: 8),
+        // Fifth row - Resolve impact metric
+        Row(
+          children: [
+            Expanded(
+              child: _buildResolveImpactCompactScoreCard(
+                'Resolve Impact',
+                '${score.resolveImpactPercentage.toStringAsFixed(1)}%',
+                Icons.psychology,
+                Colors.deepOrange,
+                score.resolveImpactPercentage,
+                context,
+              ),
+            ),
+            const SizedBox(width: 8),
+            Expanded(
+              child: Container(),
+            ),
+            const SizedBox(width: 8),
+            Expanded(
+              child: Container(),
+            ),
+          ],
+        ),
       ],
     );
   }
@@ -357,7 +376,6 @@ class ScoreDisplayWidget extends StatelessWidget {
       ),
       child: Stack(
         children: [
-          // Main content centered
           Center(
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
@@ -386,7 +404,6 @@ class ScoreDisplayWidget extends StatelessWidget {
               ],
             ),
           ),
-          // Info icon positioned at top-right
           Positioned(
             top: 0,
             right: 0,
@@ -415,7 +432,6 @@ class ScoreDisplayWidget extends StatelessWidget {
       ),
       child: Stack(
         children: [
-          // Main content centered
           Center(
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
@@ -444,7 +460,6 @@ class ScoreDisplayWidget extends StatelessWidget {
               ],
             ),
           ),
-          // Info icon positioned at top-right
           Positioned(
             top: 0,
             right: 0,
@@ -478,7 +493,6 @@ class ScoreDisplayWidget extends StatelessWidget {
       ),
       child: Stack(
         children: [
-          // Main content centered
           Center(
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
@@ -507,7 +521,6 @@ class ScoreDisplayWidget extends StatelessWidget {
               ],
             ),
           ),
-          // Info icon positioned at top-right
           Positioned(
             top: 0,
             right: 0,
@@ -542,7 +555,6 @@ class ScoreDisplayWidget extends StatelessWidget {
       ),
       child: Stack(
         children: [
-          // Main content centered
           Center(
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
@@ -571,13 +583,74 @@ class ScoreDisplayWidget extends StatelessWidget {
               ],
             ),
           ),
-          // Info icon positioned at top-right
           Positioned(
             top: 0,
             right: 0,
             child: GestureDetector(
               onTap: () => _showEffectiveWoundsDefenseResolveTooltip(
                   context, effectiveWoundsValue),
+              child: Icon(
+                Icons.info_outline,
+                color: color.withOpacity(0.7),
+                size: 12,
+              ),
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget _buildResolveImpactCompactScoreCard(
+      String title,
+      String value,
+      IconData icon,
+      Color color,
+      double resolveImpactValue,
+      BuildContext context) {
+    return Container(
+      padding: const EdgeInsets.all(12),
+      decoration: BoxDecoration(
+        color: color.withOpacity(0.1),
+        borderRadius: BorderRadius.circular(8),
+        border: Border.all(color: color.withOpacity(0.3)),
+      ),
+      child: Stack(
+        children: [
+          Center(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Icon(icon, color: color, size: 24),
+                const SizedBox(height: 6),
+                Text(
+                  value,
+                  style: TextStyle(
+                    fontSize: 18,
+                    fontWeight: FontWeight.bold,
+                    color: color,
+                  ),
+                ),
+                const SizedBox(height: 2),
+                Text(
+                  title,
+                  style: TextStyle(
+                    fontSize: 10,
+                    color: color.withOpacity(0.8),
+                  ),
+                  textAlign: TextAlign.center,
+                  maxLines: 2,
+                  overflow: TextOverflow.ellipsis,
+                ),
+              ],
+            ),
+          ),
+          Positioned(
+            top: 0,
+            right: 0,
+            child: GestureDetector(
+              onTap: () =>
+                  _showResolveImpactTooltip(context, resolveImpactValue),
               child: Icon(
                 Icons.info_outline,
                 color: color.withOpacity(0.7),
@@ -763,6 +836,75 @@ class ScoreDisplayWidget extends StatelessWidget {
               const SizedBox(height: 12),
               Text(
                 'Your army has ${effectiveWoundsValue.toStringAsFixed(1)} true effective wounds vs ${score.effectiveWoundsDefense.toStringAsFixed(1)} defense-only effective wounds.',
+                style:
+                    const TextStyle(fontSize: 14, fontStyle: FontStyle.italic),
+              ),
+            ],
+          ),
+          actions: [
+            TextButton(
+              onPressed: () => Navigator.of(context).pop(),
+              child: const Text('OK'),
+            ),
+          ],
+        );
+      },
+    );
+  }
+
+  void _showResolveImpactTooltip(
+      BuildContext context, double resolveImpactValue) {
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: const Text('Resolve Impact'),
+          content: Column(
+            mainAxisSize: MainAxisSize.min,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              const Text(
+                'Resolve Impact shows how much survivability your army loses due to resolve wounds multiplying on top of failed defenses.',
+                style: TextStyle(fontSize: 16),
+              ),
+              const SizedBox(height: 12),
+              const Text(
+                'Formula: ((Defense&Resolve - Defense) ÷ Defense) × 100',
+                style: TextStyle(fontSize: 14, fontWeight: FontWeight.bold),
+              ),
+              const SizedBox(height: 8),
+              const Text(
+                'Negative values = resolve makes army less survivable',
+                style: TextStyle(fontSize: 14),
+              ),
+              const Text(
+                'Positive values = resolve improves survivability (rare)',
+                style: TextStyle(fontSize: 14),
+              ),
+              const SizedBox(height: 12),
+              const Text(
+                'Impact Categories:',
+                style: TextStyle(fontSize: 14, fontWeight: FontWeight.bold),
+              ),
+              const Text(
+                '• -0% to -10%: Excellent resolve',
+                style: TextStyle(fontSize: 14),
+              ),
+              const Text(
+                '• -11% to -30%: Good resolve',
+                style: TextStyle(fontSize: 14),
+              ),
+              const Text(
+                '• -31% to -50%: Poor resolve',
+                style: TextStyle(fontSize: 14),
+              ),
+              const Text(
+                '• -51% and worse: Terrible resolve',
+                style: TextStyle(fontSize: 14),
+              ),
+              const SizedBox(height: 12),
+              Text(
+                'Your army loses ${resolveImpactValue.abs().toStringAsFixed(1)}% of its defensive survivability due to resolve wounds.',
                 style:
                     const TextStyle(fontSize: 14, fontStyle: FontStyle.italic),
               ),

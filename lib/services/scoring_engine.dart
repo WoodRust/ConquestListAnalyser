@@ -26,6 +26,8 @@ class ScoringEngine {
         _calculateEffectiveWoundsDefense(armyList, armyEffects);
     final effectiveWoundsDefenseResolve =
         _calculateEffectiveWoundsDefenseResolve(armyList, armyEffects);
+    final resolveImpactPercentage = _calculateResolveImpactPercentage(
+        effectiveWoundsDefense, effectiveWoundsDefenseResolve);
 
     return ListScore(
       armyList: armyList,
@@ -41,6 +43,7 @@ class ScoringEngine {
       evasion: evasion,
       effectiveWoundsDefense: effectiveWoundsDefense,
       effectiveWoundsDefenseResolve: effectiveWoundsDefenseResolve,
+      resolveImpactPercentage: resolveImpactPercentage,
       calculatedAt: DateTime.now(),
     );
   }
@@ -319,6 +322,20 @@ class ScoringEngine {
     }
 
     return totalEffectiveWounds;
+  }
+
+  /// Calculate the percentage impact of resolve on effective wounds
+  /// Formula: ((Defense&Resolve - Defense) / Defense) × 100
+  /// Negative values indicate resolve makes the army less survivable
+  double _calculateResolveImpactPercentage(
+      double effectiveWoundsDefense, double effectiveWoundsDefenseResolve) {
+    // Handle edge case where defense-only effective wounds is 0
+    if (effectiveWoundsDefense == 0.0) return 0.0;
+
+    // Calculate percentage difference
+    return ((effectiveWoundsDefenseResolve - effectiveWoundsDefense) /
+            effectiveWoundsDefense) *
+        100.0;
   }
 
   /// Calculate expected hit volume for a single regiment
