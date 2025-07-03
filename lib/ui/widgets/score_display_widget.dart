@@ -27,13 +27,210 @@ class ScoreDisplayWidget extends StatelessWidget {
           ),
           const SizedBox(height: 12),
           _buildScoreGrid(context),
+
+          const SizedBox(height: 24),
+          // Regiment Details Section
+          const Text(
+            'Regiment Details',
+            style: TextStyle(
+              fontSize: 18,
+              fontWeight: FontWeight.bold,
+            ),
+          ),
+          const SizedBox(height: 12),
+          _buildRegimentTable(context),
         ],
+      ),
+    );
+  }
+
+  Widget _buildRegimentTable(BuildContext context) {
+    return Container(
+      decoration: BoxDecoration(
+        border: Border.all(color: Colors.grey.withOpacity(0.3)),
+        borderRadius: BorderRadius.circular(8),
+      ),
+      child: SingleChildScrollView(
+        scrollDirection: Axis.horizontal,
+        child: DataTable(
+          columnSpacing: 12,
+          horizontalMargin: 12,
+          headingRowColor:
+              MaterialStateProperty.all(Colors.grey.withOpacity(0.1)),
+          columns: const [
+            DataColumn(
+              label: Text(
+                'Regiment',
+                style: TextStyle(fontWeight: FontWeight.bold, fontSize: 12),
+              ),
+            ),
+            DataColumn(
+              label: Text(
+                'Stands',
+                style: TextStyle(fontWeight: FontWeight.bold, fontSize: 12),
+              ),
+            ),
+            DataColumn(
+              label: Text(
+                'Defense',
+                style: TextStyle(fontWeight: FontWeight.bold, fontSize: 12),
+              ),
+            ),
+            DataColumn(
+              label: Text(
+                'Resolve',
+                style: TextStyle(fontWeight: FontWeight.bold, fontSize: 12),
+              ),
+            ),
+            DataColumn(
+              label: Text(
+                'Wounds',
+                style: TextStyle(fontWeight: FontWeight.bold, fontSize: 12),
+              ),
+            ),
+            DataColumn(
+              label: Text(
+                'Points',
+                style: TextStyle(fontWeight: FontWeight.bold, fontSize: 12),
+              ),
+            ),
+            DataColumn(
+              label: Text(
+                'Pts/Wound',
+                style: TextStyle(fontWeight: FontWeight.bold, fontSize: 12),
+              ),
+            ),
+            DataColumn(
+              label: Text(
+                'Hit Vol.',
+                style: TextStyle(fontWeight: FontWeight.bold, fontSize: 12),
+              ),
+            ),
+            DataColumn(
+              label: Text(
+                'Cleave',
+                style: TextStyle(fontWeight: FontWeight.bold, fontSize: 12),
+              ),
+            ),
+            DataColumn(
+              label: Text(
+                'Ranged',
+                style: TextStyle(fontWeight: FontWeight.bold, fontSize: 12),
+              ),
+            ),
+            DataColumn(
+              label: Text(
+                'Range',
+                style: TextStyle(fontWeight: FontWeight.bold, fontSize: 12),
+              ),
+            ),
+          ],
+          rows: score.armyList.regiments.map((regiment) {
+            return DataRow(
+              cells: [
+                DataCell(
+                  SizedBox(
+                    width: 100,
+                    child: Text(
+                      regiment.unit.name,
+                      style: const TextStyle(fontSize: 11),
+                      overflow: TextOverflow.ellipsis,
+                    ),
+                  ),
+                ),
+                DataCell(
+                  Text(
+                    regiment.stands.toString(),
+                    style: const TextStyle(fontSize: 11),
+                  ),
+                ),
+                DataCell(
+                  Text(
+                    regiment.unit.characteristics.defense.toString(),
+                    style: const TextStyle(fontSize: 11),
+                  ),
+                ),
+                DataCell(
+                  Text(
+                    regiment.unit.characteristics.resolve.toString(),
+                    style: const TextStyle(fontSize: 11),
+                  ),
+                ),
+                DataCell(
+                  Text(
+                    regiment.totalWounds.toString(),
+                    style: const TextStyle(fontSize: 11),
+                  ),
+                ),
+                DataCell(
+                  Text(
+                    regiment.pointsCost.toString(),
+                    style: const TextStyle(fontSize: 11),
+                  ),
+                ),
+                DataCell(
+                  Text(
+                    regiment.pointsPerWound.toStringAsFixed(1),
+                    style: const TextStyle(fontSize: 11),
+                  ),
+                ),
+                DataCell(
+                  Text(
+                    regiment.expectedHitVolume.toStringAsFixed(1),
+                    style: const TextStyle(fontSize: 11),
+                  ),
+                ),
+                DataCell(
+                  Text(
+                    regiment.cleaveRating.toStringAsFixed(1),
+                    style: const TextStyle(fontSize: 11),
+                  ),
+                ),
+                DataCell(
+                  Text(
+                    regiment.rangedExpectedHits.toStringAsFixed(1),
+                    style: const TextStyle(fontSize: 11),
+                  ),
+                ),
+                DataCell(
+                  Text(
+                    regiment.barrageRange > 0
+                        ? regiment.barrageRange.toString()
+                        : '-',
+                    style: const TextStyle(fontSize: 11),
+                  ),
+                ),
+              ],
+            );
+          }).toList(),
+        ),
       ),
     );
   }
 
   Widget _buildArmySummary() {
     final armyList = score.armyList;
+
+    // Calculate regiment count with breakdown
+    final regularRegiments = armyList.nonCharacterRegiments.length;
+    final monsterCharacters = armyList.characterMonsters.length;
+    final totalRegiments = regularRegiments + monsterCharacters;
+
+    // Calculate character count
+    final totalCharacters = armyList.characters.length;
+
+    // Calculate activation count (total items)
+    final totalActivations = armyList.regiments.length;
+
+    // Create regiment display string with breakdown
+    String regimentDisplayText;
+    if (monsterCharacters > 0) {
+      regimentDisplayText =
+          '$totalRegiments ($regularRegiments + $monsterCharacters monster)';
+    } else {
+      regimentDisplayText = totalRegiments.toString();
+    }
+
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -61,7 +258,7 @@ class ScoreDisplayWidget extends StatelessWidget {
             Expanded(
               child: _buildSummaryCard(
                 'Regiments',
-                armyList.regiments.length.toString(),
+                regimentDisplayText,
                 Icons.group,
                 Colors.blue,
               ),
@@ -70,7 +267,7 @@ class ScoreDisplayWidget extends StatelessWidget {
             Expanded(
               child: _buildSummaryCard(
                 'Characters',
-                armyList.characters.length.toString(),
+                totalCharacters.toString(),
                 Icons.person,
                 Colors.purple,
               ),
@@ -79,8 +276,7 @@ class ScoreDisplayWidget extends StatelessWidget {
             Expanded(
               child: _buildSummaryCard(
                 'Activations',
-                (armyList.regiments.length + armyList.characters.length)
-                    .toString(),
+                totalActivations.toString(),
                 Icons.play_arrow,
                 Colors.green,
               ),
