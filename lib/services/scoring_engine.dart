@@ -1,27 +1,35 @@
 import '../models/army_list.dart';
-import '../models/regiment.dart';
 import '../models/list_score.dart';
+import '../models/regiment.dart';
 import '../models/unit.dart';
 import 'army_effect_manager.dart';
 
-/// Service for calculating army list scores
+/// Service for calculating army list scores and statistics
 class ScoringEngine {
-  /// Calculate all scores for an army list
+  /// Calculate comprehensive scores for an army list
   ListScore calculateScores(ArmyList armyList) {
-    // Get active army effects first
+    // Get army-wide effects (supremacy abilities, etc.)
     final armyEffects = ArmyEffectManager.getActiveEffects(armyList);
 
+    // Calculate basic metrics
     final totalWounds = _calculateTotalWounds(armyList);
-    final pointsPerWound = _calculatePointsPerWound(armyList, totalWounds);
-    final expectedHitVolume = _calculateExpectedHitVolume(armyList);
-    final cleaveRating = _calculateCleaveRating(armyList);
-    final rangedExpectedHits = _calculateRangedExpectedHits(armyList);
+    final pointsPerWound =
+        totalWounds > 0 ? armyList.totalPoints / totalWounds : 0.0;
+
+    // Calculate combat metrics
+    final expectedHitVolume = _calculateTotalExpectedHitVolume(armyList);
+    final cleaveRating = _calculateTotalCleaveRating(armyList);
+    final rangedExpectedHits = _calculateTotalRangedExpectedHits(armyList);
     final rangedArmorPiercingRating =
-        _calculateRangedArmorPiercingRating(armyList);
+        _calculateTotalRangedArmorPiercingRating(armyList);
     final maxRange = _calculateMaxRange(armyList);
+
+    // Calculate survivability metrics
     final averageSpeed = _calculateAverageSpeed(armyList);
     final toughness = _calculateToughness(armyList, armyEffects);
     final evasion = _calculateEvasion(armyList, armyEffects);
+
+    // Calculate effective wounds metrics
     final effectiveWoundsDefense =
         _calculateEffectiveWoundsDefense(armyList, armyEffects);
     final effectiveWoundsDefenseResolve =
@@ -66,53 +74,46 @@ class ScoringEngine {
     });
   }
 
-  /// Calculate points per wound for the entire list
-  double _calculatePointsPerWound(ArmyList armyList, int totalWounds) {
-    if (totalWounds == 0) return 0.0;
-    return armyList.totalPoints / totalWounds;
-  }
-
-  /// Calculate expected hit volume for the entire list
-  double _calculateExpectedHitVolume(ArmyList armyList) {
+  /// Calculate total expected hit volume across all regiments
+  double _calculateTotalExpectedHitVolume(ArmyList armyList) {
     return armyList.regiments.fold(0.0, (total, regiment) {
-      // Include ALL regiments (including characters) in hit volume calculation
       return total + _calculateRegimentHitVolume(regiment);
     });
   }
 
-  /// Calculate cleave rating for the entire list
-  double _calculateCleaveRating(ArmyList armyList) {
+  /// Calculate total cleave rating across all regiments
+  double _calculateTotalCleaveRating(ArmyList armyList) {
     return armyList.regiments.fold(0.0, (total, regiment) {
       return total + regiment.cleaveRating;
     });
   }
 
-  /// Calculate ranged expected hits for the entire list
-  double _calculateRangedExpectedHits(ArmyList armyList) {
+  /// Calculate total ranged expected hits across all regiments
+  double _calculateTotalRangedExpectedHits(ArmyList armyList) {
     return armyList.regiments.fold(0.0, (total, regiment) {
       return total + regiment.rangedExpectedHits;
     });
   }
 
-  /// Calculate ranged armor piercing rating for the entire list
-  double _calculateRangedArmorPiercingRating(ArmyList armyList) {
+  /// Calculate total ranged armor piercing rating across all regiments
+  double _calculateTotalRangedArmorPiercingRating(ArmyList armyList) {
     return armyList.regiments.fold(0.0, (total, regiment) {
       return total + regiment.rangedArmorPiercingRating;
     });
   }
 
-  /// Calculate maximum range for the entire list
+  /// Calculate maximum range across all regiments
   int _calculateMaxRange(ArmyList armyList) {
     return armyList.regiments.fold(0, (max, regiment) {
-      final regimentRange = regiment.barrageRange;
-      return regimentRange > max ? regimentRange : max;
+      final regimentMaxRange = regiment.barrageRange;
+      return regimentMaxRange > max ? regimentMaxRange : max;
     });
   }
 
-  /// Calculate average speed for the entire list
-  /// Excludes regular characters but includes character monsters
+  /// Calculate average speed across all regiments
+  /// Excludes characters but includes character monsters
   double _calculateAverageSpeed(ArmyList armyList) {
-    final validRegiments = armyList.regiments.where((regiment) {
+    final regimentsWithSpeed = armyList.regiments.where((regiment) {
       // Include non-character regiments
       if (regiment.unit.regimentClass != 'character') {
         return true;
@@ -126,22 +127,19 @@ class ScoringEngine {
       return false;
     }).toList();
 
-    if (validRegiments.isEmpty) return 0.0;
+    if (regimentsWithSpeed.isEmpty) return 0.0;
 
-    final totalMarch = validRegiments.fold(0.0, (total, regiment) {
-      final march = regiment.unit.characteristics.march ?? 0;
-      return total + march;
+    final totalSpeed = regimentsWithSpeed.fold(0, (total, regiment) {
+      return total + (regiment.unit.characteristics.march ?? 0);
     });
 
-    return totalMarch / validRegiments.length;
+    return totalSpeed / regimentsWithSpeed.length;
   }
 
-  /// Calculate toughness (defense-based survivability)
-  /// Weighted average defense across all regiments by wound count
-  /// Includes: all non-character regiments + character monsters
+  /// Calculate toughness score (weighted average defense)
+  /// Excludes characters but includes character monsters
   double _calculateToughness(
       ArmyList armyList, List<CharacteristicModifier> armyEffects) {
-    // Get regiments for toughness calculation: non-characters + character monsters
     final regimentsForToughness = armyList.regiments.where((regiment) {
       // Include non-character regiments
       if (regiment.unit.regimentClass != 'character') {
@@ -158,15 +156,15 @@ class ScoringEngine {
 
     if (regimentsForToughness.isEmpty) return 0.0;
 
-    double totalDefenseWounds = 0.0;
+    int totalDefenseWounds = 0;
     int totalWounds = 0;
 
     for (final regiment in regimentsForToughness) {
-      final regimentWounds = regiment.totalWounds;
       // Get effective defense considering army effects
       final effectiveDefense = ArmyEffectManager.getEffectiveCharacteristic(
           regiment, 'defense', armyEffects);
 
+      final regimentWounds = regiment.totalWounds;
       totalDefenseWounds += effectiveDefense * regimentWounds;
       totalWounds += regimentWounds;
     }
@@ -174,12 +172,10 @@ class ScoringEngine {
     return totalWounds > 0 ? totalDefenseWounds / totalWounds : 0.0;
   }
 
-  /// Calculate evasion (evasion-based survivability)
-  /// Weighted average evasion across all regiments by wound count
-  /// Includes: all non-character regiments + character monsters
+  /// Calculate evasion score (weighted average evasion)
+  /// Excludes characters but includes character monsters
   double _calculateEvasion(
       ArmyList armyList, List<CharacteristicModifier> armyEffects) {
-    // Get regiments for evasion calculation: non-characters + character monsters
     final regimentsForEvasion = armyList.regiments.where((regiment) {
       // Include non-character regiments
       if (regiment.unit.regimentClass != 'character') {
@@ -196,15 +192,15 @@ class ScoringEngine {
 
     if (regimentsForEvasion.isEmpty) return 0.0;
 
-    double totalEvasionWounds = 0.0;
+    int totalEvasionWounds = 0;
     int totalWounds = 0;
 
     for (final regiment in regimentsForEvasion) {
-      final regimentWounds = regiment.totalWounds;
       // Get effective evasion considering army effects
       final effectiveEvasion = ArmyEffectManager.getEffectiveCharacteristic(
           regiment, 'evasion', armyEffects);
 
+      final regimentWounds = regiment.totalWounds;
       totalEvasionWounds += effectiveEvasion * regimentWounds;
       totalWounds += regimentWounds;
     }
@@ -236,7 +232,6 @@ class ScoringEngine {
     if (regimentsForEffectiveWounds.isEmpty) return 0.0;
 
     double totalEffectiveWounds = 0.0;
-
     for (final regiment in regimentsForEffectiveWounds) {
       final regimentWounds = regiment.totalWounds;
 
@@ -269,6 +264,7 @@ class ScoringEngine {
   /// Where:
   /// - Defense Failure Rate = (6 - Best Defense) / 6
   /// - Wounds per Failed Defense = 1 + (6 - Resolve) / 6
+  /// - For Oblivious units: Wounds per Failed Defense = 1 + ((6 - Resolve) / 6) / 2
   double _calculateEffectiveWoundsDefenseResolve(
       ArmyList armyList, List<CharacteristicModifier> armyEffects) {
     // Get regiments for effective wounds calculation: non-characters + character monsters
@@ -290,7 +286,6 @@ class ScoringEngine {
     if (regimentsForEffectiveWounds.isEmpty) return 0.0;
 
     double totalEffectiveWounds = 0.0;
-
     for (final regiment in regimentsForEffectiveWounds) {
       final regimentWounds = regiment.totalWounds;
 
@@ -315,8 +310,23 @@ class ScoringEngine {
       // Calculate defense failure rate: (6 - defense) / 6
       final defenseFailureRate = (6.0 - cappedDefensiveValue) / 6.0;
 
-      // Calculate wounds per failed defense: 1 + (6 - resolve) / 6
-      final woundsPerFailedDefense = 1.0 + (6.0 - cappedResolve) / 6.0;
+      // Check if the unit has the Oblivious special rule
+      final hasOblivious = regiment.unit.specialRules
+          .any((rule) => rule.name.toLowerCase() == 'oblivious');
+
+      // Calculate wounds per failed defense
+      double woundsPerFailedDefense;
+      if (hasOblivious) {
+        // For Oblivious units: they take only 1 wound for every 2 failed morale tests
+        // This means the effective wound rate from failed resolve is halved
+        // Formula: 1 + ((6 - resolve) / 6) / 2
+        final baseFailedResolveRate = (6.0 - cappedResolve) / 6.0;
+        final obliviousModifiedRate = baseFailedResolveRate / 2.0;
+        woundsPerFailedDefense = 1.0 + obliviousModifiedRate;
+      } else {
+        // Standard formula: 1 + (6 - resolve) / 6
+        woundsPerFailedDefense = 1.0 + (6.0 - cappedResolve) / 6.0;
+      }
 
       // Calculate combined wound rate
       final combinedWoundRate = defenseFailureRate * woundsPerFailedDefense;

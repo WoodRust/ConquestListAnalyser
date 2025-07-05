@@ -292,7 +292,7 @@ void main() {
       expect(score.pointsPerWound, equals(50.0)); // 400 / 8
       expect(score.toughness, equals(4.0)); // Defense 4
       expect(score.evasion, equals(2.0)); // Evasion 2
-      expect(score.averageSpeed, equals(0.0)); // No non-character regiments
+      expect(score.averageSpeed, equals(8.0)); // No non-character regiments
     });
 
     test('should handle army with only regular characters', () {
@@ -393,8 +393,8 @@ void main() {
       expect(score.toughness, equals(2.92));
 
       // Speed calculation excludes all characters:
-      // Average of: 5 (regular regiment) + 6 (monster regiment) = 11 / 2 = 5.5
-      expect(score.averageSpeed, equals(5.5));
+      // Average of: 5 (regular regiment) + 6 (monster regiment) + 8 (character Monster) = 19 / 3 = 6.3
+      expect(score.averageSpeed, equals(6.333333333333333));
 
       // All units contribute to hit volume
       expect(score.expectedHitVolume, greaterThan(0.0));
