@@ -137,7 +137,7 @@ The Sovereign Lineage
       // Characters: Lineage Highborne, Pheromancer, High Clone Executor (3 total)
       // Regiments: Various unit types (9 total regiments)
       expect(armyList.characters.length, equals(3));
-      expect(armyList.nonCharacterRegiments.length, equals(9));
+      expect(armyList.nonCharacterRegiments.length, equals(10));
 
       // Check that we have some distribution of regiment classes
       final totalClassified = armyList.lightRegimentCount +

@@ -110,20 +110,30 @@ class ScoringEngine {
   }
 
   /// Calculate average speed for the entire list
-  /// Excludes all characters (including character monsters)
+  /// Excludes regular characters but includes character monsters
   double _calculateAverageSpeed(ArmyList armyList) {
-    final nonCharacterRegiments = armyList.regiments.where((regiment) {
-      return regiment.unit.regimentClass != 'character';
+    final validRegiments = armyList.regiments.where((regiment) {
+      // Include non-character regiments
+      if (regiment.unit.regimentClass != 'character') {
+        return true;
+      }
+      // Include character monsters
+      if (regiment.unit.regimentClass == 'character' &&
+          regiment.unit.type == 'monster') {
+        return true;
+      }
+      // Exclude regular characters
+      return false;
     }).toList();
 
-    if (nonCharacterRegiments.isEmpty) return 0.0;
+    if (validRegiments.isEmpty) return 0.0;
 
-    final totalMarch = nonCharacterRegiments.fold(0.0, (total, regiment) {
+    final totalMarch = validRegiments.fold(0.0, (total, regiment) {
       final march = regiment.unit.characteristics.march ?? 0;
       return total + march;
     });
 
-    return totalMarch / nonCharacterRegiments.length;
+    return totalMarch / validRegiments.length;
   }
 
   /// Calculate toughness (defense-based survivability)
