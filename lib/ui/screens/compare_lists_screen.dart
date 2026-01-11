@@ -20,7 +20,7 @@ class CompareListsScreen extends StatelessWidget {
           _buildStickyHeader(),
           Expanded(
             child: SingleChildScrollView(
-              child: _buildMetricsTable(),
+              child: _buildMetricsTable(context),
             ),
           ),
         ],
@@ -101,7 +101,7 @@ class CompareListsScreen extends StatelessWidget {
     );
   }
 
-  Widget _buildMetricsTable() {
+  Widget _buildMetricsTable(BuildContext context) {
     return Column(
       children: [
         _buildMetricRow(
@@ -109,72 +109,92 @@ class CompareListsScreen extends StatelessWidget {
             listsToCompare
                 .map((l) => l.armyList.totalPoints.toDouble())
                 .toList(),
+            false,
+            null,
             false),
         _buildMetricRow('Total Wounds',
-            listsToCompare.map((l) => l.totalWounds.toDouble()).toList(), true),
+            listsToCompare.map((l) => l.totalWounds.toDouble()).toList(), true,
+            () => _showTotalWoundsTooltip(context), false),
         _buildMetricRow('Points per Wound',
-            listsToCompare.map((l) => l.pointsPerWound).toList(), false),
+            listsToCompare.map((l) => l.pointsPerWound).toList(), true,
+            () => _showPointsPerWoundTooltip(context), true),
         _buildMetricRow('Expected Hit Volume',
-            listsToCompare.map((l) => l.expectedHitVolume).toList(), true),
+            listsToCompare.map((l) => l.expectedHitVolume).toList(), true,
+            () => _showHitVolumeTooltip(context), false),
         _buildMetricRow('Cleave Rating',
-            listsToCompare.map((l) => l.cleaveRating).toList(), true),
+            listsToCompare.map((l) => l.cleaveRating).toList(), true,
+            () => _showCleaveTooltip(context), false),
         _buildMetricRow(
             'Magic Capability',
             listsToCompare.map((l) => l.magicCapability.toDouble()).toList(),
-            true),
+            true,
+            () => _showMagicCapabilityTooltip(context), false),
         _buildMetricRow(
             'Expected Healing Capability',
             listsToCompare
                 .map((l) => l.expectedHealingCapability.toDouble())
                 .toList(),
-            true),
+            true,
+            () => _showExpectedHealingCapabilityTooltip(context), false),
         _buildMetricRow('Ranged Expected Hits',
-            listsToCompare.map((l) => l.rangedExpectedHits).toList(), true),
+            listsToCompare.map((l) => l.rangedExpectedHits).toList(), true,
+            () => _showRangedExpectedHitsTooltip(context), false),
         _buildMetricRow(
             'Ranged Armor Piercing',
             listsToCompare.map((l) => l.rangedArmorPiercingRating).toList(),
-            true),
+            true,
+            () => _showRangedArmorPiercingTooltip(context), false),
         _buildMetricRow('Max Range',
-            listsToCompare.map((l) => l.maxRange.toDouble()).toList(), true),
+            listsToCompare.map((l) => l.maxRange.toDouble()).toList(), true,
+            () => _showMaxRangeTooltip(context), false),
         _buildMetricRow('Effective Wounds (Defense)',
-            listsToCompare.map((l) => l.effectiveWoundsDefense).toList(), true),
+            listsToCompare.map((l) => l.effectiveWoundsDefense).toList(), true,
+            () => _showEffectiveWoundsDefenseTooltip(context), false),
         _buildMetricRow(
             'Effective Wounds (D&R)',
             listsToCompare.map((l) => l.effectiveWoundsDefenseResolve).toList(),
-            true),
+            true,
+            () => _showEffectiveWoundsDefenseResolveTooltip(context), false),
         _buildMetricRow(
             'Pts per Eff. Wound (Def)',
             listsToCompare
                 .map((l) => l.pointsPerEffectiveWoundDefense)
                 .toList(),
-            false),
+            true,
+            () => _showPointsPerEffectiveWoundDefenseTooltip(context), true),
         _buildMetricRow(
             'Pts per Eff. Wound (D&R)',
             listsToCompare
                 .map((l) => l.pointsPerEffectiveWoundDefenseResolve)
                 .toList(),
-            false),
+            true,
+            () => _showPointsPerEffectiveWoundDefenseResolveTooltip(context), true),
         _buildMetricRow(
-            'Evasion', listsToCompare.map((l) => l.evasion).toList(), true),
+            'Evasion', listsToCompare.map((l) => l.evasion).toList(), true,
+            () => _showEvasionTooltip(context), false),
         _buildMetricRow(
-            'Toughness', listsToCompare.map((l) => l.toughness).toList(), true),
+            'Toughness', listsToCompare.map((l) => l.toughness).toList(), true,
+            () => _showToughnessTooltip(context), false),
         _buildMetricRow('Average Speed',
-            listsToCompare.map((l) => l.averageSpeed).toList(), true),
+            listsToCompare.map((l) => l.averageSpeed).toList(), true,
+            () => _showAvgSpeedTooltip(context), false),
       ],
     );
   }
 
   Widget _buildMetricRow(
-      String metricName, List<double> values, bool higherIsBetter) {
+      String metricName, List<double> values, bool shouldCompare, VoidCallback? onInfoTap, bool lowerIsBetter) {
     // Filter out invalid values (0, infinity, NaN) for comparison
     final validValues = values.where((v) => v.isFinite && v > 0).toList();
 
-    // Find best value if there are valid values to compare
+    // Find best value only if we should compare and there are valid values
     double? bestValue;
-    if (validValues.isNotEmpty) {
-      bestValue = higherIsBetter
-          ? validValues.reduce((a, b) => a > b ? a : b)
-          : validValues.reduce((a, b) => a < b ? a : b);
+    if (shouldCompare && validValues.isNotEmpty) {
+      // For metrics where lower is better (efficiency metrics) find minimum
+      // For metrics where higher is better find maximum
+      bestValue = lowerIsBetter
+          ? validValues.reduce((a, b) => a < b ? a : b)
+          : validValues.reduce((a, b) => a > b ? a : b);
     }
 
     return Container(
@@ -185,14 +205,29 @@ class CompareListsScreen extends StatelessWidget {
       ),
       child: Row(
         children: [
-          // Metric name
+          // Metric name with info icon
           SizedBox(
             width: 160,
             child: Padding(
               padding: const EdgeInsets.all(12.0),
-              child: Text(
-                metricName,
-                style: const TextStyle(fontSize: 13),
+              child: Row(
+                children: [
+                  Expanded(
+                    child: Text(
+                      metricName,
+                      style: const TextStyle(fontSize: 13),
+                    ),
+                  ),
+                  if (onInfoTap != null)
+                    InkWell(
+                      onTap: onInfoTap,
+                      child: Icon(
+                        Icons.info_outline,
+                        size: 16,
+                        color: Colors.grey[600],
+                      ),
+                    ),
+                ],
               ),
             ),
           ),
@@ -200,7 +235,7 @@ class CompareListsScreen extends StatelessWidget {
           ...List.generate(listsToCompare.length, (index) {
             final value = values[index];
             final isValid = value.isFinite && value > 0;
-            final isBest = bestValue != null && isValid && value == bestValue;
+            final isBest = shouldCompare && bestValue != null && isValid && value == bestValue;
 
             return Expanded(
               child: Container(
@@ -225,6 +260,848 @@ class CompareListsScreen extends StatelessWidget {
           }),
         ],
       ),
+    );
+  }
+
+  void _showTotalWoundsTooltip(BuildContext context) {
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: const Text('Total Wounds'),
+          content: Column(
+            mainAxisSize: MainAxisSize.min,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              const Text(
+                'Total raw wounds across all regiments in your army (excluding regular characters).',
+                style: TextStyle(fontSize: 16),
+              ),
+              const SizedBox(height: 12),
+              const Text(
+                'Formula: Sum of (Stands × Wounds per Stand)',
+                style: TextStyle(fontSize: 14, fontWeight: FontWeight.bold),
+              ),
+              const SizedBox(height: 12),
+              const Text(
+                'Examples:',
+                style: TextStyle(fontSize: 14, fontWeight: FontWeight.bold),
+              ),
+              const Text(
+                '• Raiders (3 stands, 4 wounds each) = 12 wounds',
+                style: TextStyle(fontSize: 14),
+              ),
+              const Text(
+                '• Huscarls (5 stands, 6 wounds each) = 30 wounds',
+                style: TextStyle(fontSize: 14),
+              ),
+            ],
+          ),
+          actions: [
+            TextButton(
+              onPressed: () => Navigator.of(context).pop(),
+              child: const Text('OK'),
+            ),
+          ],
+        );
+      },
+    );
+  }
+
+  void _showPointsPerWoundTooltip(BuildContext context) {
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: const Text('Points per Wound'),
+          content: Column(
+            mainAxisSize: MainAxisSize.min,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              const Text(
+                'Average cost per wound across your army. Lower is generally better as it means more wounds for your points.',
+                style: TextStyle(fontSize: 16),
+              ),
+              const SizedBox(height: 12),
+              const Text(
+                'Formula: Total Points ÷ Total Wounds',
+                style: TextStyle(fontSize: 14, fontWeight: FontWeight.bold),
+              ),
+              const SizedBox(height: 12),
+              const Text(
+                'Guidelines:',
+                style: TextStyle(fontSize: 14, fontWeight: FontWeight.bold),
+              ),
+              const Text(
+                '• 10-12: Excellent (cheap wounds)',
+                style: TextStyle(fontSize: 14),
+              ),
+              const Text(
+                '• 13-15: Good (average)',
+                style: TextStyle(fontSize: 14),
+              ),
+              const Text(
+                '• 16-20: Fair (elite units)',
+                style: TextStyle(fontSize: 14),
+              ),
+              const Text(
+                '• 21+: Expensive (monsters/characters)',
+                style: TextStyle(fontSize: 14),
+              ),
+            ],
+          ),
+          actions: [
+            TextButton(
+              onPressed: () => Navigator.of(context).pop(),
+              child: const Text('OK'),
+            ),
+          ],
+        );
+      },
+    );
+  }
+
+  void _showHitVolumeTooltip(BuildContext context) {
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: const Text('Hit Volume'),
+          content: Column(
+            mainAxisSize: MainAxisSize.min,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              const Text(
+                'Expected number of hits your army deals in melee combat per round.',
+                style: TextStyle(fontSize: 16),
+              ),
+              const SizedBox(height: 12),
+              const Text(
+                'Formula: Attacks × ((Clash + 1) ÷ 6)',
+                style: TextStyle(fontSize: 14, fontWeight: FontWeight.bold),
+              ),
+              const SizedBox(height: 8),
+              const Text(
+                'Modifiers: +1 attack for Leader, re-rolls for Flurry',
+                style: TextStyle(fontSize: 14),
+              ),
+              const SizedBox(height: 12),
+              const Text(
+                'Examples:',
+                style: TextStyle(fontSize: 14, fontWeight: FontWeight.bold),
+              ),
+              const Text(
+                '• 12 attacks, Clash 2: 12 × (3/6) = 6 expected hits',
+                style: TextStyle(fontSize: 14),
+              ),
+              const Text(
+                '• 12 attacks, Clash 3: 12 × (4/6) = 8 expected hits',
+                style: TextStyle(fontSize: 14),
+              ),
+              const Text(
+                '• 12 attacks, Clash 4: 12 × (5/6) = 10 expected hits',
+                style: TextStyle(fontSize: 14),
+              ),
+            ],
+          ),
+          actions: [
+            TextButton(
+              onPressed: () => Navigator.of(context).pop(),
+              child: const Text('OK'),
+            ),
+          ],
+        );
+      },
+    );
+  }
+
+  void _showCleaveTooltip(BuildContext context) {
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: const Text('Cleave Rating'),
+          content: Column(
+            mainAxisSize: MainAxisSize.min,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              const Text(
+                'Measures your army\'s ability to penetrate armor in melee. Cleave reduces enemy defense rolls.',
+                style: TextStyle(fontSize: 16),
+              ),
+              const SizedBox(height: 12),
+              const Text(
+                'Formula: Hit Volume × Cleave Value',
+                style: TextStyle(fontSize: 14, fontWeight: FontWeight.bold),
+              ),
+              const SizedBox(height: 12),
+              const Text(
+                'How Cleave works:',
+                style: TextStyle(fontSize: 14, fontWeight: FontWeight.bold),
+              ),
+              const Text(
+                '• Cleave (1): Enemy defense reduced by 1',
+                style: TextStyle(fontSize: 14),
+              ),
+              const Text(
+                '• Cleave (2): Enemy defense reduced by 2',
+                style: TextStyle(fontSize: 14),
+              ),
+              const Text(
+                '• Cleave (3): Enemy defense reduced by 3',
+                style: TextStyle(fontSize: 14),
+              ),
+              const SizedBox(height: 12),
+              const Text(
+                'Example: 10 hits with Cleave (2) = 20 cleave rating',
+                style: TextStyle(fontSize: 14),
+              ),
+            ],
+          ),
+          actions: [
+            TextButton(
+              onPressed: () => Navigator.of(context).pop(),
+              child: const Text('OK'),
+            ),
+          ],
+        );
+      },
+    );
+  }
+
+  void _showMagicCapabilityTooltip(BuildContext context) {
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: const Text('Magic Capability'),
+          content: Column(
+            mainAxisSize: MainAxisSize.min,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              const Text(
+                'Total magical power available to your army, measured by spell dice from Priests and Wizards.',
+                style: TextStyle(fontSize: 16),
+              ),
+              const SizedBox(height: 12),
+              const Text(
+                'Formula: Sum of all spell dice from units with Priest(X) or Wizard(X)',
+                style: TextStyle(fontSize: 14, fontWeight: FontWeight.bold),
+              ),
+              const SizedBox(height: 12),
+              const Text(
+                'Examples:',
+                style: TextStyle(fontSize: 14, fontWeight: FontWeight.bold),
+              ),
+              const Text(
+                '• Shaman with Priest(6) = 6 spell dice',
+                style: TextStyle(fontSize: 14),
+              ),
+              const Text(
+                '• Ice Jotnar with Priest(5) = 5 spell dice',
+                style: TextStyle(fontSize: 14),
+              ),
+              const Text(
+                '• Two Shamans = 12 total spell dice',
+                style: TextStyle(fontSize: 14),
+              ),
+              const SizedBox(height: 12),
+              const Text(
+                'Guidelines:',
+                style: TextStyle(fontSize: 14, fontWeight: FontWeight.bold),
+              ),
+              const Text(
+                '• 0 dice: No magical support',
+                style: TextStyle(fontSize: 14),
+              ),
+              const Text(
+                '• 5-6 dice: Light magical support',
+                style: TextStyle(fontSize: 14),
+              ),
+              const Text(
+                '• 10-12 dice: Moderate magical power',
+                style: TextStyle(fontSize: 14),
+              ),
+              const Text(
+                '• 15+ dice: Magic-heavy army',
+                style: TextStyle(fontSize: 14),
+              ),
+            ],
+          ),
+          actions: [
+            TextButton(
+              onPressed: () => Navigator.of(context).pop(),
+              child: const Text('OK'),
+            ),
+          ],
+        );
+      },
+    );
+  }
+
+  void _showExpectedHealingCapabilityTooltip(BuildContext context) {
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: const Text('Expected Healing Capability'),
+          content: Column(
+            mainAxisSize: MainAxisSize.min,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              const Text(
+                'Total wounds your army can heal per turn through regeneration and healing spells.',
+                style: TextStyle(fontSize: 16),
+              ),
+              const SizedBox(height: 12),
+              const Text(
+                'Formula: Regeneration + Healing Spells',
+                style: TextStyle(fontSize: 14, fontWeight: FontWeight.bold),
+              ),
+              const SizedBox(height: 12),
+              const Text(
+                'Examples:',
+                style: TextStyle(fontSize: 14, fontWeight: FontWeight.bold),
+              ),
+              const Text(
+                '• Trolls with Regeneration(6) = 6 wounds/turn',
+                style: TextStyle(fontSize: 14),
+              ),
+              const Text(
+                '• Werewargs with Regeneration(3) = 3 wounds/turn',
+                style: TextStyle(fontSize: 14),
+              ),
+              const Text(
+                '• Two Troll regiments = 12 total wounds/turn',
+                style: TextStyle(fontSize: 14),
+              ),
+              const SizedBox(height: 12),
+              const Text(
+                'Guidelines:',
+                style: TextStyle(fontSize: 14, fontWeight: FontWeight.bold),
+              ),
+              const Text(
+                '• 0: No self-healing',
+                style: TextStyle(fontSize: 14),
+              ),
+              const Text(
+                '• 3-6: Light regeneration',
+                style: TextStyle(fontSize: 14),
+              ),
+              const Text(
+                '• 9-12: Moderate sustain',
+                style: TextStyle(fontSize: 14),
+              ),
+              const Text(
+                '• 15+: High regeneration army',
+                style: TextStyle(fontSize: 14),
+              ),
+            ],
+          ),
+          actions: [
+            TextButton(
+              onPressed: () => Navigator.of(context).pop(),
+              child: const Text('OK'),
+            ),
+          ],
+        );
+      },
+    );
+  }
+
+  void _showRangedExpectedHitsTooltip(BuildContext context) {
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: const Text('Ranged Hits'),
+          content: Column(
+            mainAxisSize: MainAxisSize.min,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              const Text(
+                'Expected number of hits your army deals with ranged attacks (barrage) per round.',
+                style: TextStyle(fontSize: 16),
+              ),
+              const SizedBox(height: 12),
+              const Text(
+                'Formula: Barrage × Stands × ((Volley + 1) ÷ 6)',
+                style: TextStyle(fontSize: 14, fontWeight: FontWeight.bold),
+              ),
+              const SizedBox(height: 8),
+              const Text(
+                'Modifiers: +1 barrage for Leader',
+                style: TextStyle(fontSize: 14),
+              ),
+              const SizedBox(height: 12),
+              const Text(
+                'Examples:',
+                style: TextStyle(fontSize: 14, fontWeight: FontWeight.bold),
+              ),
+              const Text(
+                '• Barrage(5), 3 stands, Volley 3: 15 × (4/6) = 10 hits',
+                style: TextStyle(fontSize: 14),
+              ),
+              const Text(
+                '• Barrage(3), 4 stands, Volley 2: 12 × (3/6) = 6 hits',
+                style: TextStyle(fontSize: 14),
+              ),
+            ],
+          ),
+          actions: [
+            TextButton(
+              onPressed: () => Navigator.of(context).pop(),
+              child: const Text('OK'),
+            ),
+          ],
+        );
+      },
+    );
+  }
+
+  void _showRangedArmorPiercingTooltip(BuildContext context) {
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: const Text('Armor Piercing Rating'),
+          content: Column(
+            mainAxisSize: MainAxisSize.min,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              const Text(
+                'Measures your army\'s ability to penetrate armor with ranged attacks.',
+                style: TextStyle(fontSize: 16),
+              ),
+              const SizedBox(height: 12),
+              const Text(
+                'Formula: Ranged Hits × Armor Piercing Value',
+                style: TextStyle(fontSize: 14, fontWeight: FontWeight.bold),
+              ),
+              const SizedBox(height: 12),
+              const Text(
+                'How Armor Piercing works:',
+                style: TextStyle(fontSize: 14, fontWeight: FontWeight.bold),
+              ),
+              const Text(
+                '• AP (1): Enemy defense reduced by 1',
+                style: TextStyle(fontSize: 14),
+              ),
+              const Text(
+                '• AP (2): Enemy defense reduced by 2',
+                style: TextStyle(fontSize: 14),
+              ),
+              const Text(
+                '• AP (3): Enemy defense reduced by 3',
+                style: TextStyle(fontSize: 14),
+              ),
+              const SizedBox(height: 12),
+              const Text(
+                'Example: 8 ranged hits with AP (2) = 16 armor piercing rating',
+                style: TextStyle(fontSize: 14),
+              ),
+            ],
+          ),
+          actions: [
+            TextButton(
+              onPressed: () => Navigator.of(context).pop(),
+              child: const Text('OK'),
+            ),
+          ],
+        );
+      },
+    );
+  }
+
+  void _showMaxRangeTooltip(BuildContext context) {
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: const Text('Max Range'),
+          content: Column(
+            mainAxisSize: MainAxisSize.min,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              const Text(
+                'Maximum barrage range in your army. Shows how far you can engage enemies.',
+                style: TextStyle(fontSize: 16),
+              ),
+              const SizedBox(height: 12),
+              const Text(
+                'Common Ranges:',
+                style: TextStyle(fontSize: 14, fontWeight: FontWeight.bold),
+              ),
+              const Text(
+                '• 0: No ranged units',
+                style: TextStyle(fontSize: 14),
+              ),
+              const Text(
+                '• 12"-16": Short range (bows, crossbows)',
+                style: TextStyle(fontSize: 14),
+              ),
+              const Text(
+                '• 18"-24": Medium range (longbows)',
+                style: TextStyle(fontSize: 14),
+              ),
+              const Text(
+                '• 30"+: Long range (artillery)',
+                style: TextStyle(fontSize: 14),
+              ),
+            ],
+          ),
+          actions: [
+            TextButton(
+              onPressed: () => Navigator.of(context).pop(),
+              child: const Text('OK'),
+            ),
+          ],
+        );
+      },
+    );
+  }
+
+  void _showEffectiveWoundsDefenseTooltip(BuildContext context) {
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: const Text('Effective Wounds (Defense)'),
+          content: Column(
+            mainAxisSize: MainAxisSize.min,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              const Text(
+                'Effective Wounds represents how much damage your army can absorb, accounting for defensive characteristics only.',
+                style: TextStyle(fontSize: 16),
+              ),
+              const SizedBox(height: 12),
+              const Text(
+                'Formula: Sum of (Regiment Wounds × (6 ÷ (6 - Best Defense)))',
+                style: TextStyle(fontSize: 14, fontWeight: FontWeight.bold),
+              ),
+              const SizedBox(height: 8),
+              const Text(
+                'Best Defense = Highest of Defense or Evasion (including army bonuses)',
+                style: TextStyle(fontSize: 14),
+              ),
+              const SizedBox(height: 12),
+              const Text(
+                'Examples:',
+                style: TextStyle(fontSize: 14, fontWeight: FontWeight.bold),
+              ),
+              const Text(
+                '• Defense/Evasion 1: 6÷5 = 1.2× wounds',
+                style: TextStyle(fontSize: 14),
+              ),
+              const Text(
+                '• Defense/Evasion 2: 6÷4 = 1.5× wounds',
+                style: TextStyle(fontSize: 14),
+              ),
+              const Text(
+                '• Defense/Evasion 3: 6÷3 = 2.0× wounds',
+                style: TextStyle(fontSize: 14),
+              ),
+              const Text(
+                '• Defense/Evasion 4: 6÷2 = 3.0× wounds',
+                style: TextStyle(fontSize: 14),
+              ),
+              const Text(
+                '• Defense/Evasion 5: 6÷1 = 6.0× wounds',
+                style: TextStyle(fontSize: 14),
+              ),
+            ],
+          ),
+          actions: [
+            TextButton(
+              onPressed: () => Navigator.of(context).pop(),
+              child: const Text('OK'),
+            ),
+          ],
+        );
+      },
+    );
+  }
+
+  void _showEffectiveWoundsDefenseResolveTooltip(BuildContext context) {
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: const Text('Effective Wounds (Defense & Resolve)'),
+          content: Column(
+            mainAxisSize: MainAxisSize.min,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              const Text(
+                'This shows your army\'s true survivability, accounting for both defense and resolve characteristics.',
+                style: TextStyle(fontSize: 16),
+              ),
+              const SizedBox(height: 12),
+              const Text(
+                'How it works:',
+                style: TextStyle(fontSize: 14, fontWeight: FontWeight.bold),
+              ),
+              const Text(
+                '1. Failed defense rolls = wounds taken',
+                style: TextStyle(fontSize: 14),
+              ),
+              const Text(
+                '2. Each wound triggers a resolve roll',
+                style: TextStyle(fontSize: 14),
+              ),
+              const Text(
+                '3. Failed resolve rolls = additional wounds',
+                style: TextStyle(fontSize: 14),
+              ),
+              const SizedBox(height: 12),
+              const Text(
+                'Formula: Wounds ÷ (Defense Failure Rate × Wound Multiplier)',
+                style: TextStyle(fontSize: 14, fontWeight: FontWeight.bold),
+              ),
+              const SizedBox(height: 8),
+              const Text(
+                'Where Wound Multiplier = 1 + (Failed Resolve Rate)',
+                style: TextStyle(fontSize: 14),
+              ),
+              const SizedBox(height: 12),
+              const Text(
+                'Examples (Defense 3):',
+                style: TextStyle(fontSize: 14, fontWeight: FontWeight.bold),
+              ),
+              const Text(
+                '• Resolve 2: Takes 67% more wounds than defense-only',
+                style: TextStyle(fontSize: 14),
+              ),
+              const Text(
+                '• Resolve 4: Takes 33% more wounds than defense-only',
+                style: TextStyle(fontSize: 14),
+              ),
+              const Text(
+                '• Resolve 6: Takes same wounds as defense-only',
+                style: TextStyle(fontSize: 14),
+              ),
+            ],
+          ),
+          actions: [
+            TextButton(
+              onPressed: () => Navigator.of(context).pop(),
+              child: const Text('OK'),
+            ),
+          ],
+        );
+      },
+    );
+  }
+
+  void _showPointsPerEffectiveWoundDefenseTooltip(BuildContext context) {
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: const Text('Points per Eff. Wound (Defense)'),
+          content: Column(
+            mainAxisSize: MainAxisSize.min,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              const Text(
+                'Cost per effective wound considering DEFENSE/EVASION only. This shows your baseline survivability efficiency.',
+                style: TextStyle(fontSize: 16),
+              ),
+              const SizedBox(height: 12),
+              const Text(
+                'Formula: Total Points ÷ Effective Wounds (Defense)',
+                style: TextStyle(fontSize: 14, fontWeight: FontWeight.bold),
+              ),
+              const SizedBox(height: 12),
+              const Text(
+                'Lower is better - means more defense per point spent.',
+                style: TextStyle(fontSize: 14),
+              ),
+              const SizedBox(height: 12),
+              const Text(
+                'Guidelines:',
+                style: TextStyle(fontSize: 14, fontWeight: FontWeight.bold),
+              ),
+              const Text(
+                '• 5-8: Excellent defensive efficiency',
+                style: TextStyle(fontSize: 14),
+              ),
+              const Text(
+                '• 9-11: Good defensive efficiency',
+                style: TextStyle(fontSize: 14),
+              ),
+              const Text(
+                '• 12-15: Average defensive efficiency',
+                style: TextStyle(fontSize: 14),
+              ),
+              const Text(
+                '• 16+: Lower defensive efficiency',
+                style: TextStyle(fontSize: 14),
+              ),
+            ],
+          ),
+          actions: [
+            TextButton(
+              onPressed: () => Navigator.of(context).pop(),
+              child: const Text('OK'),
+            ),
+          ],
+        );
+      },
+    );
+  }
+
+  void _showPointsPerEffectiveWoundDefenseResolveTooltip(BuildContext context) {
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: const Text('Points per Eff. Wound (Defense & Resolve)'),
+          content: Column(
+            mainAxisSize: MainAxisSize.min,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              const Text(
+                'Cost per effective wound considering BOTH defense/evasion AND resolve. This reflects TOTAL survivability including morale.',
+                style: TextStyle(fontSize: 16),
+              ),
+              const SizedBox(height: 12),
+              const Text(
+                'Formula: Total Points ÷ Effective Wounds (Defense & Resolve)',
+                style: TextStyle(fontSize: 14, fontWeight: FontWeight.bold),
+              ),
+              const SizedBox(height: 12),
+              const Text(
+                'Lower is better - means more total survivability per point spent.',
+                style: TextStyle(fontSize: 14),
+              ),
+              const SizedBox(height: 12),
+              const Text(
+                'Guidelines:',
+                style: TextStyle(fontSize: 14, fontWeight: FontWeight.bold),
+              ),
+              const Text(
+                '• 5-8: Excellent total efficiency',
+                style: TextStyle(fontSize: 14),
+              ),
+              const Text(
+                '• 9-11: Good total efficiency',
+                style: TextStyle(fontSize: 14),
+              ),
+              const Text(
+                '• 12-15: Average total efficiency',
+                style: TextStyle(fontSize: 14),
+              ),
+              const Text(
+                '• 16+: Lower total efficiency',
+                style: TextStyle(fontSize: 14),
+              ),
+            ],
+          ),
+          actions: [
+            TextButton(
+              onPressed: () => Navigator.of(context).pop(),
+              child: const Text('OK'),
+            ),
+          ],
+        );
+      },
+    );
+  }
+
+  void _showEvasionTooltip(BuildContext context) {
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: const Text('Evasion'),
+          content: const Text(
+            'On average, each wound in your army has this much evasion.',
+            style: TextStyle(fontSize: 16),
+          ),
+          actions: [
+            TextButton(
+              onPressed: () => Navigator.of(context).pop(),
+              child: const Text('OK'),
+            ),
+          ],
+        );
+      },
+    );
+  }
+
+  void _showToughnessTooltip(BuildContext context) {
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: const Text('Toughness'),
+          content: const Text(
+            'On average, each wound in your army has this much defense.',
+            style: TextStyle(fontSize: 16),
+          ),
+          actions: [
+            TextButton(
+              onPressed: () => Navigator.of(context).pop(),
+              child: const Text('OK'),
+            ),
+          ],
+        );
+      },
+    );
+  }
+
+  void _showAvgSpeedTooltip(BuildContext context) {
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: const Text('Average Speed'),
+          content: Column(
+            mainAxisSize: MainAxisSize.min,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              const Text(
+                'Average march distance across your army (excluding regular characters). Higher speed = better mobility.',
+                style: TextStyle(fontSize: 16),
+              ),
+              const SizedBox(height: 12),
+              const Text(
+                'Formula: (Sum of Regiment Marches) ÷ Regiment Count',
+                style: TextStyle(fontSize: 14, fontWeight: FontWeight.bold),
+              ),
+              const SizedBox(height: 12),
+              const Text(
+                'Speed Categories:',
+                style: TextStyle(fontSize: 14, fontWeight: FontWeight.bold),
+              ),
+              const Text(
+                '• 4-5: Slow (heavy infantry, brutes)',
+                style: TextStyle(fontSize: 14),
+              ),
+              const Text(
+                '• 6: Standard (most infantry)',
+                style: TextStyle(fontSize: 14),
+              ),
+              const Text(
+                '• 7-8: Fast (light infantry, cavalry)',
+                style: TextStyle(fontSize: 14),
+              ),
+              const Text(
+                '• 9+: Very fast (flying, mounted)',
+                style: TextStyle(fontSize: 14),
+              ),
+            ],
+          ),
+          actions: [
+            TextButton(
+              onPressed: () => Navigator.of(context).pop(),
+              child: const Text('OK'),
+            ),
+          ],
+        );
+      },
     );
   }
 }
