@@ -356,7 +356,7 @@ class ScoreDisplayWidget extends StatelessWidget {
   Widget _buildScoreGrid(BuildContext context) {
     return Column(
       children: [
-        // First row - Basic metrics
+        // First row - Total wounds and efficiency
         Row(
           children: [
             Expanded(
@@ -382,21 +382,71 @@ class ScoreDisplayWidget extends StatelessWidget {
             ),
             const SizedBox(width: 8),
             Expanded(
-              child: _buildCompactScoreCardWithInfo(
-                'Avg Speed',
-                score.averageSpeed.toStringAsFixed(1),
-                Icons.directions_run,
-                Colors.amber,
+              child: _buildEffectiveWoundsDefenseCompactScoreCard(
+                'Eff. Wounds (Def)',
+                score.effectiveWoundsDefense.toStringAsFixed(1),
+                Icons.favorite_border,
+                Colors.deepPurple,
+                score.effectiveWoundsDefense,
                 context,
-                () => _showAvgSpeedTooltip(context),
               ),
             ),
           ],
         ),
         const SizedBox(height: 8),
-        // Second row - Combat metrics
+        // Second row - Defense effective wounds efficiency and D&R metrics
         Row(
           children: [
+            Expanded(
+              child: _buildCompactScoreCardWithInfo(
+                'Pts/Eff. Wound (Def)',
+                score.pointsPerEffectiveWoundDefense.toStringAsFixed(2),
+                Icons.calculate,
+                Colors.blueGrey,
+                context,
+                () => _showPointsPerEffectiveWoundDefenseTooltip(context),
+              ),
+            ),
+            const SizedBox(width: 8),
+            Expanded(
+              child: _buildEffectiveWoundsDefenseResolveCompactScoreCard(
+                'Eff. Wounds (D&R)',
+                score.effectiveWoundsDefenseResolve.toStringAsFixed(1),
+                Icons.shield_outlined,
+                Colors.teal,
+                score.effectiveWoundsDefenseResolve,
+                context,
+              ),
+            ),
+            const SizedBox(width: 8),
+            Expanded(
+              child: _buildCompactScoreCardWithInfo(
+                'Pts/Eff. Wound (D&R)',
+                score.pointsPerEffectiveWoundDefenseResolve.toStringAsFixed(2),
+                Icons.calculate_outlined,
+                Colors.teal,
+                context,
+                () =>
+                    _showPointsPerEffectiveWoundDefenseResolveTooltip(context),
+              ),
+            ),
+          ],
+        ),
+        const SizedBox(height: 8),
+        // Third row - Resolve impact and combat metrics
+        Row(
+          children: [
+            Expanded(
+              child: _buildResolveImpactCompactScoreCard(
+                'Resolve Impact',
+                '${score.resolveImpactPercentage.toStringAsFixed(1)}%',
+                Icons.psychology,
+                Colors.deepOrange,
+                score.resolveImpactPercentage,
+                context,
+              ),
+            ),
+            const SizedBox(width: 8),
             Expanded(
               child: _buildCompactScoreCardWithInfo(
                 'Hit Volume',
@@ -418,21 +468,48 @@ class ScoreDisplayWidget extends StatelessWidget {
                 () => _showCleaveTooltip(context),
               ),
             ),
-            const SizedBox(width: 8),
+          ],
+        ),
+        const SizedBox(height: 8),
+        // Fourth row - Speed and defensive metrics
+        Row(
+          children: [
             Expanded(
               child: _buildCompactScoreCardWithInfo(
-                'Max Range',
-                score.maxRange.toString(),
-                Icons.speed,
-                Colors.cyan,
+                'Avg Speed',
+                score.averageSpeed.toStringAsFixed(1),
+                Icons.directions_run,
+                Colors.amber,
                 context,
-                () => _showMaxRangeTooltip(context),
+                () => _showAvgSpeedTooltip(context),
+              ),
+            ),
+            const SizedBox(width: 8),
+            Expanded(
+              child: _buildEvasionCompactScoreCard(
+                'Evasion',
+                score.evasion.toStringAsFixed(1),
+                Icons.flash_on,
+                Colors.lime,
+                score.evasion,
+                context,
+              ),
+            ),
+            const SizedBox(width: 8),
+            Expanded(
+              child: _buildToughnessCompactScoreCard(
+                'Toughness',
+                score.toughness.toStringAsFixed(1),
+                Icons.security,
+                Colors.brown,
+                score.toughness,
+                context,
               ),
             ),
           ],
         ),
         const SizedBox(height: 8),
-        // Third row - Ranged metrics
+        // Fifth row - Ranged metrics
         Row(
           children: [
             Expanded(
@@ -458,90 +535,13 @@ class ScoreDisplayWidget extends StatelessWidget {
             ),
             const SizedBox(width: 8),
             Expanded(
-              child: _buildToughnessCompactScoreCard(
-                'Toughness',
-                score.toughness.toStringAsFixed(1),
-                Icons.security,
-                Colors.brown,
-                score.toughness,
-                context,
-              ),
-            ),
-          ],
-        ),
-        const SizedBox(height: 8),
-        // Fourth row - Defensive metrics
-        Row(
-          children: [
-            Expanded(
-              child: _buildEvasionCompactScoreCard(
-                'Evasion',
-                score.evasion.toStringAsFixed(1),
-                Icons.flash_on,
-                Colors.lime,
-                score.evasion,
-                context,
-              ),
-            ),
-            const SizedBox(width: 8),
-            Expanded(
-              child: _buildEffectiveWoundsDefenseCompactScoreCard(
-                'Eff. Wounds (Def)',
-                score.effectiveWoundsDefense.toStringAsFixed(1),
-                Icons.favorite_border,
-                Colors.deepPurple,
-                score.effectiveWoundsDefense,
-                context,
-              ),
-            ),
-            const SizedBox(width: 8),
-            Expanded(
-              child: _buildEffectiveWoundsDefenseResolveCompactScoreCard(
-                'Eff. Wounds (D&R)',
-                score.effectiveWoundsDefenseResolve.toStringAsFixed(1),
-                Icons.shield_outlined,
-                Colors.teal,
-                score.effectiveWoundsDefenseResolve,
-                context,
-              ),
-            ),
-          ],
-        ),
-        const SizedBox(height: 8),
-        // Fifth row - Resolve impact and points per effective wound (defense only)
-        Row(
-          children: [
-            Expanded(
-              child: _buildResolveImpactCompactScoreCard(
-                'Resolve Impact',
-                '${score.resolveImpactPercentage.toStringAsFixed(1)}%',
-                Icons.psychology,
-                Colors.deepOrange,
-                score.resolveImpactPercentage,
-                context,
-              ),
-            ),
-            const SizedBox(width: 8),
-            Expanded(
               child: _buildCompactScoreCardWithInfo(
-                'Pts/Eff. Wound (Def)',
-                score.pointsPerEffectiveWoundDefense.toStringAsFixed(2),
-                Icons.calculate,
-                Colors.blueGrey,
+                'Max Range',
+                score.maxRange.toString(),
+                Icons.speed,
+                Colors.cyan,
                 context,
-                () => _showPointsPerEffectiveWoundDefenseTooltip(context),
-              ),
-            ),
-            const SizedBox(width: 8),
-            Expanded(
-              child: _buildCompactScoreCardWithInfo(
-                'Pts/Eff. Wound (D&R)',
-                score.pointsPerEffectiveWoundDefenseResolve.toStringAsFixed(2),
-                Icons.calculate_outlined,
-                Colors.teal,
-                context,
-                () =>
-                    _showPointsPerEffectiveWoundDefenseResolveTooltip(context),
+                () => _showMaxRangeTooltip(context),
               ),
             ),
           ],

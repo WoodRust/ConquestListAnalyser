@@ -104,26 +104,70 @@ class CompareListsScreen extends StatelessWidget {
   Widget _buildMetricsTable(BuildContext context) {
     return Column(
       children: [
-        _buildMetricRow(
-            'Total Points',
-            listsToCompare
-                .map((l) => l.armyList.totalPoints.toDouble())
-                .toList(),
-            false,
-            null,
-            false),
+        // Wound metrics - paired with efficiency metrics
         _buildMetricRow('Total Wounds',
             listsToCompare.map((l) => l.totalWounds.toDouble()).toList(), true,
             () => _showTotalWoundsTooltip(context), false),
         _buildMetricRow('Points per Wound',
             listsToCompare.map((l) => l.pointsPerWound).toList(), true,
             () => _showPointsPerWoundTooltip(context), true),
+        _buildMetricRow('Effective Wounds (Defense)',
+            listsToCompare.map((l) => l.effectiveWoundsDefense).toList(), true,
+            () => _showEffectiveWoundsDefenseTooltip(context), false),
+        _buildMetricRow(
+            'Pts per Eff. Wound (Def)',
+            listsToCompare
+                .map((l) => l.pointsPerEffectiveWoundDefense)
+                .toList(),
+            true,
+            () => _showPointsPerEffectiveWoundDefenseTooltip(context), true),
+        _buildMetricRow(
+            'Effective Wounds (D&R)',
+            listsToCompare.map((l) => l.effectiveWoundsDefenseResolve).toList(),
+            true,
+            () => _showEffectiveWoundsDefenseResolveTooltip(context), false),
+        _buildMetricRow(
+            'Pts per Eff. Wound (D&R)',
+            listsToCompare
+                .map((l) => l.pointsPerEffectiveWoundDefenseResolve)
+                .toList(),
+            true,
+            () => _showPointsPerEffectiveWoundDefenseResolveTooltip(context), true),
+        _buildMetricRow(
+            'Resolve Impact',
+            listsToCompare.map((l) => l.resolveImpactPercentage).toList(),
+            true,
+            () => _showResolveImpactTooltip(context), false),
+        // Combat metrics
         _buildMetricRow('Expected Hit Volume',
             listsToCompare.map((l) => l.expectedHitVolume).toList(), true,
             () => _showHitVolumeTooltip(context), false),
         _buildMetricRow('Cleave Rating',
             listsToCompare.map((l) => l.cleaveRating).toList(), true,
             () => _showCleaveTooltip(context), false),
+        _buildMetricRow('Average Speed',
+            listsToCompare.map((l) => l.averageSpeed).toList(), true,
+            () => _showAvgSpeedTooltip(context), false),
+        // Defensive metrics
+        _buildMetricRow(
+            'Evasion', listsToCompare.map((l) => l.evasion).toList(), true,
+            () => _showEvasionTooltip(context), false),
+        _buildMetricRow(
+            'Toughness', listsToCompare.map((l) => l.toughness).toList(), true,
+            () => _showToughnessTooltip(context), false),
+        // Ranged metrics
+        _buildMetricRow('Ranged Expected Hits',
+            listsToCompare.map((l) => l.rangedExpectedHits).toList(), true,
+            () => _showRangedExpectedHitsTooltip(context), false),
+        _buildMetricRow(
+            'Ranged Armor Piercing',
+            listsToCompare.map((l) => l.rangedArmorPiercingRating).toList(),
+            true,
+            () => _showRangedArmorPiercingTooltip(context), false),
+        _buildMetricRow('Max Range',
+            listsToCompare.map((l) => l.maxRange.toDouble()).toList(), true,
+            () => _showMaxRangeTooltip(context), false),
+        // Magic and Healing
         _buildMetricRow(
             'Magic Capability',
             listsToCompare.map((l) => l.magicCapability.toDouble()).toList(),
@@ -136,48 +180,6 @@ class CompareListsScreen extends StatelessWidget {
                 .toList(),
             true,
             () => _showExpectedHealingCapabilityTooltip(context), false),
-        _buildMetricRow('Ranged Expected Hits',
-            listsToCompare.map((l) => l.rangedExpectedHits).toList(), true,
-            () => _showRangedExpectedHitsTooltip(context), false),
-        _buildMetricRow(
-            'Ranged Armor Piercing',
-            listsToCompare.map((l) => l.rangedArmorPiercingRating).toList(),
-            true,
-            () => _showRangedArmorPiercingTooltip(context), false),
-        _buildMetricRow('Max Range',
-            listsToCompare.map((l) => l.maxRange.toDouble()).toList(), true,
-            () => _showMaxRangeTooltip(context), false),
-        _buildMetricRow('Effective Wounds (Defense)',
-            listsToCompare.map((l) => l.effectiveWoundsDefense).toList(), true,
-            () => _showEffectiveWoundsDefenseTooltip(context), false),
-        _buildMetricRow(
-            'Effective Wounds (D&R)',
-            listsToCompare.map((l) => l.effectiveWoundsDefenseResolve).toList(),
-            true,
-            () => _showEffectiveWoundsDefenseResolveTooltip(context), false),
-        _buildMetricRow(
-            'Pts per Eff. Wound (Def)',
-            listsToCompare
-                .map((l) => l.pointsPerEffectiveWoundDefense)
-                .toList(),
-            true,
-            () => _showPointsPerEffectiveWoundDefenseTooltip(context), true),
-        _buildMetricRow(
-            'Pts per Eff. Wound (D&R)',
-            listsToCompare
-                .map((l) => l.pointsPerEffectiveWoundDefenseResolve)
-                .toList(),
-            true,
-            () => _showPointsPerEffectiveWoundDefenseResolveTooltip(context), true),
-        _buildMetricRow(
-            'Evasion', listsToCompare.map((l) => l.evasion).toList(), true,
-            () => _showEvasionTooltip(context), false),
-        _buildMetricRow(
-            'Toughness', listsToCompare.map((l) => l.toughness).toList(), true,
-            () => _showToughnessTooltip(context), false),
-        _buildMetricRow('Average Speed',
-            listsToCompare.map((l) => l.averageSpeed).toList(), true,
-            () => _showAvgSpeedTooltip(context), false),
       ],
     );
   }
@@ -1090,6 +1092,68 @@ class CompareListsScreen extends StatelessWidget {
               ),
               const Text(
                 '• 9+: Very fast (flying, mounted)',
+                style: TextStyle(fontSize: 14),
+              ),
+            ],
+          ),
+          actions: [
+            TextButton(
+              onPressed: () => Navigator.of(context).pop(),
+              child: const Text('OK'),
+            ),
+          ],
+        );
+      },
+    );
+  }
+
+  void _showResolveImpactTooltip(BuildContext context) {
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: const Text('Resolve Impact'),
+          content: Column(
+            mainAxisSize: MainAxisSize.min,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              const Text(
+                'Resolve Impact shows how much survivability your army loses due to resolve wounds multiplying on top of failed defenses.',
+                style: TextStyle(fontSize: 16),
+              ),
+              const SizedBox(height: 12),
+              const Text(
+                'Formula: ((Defense&Resolve - Defense) ÷ Defense) × 100',
+                style: TextStyle(fontSize: 14, fontWeight: FontWeight.bold),
+              ),
+              const SizedBox(height: 8),
+              const Text(
+                'Negative values = resolve makes army less survivable',
+                style: TextStyle(fontSize: 14),
+              ),
+              const Text(
+                'Positive values = resolve improves survivability (rare)',
+                style: TextStyle(fontSize: 14),
+              ),
+              const SizedBox(height: 12),
+              const Text(
+                'Impact Categories:',
+                style: TextStyle(fontSize: 14, fontWeight: FontWeight.bold),
+              ),
+              const Text(
+                '• -0% to -10%: Excellent resolve',
+                style: TextStyle(fontSize: 14),
+              ),
+              const Text(
+                '• -11% to -30%: Good resolve',
+                style: TextStyle(fontSize: 14),
+              ),
+              const Text(
+                '• -31% to -50%: Poor resolve',
+                style: TextStyle(fontSize: 14),
+              ),
+              const Text(
+                '• -51% and worse: Terrible resolve',
                 style: TextStyle(fontSize: 14),
               ),
             ],
