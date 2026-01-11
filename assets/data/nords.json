@@ -979,6 +979,7 @@
         "faction": "Nords",
         "type": "monster",
         "regimentClass": "character",
+        "actualRegimentClass": "heavy",
         "characteristics": {
             "march": 7,
             "volley": 2,

@@ -37,6 +37,20 @@ class ScoringEngine {
     final resolveImpactPercentage = _calculateResolveImpactPercentage(
         effectiveWoundsDefense, effectiveWoundsDefenseResolve);
 
+    // Calculate points per effective wound metrics with robust null/infinity checks
+    final pointsPerEffectiveWoundDefense =
+        (effectiveWoundsDefense > 0 &&
+                effectiveWoundsDefense.isFinite &&
+                !effectiveWoundsDefense.isNaN)
+            ? (armyList.totalPoints.toDouble() / effectiveWoundsDefense)
+            : 0.0;
+    final pointsPerEffectiveWoundDefenseResolve =
+        (effectiveWoundsDefenseResolve > 0 &&
+                effectiveWoundsDefenseResolve.isFinite &&
+                !effectiveWoundsDefenseResolve.isNaN)
+            ? (armyList.totalPoints.toDouble() / effectiveWoundsDefenseResolve)
+            : 0.0;
+
     return ListScore(
       armyList: armyList,
       totalWounds: totalWounds,
@@ -52,6 +66,9 @@ class ScoringEngine {
       effectiveWoundsDefense: effectiveWoundsDefense,
       effectiveWoundsDefenseResolve: effectiveWoundsDefenseResolve,
       resolveImpactPercentage: resolveImpactPercentage,
+      pointsPerEffectiveWoundDefense: pointsPerEffectiveWoundDefense,
+      pointsPerEffectiveWoundDefenseResolve:
+          pointsPerEffectiveWoundDefenseResolve,
       calculatedAt: DateTime.now(),
     );
   }

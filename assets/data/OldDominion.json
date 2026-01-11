@@ -974,6 +974,7 @@
         "faction": "Old Dominion",
         "type": "monster",
         "regimentClass": "character",
+        "actualRegimentClass": "medium",
         "characteristics": {
             "march": 5,
             "volley": 2,

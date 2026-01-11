@@ -921,6 +921,7 @@
         "faction": "W'adrhun",
         "type": "monster",
         "regimentClass": "character",
+        "actualRegimentClass": "heavy",
         "characteristics": {
             "march": 9,
             "volley": 3,

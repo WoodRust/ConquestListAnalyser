@@ -70,6 +70,8 @@ void main() {
         effectiveWoundsDefense: 12.0, // Added required parameter
         effectiveWoundsDefenseResolve: 14.0, // Added required parameter
         resolveImpactPercentage: 15.0, // Added required parameter
+        pointsPerEffectiveWoundDefense: 12.0,
+        pointsPerEffectiveWoundDefenseResolve: 13.33,
         calculatedAt: DateTime.now(),
       );
 
@@ -123,6 +125,8 @@ void main() {
         effectiveWoundsDefense: 8.0, // Added required parameter
         effectiveWoundsDefenseResolve: 10.0, // Added required parameter
         resolveImpactPercentage: 20.0, // Added required parameter
+        pointsPerEffectiveWoundDefense: 12.0,
+        pointsPerEffectiveWoundDefenseResolve: 13.33,
         calculatedAt: DateTime.now(),
       );
 
@@ -210,6 +214,8 @@ void main() {
         effectiveWoundsDefense: 18.0, // Added required parameter
         effectiveWoundsDefenseResolve: 22.0, // Added required parameter
         resolveImpactPercentage: 25.0, // Added required parameter
+        pointsPerEffectiveWoundDefense: 12.0,
+        pointsPerEffectiveWoundDefenseResolve: 13.33,
         calculatedAt: DateTime.now(),
       );
 
@@ -248,6 +254,8 @@ void main() {
         effectiveWoundsDefense: 30.0, // Added required parameter
         effectiveWoundsDefenseResolve: 35.0, // Added required parameter
         resolveImpactPercentage: 40.0, // Added required parameter
+        pointsPerEffectiveWoundDefense: 12.0,
+        pointsPerEffectiveWoundDefenseResolve: 13.33,
         calculatedAt: DateTime.now(),
       );
 

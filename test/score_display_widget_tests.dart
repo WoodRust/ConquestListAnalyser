@@ -66,6 +66,11 @@ void main() {
         averageSpeed: 5.0,
         toughness: 2.0,
         evasion: 3.1, // Changed to unique value for testing
+        effectiveWoundsDefense: 12.0,
+        effectiveWoundsDefenseResolve: 15.0,
+        resolveImpactPercentage: 20.0,
+        pointsPerEffectiveWoundDefense: 12.0,
+        pointsPerEffectiveWoundDefenseResolve: 13.33,
         calculatedAt: DateTime.now(),
       );
 
@@ -115,6 +120,11 @@ void main() {
         averageSpeed: 5.1, // Changed to unique value
         toughness: 2.4, // Changed to unique value
         evasion: 3.7, // Changed to unique value
+        effectiveWoundsDefense: 12.0,
+        effectiveWoundsDefenseResolve: 15.0,
+        resolveImpactPercentage: 20.0,
+        pointsPerEffectiveWoundDefense: 12.0,
+        pointsPerEffectiveWoundDefenseResolve: 13.33,
         calculatedAt: DateTime.now(),
       );
 
@@ -199,6 +209,11 @@ void main() {
         averageSpeed: 5.0,
         toughness: 2.1, // Changed to unique value
         evasion: 3.2, // Changed to unique value
+        effectiveWoundsDefense: 12.0,
+        effectiveWoundsDefenseResolve: 15.0,
+        resolveImpactPercentage: 20.0,
+        pointsPerEffectiveWoundDefense: 12.0,
+        pointsPerEffectiveWoundDefenseResolve: 13.33,
         calculatedAt: DateTime.now(),
       );
 
@@ -242,6 +257,11 @@ void main() {
         averageSpeed: 5.0,
         toughness: 2.0,
         evasion: 2.5, // Decimal value for testing
+        effectiveWoundsDefense: 12.0,
+        effectiveWoundsDefenseResolve: 15.0,
+        resolveImpactPercentage: 20.0,
+        pointsPerEffectiveWoundDefense: 12.0,
+        pointsPerEffectiveWoundDefenseResolve: 13.33,
         calculatedAt: DateTime.now(),
       );
 
@@ -300,6 +320,11 @@ void main() {
         averageSpeed: 0.0,
         toughness: 0.0,
         evasion: 0.0, // Should be 0 with only characters
+        effectiveWoundsDefense: 12.0,
+        effectiveWoundsDefenseResolve: 15.0,
+        resolveImpactPercentage: 20.0,
+        pointsPerEffectiveWoundDefense: 12.0,
+        pointsPerEffectiveWoundDefenseResolve: 13.33,
         calculatedAt: DateTime.now(),
       );
 
@@ -387,6 +412,11 @@ void main() {
         averageSpeed: 6.0,
         toughness: 1.6,
         evasion: 1.9, // Precise calculation
+        effectiveWoundsDefense: 12.0,
+        effectiveWoundsDefenseResolve: 15.0,
+        resolveImpactPercentage: 20.0,
+        pointsPerEffectiveWoundDefense: 12.0,
+        pointsPerEffectiveWoundDefenseResolve: 13.33,
         calculatedAt: DateTime.now(),
       );
 
@@ -421,6 +451,11 @@ void main() {
         averageSpeed: 5.3, // Changed to unique value
         toughness: 2.6, // Changed to unique value
         evasion: 3.8, // Changed to unique value
+        effectiveWoundsDefense: 12.0,
+        effectiveWoundsDefenseResolve: 15.0,
+        resolveImpactPercentage: 20.0,
+        pointsPerEffectiveWoundDefense: 12.0,
+        pointsPerEffectiveWoundDefenseResolve: 13.33,
         calculatedAt: DateTime.now(),
       );
 
@@ -466,6 +501,11 @@ void main() {
         averageSpeed: 5.0,
         toughness: 2.3,
         evasion: 2.7, // Decimal value
+        effectiveWoundsDefense: 12.0,
+        effectiveWoundsDefenseResolve: 15.0,
+        resolveImpactPercentage: 20.0,
+        pointsPerEffectiveWoundDefense: 12.0,
+        pointsPerEffectiveWoundDefenseResolve: 13.33,
         calculatedAt: DateTime.now(),
       );
 
@@ -517,6 +557,11 @@ void main() {
         averageSpeed: 5.4, // Changed to unique value
         toughness: 2.2, // Changed to unique values
         evasion: 3.4, // Changed to unique values
+        effectiveWoundsDefense: 12.0,
+        effectiveWoundsDefenseResolve: 15.0,
+        resolveImpactPercentage: 20.0,
+        pointsPerEffectiveWoundDefense: 12.0,
+        pointsPerEffectiveWoundDefenseResolve: 13.33,
         calculatedAt: DateTime.now(),
       );
 
@@ -571,6 +616,11 @@ void main() {
         averageSpeed: 5.2, // Changed to unique value
         toughness: 2.7, // Changed to unique value
         evasion: 3.9, // Changed to unique value
+        effectiveWoundsDefense: 12.0,
+        effectiveWoundsDefenseResolve: 15.0,
+        resolveImpactPercentage: 20.0,
+        pointsPerEffectiveWoundDefense: 12.0,
+        pointsPerEffectiveWoundDefenseResolve: 13.33,
         calculatedAt: DateTime.now(),
       );
 

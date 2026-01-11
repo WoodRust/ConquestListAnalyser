@@ -175,6 +175,7 @@
         "faction": "Yoroni",
         "type": "monster",
         "regimentClass": "character",
+        "actualRegimentClass": "medium",
         "characteristics": {
             "march": 7,
             "volley": 1,
@@ -234,6 +235,7 @@
         "faction": "Yoroni",
         "type": "monster",
         "regimentClass": "character",
+        "actualRegimentClass": "medium",
         "characteristics": {
             "march": 7,
             "volley": 1,

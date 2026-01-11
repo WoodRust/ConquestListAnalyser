@@ -17,6 +17,8 @@ class ListScore {
   final double effectiveWoundsDefenseResolve; // New field
   final double
       resolveImpactPercentage; // New field - percentage impact of resolve
+  final double pointsPerEffectiveWoundDefense; // Points per effective wound (defense only)
+  final double pointsPerEffectiveWoundDefenseResolve; // Points per effective wound (defense & resolve)
   final DateTime calculatedAt;
 
   const ListScore({
@@ -34,8 +36,63 @@ class ListScore {
     required this.effectiveWoundsDefense,
     required this.effectiveWoundsDefenseResolve,
     required this.resolveImpactPercentage,
+    required this.pointsPerEffectiveWoundDefense,
+    required this.pointsPerEffectiveWoundDefenseResolve,
     required this.calculatedAt,
   });
+
+  /// Creates a ListScore from JSON data
+  factory ListScore.fromJson(Map<String, dynamic> json) {
+    return ListScore(
+      armyList: ArmyList.fromJson(json['armyList']),
+      totalWounds: json['totalWounds'] as int,
+      pointsPerWound: (json['pointsPerWound'] as num).toDouble(),
+      expectedHitVolume: (json['expectedHitVolume'] as num).toDouble(),
+      cleaveRating: (json['cleaveRating'] as num).toDouble(),
+      rangedExpectedHits: (json['rangedExpectedHits'] as num).toDouble(),
+      rangedArmorPiercingRating:
+          (json['rangedArmorPiercingRating'] as num).toDouble(),
+      maxRange: json['maxRange'] as int,
+      averageSpeed: (json['averageSpeed'] as num).toDouble(),
+      toughness: (json['toughness'] as num).toDouble(),
+      evasion: (json['evasion'] as num).toDouble(),
+      effectiveWoundsDefense:
+          (json['effectiveWoundsDefense'] as num).toDouble(),
+      effectiveWoundsDefenseResolve:
+          (json['effectiveWoundsDefenseResolve'] as num).toDouble(),
+      resolveImpactPercentage:
+          (json['resolveImpactPercentage'] as num).toDouble(),
+      pointsPerEffectiveWoundDefense:
+          (json['pointsPerEffectiveWoundDefense'] as num).toDouble(),
+      pointsPerEffectiveWoundDefenseResolve:
+          (json['pointsPerEffectiveWoundDefenseResolve'] as num).toDouble(),
+      calculatedAt: DateTime.parse(json['calculatedAt'] as String),
+    );
+  }
+
+  /// Converts ListScore to JSON data
+  Map<String, dynamic> toJson() {
+    return {
+      'armyList': armyList.toJson(),
+      'totalWounds': totalWounds,
+      'pointsPerWound': pointsPerWound,
+      'expectedHitVolume': expectedHitVolume,
+      'cleaveRating': cleaveRating,
+      'rangedExpectedHits': rangedExpectedHits,
+      'rangedArmorPiercingRating': rangedArmorPiercingRating,
+      'maxRange': maxRange,
+      'averageSpeed': averageSpeed,
+      'toughness': toughness,
+      'evasion': evasion,
+      'effectiveWoundsDefense': effectiveWoundsDefense,
+      'effectiveWoundsDefenseResolve': effectiveWoundsDefenseResolve,
+      'resolveImpactPercentage': resolveImpactPercentage,
+      'pointsPerEffectiveWoundDefense': pointsPerEffectiveWoundDefense,
+      'pointsPerEffectiveWoundDefenseResolve':
+          pointsPerEffectiveWoundDefenseResolve,
+      'calculatedAt': calculatedAt.toIso8601String(),
+    };
+  }
 
   /// Creates a formatted summary string for sharing
   String toShareableText() {
@@ -58,6 +115,8 @@ Evasion: ${evasion.toStringAsFixed(1)}
 Effective Wounds (Defense): ${effectiveWoundsDefense.toStringAsFixed(1)}
 Effective Wounds (Defense & Resolve): ${effectiveWoundsDefenseResolve.toStringAsFixed(1)}
 Resolve Impact: ${resolveImpactPercentage.toStringAsFixed(1)}%
+Points per Eff. Wound (Def): ${pointsPerEffectiveWoundDefense.toStringAsFixed(2)}
+Points per Eff. Wound (D&R): ${pointsPerEffectiveWoundDefenseResolve.toStringAsFixed(2)}
 
 Calculated: ${calculatedAt.toString().split('.')[0]}
 ''';
@@ -65,5 +124,5 @@ Calculated: ${calculatedAt.toString().split('.')[0]}
 
   @override
   String toString() =>
-      'ListScore(wounds: $totalWounds, ppw: ${pointsPerWound.toStringAsFixed(2)}, ehv: ${expectedHitVolume.toStringAsFixed(1)}, cleave: ${cleaveRating.toStringAsFixed(1)}, ranged: ${rangedExpectedHits.toStringAsFixed(1)}, armorPiercing: ${rangedArmorPiercingRating.toStringAsFixed(1)}, maxRange: $maxRange, avgSpeed: ${averageSpeed.toStringAsFixed(1)}, toughness: ${toughness.toStringAsFixed(1)}, evasion: ${evasion.toStringAsFixed(1)}, effectiveWoundsDefense: ${effectiveWoundsDefense.toStringAsFixed(1)}, effectiveWoundsDefenseResolve: ${effectiveWoundsDefenseResolve.toStringAsFixed(1)}, resolveImpact: ${resolveImpactPercentage.toStringAsFixed(1)}%)';
+      'ListScore(wounds: $totalWounds, ppw: ${pointsPerWound.toStringAsFixed(2)}, ehv: ${expectedHitVolume.toStringAsFixed(1)}, cleave: ${cleaveRating.toStringAsFixed(1)}, ranged: ${rangedExpectedHits.toStringAsFixed(1)}, armorPiercing: ${rangedArmorPiercingRating.toStringAsFixed(1)}, maxRange: $maxRange, avgSpeed: ${averageSpeed.toStringAsFixed(1)}, toughness: ${toughness.toStringAsFixed(1)}, evasion: ${evasion.toStringAsFixed(1)}, effectiveWoundsDefense: ${effectiveWoundsDefense.toStringAsFixed(1)}, effectiveWoundsDefenseResolve: ${effectiveWoundsDefenseResolve.toStringAsFixed(1)}, resolveImpact: ${resolveImpactPercentage.toStringAsFixed(1)}%, ppEffWoundDef: ${pointsPerEffectiveWoundDefense.toStringAsFixed(2)}, ppEffWoundD&R: ${pointsPerEffectiveWoundDefenseResolve.toStringAsFixed(2)})';
 }

@@ -16,6 +16,28 @@ class Regiment {
     this.isWarlord = false,
   });
 
+  /// Creates a Regiment from JSON data
+  factory Regiment.fromJson(Map<String, dynamic> json) {
+    return Regiment(
+      unit: Unit.fromJson(json['unit']),
+      stands: json['stands'] as int,
+      pointsCost: json['pointsCost'] as int,
+      upgrades: List<String>.from(json['upgrades'] ?? []),
+      isWarlord: json['isWarlord'] as bool? ?? false,
+    );
+  }
+
+  /// Converts Regiment to JSON data
+  Map<String, dynamic> toJson() {
+    return {
+      'unit': unit.toJson(),
+      'stands': stands,
+      'pointsCost': pointsCost,
+      'upgrades': upgrades,
+      'isWarlord': isWarlord,
+    };
+  }
+
   /// Total wounds for this regiment (wounds per stand * number of stands)
   int get totalWounds => unit.woundsPerStand * stands;
 

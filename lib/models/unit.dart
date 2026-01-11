@@ -6,6 +6,7 @@ class Unit {
   final String faction;
   final String type;
   final String regimentClass;
+  final String? actualRegimentClass; // For dual character/regiment units
   final UnitCharacteristics characteristics;
   final List<SpecialRule> specialRules;
   final Map<String, dynamic> numericSpecialRules;
@@ -20,6 +21,7 @@ class Unit {
     required this.faction,
     required this.type,
     required this.regimentClass,
+    this.actualRegimentClass,
     required this.characteristics,
     required this.specialRules,
     required this.numericSpecialRules,
@@ -37,6 +39,7 @@ class Unit {
       faction: json['faction'] as String,
       type: json['type'] as String,
       regimentClass: json['regimentClass'] as String,
+      actualRegimentClass: json['actualRegimentClass'] as String?,
       characteristics: UnitCharacteristics.fromJson(json['characteristics']),
       specialRules: (json['specialRules'] as List)
           .map((rule) => SpecialRule.fromJson(rule))
@@ -53,6 +56,26 @@ class Unit {
       pointsPerAdditionalStand: json['pointsPerAdditionalStand'] as int?,
       officerUpgrades: json['officerUpgrades'] as String?,
     );
+  }
+
+  /// Converts Unit to JSON data
+  Map<String, dynamic> toJson() {
+    return {
+      'name': name,
+      'faction': faction,
+      'type': type,
+      'regimentClass': regimentClass,
+      'actualRegimentClass': actualRegimentClass,
+      'characteristics': characteristics.toJson(),
+      'specialRules': specialRules.map((rule) => rule.toJson()).toList(),
+      'numericSpecialRules': numericSpecialRules,
+      'supremacyAbilities':
+          supremacyAbilities.map((ability) => ability.toJson()).toList(),
+      'drawEvents': drawEvents.map((event) => event.toJson()).toList(),
+      'points': points,
+      'pointsPerAdditionalStand': pointsPerAdditionalStand,
+      'officerUpgrades': officerUpgrades,
+    };
   }
 
   /// Calculates total points cost for given number of stands
@@ -111,6 +134,19 @@ class UnitCharacteristics {
       evasion: json['evasion'] as int,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    return {
+      'march': march,
+      'volley': volley,
+      'clash': clash,
+      'attacks': attacks,
+      'wounds': wounds,
+      'resolve': resolve,
+      'defense': defense,
+      'evasion': evasion,
+    };
+  }
 }
 
 /// Special rule definition
@@ -128,6 +164,13 @@ class SpecialRule {
       name: json['name'] as String,
       description: json['description'] as String,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    return {
+      'name': name,
+      'description': description,
+    };
   }
 }
 
@@ -150,6 +193,14 @@ class SupremacyAbility {
       condition: json['condition'] as String,
       effect: CharacteristicModifier.fromJson(effectJson),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    return {
+      'name': name,
+      'condition': condition,
+      'effect': effect.toJson(),
+    };
   }
 }
 
@@ -232,6 +283,19 @@ class CharacteristicModifier {
 
     return false;
   }
+
+  Map<String, dynamic> toJson() {
+    return {
+      'type': type,
+      'target': target,
+      'modifier': {
+        'characteristic': characteristic,
+        'operation': operation,
+        'value': value,
+        'maximum': maximum,
+      },
+    };
+  }
 }
 
 /// Draw event definition
@@ -249,5 +313,12 @@ class DrawEvent {
       name: json['name'] as String,
       description: json['description'] as String,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    return {
+      'name': name,
+      'description': description,
+    };
   }
 }

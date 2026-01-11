@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
 
 class ListInputWidget extends StatefulWidget {
+  final TextEditingController? controller;
   final Function(String) onAnalyze;
   final bool isLoading;
 
   const ListInputWidget({
     super.key,
+    this.controller,
     required this.onAnalyze,
     required this.isLoading,
   });
@@ -15,11 +17,25 @@ class ListInputWidget extends StatefulWidget {
 }
 
 class _ListInputWidgetState extends State<ListInputWidget> {
-  final TextEditingController _controller = TextEditingController();
+  late final TextEditingController _controller;
+  bool _isLocalController = false;
+
+  @override
+  void initState() {
+    super.initState();
+    if (widget.controller == null) {
+      _controller = TextEditingController();
+      _isLocalController = true;
+    } else {
+      _controller = widget.controller!;
+    }
+  }
 
   @override
   void dispose() {
-    _controller.dispose();
+    if (_isLocalController) {
+      _controller.dispose();
+    }
     super.dispose();
   }
 
