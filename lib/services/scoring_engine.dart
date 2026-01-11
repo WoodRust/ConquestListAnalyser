@@ -38,18 +38,24 @@ class ScoringEngine {
         effectiveWoundsDefense, effectiveWoundsDefenseResolve);
 
     // Calculate points per effective wound metrics with robust null/infinity checks
-    final pointsPerEffectiveWoundDefense =
-        (effectiveWoundsDefense > 0 &&
-                effectiveWoundsDefense.isFinite &&
-                !effectiveWoundsDefense.isNaN)
-            ? (armyList.totalPoints.toDouble() / effectiveWoundsDefense)
-            : 0.0;
+    final pointsPerEffectiveWoundDefense = (effectiveWoundsDefense > 0 &&
+            effectiveWoundsDefense.isFinite &&
+            !effectiveWoundsDefense.isNaN)
+        ? (armyList.totalPoints.toDouble() / effectiveWoundsDefense)
+        : 0.0;
     final pointsPerEffectiveWoundDefenseResolve =
         (effectiveWoundsDefenseResolve > 0 &&
                 effectiveWoundsDefenseResolve.isFinite &&
                 !effectiveWoundsDefenseResolve.isNaN)
             ? (armyList.totalPoints.toDouble() / effectiveWoundsDefenseResolve)
             : 0.0;
+
+    // Calculate magic capability
+    final magicCapability = _calculateMagicCapability(armyList);
+
+    // Calculate expected healing capability
+    final expectedHealingCapability =
+        _calculateExpectedHealingCapability(armyList);
 
     return ListScore(
       armyList: armyList,
@@ -69,6 +75,8 @@ class ScoringEngine {
       pointsPerEffectiveWoundDefense: pointsPerEffectiveWoundDefense,
       pointsPerEffectiveWoundDefenseResolve:
           pointsPerEffectiveWoundDefenseResolve,
+      magicCapability: magicCapability,
+      expectedHealingCapability: expectedHealingCapability,
       calculatedAt: DateTime.now(),
     );
   }
@@ -379,5 +387,41 @@ class ScoringEngine {
   double _calculateRegimentHitVolume(Regiment regiment) {
     // Use the regiment's own expectedHitVolume calculation
     return regiment.expectedHitVolume;
+  }
+
+  /// Calculate magic capability (total spell dice from Priest/Wizard units)
+  int _calculateMagicCapability(ArmyList armyList) {
+    int totalSpellDice = 0;
+    for (final regiment in armyList.regiments) {
+      if (regiment.unit.numericSpecialRules.containsKey('spellDice')) {
+        totalSpellDice +=
+            (regiment.unit.numericSpecialRules['spellDice']! as num).toInt();
+      }
+    }
+    return totalSpellDice;
+  }
+
+  /// Calculate expected healing capability (total wounds healable per turn)
+  /// Includes regeneration abilities from non-character units and healing spells from magic characters
+  /// Excludes regeneration on character units
+  int _calculateExpectedHealingCapability(ArmyList armyList) {
+    int totalHealing = 0;
+    for (final regiment in armyList.regiments) {
+      // Add regeneration from non-character units only (stored in numericSpecialRules)
+      // Characters with regeneration should not contribute to healing capability
+      if (regiment.unit.numericSpecialRules.containsKey('regeneration') &&
+          regiment.unit.regimentClass != 'character') {
+        totalHealing +=
+            (regiment.unit.numericSpecialRules['regeneration']! as num).toInt();
+      }
+      // Add healing spell capability from magic characters (user will add later)
+      if (regiment.unit.numericSpecialRules
+          .containsKey('expectedHealingCapability')) {
+        totalHealing += (regiment
+                .unit.numericSpecialRules['expectedHealingCapability']! as num)
+            .toInt();
+      }
+    }
+    return totalHealing;
   }
 }

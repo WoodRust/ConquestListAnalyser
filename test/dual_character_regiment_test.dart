@@ -6,7 +6,7 @@ import 'package:conquest_analyzer/models/unit.dart';
 
 void main() {
   TestWidgetsFlutterBinding.ensureInitialized();
-  
+
   group('Dual Character/Regiment Tests', () {
     late UnitDatabase database;
     late ListParser parser;
@@ -29,18 +29,20 @@ Nords
 ''';
 
       final armyList = await parser.parseList(input);
-      
+
       // Verify it's a character monster
       expect(armyList.characterMonsters.length, equals(1));
-      expect(armyList.characterMonsters.first.unit.name, equals('Jotnar Seidr'));
-      
+      expect(
+          armyList.characterMonsters.first.unit.name, equals('Jotnar Seidr'));
+
       // Verify it counts as heavy regiment
       expect(armyList.heavyRegimentCount, equals(1));
       expect(armyList.mediumRegimentCount, equals(0));
       expect(armyList.lightRegimentCount, equals(0));
-      
+
       // Verify it has actualRegimentClass
-      expect(armyList.characterMonsters.first.unit.actualRegimentClass, equals('heavy'));
+      expect(armyList.characterMonsters.first.unit.actualRegimentClass,
+          equals('heavy'));
     });
 
     test('Promethean Oracle should count as heavy regiment', () async {
@@ -53,10 +55,11 @@ City States
 ''';
 
       final armyList = await parser.parseList(input);
-      
+
       expect(armyList.characterMonsters.length, equals(1));
       expect(armyList.heavyRegimentCount, equals(1));
-      expect(armyList.characterMonsters.first.unit.actualRegimentClass, equals('heavy'));
+      expect(armyList.characterMonsters.first.unit.actualRegimentClass,
+          equals('heavy'));
     });
 
     test('Fallen Divinity should count as medium regiment', () async {
@@ -69,11 +72,12 @@ Old Dominion
 ''';
 
       final armyList = await parser.parseList(input);
-      
+
       expect(armyList.characterMonsters.length, equals(1));
       expect(armyList.mediumRegimentCount, equals(1));
       expect(armyList.heavyRegimentCount, equals(0));
-      expect(armyList.characterMonsters.first.unit.actualRegimentClass, equals('medium'));
+      expect(armyList.characterMonsters.first.unit.actualRegimentClass,
+          equals('medium'));
     });
 
     test('Winglord Predator should count as heavy regiment', () async {
@@ -86,10 +90,11 @@ W'adrhun
 ''';
 
       final armyList = await parser.parseList(input);
-      
+
       expect(armyList.characterMonsters.length, equals(1));
       expect(armyList.heavyRegimentCount, equals(1));
-      expect(armyList.characterMonsters.first.unit.actualRegimentClass, equals('heavy'));
+      expect(armyList.characterMonsters.first.unit.actualRegimentClass,
+          equals('heavy'));
     });
 
     test('Jorogumo Mahotsu should count as medium regiment', () async {
@@ -102,10 +107,11 @@ Yoroni
 ''';
 
       final armyList = await parser.parseList(input);
-      
+
       expect(armyList.characterMonsters.length, equals(1));
       expect(armyList.mediumRegimentCount, equals(1));
-      expect(armyList.characterMonsters.first.unit.actualRegimentClass, equals('medium'));
+      expect(armyList.characterMonsters.first.unit.actualRegimentClass,
+          equals('medium'));
     });
 
     test('Jorogumo Geisha should count as medium regiment', () async {
@@ -118,10 +124,11 @@ Yoroni
 ''';
 
       final armyList = await parser.parseList(input);
-      
+
       expect(armyList.characterMonsters.length, equals(1));
       expect(armyList.mediumRegimentCount, equals(1));
-      expect(armyList.characterMonsters.first.unit.actualRegimentClass, equals('medium'));
+      expect(armyList.characterMonsters.first.unit.actualRegimentClass,
+          equals('medium'));
     });
 
     test('Army with both regular heavy and dual character heavy', () async {
@@ -135,14 +142,16 @@ Nords
 ''';
 
       final armyList = await parser.parseList(input);
-      
+
       // Should have 1 character monster + 1 regular heavy = 2 heavy total
       expect(armyList.characterMonsters.length, equals(1));
       expect(armyList.nonCharacterRegiments.length, equals(1));
       expect(armyList.heavyRegimentCount, equals(2)); // Both count!
     });
 
-    test('Regular character monster without actualRegimentClass should not count', () async {
+    test(
+        'Regular character monster without actualRegimentClass should not count',
+        () async {
       const input = '''
 === The Last Argument of Kings ===
 Ice Jotnar Test [250/2000]
@@ -152,7 +161,7 @@ Nords
 ''';
 
       final armyList = await parser.parseList(input);
-      
+
       // Ice Jotnar is a monster with regimentClass='heavy' (not character)
       // It should count as a regular heavy regiment
       expect(armyList.characterMonsters.length, equals(0));

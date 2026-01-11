@@ -191,6 +191,8 @@ void main() {
         resolveImpactPercentage: 25.0,
         pointsPerEffectiveWoundDefense: 93.75,
         pointsPerEffectiveWoundDefenseResolve: 75.0,
+        magicCapability: 0,
+        expectedHealingCapability: 0,
         calculatedAt: now,
       );
 

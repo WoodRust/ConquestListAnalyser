@@ -83,12 +83,12 @@ class ArmyList {
     int count = nonCharacterRegiments
         .where((r) => r.unit.regimentClass.toLowerCase() == 'light')
         .length;
-    
+
     // Add character monsters with actualRegimentClass='light'
     count += characterMonsters
         .where((r) => r.unit.actualRegimentClass?.toLowerCase() == 'light')
         .length;
-    
+
     return count;
   }
 
@@ -97,12 +97,12 @@ class ArmyList {
     int count = nonCharacterRegiments
         .where((r) => r.unit.regimentClass.toLowerCase() == 'medium')
         .length;
-    
+
     // Add character monsters with actualRegimentClass='medium'
     count += characterMonsters
         .where((r) => r.unit.actualRegimentClass?.toLowerCase() == 'medium')
         .length;
-    
+
     return count;
   }
 
@@ -111,12 +111,12 @@ class ArmyList {
     int count = nonCharacterRegiments
         .where((r) => r.unit.regimentClass.toLowerCase() == 'heavy')
         .length;
-    
+
     // Add character monsters with actualRegimentClass='heavy'
     count += characterMonsters
         .where((r) => r.unit.actualRegimentClass?.toLowerCase() == 'heavy')
         .length;
-    
+
     return count;
   }
 

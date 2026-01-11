@@ -26,7 +26,7 @@ class _SavedListsScreenState extends State<SavedListsScreen> {
 
   Future<void> _loadSavedLists() async {
     setState(() => _isLoading = true);
-    
+
     try {
       final lists = await _repository.getListMetadata();
       setState(() {
@@ -159,11 +159,9 @@ class _SavedListsScreenState extends State<SavedListsScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(
-          _selectedListIds.isEmpty
+        title: Text(_selectedListIds.isEmpty
             ? 'Saved Lists'
-            : 'Select Lists (${_selectedListIds.length})'
-        ),
+            : 'Select Lists (${_selectedListIds.length})'),
         actions: [
           if (_savedLists != null && _savedLists!.isNotEmpty)
             IconButton(
@@ -203,7 +201,7 @@ class _SavedListsScreenState extends State<SavedListsScreen> {
                     ScaffoldMessenger.of(context).showSnackBar(
                       const SnackBar(content: Text('All lists deleted')),
                     );
-                  _selectedListIds.clear();
+                    _selectedListIds.clear();
                   }
                 }
               },
@@ -253,7 +251,7 @@ class _SavedListsScreenState extends State<SavedListsScreen> {
   Widget _buildListCard(SavedListMetadata metadata) {
     final dateFormat = DateFormat('MMM d, yyyy - h:mm a');
     final isSelected = _selectedListIds.contains(metadata.id);
-    
+
     return Card(
       margin: const EdgeInsets.only(bottom: 12),
       color: isSelected ? Colors.blue.shade50 : null,

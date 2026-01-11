@@ -104,59 +104,71 @@ class CompareListsScreen extends StatelessWidget {
   Widget _buildMetricsTable() {
     return Column(
       children: [
-        _buildMetricRow('Total Points', 
-          listsToCompare.map((l) => l.armyList.totalPoints.toDouble()).toList(), 
-          false),
-        _buildMetricRow('Total Wounds', 
-          listsToCompare.map((l) => l.totalWounds.toDouble()).toList(), 
-          true),
-        _buildMetricRow('Points per Wound', 
-          listsToCompare.map((l) => l.pointsPerWound).toList(), 
-          false),
-        _buildMetricRow('Expected Hit Volume', 
-          listsToCompare.map((l) => l.expectedHitVolume).toList(), 
-          true),
-        _buildMetricRow('Cleave Rating', 
-          listsToCompare.map((l) => l.cleaveRating).toList(), 
-          true),
-        _buildMetricRow('Ranged Expected Hits', 
-          listsToCompare.map((l) => l.rangedExpectedHits).toList(), 
-          true),
-        _buildMetricRow('Ranged Armor Piercing', 
-          listsToCompare.map((l) => l.rangedArmorPiercingRating).toList(), 
-          true),
-        _buildMetricRow('Max Range', 
-          listsToCompare.map((l) => l.maxRange.toDouble()).toList(), 
-          true),
-        _buildMetricRow('Effective Wounds (Defense)', 
-          listsToCompare.map((l) => l.effectiveWoundsDefense).toList(), 
-          true),
-        _buildMetricRow('Effective Wounds (D&R)', 
-          listsToCompare.map((l) => l.effectiveWoundsDefenseResolve).toList(), 
-          true),
-        _buildMetricRow('Pts per Eff. Wound (Def)', 
-          listsToCompare.map((l) => l.pointsPerEffectiveWoundDefense).toList(), 
-          false),
-        _buildMetricRow('Pts per Eff. Wound (D&R)', 
-          listsToCompare.map((l) => l.pointsPerEffectiveWoundDefenseResolve).toList(), 
-          false),
-        _buildMetricRow('Evasion', 
-          listsToCompare.map((l) => l.evasion).toList(), 
-          true),
-        _buildMetricRow('Toughness', 
-          listsToCompare.map((l) => l.toughness).toList(), 
-          true),
-        _buildMetricRow('Average Speed', 
-          listsToCompare.map((l) => l.averageSpeed).toList(), 
-          true),
+        _buildMetricRow(
+            'Total Points',
+            listsToCompare
+                .map((l) => l.armyList.totalPoints.toDouble())
+                .toList(),
+            false),
+        _buildMetricRow('Total Wounds',
+            listsToCompare.map((l) => l.totalWounds.toDouble()).toList(), true),
+        _buildMetricRow('Points per Wound',
+            listsToCompare.map((l) => l.pointsPerWound).toList(), false),
+        _buildMetricRow('Expected Hit Volume',
+            listsToCompare.map((l) => l.expectedHitVolume).toList(), true),
+        _buildMetricRow('Cleave Rating',
+            listsToCompare.map((l) => l.cleaveRating).toList(), true),
+        _buildMetricRow(
+            'Magic Capability',
+            listsToCompare.map((l) => l.magicCapability.toDouble()).toList(),
+            true),
+        _buildMetricRow(
+            'Expected Healing Capability',
+            listsToCompare
+                .map((l) => l.expectedHealingCapability.toDouble())
+                .toList(),
+            true),
+        _buildMetricRow('Ranged Expected Hits',
+            listsToCompare.map((l) => l.rangedExpectedHits).toList(), true),
+        _buildMetricRow(
+            'Ranged Armor Piercing',
+            listsToCompare.map((l) => l.rangedArmorPiercingRating).toList(),
+            true),
+        _buildMetricRow('Max Range',
+            listsToCompare.map((l) => l.maxRange.toDouble()).toList(), true),
+        _buildMetricRow('Effective Wounds (Defense)',
+            listsToCompare.map((l) => l.effectiveWoundsDefense).toList(), true),
+        _buildMetricRow(
+            'Effective Wounds (D&R)',
+            listsToCompare.map((l) => l.effectiveWoundsDefenseResolve).toList(),
+            true),
+        _buildMetricRow(
+            'Pts per Eff. Wound (Def)',
+            listsToCompare
+                .map((l) => l.pointsPerEffectiveWoundDefense)
+                .toList(),
+            false),
+        _buildMetricRow(
+            'Pts per Eff. Wound (D&R)',
+            listsToCompare
+                .map((l) => l.pointsPerEffectiveWoundDefenseResolve)
+                .toList(),
+            false),
+        _buildMetricRow(
+            'Evasion', listsToCompare.map((l) => l.evasion).toList(), true),
+        _buildMetricRow(
+            'Toughness', listsToCompare.map((l) => l.toughness).toList(), true),
+        _buildMetricRow('Average Speed',
+            listsToCompare.map((l) => l.averageSpeed).toList(), true),
       ],
     );
   }
 
-  Widget _buildMetricRow(String metricName, List<double> values, bool higherIsBetter) {
+  Widget _buildMetricRow(
+      String metricName, List<double> values, bool higherIsBetter) {
     // Filter out invalid values (0, infinity, NaN) for comparison
     final validValues = values.where((v) => v.isFinite && v > 0).toList();
-    
+
     // Find best value if there are valid values to compare
     double? bestValue;
     if (validValues.isNotEmpty) {

@@ -71,6 +71,8 @@ void main() {
         resolveImpactPercentage: 20.0,
         pointsPerEffectiveWoundDefense: 12.0,
         pointsPerEffectiveWoundDefenseResolve: 13.33,
+        magicCapability: 0,
+        expectedHealingCapability: 0,
         calculatedAt: DateTime.now(),
       );
 
@@ -125,6 +127,8 @@ void main() {
         resolveImpactPercentage: 20.0,
         pointsPerEffectiveWoundDefense: 12.0,
         pointsPerEffectiveWoundDefenseResolve: 13.33,
+        magicCapability: 0,
+        expectedHealingCapability: 0,
         calculatedAt: DateTime.now(),
       );
 
@@ -214,6 +218,8 @@ void main() {
         resolveImpactPercentage: 20.0,
         pointsPerEffectiveWoundDefense: 12.0,
         pointsPerEffectiveWoundDefenseResolve: 13.33,
+        magicCapability: 0,
+        expectedHealingCapability: 0,
         calculatedAt: DateTime.now(),
       );
 
@@ -262,6 +268,8 @@ void main() {
         resolveImpactPercentage: 20.0,
         pointsPerEffectiveWoundDefense: 12.0,
         pointsPerEffectiveWoundDefenseResolve: 13.33,
+        magicCapability: 0,
+        expectedHealingCapability: 0,
         calculatedAt: DateTime.now(),
       );
 
@@ -325,6 +333,8 @@ void main() {
         resolveImpactPercentage: 20.0,
         pointsPerEffectiveWoundDefense: 12.0,
         pointsPerEffectiveWoundDefenseResolve: 13.33,
+        magicCapability: 0,
+        expectedHealingCapability: 0,
         calculatedAt: DateTime.now(),
       );
 
@@ -417,6 +427,8 @@ void main() {
         resolveImpactPercentage: 20.0,
         pointsPerEffectiveWoundDefense: 12.0,
         pointsPerEffectiveWoundDefenseResolve: 13.33,
+        magicCapability: 0,
+        expectedHealingCapability: 0,
         calculatedAt: DateTime.now(),
       );
 
@@ -456,6 +468,8 @@ void main() {
         resolveImpactPercentage: 20.0,
         pointsPerEffectiveWoundDefense: 12.0,
         pointsPerEffectiveWoundDefenseResolve: 13.33,
+        magicCapability: 0,
+        expectedHealingCapability: 0,
         calculatedAt: DateTime.now(),
       );
 
@@ -506,6 +520,8 @@ void main() {
         resolveImpactPercentage: 20.0,
         pointsPerEffectiveWoundDefense: 12.0,
         pointsPerEffectiveWoundDefenseResolve: 13.33,
+        magicCapability: 0,
+        expectedHealingCapability: 0,
         calculatedAt: DateTime.now(),
       );
 
@@ -562,6 +578,8 @@ void main() {
         resolveImpactPercentage: 20.0,
         pointsPerEffectiveWoundDefense: 12.0,
         pointsPerEffectiveWoundDefenseResolve: 13.33,
+        magicCapability: 0,
+        expectedHealingCapability: 0,
         calculatedAt: DateTime.now(),
       );
 
@@ -621,6 +639,8 @@ void main() {
         resolveImpactPercentage: 20.0,
         pointsPerEffectiveWoundDefense: 12.0,
         pointsPerEffectiveWoundDefenseResolve: 13.33,
+        magicCapability: 0,
+        expectedHealingCapability: 0,
         calculatedAt: DateTime.now(),
       );
 

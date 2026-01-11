@@ -17,8 +17,13 @@ class ListScore {
   final double effectiveWoundsDefenseResolve; // New field
   final double
       resolveImpactPercentage; // New field - percentage impact of resolve
-  final double pointsPerEffectiveWoundDefense; // Points per effective wound (defense only)
-  final double pointsPerEffectiveWoundDefenseResolve; // Points per effective wound (defense & resolve)
+  final double
+      pointsPerEffectiveWoundDefense; // Points per effective wound (defense only)
+  final double
+      pointsPerEffectiveWoundDefenseResolve; // Points per effective wound (defense & resolve)
+  final int magicCapability; // Total spell dice from Priest/Wizard units
+  final int
+      expectedHealingCapability; // Total wounds healable per turn (regeneration + healing spells)
   final DateTime calculatedAt;
 
   const ListScore({
@@ -38,6 +43,8 @@ class ListScore {
     required this.resolveImpactPercentage,
     required this.pointsPerEffectiveWoundDefense,
     required this.pointsPerEffectiveWoundDefenseResolve,
+    required this.magicCapability,
+    required this.expectedHealingCapability,
     required this.calculatedAt,
   });
 
@@ -66,6 +73,9 @@ class ListScore {
           (json['pointsPerEffectiveWoundDefense'] as num).toDouble(),
       pointsPerEffectiveWoundDefenseResolve:
           (json['pointsPerEffectiveWoundDefenseResolve'] as num).toDouble(),
+      magicCapability: (json['magicCapability'] as int?) ?? 0,
+      expectedHealingCapability:
+          (json['expectedHealingCapability'] as int?) ?? 0,
       calculatedAt: DateTime.parse(json['calculatedAt'] as String),
     );
   }
@@ -90,6 +100,8 @@ class ListScore {
       'pointsPerEffectiveWoundDefense': pointsPerEffectiveWoundDefense,
       'pointsPerEffectiveWoundDefenseResolve':
           pointsPerEffectiveWoundDefenseResolve,
+      'magicCapability': magicCapability,
+      'expectedHealingCapability': expectedHealingCapability,
       'calculatedAt': calculatedAt.toIso8601String(),
     };
   }
@@ -117,6 +129,8 @@ Effective Wounds (Defense & Resolve): ${effectiveWoundsDefenseResolve.toStringAs
 Resolve Impact: ${resolveImpactPercentage.toStringAsFixed(1)}%
 Points per Eff. Wound (Def): ${pointsPerEffectiveWoundDefense.toStringAsFixed(2)}
 Points per Eff. Wound (D&R): ${pointsPerEffectiveWoundDefenseResolve.toStringAsFixed(2)}
+Magic Capability: $magicCapability spell dice
+Expected Healing Capability: $expectedHealingCapability wounds/turn
 
 Calculated: ${calculatedAt.toString().split('.')[0]}
 ''';

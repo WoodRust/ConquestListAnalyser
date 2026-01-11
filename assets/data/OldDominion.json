@@ -789,7 +789,8 @@
             }
         ],
         "numericSpecialRules": {
-            "cleave": 1
+            "cleave": 1,
+            "regeneration": 1
         },
         "drawEvents": [
             {
@@ -829,7 +830,8 @@
             }
         ],
         "numericSpecialRules": {
-            "shield": true
+            "shield": true,
+            "regeneration": 1
         },
         "drawEvents": [
             {
@@ -875,7 +877,8 @@
         "numericSpecialRules": {
             "brutalImpact": 2,
             "impact": 2,
-            "shield": true
+            "shield": true,
+            "regeneration": 1
         },
         "drawEvents": [
             {
@@ -915,7 +918,8 @@
             }
         ],
         "numericSpecialRules": {
-            "spellDice": 6
+            "spellDice": 6,
+            "regeneration": 1
         },
         "drawEvents": [
             {
@@ -959,7 +963,8 @@
             }
         ],
         "numericSpecialRules": {
-            "spellDice": 7
+            "spellDice": 7,
+            "regeneration": 1
         },
         "drawEvents": [
             {

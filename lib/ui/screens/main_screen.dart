@@ -100,10 +100,11 @@ class _MainScreenState extends State<MainScreen> {
 
     try {
       final id = _repository.generateId();
-      
+
       // Create a new army list with the custom name
-      final updatedArmyList = _currentScore!.armyList.copyWith(name: customName);
-      
+      final updatedArmyList =
+          _currentScore!.armyList.copyWith(name: customName);
+
       // Create a new score with the updated army list
       final updatedScore = ListScore(
         armyList: updatedArmyList,
@@ -118,15 +119,20 @@ class _MainScreenState extends State<MainScreen> {
         toughness: _currentScore!.toughness,
         evasion: _currentScore!.evasion,
         effectiveWoundsDefense: _currentScore!.effectiveWoundsDefense,
-        effectiveWoundsDefenseResolve: _currentScore!.effectiveWoundsDefenseResolve,
+        effectiveWoundsDefenseResolve:
+            _currentScore!.effectiveWoundsDefenseResolve,
         resolveImpactPercentage: _currentScore!.resolveImpactPercentage,
-        pointsPerEffectiveWoundDefense: _currentScore!.pointsPerEffectiveWoundDefense,
-        pointsPerEffectiveWoundDefenseResolve: _currentScore!.pointsPerEffectiveWoundDefenseResolve,
+        pointsPerEffectiveWoundDefense:
+            _currentScore!.pointsPerEffectiveWoundDefense,
+        pointsPerEffectiveWoundDefenseResolve:
+            _currentScore!.pointsPerEffectiveWoundDefenseResolve,
+        magicCapability: _currentScore!.magicCapability,
+        expectedHealingCapability: _currentScore!.expectedHealingCapability,
         calculatedAt: _currentScore!.calculatedAt,
       );
-      
+
       await _repository.saveList(id, updatedScore);
-      
+
       if (mounted) {
         ScaffoldMessenger.of(context).showSnackBar(
           const SnackBar(content: Text('List saved successfully!')),
@@ -171,17 +177,18 @@ class _MainScreenState extends State<MainScreen> {
       if (regiment.unit.regimentClass == 'character') {
         buffer.write('== ${regiment.unit.name} [${regiment.pointsCost}pts]');
       } else {
-        buffer.write('* ${regiment.unit.name} (${regiment.stands}) [${regiment.pointsCost}pts]');
+        buffer.write(
+            '* ${regiment.unit.name} (${regiment.stands}) [${regiment.pointsCost}pts]');
       }
-      
+
       if (regiment.upgrades.isNotEmpty) {
         buffer.write(': ${regiment.upgrades.join(", ")}');
       }
-      
+
       if (regiment.isWarlord) {
         buffer.write(' [Warlord]');
       }
-      
+
       buffer.writeln();
     }
 
@@ -242,19 +249,19 @@ class _MainScreenState extends State<MainScreen> {
                             ),
                           ),
                           if (_currentScore != null)
-                              Row(
-                                children: [
-                                  IconButton(
-                                    icon: const Icon(Icons.save),
-                                    onPressed: _saveList,
-                                    tooltip: 'Save List',
-                                  ),
-                                  IconButton(
-                                    icon: const Icon(Icons.share),
-                                    onPressed: _shareResults,
-                                    tooltip: 'Share Results',
-                                  ),
-                                ],
+                            Row(
+                              children: [
+                                IconButton(
+                                  icon: const Icon(Icons.save),
+                                  onPressed: _saveList,
+                                  tooltip: 'Save List',
+                                ),
+                                IconButton(
+                                  icon: const Icon(Icons.share),
+                                  onPressed: _shareResults,
+                                  tooltip: 'Share Results',
+                                ),
+                              ],
                             ),
                         ],
                       ),

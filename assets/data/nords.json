@@ -158,7 +158,8 @@
         ],
         "numericSpecialRules": {
             "impact": 3,
-            "terrifying": 1
+            "terrifying": 1,
+            "regeneration": 3
         },
         "drawEvents": [
             {
@@ -294,7 +295,8 @@
             }
         ],
         "numericSpecialRules": {
-            "cleave": 1
+            "cleave": 1,
+            "regeneration": 6
         },
         "drawEvents": [
             {
@@ -964,7 +966,8 @@
         ],
         "numericSpecialRules": {
             "cleave": 1,
-            "impact": 4
+            "impact": 4,
+            "regeneration": 2
         },
         "drawEvents": [
             {

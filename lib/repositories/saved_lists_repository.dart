@@ -9,13 +9,13 @@ class SavedListsRepository {
   /// Save a list with its scores
   Future<void> saveList(String id, ListScore listScore) async {
     final prefs = await SharedPreferences.getInstance();
-    
+
     // Get existing saved lists
     final savedLists = await getAllSavedLists();
-    
+
     // Add or update this list
     savedLists[id] = listScore.toJson();
-    
+
     // Save back to preferences
     await prefs.setString(_savedListsKey, jsonEncode(savedLists));
   }
@@ -24,9 +24,9 @@ class SavedListsRepository {
   Future<ListScore?> loadList(String id) async {
     final savedLists = await getAllSavedLists();
     final listJson = savedLists[id];
-    
+
     if (listJson == null) return null;
-    
+
     return ListScore.fromJson(listJson);
   }
 
@@ -34,20 +34,20 @@ class SavedListsRepository {
   Future<Map<String, dynamic>> getAllSavedLists() async {
     final prefs = await SharedPreferences.getInstance();
     final savedListsString = prefs.getString(_savedListsKey);
-    
+
     if (savedListsString == null) return {};
-    
+
     return Map<String, dynamic>.from(jsonDecode(savedListsString));
   }
 
   /// Get metadata for all saved lists (without full regiment data)
   Future<List<SavedListMetadata>> getListMetadata() async {
     final savedLists = await getAllSavedLists();
-    
+
     return savedLists.entries.map((entry) {
       final listData = entry.value as Map<String, dynamic>;
       final armyListData = listData['armyList'] as Map<String, dynamic>;
-      
+
       return SavedListMetadata(
         id: entry.key,
         name: armyListData['name'] as String,
@@ -64,9 +64,9 @@ class SavedListsRepository {
   Future<void> deleteList(String id) async {
     final prefs = await SharedPreferences.getInstance();
     final savedLists = await getAllSavedLists();
-    
+
     savedLists.remove(id);
-    
+
     await prefs.setString(_savedListsKey, jsonEncode(savedLists));
   }
 

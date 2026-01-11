@@ -540,8 +540,40 @@ class ScoreDisplayWidget extends StatelessWidget {
                 Icons.calculate_outlined,
                 Colors.teal,
                 context,
-                () => _showPointsPerEffectiveWoundDefenseResolveTooltip(context),
+                () =>
+                    _showPointsPerEffectiveWoundDefenseResolveTooltip(context),
               ),
+            ),
+          ],
+        ),
+        const SizedBox(height: 8),
+        // Sixth row - Magic Capability and Expected Healing Capability
+        Row(
+          children: [
+            Expanded(
+              child: _buildCompactScoreCardWithInfo(
+                'Magic Capability',
+                score.magicCapability.toString(),
+                Icons.auto_fix_high,
+                Colors.deepPurple,
+                context,
+                () => _showMagicCapabilityTooltip(context),
+              ),
+            ),
+            const SizedBox(width: 8),
+            Expanded(
+              child: _buildCompactScoreCardWithInfo(
+                'Healing Capability',
+                score.expectedHealingCapability.toString(),
+                Icons.healing,
+                Colors.teal.shade700,
+                context,
+                () => _showExpectedHealingCapabilityTooltip(context),
+              ),
+            ),
+            const SizedBox(width: 8),
+            Expanded(
+              child: Container(),
             ),
           ],
         ),
@@ -549,50 +581,8 @@ class ScoreDisplayWidget extends StatelessWidget {
     );
   }
 
-  Widget _buildCompactScoreCard(
-      String title, String value, IconData icon, Color color) {
-    return Container(
-      padding: const EdgeInsets.all(12),
-      decoration: BoxDecoration(
-        color: color.withOpacity(0.1),
-        borderRadius: BorderRadius.circular(8),
-        border: Border.all(color: color.withOpacity(0.3)),
-      ),
-      child: Column(
-        children: [
-          Icon(icon, color: color, size: 24),
-          const SizedBox(height: 6),
-          Text(
-            value,
-            style: TextStyle(
-              fontSize: 18,
-              fontWeight: FontWeight.bold,
-              color: color,
-            ),
-          ),
-          const SizedBox(height: 2),
-          Text(
-            title,
-            style: TextStyle(
-              fontSize: 10,
-              color: color.withOpacity(0.8),
-            ),
-            textAlign: TextAlign.center,
-            maxLines: 2,
-            overflow: TextOverflow.ellipsis,
-          ),
-        ],
-      ),
-    );
-  }
-
-  Widget _buildCompactScoreCardWithInfo(
-      String title,
-      String value,
-      IconData icon,
-      Color color,
-      BuildContext context,
-      VoidCallback onTap) {
+  Widget _buildCompactScoreCardWithInfo(String title, String value,
+      IconData icon, Color color, BuildContext context, VoidCallback onTap) {
     return Container(
       padding: const EdgeInsets.all(12),
       decoration: BoxDecoration(
@@ -1238,7 +1228,8 @@ class ScoreDisplayWidget extends StatelessWidget {
               const SizedBox(height: 12),
               Text(
                 'Your army: ${score.totalWounds} total wounds',
-                style: const TextStyle(fontSize: 14, fontStyle: FontStyle.italic),
+                style:
+                    const TextStyle(fontSize: 14, fontStyle: FontStyle.italic),
               ),
             ],
           ),
@@ -1296,7 +1287,8 @@ class ScoreDisplayWidget extends StatelessWidget {
               const SizedBox(height: 12),
               Text(
                 'Your army: ${score.pointsPerWound.toStringAsFixed(1)} pts/wound',
-                style: const TextStyle(fontSize: 14, fontStyle: FontStyle.italic),
+                style:
+                    const TextStyle(fontSize: 14, fontStyle: FontStyle.italic),
               ),
             ],
           ),
@@ -1359,7 +1351,8 @@ class ScoreDisplayWidget extends StatelessWidget {
               const SizedBox(height: 12),
               Text(
                 'Your army: ${score.pointsPerEffectiveWoundDefense.toStringAsFixed(2)} pts/eff. wound (def)',
-                style: const TextStyle(fontSize: 14, fontStyle: FontStyle.italic),
+                style:
+                    const TextStyle(fontSize: 14, fontStyle: FontStyle.italic),
               ),
             ],
           ),
@@ -1422,12 +1415,16 @@ class ScoreDisplayWidget extends StatelessWidget {
               const SizedBox(height: 12),
               Text(
                 'Your army: ${score.pointsPerEffectiveWoundDefenseResolve.toStringAsFixed(2)} pts/eff. wound (D&R)',
-                style: const TextStyle(fontSize: 14, fontStyle: FontStyle.italic),
+                style:
+                    const TextStyle(fontSize: 14, fontStyle: FontStyle.italic),
               ),
               const SizedBox(height: 8),
               Text(
                 'Compare to defense only: ${score.pointsPerEffectiveWoundDefense.toStringAsFixed(2)}',
-                style: TextStyle(fontSize: 13, fontStyle: FontStyle.italic, color: Colors.grey[600]),
+                style: TextStyle(
+                    fontSize: 13,
+                    fontStyle: FontStyle.italic,
+                    color: Colors.grey[600]),
               ),
             ],
           ),
@@ -1485,7 +1482,8 @@ class ScoreDisplayWidget extends StatelessWidget {
               const SizedBox(height: 12),
               Text(
                 'Your army: ${score.averageSpeed.toStringAsFixed(1)}" average march',
-                style: const TextStyle(fontSize: 14, fontStyle: FontStyle.italic),
+                style:
+                    const TextStyle(fontSize: 14, fontStyle: FontStyle.italic),
               ),
             ],
           ),
@@ -1544,7 +1542,8 @@ class ScoreDisplayWidget extends StatelessWidget {
               const SizedBox(height: 12),
               Text(
                 'Your army: ${score.expectedHitVolume.toStringAsFixed(1)} expected hits',
-                style: const TextStyle(fontSize: 14, fontStyle: FontStyle.italic),
+                style:
+                    const TextStyle(fontSize: 14, fontStyle: FontStyle.italic),
               ),
             ],
           ),
@@ -1603,7 +1602,8 @@ class ScoreDisplayWidget extends StatelessWidget {
               const SizedBox(height: 12),
               Text(
                 'Your army: ${score.cleaveRating.toStringAsFixed(1)} cleave rating',
-                style: const TextStyle(fontSize: 14, fontStyle: FontStyle.italic),
+                style:
+                    const TextStyle(fontSize: 14, fontStyle: FontStyle.italic),
               ),
             ],
           ),
@@ -1656,7 +1656,8 @@ class ScoreDisplayWidget extends StatelessWidget {
               const SizedBox(height: 12),
               Text(
                 'Your army: ${score.maxRange}" maximum range',
-                style: const TextStyle(fontSize: 14, fontStyle: FontStyle.italic),
+                style:
+                    const TextStyle(fontSize: 14, fontStyle: FontStyle.italic),
               ),
             ],
           ),
@@ -1711,7 +1712,8 @@ class ScoreDisplayWidget extends StatelessWidget {
               const SizedBox(height: 12),
               Text(
                 'Your army: ${score.rangedExpectedHits.toStringAsFixed(1)} expected ranged hits',
-                style: const TextStyle(fontSize: 14, fontStyle: FontStyle.italic),
+                style:
+                    const TextStyle(fontSize: 14, fontStyle: FontStyle.italic),
               ),
             ],
           ),
@@ -1770,7 +1772,160 @@ class ScoreDisplayWidget extends StatelessWidget {
               const SizedBox(height: 12),
               Text(
                 'Your army: ${score.rangedArmorPiercingRating.toStringAsFixed(1)} armor piercing rating',
-                style: const TextStyle(fontSize: 14, fontStyle: FontStyle.italic),
+                style:
+                    const TextStyle(fontSize: 14, fontStyle: FontStyle.italic),
+              ),
+            ],
+          ),
+          actions: [
+            TextButton(
+              onPressed: () => Navigator.of(context).pop(),
+              child: const Text('OK'),
+            ),
+          ],
+        );
+      },
+    );
+  }
+
+  void _showMagicCapabilityTooltip(BuildContext context) {
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: const Text('Magic Capability'),
+          content: Column(
+            mainAxisSize: MainAxisSize.min,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              const Text(
+                'Total magical power available to your army, measured by spell dice from Priests and Wizards.',
+                style: TextStyle(fontSize: 16),
+              ),
+              const SizedBox(height: 12),
+              const Text(
+                'Formula: Sum of all spell dice from units with Priest(X) or Wizard(X)',
+                style: TextStyle(fontSize: 14, fontWeight: FontWeight.bold),
+              ),
+              const SizedBox(height: 12),
+              const Text(
+                'Examples:',
+                style: TextStyle(fontSize: 14, fontWeight: FontWeight.bold),
+              ),
+              const Text(
+                '• Shaman with Priest(6) = 6 spell dice',
+                style: TextStyle(fontSize: 14),
+              ),
+              const Text(
+                '• Ice Jotnar with Priest(5) = 5 spell dice',
+                style: TextStyle(fontSize: 14),
+              ),
+              const Text(
+                '• Two Shamans = 12 total spell dice',
+                style: TextStyle(fontSize: 14),
+              ),
+              const SizedBox(height: 12),
+              const Text(
+                'Guidelines:',
+                style: TextStyle(fontSize: 14, fontWeight: FontWeight.bold),
+              ),
+              const Text(
+                '• 0 dice: No magical support',
+                style: TextStyle(fontSize: 14),
+              ),
+              const Text(
+                '• 5-6 dice: Light magical support',
+                style: TextStyle(fontSize: 14),
+              ),
+              const Text(
+                '• 10-12 dice: Moderate magical power',
+                style: TextStyle(fontSize: 14),
+              ),
+              const Text(
+                '• 15+ dice: Magic-heavy army',
+                style: TextStyle(fontSize: 14),
+              ),
+              const SizedBox(height: 12),
+              Text(
+                'Your army: ${score.magicCapability} spell dice',
+                style:
+                    const TextStyle(fontSize: 14, fontStyle: FontStyle.italic),
+              ),
+            ],
+          ),
+          actions: [
+            TextButton(
+              onPressed: () => Navigator.of(context).pop(),
+              child: const Text('OK'),
+            ),
+          ],
+        );
+      },
+    );
+  }
+
+  void _showExpectedHealingCapabilityTooltip(BuildContext context) {
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: const Text('Expected Healing Capability'),
+          content: Column(
+            mainAxisSize: MainAxisSize.min,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              const Text(
+                'Total wounds your army can heal per turn through regeneration and healing spells.',
+                style: TextStyle(fontSize: 16),
+              ),
+              const SizedBox(height: 12),
+              const Text(
+                'Formula: Regeneration + Healing Spells',
+                style: TextStyle(fontSize: 14, fontWeight: FontWeight.bold),
+              ),
+              const SizedBox(height: 12),
+              const Text(
+                'Examples:',
+                style: TextStyle(fontSize: 14, fontWeight: FontWeight.bold),
+              ),
+              const Text(
+                '• Trolls with Regeneration(6) = 6 wounds/turn',
+                style: TextStyle(fontSize: 14),
+              ),
+              const Text(
+                '• Werewargs with Regeneration(3) = 3 wounds/turn',
+                style: TextStyle(fontSize: 14),
+              ),
+              const Text(
+                '• Two Troll regiments = 12 total wounds/turn',
+                style: TextStyle(fontSize: 14),
+              ),
+              const SizedBox(height: 12),
+              const Text(
+                'Guidelines:',
+                style: TextStyle(fontSize: 14, fontWeight: FontWeight.bold),
+              ),
+              const Text(
+                '• 0: No self-healing',
+                style: TextStyle(fontSize: 14),
+              ),
+              const Text(
+                '• 3-6: Light regeneration',
+                style: TextStyle(fontSize: 14),
+              ),
+              const Text(
+                '• 9-12: Moderate sustain',
+                style: TextStyle(fontSize: 14),
+              ),
+              const Text(
+                '• 15+: High regeneration army',
+                style: TextStyle(fontSize: 14),
+              ),
+              const SizedBox(height: 12),
+              Text(
+                'Your army: ${score.expectedHealingCapability} wounds/turn',
+                style:
+                    const TextStyle(fontSize: 14, fontStyle: FontStyle.italic),
               ),
             ],
           ),
