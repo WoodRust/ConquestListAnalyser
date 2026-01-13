@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import '../../models/list_score.dart';
+import '../widgets/reinforcement_distribution_graph.dart';
 
 class CompareListsScreen extends StatelessWidget {
   final List<ListScore> listsToCompare;
@@ -227,6 +228,14 @@ class CompareListsScreen extends StatelessWidget {
                   IconButton(
                     icon: Icon(Icons.info_outline, size: 18, color: Colors.orange.shade700),
                     onPressed: () => _showReinforcementTimingTooltip(context),
+                    padding: EdgeInsets.zero,
+                    constraints: const BoxConstraints(),
+                  ),
+                  const SizedBox(width: 4),
+                  IconButton(
+                    icon: Icon(Icons.show_chart, size: 18, color: Colors.orange.shade700),
+                    tooltip: 'View distribution graphs',
+                    onPressed: () => _showReinforcementGraphs(context),
                     padding: EdgeInsets.zero,
                     constraints: const BoxConstraints(),
                   ),
@@ -1364,6 +1373,100 @@ class CompareListsScreen extends StatelessWidget {
               child: const Text('Close'),
             ),
           ],
+        );
+      },
+    );
+  }
+
+  void _showReinforcementGraphs(BuildContext context) {
+    // Show graphs for each list in a scrollable view
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return Dialog(
+          child: Container(
+            width: 900,
+            height: 700,
+            padding: const EdgeInsets.all(24),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    const Text(
+                      'Reinforcement Distribution Comparison',
+                      style: TextStyle(
+                        fontSize: 20,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                    IconButton(
+                      icon: const Icon(Icons.close),
+                      onPressed: () => Navigator.of(context).pop(),
+                    ),
+                  ],
+                ),
+                const SizedBox(height: 16),
+                Expanded(
+                  child: ListView.separated(
+                    itemCount: listsToCompare.length,
+                    separatorBuilder: (context, index) => const Divider(height: 32),
+                    itemBuilder: (context, index) {
+                      final list = listsToCompare[index];
+                      if (list.reinforcementMetrics == null) {
+                        return Card(
+                          child: Padding(
+                            padding: const EdgeInsets.all(16.0),
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text(
+                                  list.armyList.name,
+                                  style: const TextStyle(
+                                    fontSize: 16,
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                                ),
+                                const SizedBox(height: 8),
+                                const Text('No reinforcement data available'),
+                              ],
+                            ),
+                          ),
+                        );
+                      }
+                      
+                      return Card(
+                        child: Padding(
+                          padding: const EdgeInsets.all(16.0),
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(
+                                list.armyList.name,
+                                style: const TextStyle(
+                                  fontSize: 16,
+                                  fontWeight: FontWeight.bold,
+                                ),
+                              ),
+                              const SizedBox(height: 16),
+                              SizedBox(
+                                height: 300,
+                                child: ReinforcementDistributionGraph(
+                                  metrics: list.reinforcementMetrics!,
+                                  specificTurn: null,
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                      );
+                    },
+                  ),
+                ),
+              ],
+            ),
+          ),
         );
       },
     );

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import '../../models/list_score.dart';
 import '../../models/reinforcement_metrics.dart';
+import 'reinforcement_distribution_graph.dart';
 
 class ScoreDisplayWidget extends StatelessWidget {
   final ListScore score;
@@ -20,12 +21,22 @@ class ScoreDisplayWidget extends StatelessWidget {
 
           // Reinforcement Timing Section (if available)
           if (score.reinforcementMetrics != null) ...[
-            const Text(
-              'Reinforcement Timing',
-              style: TextStyle(
-                fontSize: 18,
-                fontWeight: FontWeight.bold,
-              ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                const Text(
+                  'Reinforcement Timing',
+                  style: TextStyle(
+                    fontSize: 18,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+                IconButton(
+                  icon: const Icon(Icons.show_chart, size: 20),
+                  tooltip: 'View distribution graph (all turns)',
+                  onPressed: () => _showReinforcementGraph(context, null),
+                ),
+              ],
             ),
             const SizedBox(height: 12),
             _buildReinforcementSection(context),
@@ -417,7 +428,7 @@ class ScoreDisplayWidget extends StatelessWidget {
     ];
     final color = colors[turn - 1];
 
-    return _buildCompactScoreCardWithInfoTwoLines(
+    return _buildCompactScoreCardWithInfoTwoLinesAndGraph(
       title,
       percentileText,
       regimentText,
@@ -425,6 +436,7 @@ class ScoreDisplayWidget extends StatelessWidget {
       color,
       context,
       () => _showReinforcementTooltip(context),
+      () => _showReinforcementGraph(context, turn),
     );
   }
 
@@ -464,6 +476,18 @@ class ScoreDisplayWidget extends StatelessWidget {
               child: const Text('Close'),
             ),
           ],
+        );
+      },
+    );
+  }
+
+  void _showReinforcementGraph(BuildContext context, int? specificTurn) {
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return ReinforcementDistributionGraph(
+          metrics: score.reinforcementMetrics!,
+          specificTurn: specificTurn,
         );
       },
     );
@@ -808,6 +832,83 @@ class ScoreDisplayWidget extends StatelessWidget {
               onTap: onTap,
               child: Icon(
                 Icons.info_outline,
+                color: color.withOpacity(0.7),
+                size: 12,
+              ),
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget _buildCompactScoreCardWithInfoTwoLinesAndGraph(String title, String value1,
+      String value2, IconData icon, Color color, BuildContext context, VoidCallback onInfoTap, VoidCallback onGraphTap) {
+    return Container(
+      padding: const EdgeInsets.all(12),
+      decoration: BoxDecoration(
+        color: color.withOpacity(0.1),
+        borderRadius: BorderRadius.circular(8),
+        border: Border.all(color: color.withOpacity(0.3)),
+      ),
+      child: Stack(
+        children: [
+          Center(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Icon(icon, color: color, size: 24),
+                const SizedBox(height: 6),
+                Text(
+                  value1,
+                  style: TextStyle(
+                    fontSize: 16,
+                    fontWeight: FontWeight.bold,
+                    color: color,
+                  ),
+                ),
+                const SizedBox(height: 2),
+                Text(
+                  value2,
+                  style: TextStyle(
+                    fontSize: 14,
+                    fontWeight: FontWeight.w600,
+                    color: color,
+                  ),
+                ),
+                const SizedBox(height: 2),
+                Text(
+                  title,
+                  style: TextStyle(
+                    fontSize: 10,
+                    color: color.withOpacity(0.8),
+                  ),
+                  textAlign: TextAlign.center,
+                  maxLines: 2,
+                  overflow: TextOverflow.ellipsis,
+                ),
+              ],
+            ),
+          ),
+          Positioned(
+            top: 0,
+            right: 0,
+            child: GestureDetector(
+              onTap: onInfoTap,
+              child: Icon(
+                Icons.info_outline,
+                color: color.withOpacity(0.7),
+                size: 12,
+              ),
+            ),
+          ),
+          Positioned(
+            bottom: 0,
+            right: 0,
+            child: GestureDetector(
+              onTap: onGraphTap,
+              child: Icon(
+                Icons.show_chart,
                 color: color.withOpacity(0.7),
                 size: 12,
               ),
