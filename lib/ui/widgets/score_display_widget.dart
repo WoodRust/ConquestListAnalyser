@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import '../../models/list_score.dart';
+import '../../models/reinforcement_metrics.dart';
 
 class ScoreDisplayWidget extends StatelessWidget {
   final ListScore score;
@@ -16,6 +17,20 @@ class ScoreDisplayWidget extends StatelessWidget {
           // Army Summary Section
           _buildArmySummary(),
           const SizedBox(height: 20),
+
+          // Reinforcement Timing Section (if available)
+          if (score.reinforcementMetrics != null) ...[
+            const Text(
+              'Reinforcement Timing',
+              style: TextStyle(
+                fontSize: 18,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+            const SizedBox(height: 12),
+            _buildReinforcementSection(context),
+            const SizedBox(height: 20),
+          ],
 
           // Scores Section
           const Text(
@@ -350,6 +365,97 @@ class ScoreDisplayWidget extends StatelessWidget {
           ),
         ],
       ),
+    );
+  }
+
+  Widget _buildReinforcementSection(BuildContext context) {
+    final metrics = score.reinforcementMetrics!;
+    
+    return Row(
+      children: [
+        for (int turn = 1; turn <= 5; turn++)
+          Expanded(
+            child: Padding(
+              padding: EdgeInsets.only(
+                right: turn < 5 ? 8.0 : 0.0,
+              ),
+              child: _buildReinforcementCard(
+                'Turn $turn',
+                metrics,
+                turn,
+                context,
+              ),
+            ),
+          ),
+      ],
+    );
+  }
+
+  Widget _buildReinforcementCard(
+    String title,
+    ReinforcementMetrics metrics,
+    int turn,
+    BuildContext context,
+  ) {
+    final avg = metrics.getArrivalPercent(turn).round();
+    final p20 = metrics.getP20(turn).round();
+    final p80 = metrics.getP80(turn).round();
+    final value = '$avg% ($p20%-$p80%)';
+
+    // Color gradient from green (early) to orange (late)
+    final colors = [
+      Colors.green,      // Turn 1
+      Colors.lightGreen, // Turn 2
+      Colors.amber,      // Turn 3 - changed from yellow for better contrast
+      Colors.orange,     // Turn 4
+      Colors.deepOrange, // Turn 5
+    ];
+    final color = colors[turn - 1];
+
+    return _buildCompactScoreCardWithInfo(
+      title,
+      value,
+      Icons.schedule,
+      color,
+      context,
+      () => _showReinforcementTooltip(context),
+    );
+  }
+
+  void _showReinforcementTooltip(BuildContext context) {
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: const Text('Reinforcement Timing'),
+          content: const SingleChildScrollView(
+            child: Text(
+              'Shows the expected percentage of your regiments (excluding regular characters) that have '
+              'arrived on the battlefield by the end of each turn, based on Monte Carlo '
+              'simulation (10,000 runs).\n\n'
+              'Format: Average% (20th%-80th%)\n\n'
+              '• Average: Expected percentage of regiments deployed\n'
+              '• 20th-80th percentiles: Range of typical outcomes\n\n'
+              'Narrow percentile ranges indicate predictable reinforcement arrival, '
+              'while wide ranges indicate high variance/swinginess in deployment timing.\n\n'
+              'The simulation accounts for:\n'
+              '• Weight class (Light/Medium/Heavy)\n'
+              '• Flank special rule (auto-arrival)\n'
+              '• Forward Force character ability\n'
+              '• Player selecting one unit per turn\n'
+              '• D6 reinforcement rolls per game rules\n\n'
+              'Note: Regular characters are excluded from the percentage calculation as they cannot '
+              'arrive without a regiment, but character monsters (which count as regiments) are included.',
+            ),
+          ),
+          actions: [
+            TextButton(
+              onPressed: () => Navigator.of(context).pop(),
+              child: const Text('Close'),
+            ),
+          ],
+        );
+      },
     );
   }
 

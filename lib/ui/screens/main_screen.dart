@@ -128,6 +128,7 @@ class _MainScreenState extends State<MainScreen> {
             _currentScore!.pointsPerEffectiveWoundDefenseResolve,
         magicCapability: _currentScore!.magicCapability,
         expectedHealingCapability: _currentScore!.expectedHealingCapability,
+        reinforcementMetrics: _currentScore!.reinforcementMetrics,
         calculatedAt: _currentScore!.calculatedAt,
       );
 

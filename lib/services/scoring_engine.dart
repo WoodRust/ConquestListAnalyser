@@ -1,8 +1,10 @@
 import '../models/army_list.dart';
 import '../models/list_score.dart';
 import '../models/regiment.dart';
+import '../models/reinforcement_metrics.dart';
 import '../models/unit.dart';
 import 'army_effect_manager.dart';
+import 'reinforcement_simulator.dart';
 
 /// Service for calculating army list scores and statistics
 class ScoringEngine {
@@ -57,6 +59,9 @@ class ScoringEngine {
     final expectedHealingCapability =
         _calculateExpectedHealingCapability(armyList);
 
+    // Calculate reinforcement timing metrics
+    final reinforcementMetrics = _calculateReinforcementMetrics(armyList);
+
     return ListScore(
       armyList: armyList,
       totalWounds: totalWounds,
@@ -77,6 +82,7 @@ class ScoringEngine {
           pointsPerEffectiveWoundDefenseResolve,
       magicCapability: magicCapability,
       expectedHealingCapability: expectedHealingCapability,
+      reinforcementMetrics: reinforcementMetrics,
       calculatedAt: DateTime.now(),
     );
   }
@@ -423,5 +429,17 @@ class ScoringEngine {
       }
     }
     return totalHealing;
+  }
+
+  /// Calculate reinforcement timing metrics using Monte Carlo simulation
+  /// Returns null if simulation fails or army is empty
+  ReinforcementMetrics? _calculateReinforcementMetrics(ArmyList armyList) {
+    try {
+      final simulator = ReinforcementSimulator();
+      return simulator.simulate(armyList, simulations: 10000);
+    } catch (e) {
+      // If simulation fails, return null rather than crashing
+      return null;
+    }
   }
 }

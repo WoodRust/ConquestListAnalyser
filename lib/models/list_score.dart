@@ -1,4 +1,5 @@
 import 'army_list.dart';
+import 'reinforcement_metrics.dart';
 
 /// Represents the calculated scores for an army list
 class ListScore {
@@ -24,6 +25,8 @@ class ListScore {
   final int magicCapability; // Total spell dice from Priest/Wizard units
   final int
       expectedHealingCapability; // Total wounds healable per turn (regeneration + healing spells)
+  final ReinforcementMetrics?
+      reinforcementMetrics; // Monte Carlo simulation of reinforcement timing
   final DateTime calculatedAt;
 
   const ListScore({
@@ -45,8 +48,56 @@ class ListScore {
     required this.pointsPerEffectiveWoundDefenseResolve,
     required this.magicCapability,
     required this.expectedHealingCapability,
+    this.reinforcementMetrics,
     required this.calculatedAt,
   });
+
+  /// Create a copy of this ListScore with some fields updated
+  ListScore copyWith({
+    ArmyList? armyList,
+    int? totalWounds,
+    double? pointsPerWound,
+    double? expectedHitVolume,
+    double? cleaveRating,
+    double? rangedExpectedHits,
+    double? rangedArmorPiercingRating,
+    int? maxRange,
+    double? averageSpeed,
+    double? toughness,
+    double? evasion,
+    double? effectiveWoundsDefense,
+    double? effectiveWoundsDefenseResolve,
+    double? resolveImpactPercentage,
+    double? pointsPerEffectiveWoundDefense,
+    double? pointsPerEffectiveWoundDefenseResolve,
+    int? magicCapability,
+    int? expectedHealingCapability,
+    ReinforcementMetrics? reinforcementMetrics,
+    DateTime? calculatedAt,
+  }) {
+    return ListScore(
+      armyList: armyList ?? this.armyList,
+      totalWounds: totalWounds ?? this.totalWounds,
+      pointsPerWound: pointsPerWound ?? this.pointsPerWound,
+      expectedHitVolume: expectedHitVolume ?? this.expectedHitVolume,
+      cleaveRating: cleaveRating ?? this.cleaveRating,
+      rangedExpectedHits: rangedExpectedHits ?? this.rangedExpectedHits,
+      rangedArmorPiercingRating: rangedArmorPiercingRating ?? this.rangedArmorPiercingRating,
+      maxRange: maxRange ?? this.maxRange,
+      averageSpeed: averageSpeed ?? this.averageSpeed,
+      toughness: toughness ?? this.toughness,
+      evasion: evasion ?? this.evasion,
+      effectiveWoundsDefense: effectiveWoundsDefense ?? this.effectiveWoundsDefense,
+      effectiveWoundsDefenseResolve: effectiveWoundsDefenseResolve ?? this.effectiveWoundsDefenseResolve,
+      resolveImpactPercentage: resolveImpactPercentage ?? this.resolveImpactPercentage,
+      pointsPerEffectiveWoundDefense: pointsPerEffectiveWoundDefense ?? this.pointsPerEffectiveWoundDefense,
+      pointsPerEffectiveWoundDefenseResolve: pointsPerEffectiveWoundDefenseResolve ?? this.pointsPerEffectiveWoundDefenseResolve,
+      magicCapability: magicCapability ?? this.magicCapability,
+      expectedHealingCapability: expectedHealingCapability ?? this.expectedHealingCapability,
+      reinforcementMetrics: reinforcementMetrics ?? this.reinforcementMetrics,
+      calculatedAt: calculatedAt ?? this.calculatedAt,
+    );
+  }
 
   /// Creates a ListScore from JSON data
   factory ListScore.fromJson(Map<String, dynamic> json) {
@@ -76,6 +127,9 @@ class ListScore {
       magicCapability: (json['magicCapability'] as int?) ?? 0,
       expectedHealingCapability:
           (json['expectedHealingCapability'] as int?) ?? 0,
+      reinforcementMetrics: json['reinforcementMetrics'] != null
+          ? ReinforcementMetrics.fromJson(json['reinforcementMetrics'])
+          : null,
       calculatedAt: DateTime.parse(json['calculatedAt'] as String),
     );
   }
@@ -102,6 +156,7 @@ class ListScore {
           pointsPerEffectiveWoundDefenseResolve,
       'magicCapability': magicCapability,
       'expectedHealingCapability': expectedHealingCapability,
+      'reinforcementMetrics': reinforcementMetrics?.toJson(),
       'calculatedAt': calculatedAt.toIso8601String(),
     };
   }
@@ -132,6 +187,7 @@ Points per Eff. Wound (D&R): ${pointsPerEffectiveWoundDefenseResolve.toStringAsF
 Magic Capability: $magicCapability spell dice
 Expected Healing Capability: $expectedHealingCapability wounds/turn
 
+${reinforcementMetrics != null ? reinforcementMetrics!.toShareableText() : ''}
 Calculated: ${calculatedAt.toString().split('.')[0]}
 ''';
   }

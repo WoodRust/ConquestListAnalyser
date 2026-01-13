@@ -180,7 +180,168 @@ class CompareListsScreen extends StatelessWidget {
                 .toList(),
             true,
             () => _showExpectedHealingCapabilityTooltip(context), false),
+        
+        // Reinforcement Timing Section
+        _buildReinforcementSectionHeader(context),
+        _buildReinforcementMetricRow(
+            'Turn 1 Arrivals', listsToCompare, 0, context),
+        _buildReinforcementMetricRow(
+            'Turn 2 Arrivals', listsToCompare, 1, context),
+        _buildReinforcementMetricRow(
+            'Turn 3 Arrivals', listsToCompare, 2, context),
+        _buildReinforcementMetricRow(
+            'Turn 4 Arrivals', listsToCompare, 3, context),
+        _buildReinforcementMetricRow(
+            'Turn 5 Arrivals', listsToCompare, 4, context),
       ],
+    );
+  }
+
+  Widget _buildReinforcementSectionHeader(BuildContext context) {
+    return Container(
+      height: 50,
+      decoration: BoxDecoration(
+        color: Colors.orange.shade50,
+        border: Border(top: BorderSide(color: Colors.orange.shade200, width: 2)),
+      ),
+      child: Row(
+        children: [
+          SizedBox(
+            width: 160,
+            child: Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 8.0),
+              child: Row(
+                children: [
+                  Expanded(
+                    child: Text(
+                      'Reinforcements',
+                      style: TextStyle(
+                        fontSize: 14,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.orange.shade900,
+                      ),
+                      overflow: TextOverflow.ellipsis,
+                    ),
+                  ),
+                  const SizedBox(width: 4),
+                  IconButton(
+                    icon: Icon(Icons.info_outline, size: 18, color: Colors.orange.shade700),
+                    onPressed: () => _showReinforcementTimingTooltip(context),
+                    padding: EdgeInsets.zero,
+                    constraints: const BoxConstraints(),
+                  ),
+                ],
+              ),
+            ),
+          ),
+          ...listsToCompare.map((list) => Expanded(
+                child: Container(),
+              )),
+        ],
+      ),
+    );
+  }
+
+  Widget _buildReinforcementMetricRow(
+      String metricName, List<ListScore> lists, int turnIndex, BuildContext context) {
+    // Extract arrival percentages for this turn
+    final averages = lists.map((list) {
+      return list.reinforcementMetrics?.turn1Through5ArrivalPercent[turnIndex];
+    }).toList();
+
+    // Extract percentile ranges for consistency indicator
+    final p20Values = lists.map((list) {
+      return list.reinforcementMetrics?.turn1Through5P20[turnIndex];
+    }).toList();
+    final p80Values = lists.map((list) {
+      return list.reinforcementMetrics?.turn1Through5P80[turnIndex];
+    }).toList();
+
+    // Find best average (highest)
+    double? bestAvg;
+    final validAvgs = averages.where((v) => v != null).map((v) => v!).toList();
+    if (validAvgs.isNotEmpty) {
+      bestAvg = validAvgs.reduce((a, b) => a > b ? a : b);
+    }
+
+    return Container(
+      height: 60,
+      decoration: BoxDecoration(
+        border: Border(bottom: BorderSide(color: Colors.grey.shade300)),
+      ),
+      child: Row(
+        children: [
+          SizedBox(
+            width: 160,
+            child: Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 8.0),
+              child: Text(
+                metricName,
+                style: const TextStyle(fontSize: 14),
+              ),
+            ),
+          ),
+          ...List.generate(lists.length, (index) {
+            final avg = averages[index];
+            final p20 = p20Values[index];
+            final p80 = p80Values[index];
+
+            if (avg == null || p20 == null || p80 == null) {
+              return Expanded(
+                child: Container(
+                  decoration: BoxDecoration(
+                    border: Border(
+                      left: BorderSide(color: Colors.grey[300]!, width: 1),
+                    ),
+                  ),
+                  child: Center(
+                    child: Text(
+                      'N/A',
+                      style: TextStyle(color: Colors.grey.shade600),
+                    ),
+                  ),
+                ),
+              );
+            }
+
+            final isHighlighted = bestAvg != null && (avg - bestAvg).abs() < 0.01;
+
+            return Expanded(
+              child: Container(
+                decoration: BoxDecoration(
+                  color: isHighlighted ? Colors.green.shade100 : null,
+                  border: Border(
+                    left: BorderSide(color: Colors.grey[300]!, width: 1),
+                  ),
+                ),
+                child: Center(
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Text(
+                        '${avg.round()}%',
+                        style: TextStyle(
+                          fontSize: 16,
+                          fontWeight: isHighlighted ? FontWeight.bold : FontWeight.normal,
+                        ),
+                      ),
+                      const SizedBox(height: 2),
+                      Text(
+                        '(${p20.round()}%-${p80.round()}%)',
+                        style: TextStyle(
+                          fontSize: 11,
+                          color: Colors.grey.shade600,
+                          fontStyle: FontStyle.italic,
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+            );
+          }),
+        ],
+      ),
     );
   }
 
@@ -1168,4 +1329,32 @@ class CompareListsScreen extends StatelessWidget {
       },
     );
   }
+
+  void _showReinforcementTimingTooltip(BuildContext context) {
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: const Text('Reinforcement Timing'),
+          content: const Text(
+            'Shows the percentage of regiments (excluding regular characters) that arrive by each turn in Monte Carlo simulations (10,000 runs).\n\n'
+            'Main percentage: Average arrival rate across all simulations.\n\n'
+            'Percentile range (e.g., 20%-80%): Shows the typical range of outcomes. '
+            'Narrow ranges indicate more predictable deployment, while wide ranges indicate more variation between games.\n\n'
+            'Higher average percentages mean faster deployment. '
+            'The best (highest) average for each turn is highlighted in green.\n\n'
+            'Note: Regular characters are excluded from the count as they cannot arrive without a regiment, '
+            'but character monsters (which count as regiments) are included.',
+          ),
+          actions: [
+            TextButton(
+              onPressed: () => Navigator.of(context).pop(),
+              child: const Text('Close'),
+            ),
+          ],
+        );
+      },
+    );
+  }
+
 }
