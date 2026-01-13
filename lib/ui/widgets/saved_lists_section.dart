@@ -2,18 +2,32 @@ import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import '../../repositories/saved_lists_repository.dart';
 import '../../models/list_score.dart';
-import 'compare_lists_screen.dart';
 
-/// Screen for browsing and managing saved army lists
-class SavedListsScreen extends StatefulWidget {
-  const SavedListsScreen({Key? key}) : super(key: key);
+/// Reusable widget for displaying and managing saved army lists
+/// Can be embedded in other screens or used standalone
+class SavedListsSection extends StatefulWidget {
+  final SavedListsRepository repository;
+  final Function(ListScore)? onListLoad; // Called when user taps to load a list
+  final Function(List<ListScore>)? onCompare; // Called when compare button is pressed
+  final Function(String)? onShare; // Called when share button is pressed for a list
+  final Function()? onListsChanged; // Called when lists are added/deleted
+  final bool showEmptyState; // Whether to show empty state message
+
+  const SavedListsSection({
+    Key? key,
+    required this.repository,
+    this.onListLoad,
+    this.onCompare,
+    this.onShare,
+    this.onListsChanged,
+    this.showEmptyState = true,
+  }) : super(key: key);
 
   @override
-  State<SavedListsScreen> createState() => _SavedListsScreenState();
+  State<SavedListsSection> createState() => _SavedListsSectionState();
 }
 
-class _SavedListsScreenState extends State<SavedListsScreen> {
-  final SavedListsRepository _repository = SavedListsRepository();
+class _SavedListsSectionState extends State<SavedListsSection> {
   List<SavedListMetadata>? _savedLists;
   bool _isLoading = true;
   final Set<String> _selectedListIds = {};
@@ -28,7 +42,7 @@ class _SavedListsScreenState extends State<SavedListsScreen> {
     setState(() => _isLoading = true);
 
     try {
-      final lists = await _repository.getListMetadata();
+      final lists = await widget.repository.getListMetadata();
       setState(() {
         _savedLists = lists;
         _isLoading = false;
@@ -45,10 +59,9 @@ class _SavedListsScreenState extends State<SavedListsScreen> {
 
   Future<void> _loadList(SavedListMetadata metadata) async {
     try {
-      final listScore = await _repository.loadList(metadata.id);
+      final listScore = await widget.repository.loadList(metadata.id);
       if (listScore != null && mounted) {
-        // Return to main screen with the loaded list
-        Navigator.pop(context, listScore);
+        widget.onListLoad?.call(listScore);
       }
     } catch (e) {
       if (mounted) {
@@ -86,7 +99,7 @@ class _SavedListsScreenState extends State<SavedListsScreen> {
     // Load all selected lists
     final listsToCompare = <ListScore>[];
     for (final id in _selectedListIds) {
-      final listScore = await _repository.loadList(id);
+      final listScore = await widget.repository.loadList(id);
       if (listScore != null) {
         listsToCompare.add(listScore);
       }
@@ -101,16 +114,23 @@ class _SavedListsScreenState extends State<SavedListsScreen> {
       return;
     }
 
-    // Navigate to compare screen (works with 1 or more lists)
-    if (mounted) {
-      Navigator.push(
-        context,
-        MaterialPageRoute(
-          builder: (context) => CompareListsScreen(
-            listsToCompare: listsToCompare,
-          ),
-        ),
-      );
+    // Call callback with loaded lists
+    widget.onCompare?.call(listsToCompare);
+  }
+
+  Future<void> _shareList(SavedListMetadata metadata) async {
+    try {
+      final listScore = await widget.repository.loadList(metadata.id);
+      if (listScore != null && mounted) {
+        final shareText = listScore.toShareableText();
+        widget.onShare?.call(shareText);
+      }
+    } catch (e) {
+      if (mounted) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(content: Text('Error loading list for sharing: $e')),
+        );
+      }
     }
   }
 
@@ -136,10 +156,11 @@ class _SavedListsScreenState extends State<SavedListsScreen> {
 
     if (confirmed == true) {
       try {
-        await _repository.deleteList(metadata.id);
+        await widget.repository.deleteList(metadata.id);
         // Also remove from selection if it was selected
         _selectedListIds.remove(metadata.id);
         await _loadSavedLists();
+        widget.onListsChanged?.call();
         if (mounted) {
           ScaffoldMessenger.of(context).showSnackBar(
             const SnackBar(content: Text('List deleted')),
@@ -157,58 +178,40 @@ class _SavedListsScreenState extends State<SavedListsScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text(_selectedListIds.isEmpty
-            ? 'Saved Lists'
-            : 'Select Lists (${_selectedListIds.length})'),
-        actions: [
-          if (_savedLists != null && _savedLists!.isNotEmpty)
-            IconButton(
-              icon: const Icon(Icons.compare_arrows),
-              tooltip: 'Compare Lists',
-              onPressed: _compareLists,
-            ),
-          if (_savedLists != null && _savedLists!.isNotEmpty)
-            IconButton(
-              icon: const Icon(Icons.delete_sweep),
-              tooltip: 'Clear All',
-              onPressed: () async {
-                final confirmed = await showDialog<bool>(
-                  context: context,
-                  builder: (context) => AlertDialog(
-                    title: const Text('Clear All Lists'),
-                    content: const Text(
-                        'Are you sure you want to delete all saved lists?'),
-                    actions: [
-                      TextButton(
-                        onPressed: () => Navigator.pop(context, false),
-                        child: const Text('Cancel'),
-                      ),
-                      TextButton(
-                        onPressed: () => Navigator.pop(context, true),
-                        child: const Text('Delete All',
-                            style: TextStyle(color: Colors.red)),
-                      ),
-                    ],
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.stretch,
+      children: [
+        // Header with compare button
+        if (_savedLists != null && _savedLists!.isNotEmpty)
+          Padding(
+            padding: const EdgeInsets.all(16.0),
+            child: Row(
+              children: [
+                Text(
+                  _selectedListIds.isEmpty
+                      ? 'Saved Lists'
+                      : 'Selected: ${_selectedListIds.length}',
+                  style: const TextStyle(
+                    fontSize: 18,
+                    fontWeight: FontWeight.bold,
                   ),
-                );
-
-                if (confirmed == true) {
-                  await _repository.clearAll();
-                  await _loadSavedLists();
-                  if (mounted) {
-                    ScaffoldMessenger.of(context).showSnackBar(
-                      const SnackBar(content: Text('All lists deleted')),
-                    );
-                    _selectedListIds.clear();
-                  }
-                }
-              },
+                ),
+                const Spacer(),
+                ElevatedButton.icon(
+                  onPressed: _selectedListIds.isEmpty ? null : _compareLists,
+                  icon: const Icon(Icons.analytics),
+                  label: Text(_selectedListIds.length <= 1
+                      ? 'Show Metrics'
+                      : 'Compare Lists'),
+                ),
+              ],
             ),
-        ],
-      ),
-      body: _buildBody(),
+          ),
+        // Lists content
+        Expanded(
+          child: _buildBody(),
+        ),
+      ],
     );
   }
 
@@ -218,20 +221,21 @@ class _SavedListsScreenState extends State<SavedListsScreen> {
     }
 
     if (_savedLists == null || _savedLists!.isEmpty) {
+      if (!widget.showEmptyState) {
+        return const SizedBox.shrink();
+      }
       return Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
-          children: const [
-            Icon(Icons.inbox, size: 64, color: Colors.grey),
-            SizedBox(height: 16),
+          children: [
+            Icon(Icons.inbox, size: 64, color: Colors.grey[400]),
+            const SizedBox(height: 16),
             Text(
-              'No saved lists yet',
-              style: TextStyle(fontSize: 18, color: Colors.grey),
-            ),
-            SizedBox(height: 8),
-            Text(
-              'Analyze a list and tap Save to get started',
-              style: TextStyle(color: Colors.grey),
+              'Analyze a list above to get started',
+              style: TextStyle(
+                fontSize: 16,
+                color: Colors.grey[500],
+              ),
             ),
           ],
         ),
@@ -239,7 +243,7 @@ class _SavedListsScreenState extends State<SavedListsScreen> {
     }
 
     return ListView.builder(
-      padding: const EdgeInsets.all(16),
+      padding: const EdgeInsets.symmetric(horizontal: 16),
       itemCount: _savedLists!.length,
       itemBuilder: (context, index) {
         final metadata = _savedLists![index];
@@ -312,6 +316,14 @@ class _SavedListsScreenState extends State<SavedListsScreen> {
                   ],
                 ),
               ),
+              // Share button
+              if (widget.onShare != null)
+                IconButton(
+                  icon: const Icon(Icons.share, color: Colors.blue),
+                  onPressed: () => _shareList(metadata),
+                  tooltip: 'Share',
+                ),
+              // Delete button
               IconButton(
                 icon: const Icon(Icons.delete, color: Colors.red),
                 onPressed: () => _deleteList(metadata),
@@ -322,5 +334,10 @@ class _SavedListsScreenState extends State<SavedListsScreen> {
         ),
       ),
     );
+  }
+
+  // Public method to refresh the list (can be called from parent)
+  void refresh() {
+    _loadSavedLists();
   }
 }

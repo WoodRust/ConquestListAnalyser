@@ -5,8 +5,8 @@ import '../../services/scoring_engine.dart';
 import '../../models/list_score.dart';
 import '../../repositories/saved_lists_repository.dart';
 import '../widgets/list_input_widget.dart';
-import '../widgets/score_display_widget.dart';
-import 'saved_lists_screen.dart';
+import '../widgets/saved_lists_section.dart';
+import 'compare_lists_screen.dart';
 
 class MainScreen extends StatefulWidget {
   const MainScreen({super.key});
@@ -20,8 +20,8 @@ class _MainScreenState extends State<MainScreen> {
   final ScoringEngine _scoringEngine = ScoringEngine();
   final SavedListsRepository _repository = SavedListsRepository();
   final TextEditingController _inputController = TextEditingController();
+  final GlobalKey<State<SavedListsSection>> _savedListsKey = GlobalKey();
 
-  ListScore? _currentScore;
   bool _isLoading = false;
   String? _errorMessage;
 
@@ -32,17 +32,103 @@ class _MainScreenState extends State<MainScreen> {
     setState(() {
       _isLoading = true;
       _errorMessage = null;
-      _currentScore = null;
     });
 
     try {
+      // Parse list first to extract name
       final armyList = await _parser.parseList(inputText);
-      final score = _scoringEngine.calculateScores(armyList);
-
+      
       setState(() {
-        _currentScore = score;
         _isLoading = false;
       });
+
+      // Show save dialog immediately with pre-filled name
+      final customName = await showDialog<String>(
+        context: context,
+        builder: (context) {
+          final controller = TextEditingController(
+            text: armyList.name,
+          );
+          return AlertDialog(
+            title: const Text('Save List'),
+            content: TextField(
+              controller: controller,
+              decoration: const InputDecoration(
+                labelText: 'List Name',
+                hintText: 'Enter a name for this list',
+              ),
+              autofocus: true,
+            ),
+            actions: [
+              TextButton(
+                onPressed: () => Navigator.pop(context),
+                child: const Text('Cancel'),
+              ),
+              TextButton(
+                onPressed: () => Navigator.pop(context, controller.text),
+                child: const Text('Save'),
+              ),
+            ],
+          );
+        },
+      );
+
+      if (customName == null || customName.trim().isEmpty) {
+        setState(() {
+          _errorMessage = null;
+        });
+        return;
+      }
+
+      // Now run scoring calculations with loading state
+      setState(() {
+        _isLoading = true;
+      });
+
+      final score = _scoringEngine.calculateScores(armyList);
+
+      // Create updated army list with custom name
+      final updatedArmyList = armyList.copyWith(name: customName);
+      final updatedScore = ListScore(
+        armyList: updatedArmyList,
+        totalWounds: score.totalWounds,
+        pointsPerWound: score.pointsPerWound,
+        expectedHitVolume: score.expectedHitVolume,
+        cleaveRating: score.cleaveRating,
+        rangedExpectedHits: score.rangedExpectedHits,
+        rangedArmorPiercingRating: score.rangedArmorPiercingRating,
+        maxRange: score.maxRange,
+        averageSpeed: score.averageSpeed,
+        toughness: score.toughness,
+        evasion: score.evasion,
+        effectiveWoundsDefense: score.effectiveWoundsDefense,
+        effectiveWoundsDefenseResolve: score.effectiveWoundsDefenseResolve,
+        resolveImpactPercentage: score.resolveImpactPercentage,
+        pointsPerEffectiveWoundDefense: score.pointsPerEffectiveWoundDefense,
+        pointsPerEffectiveWoundDefenseResolve:
+            score.pointsPerEffectiveWoundDefenseResolve,
+        magicCapability: score.magicCapability,
+        expectedHealingCapability: score.expectedHealingCapability,
+        reinforcementMetrics: score.reinforcementMetrics,
+        calculatedAt: score.calculatedAt,
+      );
+
+      // Save the list
+      final id = _repository.generateId();
+      await _repository.saveList(id, updatedScore);
+
+      setState(() {
+        _isLoading = false;
+      });
+
+      // Refresh saved lists section
+      (_savedListsKey.currentState as dynamic)?.refresh();
+
+      if (mounted) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          const SnackBar(content: Text('List saved successfully!')),
+        );
+      }
     } catch (e) {
       setState(() {
         _errorMessage = 'Error analyzing list: ${e.toString()}';
@@ -51,119 +137,31 @@ class _MainScreenState extends State<MainScreen> {
     }
   }
 
-  /// Share the score results
-  void _shareResults() {
-    if (_currentScore != null) {
-      Clipboard.setData(ClipboardData(text: _currentScore!.toShareableText()));
-      ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(content: Text('Results copied to clipboard!')),
-      );
-    }
-  }
-
-  /// Save the current list
-  Future<void> _saveList() async {
-    if (_currentScore == null) return;
-
-    // Show dialog to optionally rename the list
-    final customName = await showDialog<String>(
-      context: context,
-      builder: (context) {
-        final controller = TextEditingController(
-          text: _currentScore!.armyList.name,
-        );
-        return AlertDialog(
-          title: const Text('Save List'),
-          content: TextField(
-            controller: controller,
-            decoration: const InputDecoration(
-              labelText: 'List Name',
-              hintText: 'Enter a name for this list',
-            ),
-            autofocus: true,
-          ),
-          actions: [
-            TextButton(
-              onPressed: () => Navigator.pop(context),
-              child: const Text('Cancel'),
-            ),
-            TextButton(
-              onPressed: () => Navigator.pop(context, controller.text),
-              child: const Text('Save'),
-            ),
-          ],
-        );
-      },
+  /// Share list results
+  void _shareList(String shareText) {
+    Clipboard.setData(ClipboardData(text: shareText));
+    ScaffoldMessenger.of(context).showSnackBar(
+      const SnackBar(content: Text('Results copied to clipboard!')),
     );
-
-    if (customName == null || customName.trim().isEmpty) return;
-
-    try {
-      final id = _repository.generateId();
-
-      // Create a new army list with the custom name
-      final updatedArmyList =
-          _currentScore!.armyList.copyWith(name: customName);
-
-      // Create a new score with the updated army list
-      final updatedScore = ListScore(
-        armyList: updatedArmyList,
-        totalWounds: _currentScore!.totalWounds,
-        pointsPerWound: _currentScore!.pointsPerWound,
-        expectedHitVolume: _currentScore!.expectedHitVolume,
-        cleaveRating: _currentScore!.cleaveRating,
-        rangedExpectedHits: _currentScore!.rangedExpectedHits,
-        rangedArmorPiercingRating: _currentScore!.rangedArmorPiercingRating,
-        maxRange: _currentScore!.maxRange,
-        averageSpeed: _currentScore!.averageSpeed,
-        toughness: _currentScore!.toughness,
-        evasion: _currentScore!.evasion,
-        effectiveWoundsDefense: _currentScore!.effectiveWoundsDefense,
-        effectiveWoundsDefenseResolve:
-            _currentScore!.effectiveWoundsDefenseResolve,
-        resolveImpactPercentage: _currentScore!.resolveImpactPercentage,
-        pointsPerEffectiveWoundDefense:
-            _currentScore!.pointsPerEffectiveWoundDefense,
-        pointsPerEffectiveWoundDefenseResolve:
-            _currentScore!.pointsPerEffectiveWoundDefenseResolve,
-        magicCapability: _currentScore!.magicCapability,
-        expectedHealingCapability: _currentScore!.expectedHealingCapability,
-        reinforcementMetrics: _currentScore!.reinforcementMetrics,
-        calculatedAt: _currentScore!.calculatedAt,
-      );
-
-      await _repository.saveList(id, updatedScore);
-
-      if (mounted) {
-        ScaffoldMessenger.of(context).showSnackBar(
-          const SnackBar(content: Text('List saved successfully!')),
-        );
-      }
-    } catch (e) {
-      if (mounted) {
-        ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(content: Text('Error saving list: $e')),
-        );
-      }
-    }
   }
 
-  /// Navigate to saved lists screen
-  Future<void> _viewSavedLists() async {
-    final loadedScore = await Navigator.push<ListScore>(
+  /// Navigate to compare/analysis screen
+  void _navigateToAnalysis(List<ListScore> lists) {
+    Navigator.push(
       context,
       MaterialPageRoute(
-        builder: (context) => const SavedListsScreen(),
+        builder: (context) => CompareListsScreen(
+          listsToCompare: lists,
+        ),
       ),
     );
+  }
 
-    if (loadedScore != null) {
-      // Reconstruct the list text and analyze
-      setState(() {
-        _currentScore = loadedScore;
-        _inputController.text = _reconstructListText(loadedScore);
-      });
-    }
+  /// Load a list into the input field
+  void _loadListToInput(ListScore score) {
+    setState(() {
+      _inputController.text = _reconstructListText(score);
+    });
   }
 
   /// Reconstruct list text from a loaded score
@@ -210,13 +208,6 @@ class _MainScreenState extends State<MainScreen> {
         title: const Text('Conquest List Analyzer'),
         backgroundColor: Theme.of(context).primaryColor,
         foregroundColor: Colors.white,
-        actions: [
-          IconButton(
-            icon: const Icon(Icons.folder_open),
-            onPressed: _viewSavedLists,
-            tooltip: 'Saved Lists',
-          ),
-        ],
       ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
@@ -232,48 +223,76 @@ class _MainScreenState extends State<MainScreen> {
 
             const SizedBox(height: 16),
 
-            // Results section - takes remaining space
+            // Saved Lists section - takes remaining space
             Expanded(
-              child: Card(
-                child: Padding(
-                  padding: const EdgeInsets.all(16.0),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.stretch,
-                    children: [
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          const Text(
-                            'Analysis Results',
-                            style: TextStyle(
-                              fontSize: 18,
-                              fontWeight: FontWeight.bold,
+              child: Stack(
+                children: [
+                  SavedListsSection(
+                    key: _savedListsKey,
+                    repository: _repository,
+                    onListLoad: _loadListToInput,
+                    onCompare: _navigateToAnalysis,
+                    onShare: _shareList,
+                    showEmptyState: true,
+                  ),
+                  // Loading overlay
+                  if (_isLoading)
+                    Container(
+                      color: Colors.black26,
+                      child: const Center(
+                        child: Card(
+                          child: Padding(
+                            padding: EdgeInsets.all(24.0),
+                            child: Column(
+                              mainAxisSize: MainAxisSize.min,
+                              children: [
+                                CircularProgressIndicator(),
+                                SizedBox(height: 16),
+                                Text('Calculating scores...'),
+                              ],
                             ),
                           ),
-                          if (_currentScore != null)
-                            Row(
+                        ),
+                      ),
+                    ),
+                  // Error overlay
+                  if (_errorMessage != null)
+                    Container(
+                      color: Colors.black26,
+                      child: Center(
+                        child: Card(
+                          child: Padding(
+                            padding: const EdgeInsets.all(24.0),
+                            child: Column(
+                              mainAxisSize: MainAxisSize.min,
                               children: [
-                                IconButton(
-                                  icon: const Icon(Icons.save),
-                                  onPressed: _saveList,
-                                  tooltip: 'Save List',
+                                Icon(
+                                  Icons.error_outline,
+                                  size: 48,
+                                  color: Colors.red[300],
                                 ),
-                                IconButton(
-                                  icon: const Icon(Icons.share),
-                                  onPressed: _shareResults,
-                                  tooltip: 'Share Results',
+                                const SizedBox(height: 16),
+                                Text(
+                                  _errorMessage!,
+                                  style: TextStyle(color: Colors.red[700]),
+                                  textAlign: TextAlign.center,
+                                ),
+                                const SizedBox(height: 16),
+                                ElevatedButton(
+                                  onPressed: () {
+                                    setState(() {
+                                      _errorMessage = null;
+                                    });
+                                  },
+                                  child: const Text('Dismiss'),
                                 ),
                               ],
                             ),
-                        ],
+                          ),
+                        ),
                       ),
-                      const SizedBox(height: 16),
-                      Expanded(
-                        child: _buildResultsContent(),
-                      ),
-                    ],
-                  ),
-                ),
+                    ),
+                ],
               ),
             ),
           ],
@@ -282,58 +301,5 @@ class _MainScreenState extends State<MainScreen> {
     );
   }
 
-  Widget _buildResultsContent() {
-    if (_isLoading) {
-      return const Center(
-        child: CircularProgressIndicator(),
-      );
-    }
 
-    if (_errorMessage != null) {
-      return Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Icon(
-              Icons.error_outline,
-              size: 48,
-              color: Colors.red[300],
-            ),
-            const SizedBox(height: 16),
-            Text(
-              _errorMessage!,
-              style: TextStyle(color: Colors.red[700]),
-              textAlign: TextAlign.center,
-            ),
-          ],
-        ),
-      );
-    }
-
-    if (_currentScore != null) {
-      return ScoreDisplayWidget(score: _currentScore!);
-    }
-
-    return const Center(
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          Icon(
-            Icons.analytics_outlined,
-            size: 48,
-            color: Colors.grey,
-          ),
-          SizedBox(height: 16),
-          Text(
-            'Paste your army list above and tap "Analyze" to see the results',
-            style: TextStyle(
-              color: Colors.grey,
-              fontSize: 16,
-            ),
-            textAlign: TextAlign.center,
-          ),
-        ],
-      ),
-    );
-  }
 }
