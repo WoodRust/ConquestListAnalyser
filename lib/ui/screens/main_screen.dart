@@ -168,17 +168,18 @@ class _MainScreenState extends State<MainScreen> {
   /// Reconstruct list text from a loaded score
   String _reconstructListText(ListScore score) {
     final buffer = StringBuffer();
-    buffer.writeln('Conquest: The Last Argument of Kings');
-    buffer.writeln('${score.armyList.name} [${score.armyList.totalPoints}pts]');
+    buffer.writeln('=== The Last Argument of Kings ===');
+    buffer.writeln();
+    buffer.writeln('${score.armyList.name} [${score.armyList.totalPoints}/${score.armyList.pointsLimit}]');
     buffer.writeln(score.armyList.faction);
     buffer.writeln();
 
     for (final regiment in score.armyList.regiments) {
       if (regiment.unit.regimentClass == 'character') {
-        buffer.write('== ${regiment.unit.name} [${regiment.pointsCost}pts]');
+        buffer.write('== ${regiment.unit.name} [${regiment.pointsCost}]');
       } else {
         buffer.write(
-            '* ${regiment.unit.name} (${regiment.stands}) [${regiment.pointsCost}pts]');
+            '* ${regiment.unit.name} (${regiment.stands}) [${regiment.pointsCost}]');
       }
 
       if (regiment.upgrades.isNotEmpty) {
