@@ -27,9 +27,16 @@ class ReinforcementSimulator {
     if (totalRegiments == 0) {
       // Edge case: no regiments to deploy
       return ReinforcementMetrics(
-        turn1Through5ArrivalPercent: [0, 0, 0, 0, 0],
+        totalEligibleRegiments: 0,
+        turn1Through5P10: [0, 0, 0, 0, 0],
         turn1Through5P20: [0, 0, 0, 0, 0],
+        turn1Through5P30: [0, 0, 0, 0, 0],
+        turn1Through5P40: [0, 0, 0, 0, 0],
+        turn1Through5P50: [0, 0, 0, 0, 0],
+        turn1Through5P60: [0, 0, 0, 0, 0],
+        turn1Through5P70: [0, 0, 0, 0, 0],
         turn1Through5P80: [0, 0, 0, 0, 0],
+        turn1Through5P90: [0, 0, 0, 0, 0],
       );
     }
 
@@ -44,15 +51,28 @@ class ReinforcementSimulator {
       allSimulations.add(turnResults);
     }
 
-    // Calculate statistics
-    final averages = _calculateAverages(allSimulations);
+    // Calculate percentiles
+    final p10Values = _calculatePercentiles(allSimulations, 0.10);
     final p20Values = _calculatePercentiles(allSimulations, 0.20);
+    final p30Values = _calculatePercentiles(allSimulations, 0.30);
+    final p40Values = _calculatePercentiles(allSimulations, 0.40);
+    final p50Values = _calculatePercentiles(allSimulations, 0.50);
+    final p60Values = _calculatePercentiles(allSimulations, 0.60);
+    final p70Values = _calculatePercentiles(allSimulations, 0.70);
     final p80Values = _calculatePercentiles(allSimulations, 0.80);
+    final p90Values = _calculatePercentiles(allSimulations, 0.90);
 
     return ReinforcementMetrics(
-      turn1Through5ArrivalPercent: averages,
+      totalEligibleRegiments: totalRegiments,
+      turn1Through5P10: p10Values,
       turn1Through5P20: p20Values,
+      turn1Through5P30: p30Values,
+      turn1Through5P40: p40Values,
+      turn1Through5P50: p50Values,
+      turn1Through5P60: p60Values,
+      turn1Through5P70: p70Values,
       turn1Through5P80: p80Values,
+      turn1Through5P90: p90Values,
     );
   }
 
@@ -277,21 +297,6 @@ class ReinforcementSimulator {
   double _calculateArrivalPercentage(Set<Regiment> arrived, int totalRegiments) {
     final regimentsArrived = arrived.length;
     return (regimentsArrived / totalRegiments) * 100.0;
-  }
-
-  /// Calculate average values across all simulations for each turn
-  List<double> _calculateAverages(List<List<double>> allSimulations) {
-    final List<double> averages = [];
-    
-    for (int turn = 0; turn < 5; turn++) {
-      double sum = 0;
-      for (final simulation in allSimulations) {
-        sum += simulation[turn];
-      }
-      averages.add(sum / allSimulations.length);
-    }
-    
-    return averages;
   }
 
   /// Calculate percentile values across all simulations for each turn

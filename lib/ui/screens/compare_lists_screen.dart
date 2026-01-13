@@ -244,24 +244,33 @@ class CompareListsScreen extends StatelessWidget {
 
   Widget _buildReinforcementMetricRow(
       String metricName, List<ListScore> lists, int turnIndex, BuildContext context) {
-    // Extract arrival percentages for this turn
-    final averages = lists.map((list) {
-      return list.reinforcementMetrics?.turn1Through5ArrivalPercent[turnIndex];
-    }).toList();
-
-    // Extract percentile ranges for consistency indicator
+    // Extract percentiles for this turn
     final p20Values = lists.map((list) {
-      return list.reinforcementMetrics?.turn1Through5P20[turnIndex];
+      return list.reinforcementMetrics?.getP20(turnIndex + 1);
+    }).toList();
+    final p50Values = lists.map((list) {
+      return list.reinforcementMetrics?.getP50(turnIndex + 1);
     }).toList();
     final p80Values = lists.map((list) {
-      return list.reinforcementMetrics?.turn1Through5P80[turnIndex];
+      return list.reinforcementMetrics?.getP80(turnIndex + 1);
+    }).toList();
+    
+    // Extract regiment counts
+    final r20Values = lists.map((list) {
+      return list.reinforcementMetrics?.getRegimentCount(turnIndex + 1, 20);
+    }).toList();
+    final r50Values = lists.map((list) {
+      return list.reinforcementMetrics?.getRegimentCount(turnIndex + 1, 50);
+    }).toList();
+    final r80Values = lists.map((list) {
+      return list.reinforcementMetrics?.getRegimentCount(turnIndex + 1, 80);
     }).toList();
 
-    // Find best average (highest)
-    double? bestAvg;
-    final validAvgs = averages.where((v) => v != null).map((v) => v!).toList();
-    if (validAvgs.isNotEmpty) {
-      bestAvg = validAvgs.reduce((a, b) => a > b ? a : b);
+    // Find best median (highest)
+    double? bestMedian;
+    final validMedians = p50Values.where((v) => v != null).map((v) => v!).toList();
+    if (validMedians.isNotEmpty) {
+      bestMedian = validMedians.reduce((a, b) => a > b ? a : b);
     }
 
     return Container(
@@ -282,11 +291,14 @@ class CompareListsScreen extends StatelessWidget {
             ),
           ),
           ...List.generate(lists.length, (index) {
-            final avg = averages[index];
             final p20 = p20Values[index];
+            final p50 = p50Values[index];
             final p80 = p80Values[index];
+            final r20 = r20Values[index];
+            final r50 = r50Values[index];
+            final r80 = r80Values[index];
 
-            if (avg == null || p20 == null || p80 == null) {
+            if (p20 == null || p50 == null || p80 == null || r20 == null || r50 == null || r80 == null) {
               return Expanded(
                 child: Container(
                   decoration: BoxDecoration(
@@ -304,7 +316,7 @@ class CompareListsScreen extends StatelessWidget {
               );
             }
 
-            final isHighlighted = bestAvg != null && (avg - bestAvg).abs() < 0.01;
+            final isHighlighted = bestMedian != null && (p50 - bestMedian).abs() < 0.01;
 
             return Expanded(
               child: Container(
@@ -319,19 +331,19 @@ class CompareListsScreen extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       Text(
-                        '${avg.round()}%',
+                        '${p20.round()}%-${p50.round()}%-${p80.round()}%',
                         style: TextStyle(
-                          fontSize: 16,
+                          fontSize: 14,
                           fontWeight: isHighlighted ? FontWeight.bold : FontWeight.normal,
                         ),
                       ),
                       const SizedBox(height: 2),
                       Text(
-                        '(${p20.round()}%-${p80.round()}%)',
+                        '$r20-$r50-$r80',
                         style: TextStyle(
-                          fontSize: 11,
+                          fontSize: 12,
                           color: Colors.grey.shade600,
-                          fontStyle: FontStyle.italic,
+                          fontWeight: FontWeight.w600,
                         ),
                       ),
                     ],

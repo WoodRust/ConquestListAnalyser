@@ -397,10 +397,15 @@ class ScoreDisplayWidget extends StatelessWidget {
     int turn,
     BuildContext context,
   ) {
-    final avg = metrics.getArrivalPercent(turn).round();
     final p20 = metrics.getP20(turn).round();
+    final p50 = metrics.getP50(turn).round();
     final p80 = metrics.getP80(turn).round();
-    final value = '$avg% ($p20%-$p80%)';
+    final r20 = metrics.getRegimentCount(turn, 20);
+    final r50 = metrics.getRegimentCount(turn, 50);
+    final r80 = metrics.getRegimentCount(turn, 80);
+    
+    final percentileText = '$p20%-$p50%-$p80%';
+    final regimentText = '$r20-$r50-$r80';
 
     // Color gradient from green (early) to orange (late)
     final colors = [
@@ -412,9 +417,10 @@ class ScoreDisplayWidget extends StatelessWidget {
     ];
     final color = colors[turn - 1];
 
-    return _buildCompactScoreCardWithInfo(
+    return _buildCompactScoreCardWithInfoTwoLines(
       title,
-      value,
+      percentileText,
+      regimentText,
       Icons.schedule,
       color,
       context,
@@ -430,12 +436,16 @@ class ScoreDisplayWidget extends StatelessWidget {
           title: const Text('Reinforcement Timing'),
           content: const SingleChildScrollView(
             child: Text(
-              'Shows the expected percentage of your regiments (excluding regular characters) that have '
+              'Shows the percentile distribution of regiments (excluding regular characters) that have '
               'arrived on the battlefield by the end of each turn, based on Monte Carlo '
               'simulation (10,000 runs).\n\n'
-              'Format: Average% (20th%-80th%)\n\n'
-              '• Average: Expected percentage of regiments deployed\n'
-              '• 20th-80th percentiles: Range of typical outcomes\n\n'
+              'Format:\n'
+              '• Top line: 20th%-50th%-80th% (percentiles)\n'
+              '• Bottom line: Regiment counts\n\n'
+              'Reading the numbers:\n'
+              '• 20th percentile: In 1 out of 5 games, you\'ll get this many or fewer regiments\n'
+              '• 50th percentile (median): In half your games, you\'ll get this many regiments\n'
+              '• 80th percentile: In 1 out of 5 games, you\'ll get this many or more regiments\n\n'
               'Narrow percentile ranges indicate predictable reinforcement arrival, '
               'while wide ranges indicate high variance/swinginess in deployment timing.\n\n'
               'The simulation accounts for:\n'
@@ -444,7 +454,7 @@ class ScoreDisplayWidget extends StatelessWidget {
               '• Forward Force character ability\n'
               '• Player selecting one unit per turn\n'
               '• D6 reinforcement rolls per game rules\n\n'
-              'Note: Regular characters are excluded from the percentage calculation as they cannot '
+              'Note: Regular characters are excluded from the calculation as they cannot '
               'arrive without a regiment, but character monsters (which count as regiments) are included.',
             ),
           ),
@@ -709,6 +719,71 @@ class ScoreDisplayWidget extends StatelessWidget {
                   style: TextStyle(
                     fontSize: 18,
                     fontWeight: FontWeight.bold,
+                    color: color,
+                  ),
+                ),
+                const SizedBox(height: 2),
+                Text(
+                  title,
+                  style: TextStyle(
+                    fontSize: 10,
+                    color: color.withOpacity(0.8),
+                  ),
+                  textAlign: TextAlign.center,
+                  maxLines: 2,
+                  overflow: TextOverflow.ellipsis,
+                ),
+              ],
+            ),
+          ),
+          Positioned(
+            top: 0,
+            right: 0,
+            child: GestureDetector(
+              onTap: onTap,
+              child: Icon(
+                Icons.info_outline,
+                color: color.withOpacity(0.7),
+                size: 12,
+              ),
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget _buildCompactScoreCardWithInfoTwoLines(String title, String value1,
+      String value2, IconData icon, Color color, BuildContext context, VoidCallback onTap) {
+    return Container(
+      padding: const EdgeInsets.all(12),
+      decoration: BoxDecoration(
+        color: color.withOpacity(0.1),
+        borderRadius: BorderRadius.circular(8),
+        border: Border.all(color: color.withOpacity(0.3)),
+      ),
+      child: Stack(
+        children: [
+          Center(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Icon(icon, color: color, size: 24),
+                const SizedBox(height: 6),
+                Text(
+                  value1,
+                  style: TextStyle(
+                    fontSize: 16,
+                    fontWeight: FontWeight.bold,
+                    color: color,
+                  ),
+                ),
+                const SizedBox(height: 2),
+                Text(
+                  value2,
+                  style: TextStyle(
+                    fontSize: 14,
+                    fontWeight: FontWeight.w600,
                     color: color,
                   ),
                 ),
