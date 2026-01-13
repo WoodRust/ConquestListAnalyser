@@ -1437,6 +1437,7 @@ class CompareListsScreen extends StatelessWidget {
                       }
                       
                       return Card(
+                        clipBehavior: Clip.none,
                         child: Padding(
                           padding: const EdgeInsets.all(16.0),
                           child: Column(
@@ -1455,6 +1456,8 @@ class CompareListsScreen extends StatelessWidget {
                                 child: ReinforcementDistributionGraph(
                                   metrics: list.reinforcementMetrics!,
                                   specificTurn: null,
+                                  compact: true,
+                                  showLegend: true,
                                 ),
                               ),
                             ],

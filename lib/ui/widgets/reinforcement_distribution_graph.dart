@@ -6,11 +6,15 @@ import '../../models/reinforcement_metrics.dart';
 class ReinforcementDistributionGraph extends StatefulWidget {
   final ReinforcementMetrics metrics;
   final int? specificTurn; // null = show all turns, 1-5 = show specific turn
+  final bool compact; // If true, renders without dialog wrapper and reduced padding
+  final bool showLegend; // If true, shows legend (only used in non-compact mode)
 
   const ReinforcementDistributionGraph({
     super.key,
     required this.metrics,
     this.specificTurn,
+    this.compact = false,
+    this.showLegend = true,
   });
 
   @override
@@ -42,6 +46,10 @@ class _ReinforcementDistributionGraphState
 
   @override
   Widget build(BuildContext context) {
+    if (widget.compact) {
+      return _buildCompactContent();
+    }
+    
     final title = widget.specificTurn != null
         ? 'Turn ${widget.specificTurn} Distribution'
         : 'Reinforcement Distribution';
@@ -82,7 +90,7 @@ class _ReinforcementDistributionGraphState
             const SizedBox(height: 24),
 
             // Legend with checkboxes (only show if all turns mode)
-            if (widget.specificTurn == null) ...[
+            if (widget.specificTurn == null && widget.showLegend) ...[
               Wrap(
                 spacing: 16,
                 children: [
@@ -111,6 +119,78 @@ class _ReinforcementDistributionGraphState
             ),
           ],
         ),
+      ),
+    );
+  }
+
+  Widget _buildCompactContent() {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      mainAxisSize: MainAxisSize.min,
+      children: [
+        // Compact legend at top (only if showing all turns)
+        if (widget.specificTurn == null && widget.showLegend) ...[
+          Wrap(
+            spacing: 12,
+            runSpacing: 8,
+            children: [
+              for (int turn = 1; turn <= 5; turn++)
+                _buildCompactLegendItem(turn),
+            ],
+          ),
+          const SizedBox(height: 12),
+        ],
+        // Graph takes remaining space
+        Expanded(
+          child: _buildGraph(),
+        ),
+      ],
+    );
+  }
+
+  Widget _buildCompactLegendItem(int turn) {
+    final color = _getTurnColor(turn);
+    final isVisible = _visibleTurns[turn] ?? true;
+
+    return InkWell(
+      onTap: () {
+        setState(() {
+          _visibleTurns[turn] = !isVisible;
+        });
+      },
+      child: Row(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          SizedBox(
+            width: 16,
+            height: 16,
+            child: Checkbox(
+              value: isVisible,
+              onChanged: (value) {
+                setState(() {
+                  _visibleTurns[turn] = value ?? true;
+                });
+              },
+              activeColor: color,
+              materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
+              visualDensity: VisualDensity.compact,
+            ),
+          ),
+          const SizedBox(width: 4),
+          Container(
+            width: 20,
+            height: 2,
+            color: color,
+          ),
+          const SizedBox(width: 4),
+          Text(
+            'T$turn',
+            style: TextStyle(
+              fontSize: 11,
+              color: isVisible ? Colors.black : Colors.grey.shade400,
+            ),
+          ),
+        ],
       ),
     );
   }
@@ -220,6 +300,10 @@ class _ReinforcementDistributionGraphState
         lineBarsData: _buildLineBars(percentiles),
         lineTouchData: LineTouchData(
           touchTooltipData: LineTouchTooltipData(
+            fitInsideHorizontally: true,
+            fitInsideVertically: true,
+            tooltipPadding: const EdgeInsets.all(8),
+            tooltipMargin: 8,
             getTooltipItems: (touchedSpots) {
               if (touchedSpots.isEmpty) return [];
               
