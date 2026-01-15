@@ -48,7 +48,7 @@ void main() {
       final result2 = simulator2.simulate(armyList, simulations: 1000);
 
       // Results should be identical with same seed
-      expect(result1.turn1Through5ArrivalPercent, result2.turn1Through5ArrivalPercent);
+      expect(result1.turn1Through5P50, result2.turn1Through5P50);
       expect(result1.turn1Through5P20, result2.turn1Through5P20);
       expect(result1.turn1Through5P80, result2.turn1Through5P80);
     });
@@ -118,7 +118,7 @@ void main() {
       final result = simulator.simulate(armyList, simulations: 1000);
 
       // By turn 3, all lights arrive automatically (100%)
-      expect(result.getArrivalPercent(3), 100.0);
+      expect(result.getP50(3), 100.0);
       expect(result.getP20(3), 100.0);
       expect(result.getP80(3), 100.0);
     });
@@ -188,7 +188,7 @@ void main() {
       final result = simulator.simulate(armyList, simulations: 1000);
 
       // By turn 5, all heavies arrive automatically (100%)
-      expect(result.getArrivalPercent(5), 100.0);
+      expect(result.getP50(5), 100.0);
       expect(result.getP20(5), 100.0);
       expect(result.getP80(5), 100.0);
     });
@@ -261,7 +261,7 @@ void main() {
 
       // Heavy with Flank should arrive on Turn 3 (earliest for heavies)
       // Should be 100% by turn 3 with no variance
-      expect(result.getArrivalPercent(3), 100.0);
+      expect(result.getP50(3), 100.0);
       expect(result.getP20(3), 100.0);
       expect(result.getP80(3), 100.0);
     });
@@ -333,7 +333,7 @@ void main() {
       final result = simulator.simulate(armyList, simulations: 1000);
 
       // Heavy should get Flank from Forward Force and arrive Turn 3
-      expect(result.getArrivalPercent(3), 100.0);
+      expect(result.getP50(3), 100.0);
       expect(result.getP20(3), 100.0);
       expect(result.getP80(3), 100.0);
     });
@@ -404,7 +404,7 @@ void main() {
       final result = simulator.simulate(armyList, simulations: 1000);
 
       // Character monster with light weight should arrive by turn 3 (lights auto)
-      expect(result.getArrivalPercent(3), 100.0);
+      expect(result.getP50(3), 100.0);
     });
 
     test('should select highest points unit for player agency', () {
@@ -501,7 +501,7 @@ void main() {
       // Turn 1: Player should select expensive light (200pts) first
       // With Flank auto-arrivals, player selection, and dice rolls,
       // we should see high arrival by turn 1
-      final turn1Arrival = result.getArrivalPercent(1);
+      final turn1Arrival = result.getP50(1);
       expect(turn1Arrival, greaterThan(50.0));
     });
 
@@ -545,7 +545,7 @@ void main() {
 
       // No regiments to deploy - should return 0s
       for (int turn = 1; turn <= 5; turn++) {
-        expect(result.getArrivalPercent(turn), 0.0);
+        expect(result.getP50(turn), 0.0);
         expect(result.getP20(turn), 0.0);
         expect(result.getP80(turn), 0.0);
       }

@@ -63,15 +63,11 @@ class _ListInputWidgetState extends State<ListInputWidget> {
               ),
             ),
             const SizedBox(height: 16),
-            SizedBox(
-              height: 200, // Fixed height instead of Expanded
-              child: TextField(
-                controller: _controller,
-                maxLines: null,
-                expands: true,
-                textAlignVertical: TextAlignVertical.top,
-                decoration: const InputDecoration(
-                  hintText: '''=== The Last Argument of Kings ===
+            TextField(
+              controller: _controller,
+              maxLines: 10,
+              decoration: const InputDecoration(
+                hintText: '''=== The Last Argument of Kings ===
 
 MyArmy [1990/2000]
 Nords
@@ -84,13 +80,12 @@ Nords
 == Shaman [80]: 
 
  * Raiders (3) [140]: Captain''',
-                  border: OutlineInputBorder(),
-                  contentPadding: EdgeInsets.all(12),
-                ),
-                style: const TextStyle(
-                  fontFamily: 'monospace',
-                  fontSize: 12,
-                ),
+                border: OutlineInputBorder(),
+                contentPadding: EdgeInsets.all(12),
+              ),
+              style: const TextStyle(
+                fontFamily: 'monospace',
+                fontSize: 12,
               ),
             ),
             const SizedBox(height: 16),

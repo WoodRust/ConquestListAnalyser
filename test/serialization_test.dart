@@ -293,9 +293,16 @@ void main() {
       );
 
       final reinforcementMetrics = ReinforcementMetrics(
-        turn1Through5ArrivalPercent: [10.5, 25.3, 50.1, 75.8, 100.0],
+        totalEligibleRegiments: 3,
+        turn1Through5P10: [5.0, 15.0, 30.0, 55.0, 100.0],
         turn1Through5P20: [5.0, 15.0, 35.0, 60.0, 100.0],
+        turn1Through5P30: [7.5, 20.0, 40.0, 65.0, 100.0],
+        turn1Through5P40: [8.5, 22.5, 45.0, 70.0, 100.0],
+        turn1Through5P50: [10.5, 25.3, 50.1, 75.8, 100.0],
+        turn1Through5P60: [12.0, 28.0, 55.0, 80.0, 100.0],
+        turn1Through5P70: [13.5, 31.0, 60.0, 85.0, 100.0],
         turn1Through5P80: [15.0, 35.0, 65.0, 90.0, 100.0],
+        turn1Through5P90: [17.0, 40.0, 70.0, 95.0, 100.0],
       );
 
       final now = DateTime.now();
@@ -332,8 +339,8 @@ void main() {
       // Verify reinforcement metrics were serialized correctly
       expect(deserialized.reinforcementMetrics, isNotNull,
           reason: 'reinforcementMetrics should not be null after deserialization');
-      expect(deserialized.reinforcementMetrics!.turn1Through5ArrivalPercent,
-          score.reinforcementMetrics!.turn1Through5ArrivalPercent);
+      expect(deserialized.reinforcementMetrics!.turn1Through5P50,
+          score.reinforcementMetrics!.turn1Through5P50);
       expect(deserialized.reinforcementMetrics!.turn1Through5P20,
           score.reinforcementMetrics!.turn1Through5P20);
       expect(deserialized.reinforcementMetrics!.turn1Through5P80,
@@ -379,9 +386,16 @@ void main() {
       );
 
       final reinforcementMetrics = ReinforcementMetrics(
-        turn1Through5ArrivalPercent: [10.5, 25.3, 50.1, 75.8, 100.0],
+        totalEligibleRegiments: 3,
+        turn1Through5P10: [5.0, 15.0, 30.0, 55.0, 100.0],
         turn1Through5P20: [5.0, 15.0, 35.0, 60.0, 100.0],
+        turn1Through5P30: [7.5, 20.0, 40.0, 65.0, 100.0],
+        turn1Through5P40: [8.5, 22.5, 45.0, 70.0, 100.0],
+        turn1Through5P50: [10.5, 25.3, 50.1, 75.8, 100.0],
+        turn1Through5P60: [12.0, 28.0, 55.0, 80.0, 100.0],
+        turn1Through5P70: [13.5, 31.0, 60.0, 85.0, 100.0],
         turn1Through5P80: [15.0, 35.0, 65.0, 90.0, 100.0],
+        turn1Through5P90: [17.0, 40.0, 70.0, 95.0, 100.0],
       );
 
       final now = DateTime.now();
@@ -419,8 +433,8 @@ void main() {
       expect(modified.pointsPerWound, original.pointsPerWound);
       expect(modified.reinforcementMetrics, isNotNull,
           reason: 'reinforcementMetrics should be preserved in copyWith');
-      expect(modified.reinforcementMetrics!.turn1Through5ArrivalPercent,
-          original.reinforcementMetrics!.turn1Through5ArrivalPercent);
+      expect(modified.reinforcementMetrics!.turn1Through5P50,
+          original.reinforcementMetrics!.turn1Through5P50);
     });
   });
 }
