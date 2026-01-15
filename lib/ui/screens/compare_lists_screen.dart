@@ -139,7 +139,7 @@ class CompareListsScreen extends StatelessWidget {
                         l.armyList.characterMonsters.length)
                     .toDouble())
                 .toList(),
-            false,
+            true,
             null,
             false),
         _buildMetricRow(
@@ -155,7 +155,7 @@ class CompareListsScreen extends StatelessWidget {
             listsToCompare
                 .map((l) => l.armyList.regiments.length.toDouble())
                 .toList(),
-            false,
+            true,
             null,
             false),
         _buildMetricRow(
