@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import '../models/army_list.dart';
 import '../models/list_score.dart';
 import '../models/regiment.dart';
@@ -191,12 +193,17 @@ class ScoringEngine {
     int totalWounds = 0;
 
     for (final regiment in regimentsForToughness) {
-      // Get effective defense considering army effects
+      // Get effective defense and evasion considering army effects
       final effectiveDefense = ArmyEffectManager.getEffectiveCharacteristic(
           regiment, 'defense', armyEffects);
+      final effectiveEvasion = ArmyEffectManager.getEffectiveCharacteristic(
+          regiment, 'evasion', armyEffects);
+      
+      // Use the better of defense or evasion (players roll against higher value)
+      final bestDefensiveStat = max(effectiveDefense, effectiveEvasion);
 
       final regimentWounds = regiment.totalWounds;
-      totalDefenseWounds += effectiveDefense * regimentWounds;
+      totalDefenseWounds += bestDefensiveStat * regimentWounds;
       totalWounds += regimentWounds;
     }
 

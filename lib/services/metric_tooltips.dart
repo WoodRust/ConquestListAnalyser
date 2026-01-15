@@ -814,14 +814,19 @@ class MetricTooltips {
             children: [
               if (toughnessValue != null)
                 Text(
-                  'On average, each wound in your army has ${toughnessValue.toStringAsFixed(1)} defense.',
+                  'On average, each wound in your army has ${toughnessValue.toStringAsFixed(1)} defensive value.',
                   style: const TextStyle(fontSize: 16),
                 ),
               if (toughnessValue == null)
                 const Text(
-                  'Average defense characteristic per wound across all regiments in your army.',
+                  'Average defensive characteristic per wound across all regiments in your army.',
                   style: TextStyle(fontSize: 16),
                 ),
+              const SizedBox(height: 12),
+              const Text(
+                'Uses the higher of Defense or Evasion for each regiment (matching game rules where defenders roll against their best stat).',
+                style: TextStyle(fontSize: 14, fontStyle: FontStyle.italic),
+              ),
             ],
           ),
           actions: [
