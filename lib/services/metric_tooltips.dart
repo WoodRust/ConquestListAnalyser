@@ -3,6 +3,54 @@ import 'package:flutter/material.dart';
 /// Centralized tooltip definitions for all metrics
 /// Used by both ScoreDisplayWidget and CompareListsScreen
 class MetricTooltips {
+  static void showDamagePotentialTooltip(BuildContext context) {
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: const Text('Damage Potential'),
+          content: const Column(
+            mainAxisSize: MainAxisSize.min,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(
+                'Measures your army\'s offensive capability and damage output.',
+                style: TextStyle(fontSize: 16),
+              ),
+              SizedBox(height: 12),
+              Text(
+                'Includes:',
+                style: TextStyle(fontSize: 14, fontWeight: FontWeight.bold),
+              ),
+              Text(
+                '• Melee damage (hit volume and cleave)',
+                style: TextStyle(fontSize: 14),
+              ),
+              Text(
+                '• Ranged damage (expected hits and armor piercing)',
+                style: TextStyle(fontSize: 14),
+              ),
+              Text(
+                '• Threat range (max range)',
+                style: TextStyle(fontSize: 14),
+              ),
+              Text(
+                '• Magic capabilities (spells and support)',
+                style: TextStyle(fontSize: 14),
+              ),
+            ],
+          ),
+          actions: [
+            TextButton(
+              onPressed: () => Navigator.of(context).pop(),
+              child: const Text('OK'),
+            ),
+          ],
+        );
+      },
+    );
+  }
+
   static void showDurabilityTooltip(BuildContext context) {
     showDialog(
       context: context,

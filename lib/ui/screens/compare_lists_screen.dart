@@ -232,18 +232,14 @@ class CompareListsScreen extends StatelessWidget {
             true,
             () => MetricTooltips.showExpectedHealingCapabilityTooltip(context), false),
 
-        // Combat metrics
+        // Damage Potential Section
+        _buildDamagePotentialSectionHeader(context),
         _buildMetricRow('Expected Hit Volume',
             listsToCompare.map((l) => l.expectedHitVolume).toList(), true,
             () => MetricTooltips.showHitVolumeTooltip(context), false),
         _buildMetricRow('Cleave Rating',
             listsToCompare.map((l) => l.cleaveRating).toList(), true,
             () => MetricTooltips.showCleaveTooltip(context), false),
-        _buildMetricRow('Average Speed',
-            listsToCompare.map((l) => l.averageSpeed).toList(), true,
-            () => MetricTooltips.showAvgSpeedTooltip(context), false),
-
-        // Ranged metrics
         _buildMetricRow('Ranged Expected Hits',
             listsToCompare.map((l) => l.rangedExpectedHits).toList(), true,
             () => MetricTooltips.showRangedHitsTooltip(context), false),
@@ -255,12 +251,16 @@ class CompareListsScreen extends StatelessWidget {
         _buildMetricRow('Max Range',
             listsToCompare.map((l) => l.maxRange.toDouble()).toList(), true,
             () => MetricTooltips.showMaxRangeTooltip(context), false),
-        // Magic
         _buildMetricRow(
             'Magic Capability',
             listsToCompare.map((l) => l.magicCapability.toDouble()).toList(),
             true,
             () => MetricTooltips.showMagicCapabilityTooltip(context), false),
+
+        // Mobility
+        _buildMetricRow('Average Speed',
+            listsToCompare.map((l) => l.averageSpeed).toList(), true,
+            () => MetricTooltips.showAvgSpeedTooltip(context), false),
         
         // Reinforcement Timing Section
         _buildReinforcementSectionHeader(context),
@@ -345,6 +345,54 @@ class CompareListsScreen extends StatelessWidget {
                   IconButton(
                     icon: Icon(Icons.info_outline, size: 18, color: Colors.purple.shade700),
                     onPressed: () => MetricTooltips.showDurabilityTooltip(context),
+                    padding: EdgeInsets.zero,
+                    constraints: const BoxConstraints(),
+                  ),
+                ],
+              ),
+            ),
+          ),
+          ...listsToCompare.map((list) => Expanded(
+                child: Container(),
+              )),
+        ],
+      ),
+    );
+  }
+
+  Widget _buildDamagePotentialSectionHeader(BuildContext context) {
+    return Container(
+      height: 50,
+      decoration: BoxDecoration(
+        color: Colors.red.shade50,
+        border: Border(
+          top: BorderSide(color: Colors.red.shade200, width: 2),
+          bottom: BorderSide(color: Colors.red.shade200, width: 1),
+        ),
+      ),
+      child: Row(
+        children: [
+          SizedBox(
+            width: 160,
+            child: Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 8.0),
+              child: Row(
+                children: [
+                  Expanded(
+                    child: Text(
+                      'Damage Potential',
+                      style: TextStyle(
+                        fontSize: 14,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.red.shade900,
+                      ),
+                      overflow: TextOverflow.ellipsis,
+                    ),
+                  ),
+                  const SizedBox(width: 4),
+                  IconButton(
+                    icon: Icon(Icons.info_outline, size: 18, color: Colors.red.shade700),
+                    onPressed: () => MetricTooltips.showDamagePotentialTooltip(context),
                     padding: EdgeInsets.zero,
                     constraints: const BoxConstraints(),
                   ),
