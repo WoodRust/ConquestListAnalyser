@@ -3,6 +3,54 @@ import 'package:flutter/material.dart';
 /// Centralized tooltip definitions for all metrics
 /// Used by both ScoreDisplayWidget and CompareListsScreen
 class MetricTooltips {
+  static void showDurabilityTooltip(BuildContext context) {
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: const Text('Durability'),
+          content: const Column(
+            mainAxisSize: MainAxisSize.min,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(
+                'Measures your army\'s survivability and ability to withstand damage.',
+                style: TextStyle(fontSize: 16),
+              ),
+              SizedBox(height: 12),
+              Text(
+                'Includes:',
+                style: TextStyle(fontSize: 14, fontWeight: FontWeight.bold),
+              ),
+              Text(
+                '• Wound totals (raw and effective)',
+                style: TextStyle(fontSize: 14),
+              ),
+              Text(
+                '• Defensive stats (Defense, Resolve, Evasion, Toughness)',
+                style: TextStyle(fontSize: 14),
+              ),
+              Text(
+                '• Efficiency metrics (points per wound)',
+                style: TextStyle(fontSize: 14),
+              ),
+              Text(
+                '• Healing capabilities',
+                style: TextStyle(fontSize: 14),
+              ),
+            ],
+          ),
+          actions: [
+            TextButton(
+              onPressed: () => Navigator.of(context).pop(),
+              child: const Text('OK'),
+            ),
+          ],
+        );
+      },
+    );
+  }
+
   static void showTotalWoundsTooltip(BuildContext context, {int? totalWounds}) {
     showDialog(
       context: context,

@@ -183,7 +183,8 @@ class CompareListsScreen extends StatelessWidget {
             null,
             false),
 
-        // Wound metrics - paired with efficiency metrics
+        // Durability Section
+        _buildDurabilitySectionHeader(context),
         _buildMetricRow('Total Wounds',
             listsToCompare.map((l) => l.totalWounds.toDouble()).toList(), true,
             () => MetricTooltips.showTotalWoundsTooltip(context), false),
@@ -217,6 +218,20 @@ class CompareListsScreen extends StatelessWidget {
             listsToCompare.map((l) => l.resolveImpactPercentage).toList(),
             true,
             () => MetricTooltips.showResolveImpactTooltip(context), false),
+        _buildMetricRow(
+            'Toughness', listsToCompare.map((l) => l.toughness).toList(), true,
+            () => MetricTooltips.showToughnessTooltip(context), false),
+        _buildMetricRow(
+            'Evasion', listsToCompare.map((l) => l.evasion).toList(), true,
+            () => MetricTooltips.showEvasionTooltip(context), false),
+        _buildMetricRow(
+            'Expected Healing Capability',
+            listsToCompare
+                .map((l) => l.expectedHealingCapability.toDouble())
+                .toList(),
+            true,
+            () => MetricTooltips.showExpectedHealingCapabilityTooltip(context), false),
+
         // Combat metrics
         _buildMetricRow('Expected Hit Volume',
             listsToCompare.map((l) => l.expectedHitVolume).toList(), true,
@@ -227,13 +242,7 @@ class CompareListsScreen extends StatelessWidget {
         _buildMetricRow('Average Speed',
             listsToCompare.map((l) => l.averageSpeed).toList(), true,
             () => MetricTooltips.showAvgSpeedTooltip(context), false),
-        // Defensive metrics
-        _buildMetricRow(
-            'Evasion', listsToCompare.map((l) => l.evasion).toList(), true,
-            () => MetricTooltips.showEvasionTooltip(context), false),
-        _buildMetricRow(
-            'Toughness', listsToCompare.map((l) => l.toughness).toList(), true,
-            () => MetricTooltips.showToughnessTooltip(context), false),
+
         // Ranged metrics
         _buildMetricRow('Ranged Expected Hits',
             listsToCompare.map((l) => l.rangedExpectedHits).toList(), true,
@@ -246,19 +255,12 @@ class CompareListsScreen extends StatelessWidget {
         _buildMetricRow('Max Range',
             listsToCompare.map((l) => l.maxRange.toDouble()).toList(), true,
             () => MetricTooltips.showMaxRangeTooltip(context), false),
-        // Magic and Healing
+        // Magic
         _buildMetricRow(
             'Magic Capability',
             listsToCompare.map((l) => l.magicCapability.toDouble()).toList(),
             true,
             () => MetricTooltips.showMagicCapabilityTooltip(context), false),
-        _buildMetricRow(
-            'Expected Healing Capability',
-            listsToCompare
-                .map((l) => l.expectedHealingCapability.toDouble())
-                .toList(),
-            true,
-            () => MetricTooltips.showExpectedHealingCapabilityTooltip(context), false),
         
         // Reinforcement Timing Section
         _buildReinforcementSectionHeader(context),
@@ -299,6 +301,54 @@ class CompareListsScreen extends StatelessWidget {
                   fontWeight: FontWeight.bold,
                   color: Colors.blue.shade900,
                 ),
+              ),
+            ),
+          ),
+          ...listsToCompare.map((list) => Expanded(
+                child: Container(),
+              )),
+        ],
+      ),
+    );
+  }
+
+  Widget _buildDurabilitySectionHeader(BuildContext context) {
+    return Container(
+      height: 50,
+      decoration: BoxDecoration(
+        color: Colors.purple.shade50,
+        border: Border(
+          top: BorderSide(color: Colors.purple.shade200, width: 2),
+          bottom: BorderSide(color: Colors.purple.shade200, width: 1),
+        ),
+      ),
+      child: Row(
+        children: [
+          SizedBox(
+            width: 160,
+            child: Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 8.0),
+              child: Row(
+                children: [
+                  Expanded(
+                    child: Text(
+                      'Durability',
+                      style: TextStyle(
+                        fontSize: 14,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.purple.shade900,
+                      ),
+                      overflow: TextOverflow.ellipsis,
+                    ),
+                  ),
+                  const SizedBox(width: 4),
+                  IconButton(
+                    icon: Icon(Icons.info_outline, size: 18, color: Colors.purple.shade700),
+                    onPressed: () => MetricTooltips.showDurabilityTooltip(context),
+                    padding: EdgeInsets.zero,
+                    constraints: const BoxConstraints(),
+                  ),
+                ],
               ),
             ),
           ),
