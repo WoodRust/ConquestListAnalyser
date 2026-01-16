@@ -30,7 +30,6 @@ class _ReinforcementDistributionGraphState
     2: true,
     3: true,
     4: true,
-    5: true,
   };
 
   @override
@@ -38,7 +37,7 @@ class _ReinforcementDistributionGraphState
     super.initState();
     // If showing specific turn, only that turn is visible
     if (widget.specificTurn != null) {
-      for (int turn = 1; turn <= 5; turn++) {
+      for (int turn = 1; turn <= 4; turn++) {
         _visibleTurns[turn] = turn == widget.specificTurn;
       }
     }
@@ -134,7 +133,7 @@ class _ReinforcementDistributionGraphState
             spacing: 12,
             runSpacing: 8,
             children: [
-              for (int turn = 1; turn <= 5; turn++)
+              for (int turn = 1; turn <= 4; turn++)
                 _buildCompactLegendItem(turn),
             ],
           ),
@@ -354,7 +353,7 @@ class _ReinforcementDistributionGraphState
   List<LineChartBarData> _buildLineBars(List<int> percentiles) {
     final List<LineChartBarData> bars = [];
 
-    for (int turn = 1; turn <= 5; turn++) {
+    for (int turn = 1; turn <= 4; turn++) {
       if (!(_visibleTurns[turn] ?? true)) continue;
 
       final spots = percentiles.map((p) {
@@ -397,7 +396,6 @@ class _ReinforcementDistributionGraphState
       Colors.lightGreen, // Turn 2
       Colors.amber, // Turn 3
       Colors.orange, // Turn 4
-      Colors.deepOrange, // Turn 5
     ];
     return colors[turn - 1];
   }

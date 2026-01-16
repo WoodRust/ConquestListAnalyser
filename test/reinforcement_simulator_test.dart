@@ -48,9 +48,9 @@ void main() {
       final result2 = simulator2.simulate(armyList, simulations: 1000);
 
       // Results should be identical with same seed
-      expect(result1.turn1Through5P50, result2.turn1Through5P50);
-      expect(result1.turn1Through5P20, result2.turn1Through5P20);
-      expect(result1.turn1Through5P80, result2.turn1Through5P80);
+      expect(result1.turn1Through4P50, result2.turn1Through4P50);
+      expect(result1.turn1Through4P20, result2.turn1Through4P20);
+      expect(result1.turn1Through4P80, result2.turn1Through4P80);
     });
 
     test('should have all lights arrive by turn 3', () {
@@ -123,7 +123,7 @@ void main() {
       expect(result.getP80(3), 100.0);
     });
 
-    test('should have all heavies arrive by turn 5', () {
+    test('should have most heavies arrive by turn 4', () {
       final character = Regiment(
         unit: Unit(
           name: 'Captain',
@@ -187,10 +187,9 @@ void main() {
       final simulator = ReinforcementSimulator(seed: 42);
       final result = simulator.simulate(armyList, simulations: 1000);
 
-      // By turn 5, all heavies arrive automatically (100%)
-      expect(result.getP50(5), 100.0);
-      expect(result.getP20(5), 100.0);
-      expect(result.getP80(5), 100.0);
+      // By turn 4, heavies have 4+ to arrive (67% expected)
+      // Median should be high but not necessarily 100%
+      expect(result.getP50(4), greaterThan(50.0));
     });
 
     test('should auto-arrive Flank units at earliest eligible turn', () {
@@ -544,7 +543,7 @@ void main() {
       final result = simulator.simulate(armyList, simulations: 100);
 
       // No regiments to deploy - should return 0s
-      for (int turn = 1; turn <= 5; turn++) {
+      for (int turn = 1; turn <= 4; turn++) {
         expect(result.getP50(turn), 0.0);
         expect(result.getP20(turn), 0.0);
         expect(result.getP80(turn), 0.0);

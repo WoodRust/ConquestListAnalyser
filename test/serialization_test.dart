@@ -294,15 +294,15 @@ void main() {
 
       final reinforcementMetrics = ReinforcementMetrics(
         totalEligibleRegiments: 3,
-        turn1Through5P10: [5.0, 15.0, 30.0, 55.0, 100.0],
-        turn1Through5P20: [5.0, 15.0, 35.0, 60.0, 100.0],
-        turn1Through5P30: [7.5, 20.0, 40.0, 65.0, 100.0],
-        turn1Through5P40: [8.5, 22.5, 45.0, 70.0, 100.0],
-        turn1Through5P50: [10.5, 25.3, 50.1, 75.8, 100.0],
-        turn1Through5P60: [12.0, 28.0, 55.0, 80.0, 100.0],
-        turn1Through5P70: [13.5, 31.0, 60.0, 85.0, 100.0],
-        turn1Through5P80: [15.0, 35.0, 65.0, 90.0, 100.0],
-        turn1Through5P90: [17.0, 40.0, 70.0, 95.0, 100.0],
+        turn1Through4P10: [5.0, 15.0, 30.0, 55.0],
+        turn1Through4P20: [5.0, 15.0, 35.0, 60.0],
+        turn1Through4P30: [7.5, 20.0, 40.0, 65.0],
+        turn1Through4P40: [8.5, 22.5, 45.0, 70.0],
+        turn1Through4P50: [10.5, 25.3, 50.1, 75.8],
+        turn1Through4P60: [12.0, 28.0, 55.0, 80.0],
+        turn1Through4P70: [13.5, 31.0, 60.0, 85.0],
+        turn1Through4P80: [15.0, 35.0, 65.0, 90.0],
+        turn1Through4P90: [17.0, 40.0, 70.0, 95.0],
       );
 
       final now = DateTime.now();
@@ -387,15 +387,15 @@ void main() {
 
       final reinforcementMetrics = ReinforcementMetrics(
         totalEligibleRegiments: 3,
-        turn1Through5P10: [5.0, 15.0, 30.0, 55.0, 100.0],
-        turn1Through5P20: [5.0, 15.0, 35.0, 60.0, 100.0],
-        turn1Through5P30: [7.5, 20.0, 40.0, 65.0, 100.0],
-        turn1Through5P40: [8.5, 22.5, 45.0, 70.0, 100.0],
-        turn1Through5P50: [10.5, 25.3, 50.1, 75.8, 100.0],
-        turn1Through5P60: [12.0, 28.0, 55.0, 80.0, 100.0],
-        turn1Through5P70: [13.5, 31.0, 60.0, 85.0, 100.0],
-        turn1Through5P80: [15.0, 35.0, 65.0, 90.0, 100.0],
-        turn1Through5P90: [17.0, 40.0, 70.0, 95.0, 100.0],
+        turn1Through4P10: [5.0, 15.0, 30.0, 55.0],
+        turn1Through4P20: [5.0, 15.0, 35.0, 60.0],
+        turn1Through4P30: [7.5, 20.0, 40.0, 65.0],
+        turn1Through4P40: [8.5, 22.5, 45.0, 70.0],
+        turn1Through4P50: [10.5, 25.3, 50.1, 75.8],
+        turn1Through4P60: [12.0, 28.0, 55.0, 80.0],
+        turn1Through4P70: [13.5, 31.0, 60.0, 85.0],
+        turn1Through4P80: [15.0, 35.0, 65.0, 90.0],
+        turn1Through4P90: [17.0, 40.0, 70.0, 95.0],
       );
 
       final now = DateTime.now();
@@ -433,8 +433,36 @@ void main() {
       expect(modified.pointsPerWound, original.pointsPerWound);
       expect(modified.reinforcementMetrics, isNotNull,
           reason: 'reinforcementMetrics should be preserved in copyWith');
-      expect(modified.reinforcementMetrics!.turn1Through5P50,
-          original.reinforcementMetrics!.turn1Through5P50);
+      expect(modified.reinforcementMetrics!.turn1Through4P50,
+          original.reinforcementMetrics!.turn1Through4P50);
+    });
+
+    test('ReinforcementMetrics backward compatibility with old format', () {
+      // Simulate old saved data with turn1Through5Pxx fields
+      final oldJson = {
+        'totalEligibleRegiments': 15,
+        'turn1Through5P10': [5.0, 15.0, 30.0, 55.0, 100.0],
+        'turn1Through5P20': [10.0, 20.0, 35.0, 60.0, 100.0],
+        'turn1Through5P30': [12.0, 25.0, 40.0, 65.0, 100.0],
+        'turn1Through5P40': [15.0, 30.0, 45.0, 70.0, 100.0],
+        'turn1Through5P50': [20.0, 35.0, 50.0, 75.0, 100.0],
+        'turn1Through5P60': [25.0, 40.0, 55.0, 80.0, 100.0],
+        'turn1Through5P70': [30.0, 45.0, 60.0, 85.0, 100.0],
+        'turn1Through5P80': [35.0, 50.0, 65.0, 90.0, 100.0],
+        'turn1Through5P90': [40.0, 55.0, 70.0, 95.0, 100.0],
+      };
+
+      final metrics = ReinforcementMetrics.fromJson(oldJson);
+
+      // Should load first 4 turns, discarding turn 5
+      expect(metrics.totalEligibleRegiments, 15);
+      expect(metrics.turn1Through4P50, [20.0, 35.0, 50.0, 75.0]);
+      expect(metrics.turn1Through4P20, [10.0, 20.0, 35.0, 60.0]);
+      expect(metrics.turn1Through4P80, [35.0, 50.0, 65.0, 90.0]);
+      
+      // Verify turn 5 data (100.0) was discarded
+      expect(metrics.turn1Through4P50.length, 4);
+      expect(metrics.getP50(4), 75.0); // Not 100.0
     });
   });
 }

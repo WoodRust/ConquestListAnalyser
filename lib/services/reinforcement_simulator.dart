@@ -12,7 +12,7 @@ class ReinforcementSimulator {
   ReinforcementSimulator({int? seed}) : _random = Random(seed);
 
   /// Run Monte Carlo simulation to compute reinforcement timing metrics
-  /// Returns average arrival percentages and percentiles for turns 1-5
+  /// Returns average arrival percentages and percentiles for turns 1-4
   ReinforcementMetrics simulate(ArmyList armyList, {int simulations = 10000}) {
     // Infer warbands and apply Forward Force
     final warbands = WarbandManager.inferWarbands(armyList);
@@ -28,15 +28,15 @@ class ReinforcementSimulator {
       // Edge case: no regiments to deploy
       return ReinforcementMetrics(
         totalEligibleRegiments: 0,
-        turn1Through5P10: [0, 0, 0, 0, 0],
-        turn1Through5P20: [0, 0, 0, 0, 0],
-        turn1Through5P30: [0, 0, 0, 0, 0],
-        turn1Through5P40: [0, 0, 0, 0, 0],
-        turn1Through5P50: [0, 0, 0, 0, 0],
-        turn1Through5P60: [0, 0, 0, 0, 0],
-        turn1Through5P70: [0, 0, 0, 0, 0],
-        turn1Through5P80: [0, 0, 0, 0, 0],
-        turn1Through5P90: [0, 0, 0, 0, 0],
+        turn1Through4P10: [0, 0, 0, 0],
+        turn1Through4P20: [0, 0, 0, 0],
+        turn1Through4P30: [0, 0, 0, 0],
+        turn1Through4P40: [0, 0, 0, 0],
+        turn1Through4P50: [0, 0, 0, 0],
+        turn1Through4P60: [0, 0, 0, 0],
+        turn1Through4P70: [0, 0, 0, 0],
+        turn1Through4P80: [0, 0, 0, 0],
+        turn1Through4P90: [0, 0, 0, 0],
       );
     }
 
@@ -64,15 +64,15 @@ class ReinforcementSimulator {
 
     return ReinforcementMetrics(
       totalEligibleRegiments: totalRegiments,
-      turn1Through5P10: p10Values,
-      turn1Through5P20: p20Values,
-      turn1Through5P30: p30Values,
-      turn1Through5P40: p40Values,
-      turn1Through5P50: p50Values,
-      turn1Through5P60: p60Values,
-      turn1Through5P70: p70Values,
-      turn1Through5P80: p80Values,
-      turn1Through5P90: p90Values,
+      turn1Through4P10: p10Values,
+      turn1Through4P20: p20Values,
+      turn1Through4P30: p30Values,
+      turn1Through4P40: p40Values,
+      turn1Through4P50: p50Values,
+      turn1Through4P60: p60Values,
+      turn1Through4P70: p70Values,
+      turn1Through4P80: p80Values,
+      turn1Through4P90: p90Values,
     );
   }
 
@@ -87,7 +87,7 @@ class ReinforcementSimulator {
     }).toList();
   }
 
-  /// Run a single simulation and return cumulative arrival percentages for turns 1-5
+  /// Run a single simulation and return cumulative arrival percentages for turns 1-4
   List<double> _runSingleSimulation(
     List<Regiment> regiments,
     Map<Regiment, bool> computedFlank,
@@ -98,7 +98,7 @@ class ReinforcementSimulator {
     final List<double> turnPercentages = [];
 
     // Simulate each turn
-    for (int turn = 1; turn <= 5; turn++) {
+    for (int turn = 1; turn <= 4; turn++) {
       // Get regiments that can arrive this turn (not yet arrived)
       final notArrived = regiments.where((r) => !arrived.contains(r)).toList();
       
@@ -230,9 +230,6 @@ class ReinforcementSimulator {
       // Turn 4: Mediums auto, Heavies on 4 or less
       arrivals.addAll(mediums);
       arrivals.addAll(_rollForWeightClass(heavies, 4));
-    } else if (turn == 5) {
-      // Turn 5: Heavies auto
-      arrivals.addAll(heavies);
     }
 
     return arrivals;
@@ -303,7 +300,7 @@ class ReinforcementSimulator {
   List<double> _calculatePercentiles(List<List<double>> allSimulations, double percentile) {
     final List<double> percentiles = [];
     
-    for (int turn = 0; turn < 5; turn++) {
+    for (int turn = 0; turn < 4; turn++) {
       // Extract values for this turn from all simulations
       final turnValues = allSimulations.map((sim) => sim[turn]).toList();
       turnValues.sort();

@@ -272,8 +272,6 @@ class CompareListsScreen extends StatelessWidget {
             'Turn 3 Arrivals', listsToCompare, 2, context),
         _buildReinforcementMetricRow(
             'Turn 4 Arrivals', listsToCompare, 3, context),
-        _buildReinforcementMetricRow(
-            'Turn 5 Arrivals', listsToCompare, 4, context),
       ],
     );
   }
