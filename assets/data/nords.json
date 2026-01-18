@@ -159,11 +159,11 @@
         "numericSpecialRules": {
             "impact": 3,
             "terrifying": 1,
-            "regeneration": 3
+            "regeneration": 5
         },
         "drawEvents": [
             {
-                "name": "Regeneration (3)",
+                "name": "Regeneration (5)",
                 "description": "This Regiment Heals 3 Wounds."
             }
         ],

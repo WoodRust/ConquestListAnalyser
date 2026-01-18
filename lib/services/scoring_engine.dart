@@ -22,6 +22,7 @@ class ScoringEngine {
 
     // Calculate combat metrics
     final expectedHitVolume = _calculateTotalExpectedHitVolume(armyList);
+    final impactExpectedVolume = _calculateTotalImpactExpectedVolume(armyList);
     final cleaveRating = _calculateTotalCleaveRating(armyList);
     final rangedExpectedHits = _calculateTotalRangedExpectedHits(armyList);
     final rangedArmorPiercingRating =
@@ -69,6 +70,7 @@ class ScoringEngine {
       totalWounds: totalWounds,
       pointsPerWound: pointsPerWound,
       expectedHitVolume: expectedHitVolume,
+      impactExpectedVolume: impactExpectedVolume,
       cleaveRating: cleaveRating,
       rangedExpectedHits: rangedExpectedHits,
       rangedArmorPiercingRating: rangedArmorPiercingRating,
@@ -118,6 +120,13 @@ class ScoringEngine {
   double _calculateTotalCleaveRating(ArmyList armyList) {
     return armyList.regiments.fold(0.0, (total, regiment) {
       return total + regiment.cleaveRating;
+    });
+  }
+
+  /// Calculate total impact expected volume across all regiments
+  double _calculateTotalImpactExpectedVolume(ArmyList armyList) {
+    return armyList.regiments.fold(0.0, (total, regiment) {
+      return total + regiment.calculateImpactExpectedVolume();
     });
   }
 

@@ -60,6 +60,9 @@ class Regiment {
   int get armorPiercingValue =>
       unit.numericSpecialRules['armorPiercingValue'] as int? ?? 0;
 
+  /// Impact value for this regiment from numeric special rules
+  int get impactValue => unit.numericSpecialRules['impact'] as int? ?? 0;
+
   /// Calculate cleave rating for this regiment (Expected Hit Volume * Cleave)
   double get cleaveRating => expectedHitVolume * cleaveValue;
 
@@ -140,6 +143,28 @@ class Regiment {
     }
 
     return expectedHits;
+  }
+
+  /// Calculate impact expected volume for this regiment
+  /// Formula: Impact × (Clash ÷ 6) × Stands
+  /// Note: Uses base clash (no +1 bonus), no Flurry re-rolls, no Leader bonus
+  double calculateImpactExpectedVolume() {
+    // Get impact value from numeric special rules
+    if (impactValue == 0) {
+      return 0.0;
+    }
+
+    // Calculate hit chance: clash / 6 (no +1 bonus for Impact)
+    final clashValue = unit.characteristics.clash;
+    final hitChance = clashValue / 6.0;
+
+    // Impact attacks per stand multiplied by number of stands
+    final totalImpactAttacks = impactValue * stands;
+
+    // Expected impact hits (NO Flurry re-rolls for Impact)
+    final expectedImpactHits = totalImpactAttacks * hitChance;
+
+    return expectedImpactHits;
   }
 
   /// Calculate ranged expected hits for this regiment

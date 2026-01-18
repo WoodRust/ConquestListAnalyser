@@ -68,6 +68,7 @@ void main_disabled() {
         totalWounds: 10,
         pointsPerWound: 20.0,
         expectedHitVolume: 15.0,
+        impactExpectedVolume: 0.0,
         cleaveRating: 5.0,
         rangedExpectedHits: 2.5, // Changed to avoid conflict
         rangedArmorPiercingRating: 1.5,
@@ -125,6 +126,7 @@ void main_disabled() {
         totalWounds: 5,
         pointsPerWound: 32.0,
         expectedHitVolume: 10.0,
+        impactExpectedVolume: 0.0,
         cleaveRating: 3.1, // Changed from 3.0 to unique value
         rangedExpectedHits: 2.0,
         rangedArmorPiercingRating: 1.0,
@@ -216,6 +218,7 @@ void main_disabled() {
         totalWounds: 15,
         pointsPerWound: 20.0,
         expectedHitVolume: 25.0,
+        impactExpectedVolume: 0.0,
         cleaveRating: 8.0,
         rangedExpectedHits: 5.0,
         rangedArmorPiercingRating: 2.0,
@@ -258,6 +261,7 @@ void main_disabled() {
         totalWounds: 25,
         pointsPerWound: 20.0,
         expectedHitVolume: 48.5, // Changed to unique value
+        impactExpectedVolume: 0.0,
         cleaveRating: 14.7, // Changed to unique value
         rangedExpectedHits: 7.8, // Changed to unique value
         rangedArmorPiercingRating: 3.9, // Changed to unique value

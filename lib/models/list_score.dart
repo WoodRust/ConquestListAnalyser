@@ -7,6 +7,7 @@ class ListScore {
   final int totalWounds;
   final double pointsPerWound;
   final double expectedHitVolume;
+  final double impactExpectedVolume;
   final double cleaveRating;
   final double rangedExpectedHits;
   final double rangedArmorPiercingRating;
@@ -34,6 +35,7 @@ class ListScore {
     required this.totalWounds,
     required this.pointsPerWound,
     required this.expectedHitVolume,
+    required this.impactExpectedVolume,
     required this.cleaveRating,
     required this.rangedExpectedHits,
     required this.rangedArmorPiercingRating,
@@ -57,6 +59,7 @@ class ListScore {
     ArmyList? armyList,
     int? totalWounds,
     double? pointsPerWound,
+    double? impactExpectedVolume,
     double? expectedHitVolume,
     double? cleaveRating,
     double? rangedExpectedHits,
@@ -80,6 +83,7 @@ class ListScore {
       totalWounds: totalWounds ?? this.totalWounds,
       pointsPerWound: pointsPerWound ?? this.pointsPerWound,
       expectedHitVolume: expectedHitVolume ?? this.expectedHitVolume,
+      impactExpectedVolume: impactExpectedVolume ?? this.impactExpectedVolume,
       cleaveRating: cleaveRating ?? this.cleaveRating,
       rangedExpectedHits: rangedExpectedHits ?? this.rangedExpectedHits,
       rangedArmorPiercingRating: rangedArmorPiercingRating ?? this.rangedArmorPiercingRating,
@@ -106,6 +110,7 @@ class ListScore {
       totalWounds: json['totalWounds'] as int,
       pointsPerWound: (json['pointsPerWound'] as num).toDouble(),
       expectedHitVolume: (json['expectedHitVolume'] as num).toDouble(),
+      impactExpectedVolume: (json['impactExpectedVolume'] as num?)?.toDouble() ?? 0.0,
       cleaveRating: (json['cleaveRating'] as num).toDouble(),
       rangedExpectedHits: (json['rangedExpectedHits'] as num).toDouble(),
       rangedArmorPiercingRating:
@@ -141,6 +146,7 @@ class ListScore {
       'totalWounds': totalWounds,
       'pointsPerWound': pointsPerWound,
       'expectedHitVolume': expectedHitVolume,
+      'impactExpectedVolume': impactExpectedVolume,
       'cleaveRating': cleaveRating,
       'rangedExpectedHits': rangedExpectedHits,
       'rangedArmorPiercingRating': rangedArmorPiercingRating,
@@ -171,6 +177,7 @@ Points: ${armyList.totalPoints}/${armyList.pointsLimit}
 SCORES:
 Total Wounds: $totalWounds
 Points per Wound: ${pointsPerWound.toStringAsFixed(2)}
+Impact Expected Volume: ${impactExpectedVolume.toStringAsFixed(1)}
 Expected Hit Volume: ${expectedHitVolume.toStringAsFixed(1)}
 Cleave Rating: ${cleaveRating.toStringAsFixed(1)}
 Ranged Expected Hits: ${rangedExpectedHits.toStringAsFixed(1)}

@@ -707,6 +707,59 @@ class MetricTooltips {
     );
   }
 
+  static void showImpactExpectedVolumeTooltip(BuildContext context) {
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: const Text('Impact Expected Volume'),
+          content: const Column(
+            mainAxisSize: MainAxisSize.min,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(
+                'Measures the expected automatic hits from Impact attacks when charging. Impact hits occur before normal melee and ignore Shields.',
+                style: TextStyle(fontSize: 16),
+              ),
+              SizedBox(height: 12),
+              Text(
+                'Formula: Impact Value × Stands × (Clash ÷ 6)',
+                style: TextStyle(fontSize: 14, fontWeight: FontWeight.bold),
+              ),
+              SizedBox(height: 12),
+              Text(
+                'Key Points:',
+                style: TextStyle(fontSize: 14, fontWeight: FontWeight.bold),
+              ),
+              Text(
+                '• Uses base Clash value (no +1 bonus)',
+                style: TextStyle(fontSize: 14),
+              ),
+              Text(
+                '• Does NOT benefit from Leader, Flurry, or other melee bonuses',
+                style: TextStyle(fontSize: 14),
+              ),
+              Text(
+                '• Characters contribute to total (unlike durability metrics)',
+                style: TextStyle(fontSize: 14),
+              ),
+              Text(
+                '• Higher values = more damage when charging',
+                style: TextStyle(fontSize: 14),
+              ),
+            ],
+          ),
+          actions: [
+            TextButton(
+              onPressed: () => Navigator.of(context).pop(),
+              child: const Text('OK'),
+            ),
+          ],
+        );
+      },
+    );
+  }
+
   static void showAvgSpeedTooltip(BuildContext context, {double? averageSpeed}) {
     showDialog(
       context: context,

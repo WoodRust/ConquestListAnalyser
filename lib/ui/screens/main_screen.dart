@@ -94,6 +94,7 @@ class _MainScreenState extends State<MainScreen> {
         totalWounds: score.totalWounds,
         pointsPerWound: score.pointsPerWound,
         expectedHitVolume: score.expectedHitVolume,
+        impactExpectedVolume: score.impactExpectedVolume,
         cleaveRating: score.cleaveRating,
         rangedExpectedHits: score.rangedExpectedHits,
         rangedArmorPiercingRating: score.rangedArmorPiercingRating,
