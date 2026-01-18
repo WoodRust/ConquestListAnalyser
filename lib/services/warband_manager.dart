@@ -132,4 +132,38 @@ class WarbandManager {
     
     return hasDirectFlank || hasComputedFlank;
   }
+
+  /// Get the regiment that a character is connected to within their warband
+  /// Returns null if character has no warband or no eligible regiments
+  /// Priority: Heavy > Medium > Light (monsters are excluded from connection)
+  static Regiment? getConnectedRegiment(
+      Regiment character, List<Regiment> warbandRegiments) {
+    // Filter out monsters (characters can't connect to monsters)
+    final eligibleRegiments = warbandRegiments
+        .where((r) => r.unit.type.toLowerCase() != 'monster')
+        .toList();
+
+    if (eligibleRegiments.isEmpty) return null;
+
+    // Priority: Heavy > Medium > Light
+    for (final regiment in eligibleRegiments) {
+      if (regiment.unit.regimentClass.toLowerCase() == 'heavy') {
+        return regiment;
+      }
+    }
+
+    for (final regiment in eligibleRegiments) {
+      if (regiment.unit.regimentClass.toLowerCase() == 'medium') {
+        return regiment;
+      }
+    }
+
+    for (final regiment in eligibleRegiments) {
+      if (regiment.unit.regimentClass.toLowerCase() == 'light') {
+        return regiment;
+      }
+    }
+
+    return null;
+  }
 }

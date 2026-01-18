@@ -760,6 +760,67 @@ class MetricTooltips {
     );
   }
 
+  static void showScoringStandsTooltip(BuildContext context) {
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: const Text('Scoring Stands'),
+          content: const Column(
+            mainAxisSize: MainAxisSize.min,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(
+                'Measures the number of scoring stands in your army for controlling objectives.',
+                style: TextStyle(fontSize: 16),
+              ),
+              SizedBox(height: 12),
+              Text(
+                'Scoring Rules:',
+                style: TextStyle(fontSize: 14, fontWeight: FontWeight.bold),
+              ),
+              Text(
+                '• Light regiments: Do NOT score (0 stands)',
+                style: TextStyle(fontSize: 14),
+              ),
+              Text(
+                '• Medium/Heavy regiments: Each stand counts as 1',
+                style: TextStyle(fontSize: 14),
+              ),
+              Text(
+                '• Monsters: Count as 3 stands by default',
+                style: TextStyle(fontSize: 14),
+              ),
+              Text(
+                '• Some monsters override this (e.g., Jotnar Seidr = 6)',
+                style: TextStyle(fontSize: 14),
+              ),
+              Text(
+                '• Characters: Count as 1 stand',
+                style: TextStyle(fontSize: 14),
+              ),
+              Text(
+                '• Exception: Characters connected to light regiments = 0',
+                style: TextStyle(fontSize: 14),
+              ),
+              SizedBox(height: 12),
+              Text(
+                'Higher values = better objective control',
+                style: TextStyle(fontSize: 14, fontWeight: FontWeight.bold),
+              ),
+            ],
+          ),
+          actions: [
+            TextButton(
+              onPressed: () => Navigator.of(context).pop(),
+              child: const Text('OK'),
+            ),
+          ],
+        );
+      },
+    );
+  }
+
   static void showAvgSpeedTooltip(BuildContext context, {double? averageSpeed}) {
     showDialog(
       context: context,

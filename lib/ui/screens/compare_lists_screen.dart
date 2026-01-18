@@ -159,6 +159,14 @@ class CompareListsScreen extends StatelessWidget {
             null,
             false),
         _buildMetricRow(
+            'Scoring Stands',
+            listsToCompare
+                .map((l) => l.scoringStands.toDouble())
+                .toList(),
+            true,
+            () => MetricTooltips.showScoringStandsTooltip(context),
+            false),
+        _buildMetricRow(
             'Light Regiments',
             listsToCompare
                 .map((l) => l.armyList.lightRegimentCount.toDouble())

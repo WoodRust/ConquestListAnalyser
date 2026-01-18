@@ -1036,7 +1036,8 @@
             "hardened": 1,
             "impact": 6,
             "tenacious": 1,
-            "terrifying": 1
+            "terrifying": 1,
+            "scoringStands": 6
         },
         "drawEvents": [],
         "points": 260

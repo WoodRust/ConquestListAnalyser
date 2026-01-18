@@ -7,6 +7,7 @@ import '../models/reinforcement_metrics.dart';
 import '../models/unit.dart';
 import 'army_effect_manager.dart';
 import 'reinforcement_simulator.dart';
+import 'warband_manager.dart';
 
 /// Service for calculating army list scores and statistics
 class ScoringEngine {
@@ -62,6 +63,9 @@ class ScoringEngine {
     final expectedHealingCapability =
         _calculateExpectedHealingCapability(armyList);
 
+    // Calculate scoring stands
+    final scoringStands = _calculateScoringStands(armyList);
+
     // Calculate reinforcement timing metrics
     final reinforcementMetrics = _calculateReinforcementMetrics(armyList);
 
@@ -84,6 +88,7 @@ class ScoringEngine {
       pointsPerEffectiveWoundDefense: pointsPerEffectiveWoundDefense,
       pointsPerEffectiveWoundDefenseResolve:
           pointsPerEffectiveWoundDefenseResolve,
+      scoringStands: scoringStands,
       magicCapability: magicCapability,
       expectedHealingCapability: expectedHealingCapability,
       reinforcementMetrics: reinforcementMetrics,
@@ -445,6 +450,67 @@ class ScoringEngine {
       }
     }
     return totalHealing;
+  }
+
+  /// Calculate total scoring stands in the army
+  /// Monsters: 3 by default, or numericSpecialRules['scoringStands'] override
+  /// Light regiments: 0 stands
+  /// Medium/Heavy regiments: count each stand
+  /// Characters: 1 stand (unless connected to light regiment = 0)
+  /// Character monsters: use monster rules, not character rules
+  int _calculateScoringStands(ArmyList armyList) {
+    int totalStands = 0;
+    final warbands = WarbandManager.inferWarbands(armyList);
+
+    for (final regiment in armyList.regiments) {
+      final isMonster = regiment.unit.type.toLowerCase() == 'monster';
+      final isCharacter = regiment.unit.regimentClass.toLowerCase() == 'character';
+      final isCharacterMonster = isCharacter && isMonster;
+
+      // 1. Handle Monsters (including character monsters)
+      if (isMonster) {
+        final scoringStandsOverride =
+            regiment.unit.numericSpecialRules['scoringStands'] as int?;
+        totalStands += scoringStandsOverride ?? 3;
+        continue;
+      }
+
+      // 2. Handle Regular Characters (not monsters)
+      if (isCharacter) {
+        // Find which regiment they're connected to
+        final warband = warbands.where((wb) => wb.character == regiment).firstOrNull;
+        
+        if (warband == null || warband.regiments.isEmpty) {
+          // No warband or no regiments → character counts as 1
+          totalStands += 1;
+        } else {
+          final connectedRegiment =
+              WarbandManager.getConnectedRegiment(regiment, warband.regiments);
+          
+          if (connectedRegiment == null) {
+            // No eligible connection (only monsters) → character counts as 1
+            totalStands += 1;
+          } else if (connectedRegiment.unit.regimentClass.toLowerCase() == 'light') {
+            // Connected to light → character counts as 0
+            totalStands += 0;
+          } else {
+            // Connected to medium/heavy → character counts as 1
+            totalStands += 1;
+          }
+        }
+        continue;
+      }
+
+      // 3. Handle Normal Regiments
+      final regimentClass = regiment.unit.regimentClass.toLowerCase();
+      if (regimentClass == 'light') {
+        totalStands += 0; // Light regiments don't score
+      } else if (regimentClass == 'medium' || regimentClass == 'heavy') {
+        totalStands += regiment.stands; // Each stand counts
+      }
+    }
+
+    return totalStands;
   }
 
   /// Calculate reinforcement timing metrics using Monte Carlo simulation

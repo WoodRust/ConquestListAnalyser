@@ -23,6 +23,7 @@ class ListScore {
       pointsPerEffectiveWoundDefense; // Points per effective wound (defense only)
   final double
       pointsPerEffectiveWoundDefenseResolve; // Points per effective wound (defense & resolve)
+  final int scoringStands; // Total scoring stands in army (for objective control)
   final int magicCapability; // Total spell dice from Priest/Wizard units
   final int
       expectedHealingCapability; // Total wounds healable per turn (regeneration + healing spells)
@@ -48,6 +49,7 @@ class ListScore {
     required this.resolveImpactPercentage,
     required this.pointsPerEffectiveWoundDefense,
     required this.pointsPerEffectiveWoundDefenseResolve,
+    required this.scoringStands,
     required this.magicCapability,
     required this.expectedHealingCapability,
     this.reinforcementMetrics,
@@ -73,6 +75,7 @@ class ListScore {
     double? resolveImpactPercentage,
     double? pointsPerEffectiveWoundDefense,
     double? pointsPerEffectiveWoundDefenseResolve,
+    int? scoringStands,
     int? magicCapability,
     int? expectedHealingCapability,
     ReinforcementMetrics? reinforcementMetrics,
@@ -96,6 +99,7 @@ class ListScore {
       resolveImpactPercentage: resolveImpactPercentage ?? this.resolveImpactPercentage,
       pointsPerEffectiveWoundDefense: pointsPerEffectiveWoundDefense ?? this.pointsPerEffectiveWoundDefense,
       pointsPerEffectiveWoundDefenseResolve: pointsPerEffectiveWoundDefenseResolve ?? this.pointsPerEffectiveWoundDefenseResolve,
+      scoringStands: scoringStands ?? this.scoringStands,
       magicCapability: magicCapability ?? this.magicCapability,
       expectedHealingCapability: expectedHealingCapability ?? this.expectedHealingCapability,
       reinforcementMetrics: reinforcementMetrics ?? this.reinforcementMetrics,
@@ -129,6 +133,7 @@ class ListScore {
           (json['pointsPerEffectiveWoundDefense'] as num).toDouble(),
       pointsPerEffectiveWoundDefenseResolve:
           (json['pointsPerEffectiveWoundDefenseResolve'] as num).toDouble(),
+      scoringStands: json['scoringStands'] as int,
       magicCapability: (json['magicCapability'] as int?) ?? 0,
       expectedHealingCapability:
           (json['expectedHealingCapability'] as int?) ?? 0,
@@ -160,6 +165,7 @@ class ListScore {
       'pointsPerEffectiveWoundDefense': pointsPerEffectiveWoundDefense,
       'pointsPerEffectiveWoundDefenseResolve':
           pointsPerEffectiveWoundDefenseResolve,
+      'scoringStands': scoringStands,
       'magicCapability': magicCapability,
       'expectedHealingCapability': expectedHealingCapability,
       'reinforcementMetrics': reinforcementMetrics?.toJson(),
@@ -177,6 +183,7 @@ Points: ${armyList.totalPoints}/${armyList.pointsLimit}
 SCORES:
 Total Wounds: $totalWounds
 Points per Wound: ${pointsPerWound.toStringAsFixed(2)}
+Scoring Stands: $scoringStands
 Impact Expected Volume: ${impactExpectedVolume.toStringAsFixed(1)}
 Expected Hit Volume: ${expectedHitVolume.toStringAsFixed(1)}
 Cleave Rating: ${cleaveRating.toStringAsFixed(1)}
