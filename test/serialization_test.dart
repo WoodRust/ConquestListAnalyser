@@ -343,12 +343,12 @@ void main() {
       // Verify reinforcement metrics were serialized correctly
       expect(deserialized.reinforcementMetrics, isNotNull,
           reason: 'reinforcementMetrics should not be null after deserialization');
-      expect(deserialized.reinforcementMetrics!.turn1Through5P50,
-          score.reinforcementMetrics!.turn1Through5P50);
-      expect(deserialized.reinforcementMetrics!.turn1Through5P20,
-          score.reinforcementMetrics!.turn1Through5P20);
-      expect(deserialized.reinforcementMetrics!.turn1Through5P80,
-          score.reinforcementMetrics!.turn1Through5P80);
+      expect(deserialized.reinforcementMetrics!.turn1Through4P50,
+          score.reinforcementMetrics!.turn1Through4P50);
+      expect(deserialized.reinforcementMetrics!.turn1Through4P20,
+          score.reinforcementMetrics!.turn1Through4P20);
+      expect(deserialized.reinforcementMetrics!.turn1Through4P80,
+          score.reinforcementMetrics!.turn1Through4P80);
     });
 
     test('ListScore copyWith preserves all fields including reinforcementMetrics', () {

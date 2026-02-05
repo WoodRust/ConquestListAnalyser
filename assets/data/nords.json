@@ -372,6 +372,10 @@
         },
         "specialRules": [
             {
+                "name": "Flank",
+                "description": "Once per Round, during this Regiment's Activation, it may perform a free Retreat Action after completing its Action."
+            },
+            {
                 "name": "Fluid Formation",
                 "description": "This Regiment can perform Volley Actions while in contact with Enemy Regiments."
             },

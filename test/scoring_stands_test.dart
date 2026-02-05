@@ -1,10 +1,8 @@
 import 'package:flutter_test/flutter_test.dart';
-import 'package:conquest_list_analyser/models/army_list.dart';
-import 'package:conquest_list_analyser/models/regiment.dart';
-import 'package:conquest_list_analyser/models/special_rule.dart';
-import 'package:conquest_list_analyser/models/unit.dart';
-import 'package:conquest_list_analyser/models/unit_characteristics.dart';
-import 'package:conquest_list_analyser/services/scoring_engine.dart';
+import 'package:conquest_analyzer/models/army_list.dart';
+import 'package:conquest_analyzer/models/regiment.dart';
+import 'package:conquest_analyzer/models/unit.dart';
+import 'package:conquest_analyzer/services/scoring_engine.dart';
 
 void main() {
   late ScoringEngine scoringEngine;
