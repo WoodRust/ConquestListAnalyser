@@ -6,14 +6,22 @@ class Regiment {
   final int stands;
   final int pointsCost;
   final List<String> upgrades;
+  final List<AuxiliaryProfile> auxiliaryStands;
   final bool isWarlord;
+  final String? sourceGroupId;
+  final String? sourceGroupName;
+  final int? sourceGroupPoints;
 
   const Regiment({
     required this.unit,
     required this.stands,
     required this.pointsCost,
     this.upgrades = const [],
+    this.auxiliaryStands = const [],
     this.isWarlord = false,
+    this.sourceGroupId,
+    this.sourceGroupName,
+    this.sourceGroupPoints,
   });
 
   /// Creates a Regiment from JSON data
@@ -23,7 +31,13 @@ class Regiment {
       stands: json['stands'] as int,
       pointsCost: json['pointsCost'] as int,
       upgrades: List<String>.from(json['upgrades'] ?? []),
+      auxiliaryStands: (json['auxiliaryStands'] as List? ?? [])
+          .map((stand) => AuxiliaryProfile.fromJson(stand))
+          .toList(),
       isWarlord: json['isWarlord'] as bool? ?? false,
+      sourceGroupId: json['sourceGroupId'] as String?,
+      sourceGroupName: json['sourceGroupName'] as String?,
+      sourceGroupPoints: json['sourceGroupPoints'] as int?,
     );
   }
 
@@ -34,12 +48,23 @@ class Regiment {
       'stands': stands,
       'pointsCost': pointsCost,
       'upgrades': upgrades,
+      'auxiliaryStands':
+          auxiliaryStands.map((stand) => stand.toJson()).toList(),
       'isWarlord': isWarlord,
+      'sourceGroupId': sourceGroupId,
+      'sourceGroupName': sourceGroupName,
+      'sourceGroupPoints': sourceGroupPoints,
     };
   }
 
-  /// Total wounds for this regiment (wounds per stand * number of stands)
-  int get totalWounds => unit.woundsPerStand * stands;
+  /// Total wounds for this regiment, including attached auxiliary stands.
+  int get totalWounds =>
+      unit.woundsPerStand * stands +
+      auxiliaryStands.fold(
+          0, (total, stand) => total + stand.characteristics.wounds);
+
+  /// Number of stands contributing to objective control.
+  int get scoringStandCount => stands + auxiliaryStands.length;
 
   /// Points per wound for this regiment
   double get pointsPerWound => pointsCost / totalWounds;
@@ -63,8 +88,25 @@ class Regiment {
   /// Impact value for this regiment from numeric special rules
   int get impactValue => unit.numericSpecialRules['impact'] as int? ?? 0;
 
-  /// Calculate cleave rating for this regiment (Expected Hit Volume * Cleave)
-  double get cleaveRating => expectedHitVolume * cleaveValue;
+  /// Calculate cleave rating using each stand profile's Cleave value.
+  double get cleaveRating {
+    var rating = _expectedHits(
+          unit.characteristics,
+          unit.specialRules,
+          stands,
+          hasLeader: true,
+        ) *
+        cleaveValue;
+    for (final auxiliary in auxiliaryStands) {
+      rating += _expectedHits(
+            auxiliary.characteristics,
+            auxiliary.specialRules,
+            1,
+          ) *
+          (auxiliary.numericSpecialRules['cleave'] as int? ?? 0);
+    }
+    return rating;
+  }
 
   /// Calculate ranged expected hits for this regiment
   double get rangedExpectedHits => calculateRangedExpectedHits();
@@ -99,49 +141,59 @@ class Regiment {
     return effectiveDefense;
   }
 
-  /// Calculate expected hit volume for this regiment
+  /// Calculate expected hit volume for this regiment, including auxiliaries.
   double calculateExpectedHitVolume({List<Regiment>? armyRegiments}) {
-    // Base attacks = attacks per stand * number of stands
-    int totalAttacks = unit.characteristics.attacks * stands;
+    var expectedHits = _expectedHits(
+      unit.characteristics,
+      unit.specialRules,
+      stands,
+      hasLeader: true,
+    );
 
-    // Add +1 if regiment has leader (check for "Leader" special rule)
-    final hasLeader = unit.specialRules
-        .any((rule) => rule.name.toLowerCase().contains('leader'));
-    if (hasLeader) {
+    if (armyRegiments != null &&
+        unit.name.toLowerCase() == 'werewargs' &&
+        armyRegiments.any(
+            (regiment) => regiment.unit.name.toLowerCase() == 'vargyr lord')) {
+      expectedHits = _expectedHits(
+        unit.characteristics,
+        unit.specialRules,
+        stands,
+        hasLeader: true,
+        forceFlurry: true,
+      );
+    }
+
+    for (final auxiliary in auxiliaryStands) {
+      expectedHits += _expectedHits(
+        auxiliary.characteristics,
+        auxiliary.specialRules,
+        1,
+      );
+    }
+
+    return expectedHits;
+  }
+
+  double _expectedHits(
+    UnitCharacteristics characteristics,
+    List<SpecialRule> rules,
+    int standCount, {
+    bool hasLeader = false,
+    bool forceFlurry = false,
+  }) {
+    var totalAttacks = characteristics.attacks * standCount;
+    if (hasLeader &&
+        rules.any((rule) => rule.name.toLowerCase().contains('leader'))) {
       totalAttacks += 1;
     }
 
-    // Calculate hit chance: (clash + 1) / 6
-    final clashValue = unit.characteristics.clash;
-    final hitChance = (clashValue + 1) / 6.0;
-
-    // Calculate base expected hits
-    double expectedHits = totalAttacks * hitChance;
-
-    // Check for Flurry special rule (either direct or granted by army effects)
-    bool hasFlurry = unit.specialRules
-        .any((rule) => rule.name.toLowerCase().contains('flurry'));
-
-    // Check for Feral Hunters ability from Vargyr Lord
-    if (!hasFlurry && armyRegiments != null) {
-      final hasVargyrLord = armyRegiments
-          .any((regiment) => regiment.unit.name.toLowerCase() == 'vargyr lord');
-      if (hasVargyrLord) {
-        final benefitsFromFeralHunters = unit.name.toLowerCase() == 'werewargs';
-        if (benefitsFromFeralHunters) {
-          hasFlurry = true;
-        }
-      }
-    }
-
+    final hitChance = (characteristics.clash + 1) / 6.0;
+    var expectedHits = totalAttacks * hitChance;
+    final hasFlurry = forceFlurry ||
+        rules.any((rule) => rule.name.toLowerCase().contains('flurry'));
     if (hasFlurry) {
-      // Calculate missed attacks
-      final missedAttacks = totalAttacks - expectedHits;
-      // Calculate additional hits from re-rolls
-      final additionalHits = missedAttacks * hitChance;
-      expectedHits += additionalHits;
+      expectedHits += (totalAttacks - expectedHits) * hitChance;
     }
-
     return expectedHits;
   }
 
@@ -149,47 +201,63 @@ class Regiment {
   /// Formula: Impact × (Clash ÷ 6) × Stands
   /// Note: Uses base clash (no +1 bonus), no Flurry re-rolls, no Leader bonus
   double calculateImpactExpectedVolume() {
-    // Get impact value from numeric special rules
-    if (impactValue == 0) {
-      return 0.0;
+    double expectedImpactHits = _impactFor(
+      unit.characteristics,
+      unit.numericSpecialRules,
+      stands,
+    );
+    for (final auxiliary in auxiliaryStands) {
+      expectedImpactHits += _impactFor(
+        auxiliary.characteristics,
+        auxiliary.numericSpecialRules,
+        1,
+      );
     }
-
-    // Calculate hit chance: clash / 6 (no +1 bonus for Impact)
-    final clashValue = unit.characteristics.clash;
-    final hitChance = clashValue / 6.0;
-
-    // Impact attacks per stand multiplied by number of stands
-    final totalImpactAttacks = impactValue * stands;
-
-    // Expected impact hits (NO Flurry re-rolls for Impact)
-    final expectedImpactHits = totalImpactAttacks * hitChance;
-
     return expectedImpactHits;
+  }
+
+  double _impactFor(
+    UnitCharacteristics characteristics,
+    Map<String, dynamic> numericRules,
+    int standCount,
+  ) {
+    final impact = numericRules['impact'] as int? ?? 0;
+    return impact * standCount * characteristics.clash / 6.0;
   }
 
   /// Calculate ranged expected hits for this regiment
   double calculateRangedExpectedHits() {
-    // If unit has no barrage capability, it cannot shoot at all
-    if (barrageValue == 0) {
-      return 0.0;
+    var expectedHits = _rangedHitsFor(
+      unit.characteristics,
+      unit.numericSpecialRules,
+      stands,
+      hasLeader: true,
+      hasLeaderRule: unit.specialRules
+          .any((rule) => rule.name.toLowerCase().contains('leader')),
+    );
+    for (final auxiliary in auxiliaryStands) {
+      expectedHits += _rangedHitsFor(
+        auxiliary.characteristics,
+        auxiliary.numericSpecialRules,
+        1,
+      );
     }
+    return expectedHits;
+  }
 
-    // Start with base barrage value from special rules multiplied by stands
-    int totalBarrage = barrageValue * stands;
+  double _rangedHitsFor(
+    UnitCharacteristics characteristics,
+    Map<String, dynamic> numericRules,
+    int standCount, {
+    bool hasLeader = false,
+    bool hasLeaderRule = false,
+  }) {
+    final barrage = numericRules['barrage'] as int? ?? 0;
+    if (barrage == 0) return 0.0;
 
-    // Add +1 barrage if regiment has leader (only if unit can already shoot)
-    final hasLeader = unit.specialRules
-        .any((rule) => rule.name.toLowerCase().contains('leader'));
-    if (hasLeader) {
-      totalBarrage += 1;
-    }
-
-    // Calculate hit chance: volley / 6
-    final volleyValue = unit.characteristics.volley;
-    final hitChance = volleyValue / 6.0;
-
-    // Calculate expected ranged hits
-    return totalBarrage * hitChance;
+    var totalBarrage = barrage * standCount;
+    if (hasLeader && hasLeaderRule) totalBarrage += 1;
+    return totalBarrage * characteristics.volley / 6.0;
   }
 
   /// Calculate cleave rating for this regiment with army context

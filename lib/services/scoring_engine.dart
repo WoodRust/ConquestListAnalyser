@@ -212,7 +212,7 @@ class ScoringEngine {
           regiment, 'defense', armyEffects);
       final effectiveEvasion = ArmyEffectManager.getEffectiveCharacteristic(
           regiment, 'evasion', armyEffects);
-      
+
       // Use the better of defense or evasion (players roll against higher value)
       final bestDefensiveStat = max(effectiveDefense, effectiveEvasion);
 
@@ -464,9 +464,8 @@ class ScoringEngine {
 
     for (final regiment in armyList.regiments) {
       final isMonster = regiment.unit.type.toLowerCase() == 'monster';
-      final isCharacter = regiment.unit.regimentClass.toLowerCase() == 'character';
-      final isCharacterMonster = isCharacter && isMonster;
-
+      final isCharacter =
+          regiment.unit.regimentClass.toLowerCase() == 'character';
       // 1. Handle Monsters (including character monsters)
       if (isMonster) {
         final scoringStandsOverride =
@@ -478,19 +477,21 @@ class ScoringEngine {
       // 2. Handle Regular Characters (not monsters)
       if (isCharacter) {
         // Find which regiment they're connected to
-        final warband = warbands.where((wb) => wb.character == regiment).firstOrNull;
-        
+        final warband =
+            warbands.where((wb) => wb.character == regiment).firstOrNull;
+
         if (warband == null || warband.regiments.isEmpty) {
           // No warband or no regiments → character counts as 1
           totalStands += 1;
         } else {
           final connectedRegiment =
               WarbandManager.getConnectedRegiment(regiment, warband.regiments);
-          
+
           if (connectedRegiment == null) {
             // No eligible connection (only monsters) → character counts as 1
             totalStands += 1;
-          } else if (connectedRegiment.unit.regimentClass.toLowerCase() == 'light') {
+          } else if (connectedRegiment.unit.regimentClass.toLowerCase() ==
+              'light') {
             // Connected to light → character counts as 0
             totalStands += 0;
           } else {
@@ -506,7 +507,7 @@ class ScoringEngine {
       if (regimentClass == 'light') {
         totalStands += 0; // Light regiments don't score
       } else if (regimentClass == 'medium' || regimentClass == 'heavy') {
-        totalStands += regiment.stands; // Each stand counts
+        totalStands += regiment.scoringStandCount;
       }
     }
 

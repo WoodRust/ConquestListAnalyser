@@ -37,7 +37,7 @@ class _MainScreenState extends State<MainScreen> {
     try {
       // Parse list first to extract name
       final armyList = await _parser.parseList(inputText);
-      
+
       setState(() {
         _isLoading = false;
       });
@@ -171,11 +171,37 @@ class _MainScreenState extends State<MainScreen> {
     final buffer = StringBuffer();
     buffer.writeln('=== The Last Argument of Kings ===');
     buffer.writeln();
-    buffer.writeln('${score.armyList.name} [${score.armyList.totalPoints}/${score.armyList.pointsLimit}]');
+    buffer.writeln(
+        '${score.armyList.name} [${score.armyList.totalPoints}/${score.armyList.pointsLimit}]');
     buffer.writeln(score.armyList.faction);
     buffer.writeln();
 
+    final emittedGroups = <String>{};
     for (final regiment in score.armyList.regiments) {
+      final groupId = regiment.sourceGroupId;
+      if (groupId != null) {
+        if (emittedGroups.contains(groupId)) continue;
+        emittedGroups.add(groupId);
+        final grouped = score.armyList.regiments
+            .where((candidate) => candidate.sourceGroupId == groupId)
+            .toList();
+        final selections = <String>[];
+        for (final chariot in grouped) {
+          final existingIndex = selections.indexOf(chariot.unit.name);
+          if (existingIndex >= 0) {
+            selections[existingIndex] =
+                '${chariot.unit.name} (${grouped.where((item) => item.unit.name == chariot.unit.name).length})';
+          } else {
+            selections.add(chariot.unit.name);
+          }
+        }
+        buffer.write(
+            '* ${regiment.sourceGroupName} (${grouped.length}) [${regiment.sourceGroupPoints}]');
+        buffer.write(': ${selections.join(", ")}');
+        buffer.writeln();
+        continue;
+      }
+
       if (regiment.unit.regimentClass == 'character') {
         buffer.write('== ${regiment.unit.name} [${regiment.pointsCost}]');
       } else {
@@ -302,6 +328,4 @@ class _MainScreenState extends State<MainScreen> {
       ),
     );
   }
-
-
 }

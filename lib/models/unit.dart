@@ -12,6 +12,7 @@ class Unit {
   final Map<String, dynamic> numericSpecialRules;
   final List<SupremacyAbility> supremacyAbilities;
   final List<DrawEvent> drawEvents;
+  final List<AuxiliaryProfile> auxiliaryOptions;
   final int points;
   final int? pointsPerAdditionalStand;
   final String? officerUpgrades;
@@ -27,6 +28,7 @@ class Unit {
     required this.numericSpecialRules,
     required this.supremacyAbilities,
     required this.drawEvents,
+    this.auxiliaryOptions = const [],
     required this.points,
     this.pointsPerAdditionalStand,
     this.officerUpgrades,
@@ -52,6 +54,9 @@ class Unit {
       drawEvents: (json['drawEvents'] as List)
           .map((event) => DrawEvent.fromJson(event))
           .toList(),
+      auxiliaryOptions: (json['auxiliaryOptions'] as List? ?? [])
+          .map((option) => AuxiliaryProfile.fromJson(option))
+          .toList(),
       points: json['points'] as int,
       pointsPerAdditionalStand: json['pointsPerAdditionalStand'] as int?,
       officerUpgrades: json['officerUpgrades'] as String?,
@@ -72,6 +77,8 @@ class Unit {
       'supremacyAbilities':
           supremacyAbilities.map((ability) => ability.toJson()).toList(),
       'drawEvents': drawEvents.map((event) => event.toJson()).toList(),
+      'auxiliaryOptions':
+          auxiliaryOptions.map((option) => option.toJson()).toList(),
       'points': points,
       'pointsPerAdditionalStand': pointsPerAdditionalStand,
       'officerUpgrades': officerUpgrades,
@@ -145,6 +152,42 @@ class UnitCharacteristics {
       'resolve': resolve,
       'defense': defense,
       'evasion': evasion,
+    };
+  }
+}
+
+/// Profile for an auxiliary stand attached to a parent regiment.
+class AuxiliaryProfile {
+  final String name;
+  final UnitCharacteristics characteristics;
+  final List<SpecialRule> specialRules;
+  final Map<String, dynamic> numericSpecialRules;
+
+  const AuxiliaryProfile({
+    required this.name,
+    required this.characteristics,
+    required this.specialRules,
+    required this.numericSpecialRules,
+  });
+
+  factory AuxiliaryProfile.fromJson(Map<String, dynamic> json) {
+    return AuxiliaryProfile(
+      name: json['name'] as String,
+      characteristics: UnitCharacteristics.fromJson(json['characteristics']),
+      specialRules: (json['specialRules'] as List? ?? [])
+          .map((rule) => SpecialRule.fromJson(rule))
+          .toList(),
+      numericSpecialRules:
+          Map<String, dynamic>.from(json['numericSpecialRules'] ?? {}),
+    );
+  }
+
+  Map<String, dynamic> toJson() {
+    return {
+      'name': name,
+      'characteristics': characteristics.toJson(),
+      'specialRules': specialRules.map((rule) => rule.toJson()).toList(),
+      'numericSpecialRules': numericSpecialRules,
     };
   }
 }
