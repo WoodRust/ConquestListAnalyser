@@ -1,0 +1,847 @@
+ARMY LISTS
+The force you bring to the Battlefield is chosen
+using an Army l ist. To help ensure you’re
+playing a fair and balanced game, these Army lists
+are chosen to equal points values.
+POINTS VA LUES
+Each Stand in a game of Conquest has a points value, representing its overall worth on the Battlefield.
+Stands with higher points values are generally better
+or more flexible fighters, while those with lower points
+values are less effective, or are useful in a narrow set of
+circumstances. Your Army’s points value is equal to
+the total points values of every Stand in your Army,
+plus those of any upgrades you’ve purchased for
+those Stands. The higher the points value, the more
+lethal the Army you’ve selected. By choosing Armies
+to equal points values, you and your opponent can
+ensure a fair, challenging battle.
+SIZE OF BATTLE
+By default, we recommend battles of 2,000
+points – this generally gives enough slaughter
+for an evening’s gaming. However, there’s nothing
+to stop you from choosing a larger or smaller size
+for your confrontation. Indeed, smaller games of
+1,000 points are an excellent way to learn the rules.
+BUILDING AN ARMY
+An Army consists of two types of entities: Character
+Stands and Regiments. You may include any number
+of either in your Army, subject to the following rules:
+THE WARLORD
+You must include one Character Stand to be your
+Warlord – your avatar on the Battlefield.
+WARBANDS
+Each Character Stand in your Army (including the
+Warlord) must be accompanied by a Warband of
+Regiments. You’ll normally have a choice of Regiments
+to choose from, but you must always include a
+Regiment of the same type – i.e Infantry, Cavalry
+or Brute – as your Character Stand to ensure that
+they have a Regiment to join at the start of the battle.
+Each Regiment is drawn from the Regiments section
+of the Army List. It will also, depending on the
+Character Stand it is chosen for, count as a Mainstay
+or a Restricted choice. Each Character Stand's
+Warband has a Regiment allowance of 4 Regiments.
+A Warband can include as many Mainstay choices as
+your Warband allowance allows. Restricted choices are
+more limited, as the name suggests. Each Warband can
+only include two Restricted choices from all the options
+presented. This can be two of the same Regiment, or
+two different Regiments from the list. As a further
+restriction, you must include one Mainstay choice
+for each Restricted choice in your Army. Therefore,
+a Warband that includes two Restricted choices will
+always have at least two Mainstay choices too. Note
+that a Regiment might be a Mainstay choice for one
+Character type, and a Restricted choice for another
+– check the Character’s Army List entry to be sure.
+OPTIONAL UPGRADES
+Many Character Stands and Regiments have
+additional options that can be purchased for them,
+such as Abilities, Command Models, or even extra
+Stands (in the case of Regiments). If you purchase
+any of these upgrades, simply add the points cost to
+that of the Character Stand or Regiment for which
+the upgrade was purchased.
+BATTLEFIELD ROLES
+Regiments and [Character] Stands in your Army
+have special descriptors called Battlefield Roles.
+These are supertypes that are used to identify a game
+entity as part of a broader category going beyond
+Type or Class.
+These supertypes appear in the Battlefield Roles section of each game entity's Army List Entry and can
+be found within brackets. E.g. [ Jotun] for Nords
+and City States.
+Often abilities or Special Rules may refer to these
+Battlefield Roles for targetting purposes. If for
+example all [The Tribes] regiments are affected
+by a Supremacy Ability then all Regiments with that
+supertype will be affected regardless of Type or Class.
+A [Character]'s Battlefield Role is not applied to
+the Regiment they are currently attached to.
+Finally, it is possible to refine targeting restrictions
+further. For example a W'adrhun ability could target
+only Infantry [The Tribes] Regiments leaving
+Warbred (who are Brutes) out.
+SPECIAL RULES AND SUPR EMACY
+ABILITIES
+Certain rules like those acquired through the purchasing of Masteries, Character Upgrades and Supremacy
+Abilities may provide unique abilities that extend
+beyond merely providing Characteristic upgrades to
+[Character] or Regiments and instead benefit an
+entire Warband or even the entire Army.
+This raises the question of whether these abilities are
+"always active", "activated" or only applicable when
+the Character Stand or Regiment is on the Battlefield.
+For this reason rules like this are followed by identifiers
+that allow the Player to easily recognize when these
+rules are applied. The identifiers are the following:
+Always Active: This Ability is always considered to
+be active regardless of whether the [Character]
+or Regiment is currently on the Battlefield, in
+Reinforcements or having been destroyed.
+Activated: This Ability may be used once per Battle
+and requires the [Character] or Regiment to
+currently be on the Battlefield. Once Activated the
+effects last until the end of the Round regardless if
+the [Character]or Regiment has been removed
+from the Battlefield in the meantime.
+Battlefield: This Ability is considered to be active
+while the [Character] or Regiment is currently
+on the Battlefield.
+ICE,FLESH & BLOOD
+Had the gods themselves created a crucible to test
+mankind they could not have crafted a worse hell than
+the icy lands of the northern continent. It is bound
+by ice nine months of every year, surrounded by the
+most dangerous waters man has yet to discover and
+hemmed in by peaks that have dominated the landscape,
+untamed and unbeaten by the hand of man since the
+birth of the planet.
+Now make those peaks the home of the Ice Jotnar, fierce
+giants, spawn of Thyrm, firstborn of Ice and fire. Make
+its forests and glades the prowling grounds of the spawn
+of Fenris, wolf children of a mad god. Fill its lakes and
+seas with spawn of Jorgumandr and scorch what few
+fertile areas remain with the wrath of Surtr and his
+children and you might begin to understand and fear
+what it is the Nords have accomplished.
+Friendly Regiments can benefit from the Inspired
+Special Rule while Charging through a piece of
+Hindering Terrain.
+TR IBAL TACTICS
+Their wrath shook the mountains to their very core. The
+untrammeled fury of their Einherjar raged across the
+icy landscape, sweeping the Jotnar and all their works
+before them in a tidal wave of blood and savagery. It
+is claimed that their savagery was such that the skies
+themselves shied from witnessing their vengeance,
+refusing to clear even after the Jotnar and their foul, icy
+sorcery were broken, as the Jotnar fell, the remnants of
+humanity flocked to the Einherjar, whether liberated
+slaves or desperate survivors, they fought with maddened
+fury along their superhuman survivors.
+[Always Active]: Friendly [Mortals] and
+[Exalted] Regiments as well as [Characters]
+are affected by Tribal Tactics.
+Note: Same Tribal Tactics do not stack.
+[Activated] Once per game: At the end of the
+Supremacy Phase select a single Tribal Tactic as
+seen below, it grants its benefits until the end of
+the Round .
+1) Direct Assault!
+The Regiments gain Relentless Blows Special Rule.
+2) Draw Them In!
+The Regiments gain Tenacious (+1) Special Rule
+(to a maximum of 2).
+3) Take the Flanks!
+Before Rolling a die, Friendly Regiments Charging
+Enemy Regiments in the flank or the Rear can choose
+to count as rolling 4 for the purpose of determining
+Charge Distance.
+Regiments Charging an Enemy Regiment’s Flank
+or Rear gain the Fury Special Rule.
+Upon declaring a Volley Action, Friendly Regiments
+immediately gain the Opportunist Special Rule.
+PROPHECY UNFULFILLED
+Around each of the Einherjar a battle hardened group
+of veterans and survivors had gathered, these would
+form the nucleus around which human dominion of
+the north would come.
+Still mindful of their creators, the Einherjar led the
+surviving Nord as kings, leaders and seers, denying all
+claims at divinity, guiding the Nords once more along
+to the path of the almost forgotten Aesir and Vanir,
+promising that the gods would return. Their vengeful
+eyes are turned over to the south, bent on revenge on
+the children of Surtr, the god who stole their destiny.
+While an Enemy Regiment is currently Engaged,
+Friendly Regiments add +2" to their Charge Distance
+when Charging that Enemy Regiment.
+SUPR EMACY ABILITIES
+Each [Character] grants a different Supremacy Ability if chosen as your Warlord.
+BLOODED
+Driven By Carnage [Always Active]:
+• Friendly [Half-Bloods] Regiments Heal 1 wound per Enemy Stand destroyed as a result of their Clash
+Actions and Impact Attacks. This effect is applied after Morale Tests are resolved.
+• After the Regiment this [Character] is currently attached to destroys an Enemy Regiment with a
+Clash or Charge Action, it can perform an out-of-sequence Reform or Combat Reform Action.
+[Activated part of the Ability]: Until the end of the Round
+• After a Friendly [Half-Bloods] Regiment destroys one or more Enemy Regiments with a Clash Action
+or Impact Attacks, it can perform an out-of-sequence Reform or Combat Reform Action.
+• Double the Healing from Driven by Carnage.
+VARGYR LORD
+Wild Beasts [Always Active]:
+• Friendly [Half-Bloods] Regiments may perform Impact Attacks when Charging through or being
+within a piece of Hindering Terrain.
+[Activated Part of the Ability]
+• Friendly [Half-Bloods] Regiments gain the Shock Special Rule until the end of the Round.
+• Friendly [Half-Bloods] Regiments gain the FurySpecial Rule until the end of the Round.
+JARL
+Raid Tactics! [Always Active]:
+• You can use the [Activated] part of Tribal Tactics three times during the game, but you must select a
+different Tribal Tactic each time.
+• [Mortal] and [Exalted] Regiments add +1 to their Reinforcement Rolls.
+• Friendly [Mortal] and [Exalted] Regiments cannot be Shattered.
+[Activated Part of the Ability]:
+• Friendly [Mortal] and [Exalted] Regiments gain Fearless, Juggernaut and Inspired Special Rules
+until the end of the Round.
+7
+SUPR EMACY ABILITIES
+KONUNGYR
+Ruler of Manheim [Always Active]:
+• You can use the [Activated] part of Tribal Tactics at the end of each Supremacy Phase, but you cannot
+choose the same Tribal Tactic as in the previous Round.
+• Friendly [Mortal] and [Exalted] Regiments cannot be Shattered.
+[Activated part of the Ability]: All Friendly Regiments and [Characters] are affected by All Tribal
+Tactics until the end of the Round.
+Note: You count as having chosen all Tribal Tactics when using the activated part of this ability.
+SHAMAN
+Skývald [Always Active]:
+• The [Character] and Regiment they are currently attached to ignore the effects of Water, Hindering,
+Perilous and Dangerous Zonal Terrain.
+• You can use [Activated] part of this Supremacy twice per game to gain one of its effects. You cannot
+use the same effect twice.
+[Activated Part of the Ability]
+• Niflmire: All Regiments Barrage Range is reduced by half until the end of the Round.
+• Hregg: Target one Enemy Regiment on the battlefield. It suffers 5 wounds which cannot be reduced or
+avoided. These wounds do not trigger Morale Tests.
+• Snæstormur: All Enemy Regiments reduce their March Characteristic by -1 and cannot Re-Roll dice
+when determining their Charge distance until the end of the Round.
+VOLVA
+Divine Protection [Always Active]:
+• Friendly Regiments add +1 to their Evasion Characteristic (to a maximum of 2).
+[Activated Part of the Ability]
+• Until the end of the Round, the Warlord may Target Friendly Regiments with Spellcasting Actions regardless
+of the Spellcaster's Line of Sight, range or Engagement. Spells with a range of "Self " are unaffected.
+8
+Blooded 100 Points
+Type Class M V C A W R D E Supremacy
+Infantry - - 2 4 5 5 3 2 0 Driven by Carnage
+Special Rules Cleave (2), Impact (2)
+Bestial Devolution: The [Character] may be attached to a Friendly [Half-Bloods] Regiment regardless of its Class.
+Slain Bigger: While the [Character] participates in a Duel against a Monster [Character]
+Regiment, or a [Character] with the Rider Special Rule the [Character] adds +3 to their Evasion
+Characteristic (to a maximum of 3) and gains the Fearless Special Rule.
+This [Character] Stand may be attached to Brute [Half-Bloods] Regiments even though it is an
+Infantry [Character] Stand.
+Character
+• This Character Stand is comprised of 1 Stand with 1 Model on it.
+Battlefield Role: [Character], [Half-Bloods]
+Character Upgrades
+Trove-Finds: May purchase one Trove-find at the indicated point cost.
+Masteries: The Character Stand may purchase a single Mastery of any category.
+Warband
+Mainstay: Stalkers
+Trolls
+Ugr
+Restricted: Werewargss
+Fenr Beastpack
+Goltr Beastpack
+Mountain Jotnar
+Ulfhednar
+Bearsarks
+9
+Jarl 100 Points
+Type Class M V C A W R D E Supremacy
+Infantry - - 2 3 6 4 3 2 0 Raid Tactics!
+Special Rules Shield, Impact (2), Forward Force
+Slain Bigger: While the [Character] participates in a Duel against a Monster [Character]
+Regiment, or a [Character] with the Rider Special Rule the [Character] adds +3 to their Evasion
+Characteristic (to a maximum of 3) and gains the Fearless Special Rule.
+Character
+• This Character Stand is comprised of 1 Stand with 1 Model on it.
+Battlefield Role: [Character], [Mortals]
+Character Upgrades
+Trove-Finds: May purchase one Trove-find at the indicated point cost.
+Masteries: The Character Stand may purchase a single Mastery of any category.
+Warband
+Mainstay: Raiders
+Huskarls
+Ulfhednar
+Restricted: Bearsarks
+Bow-Chosen
+Steel-Chosen
+Sea Jotnar
+10
+Konungyr 120 Points
+Type Class M V C A W R D E Supremacy
+Infantry - - 3 4 7 5 4 2 2 Ruler of Manheim
+Special Rules Cleave (1), Terrifying (1), Impact (3)
+Slain Bigger: While the [Character] participates in a Duel against a Monster [Character]
+Regiment, or a [Character] with the Rider Special Rule the [Character] adds +3 to their Evasion
+Characteristic (to a maximum of 3) and gains the Fearless Special Rule.
+Character
+• This Character Stand is comprised of 1 Stand with 1 Model on it.
+Battlefield Role: [Character], [Exalted]
+Character Upgrades
+Trove-Finds: May purchase up to two Trove-finds at the indicated point cost.
+Masteries: The Character Stand may purchase a single Mastery of any category.
+Your Army cannot contain more than one Konungyr.
+Warband
+Mainstay: Steel-Chosen
+Bow-Chosen
+Huskarls
+Restricted: Ice Jotnar
+Mountain Jotnar
+Sea Jotnar
+11
+Shaman 80 Points
+Type Class M V C A W R D E Supremacy
+Infantry - - 1 2 3 4 3 1 1 Skývald
+Special Rules Priest (6)
+Character
+• This Character Stand is comprised of 1 Stand with 1 Model on it.
+Battlefield Role: [Character], [Mortals]
+Spells
+The Shaman knows all of the following Spells at no additional point cost
+• Blurred Vision • Reshape Destiny
+• Mist Weave • Hoarfrost
+• Enrage • Dominate
+Character Upgrades
+Trove-Finds: May purchase one Trove-find at the indicated point cost.
+Masteries: The Character Stand may purchase a single Mastery of any category.
+Warband
+Mainstay: Raiders
+Ulfhednar
+Restricted: Bearsark
+Mountain Jotnar
+Sea Jotnar
+Ice Jotnar
+12
+Volva 100 Points
+Type Class M V C A W R D E Supremacy
+Infantry - - 1 3 5 4 3 2 0 Divine Protection
+Special Rules Priest (6), Devout
+Character
+• This Character Stand is comprised of 1 Stand with 1 Model on it.
+Battlefield Role: [Character], [Mortals]
+Spells
+The Volva knows all of the following Spells at no additional point cost.
+• Fruit of the Golden Tree • Glory of Valhalla
+• Warbringer’s Light • Aspect of Fenrir
+• Hela’s Caress
+Character Upgrades
+Trove-Finds: May purchase one Trove-find at the indicated point cost.
+Masteries: The Character Stand may purchase a single Mastery of any category.
+Warband
+Mainstay: Valkyries
+Huskarls
+Raiders
+Restricted: Ulfhednar
+13
+Vargyr Lord 110 Points
+Type Class M V C A W R D E Supremacy
+Brutes - - 1 3 6 5 3 3 1 Wild Beasts
+Draw Events Regeneration (2)
+Special Rules Cleave (1), Impact (4), Irregular
+Slain Bigger: While the [Character] participates in a Duel against a Monster [Character]
+Regiment, or a [Character] with the Rider Special Rule the [Character] adds +3 to their Evasion
+Characteristic (to a maximum of 3) and gains the Fearless Special Rule.
+Bestial Devolution: The [Character] may be attached to a Friendly [Half-Bloods] Regiment regardless of its Class.
+This [Character] Stand may be attached to any Friendly [Half-Bloods] Regiment even though it is
+a Brute [Character] Stand.
+Character
+• This Character Stand is comprised of 1 Stand with 1 Model on it.
+Battlefield Role: [Character], [Half-Bloods]
+Character Upgrades
+Trove-Finds: May purchase one Trove-find at the indicated point cost.
+Masteries: The Character Stand may purchase a single Mastery of any category.
+Warband
+This Warband may not contain more than 2 Regiments of Goltr Beastpack.
+This Warband may not contain more than 2 Regiments of Fenr Beastpack.
+Mainstay: Werewargs
+Fenr Beastpack
+Goltr Beastpack
+Ugr
+Restricted: Mountain Jotnar
+Trolls
+14
+Jotnar Seidr 260 Points
+Type Class M V C A W R D E
+Monster Heavy 7 2 3 12 20 4 3 2
+Special Rules Cleave (2), Fearless, Hardened (1), Impact (6), Tenacious (1), Terrifying (1)
+Seizing a New Future [Always Active]:
+All Friendly [ Jotun] Regiments
+• Gain the Fearless Special Rule while within range of an Objective Zone.
+• Ignore the effects of Special Rules or Abilities that would have them count as less Stands or none at all for
+the purposes of Seizing Objective Zones while currently in contact with an Enemy Regiment.
+Crushing Avalanche:
+• All Friendly [ Jotun] Regiments declaring a Charge Action while within 12" of this Regiment gain the
+Brutal Impact (+1) and Impact (+2) Special Rules until the end of the Round.
+Note: Multiple instances of the same Special Rule do not Stack.
+Lord of Titans: A Jotnar Seidr is considered to be a Regiment by itself in addition to it also being a
+Character Stand and therefore uses all the relevant Regiment rules as if it was a Monster Regiment. A Jotnar
+Seidr Activates as if it was a Regiment, performs two Actions per Activation and has access to all Out-ofCombat and Combat Actions a Regiment has.
+In addition, the Jotnar Seidr may also use a Duel Action. The Jotnar Seidr may not join another Regiment
+and does not need to include a Monster Regiment in its Warband to enter the Battlefield. The Jotnar Seidr
+must include at least one other Regiment in its Warband.
+This Stand counts as 6 for the purposes of Seizing Objective Zones.
+15
+Jotnar Seidr Cont.
+Character
+• This Character Stand is comprised of 1 Monster Stand with 1 Model on it.
+Battlefield Role: [Character], [ Jotun]
+Character Upgrades
+The Jotnar Seidr must select one of the following weapon options at no additional cost:
+• Skorge (Axe): This Regiment gains the Cleave (+1) Special Rule. In addition, if it inflicts at least one
+Wound on an Objective Marker, that Objective Marker is immediately destroyed.
+• Dori (Spear): This Character Stand gains the Unyielding Special Rule.
+A Jotnar Seidr cannot purchase any Trove-Finds or Masteries and cannot be the Warlord.
+Warband
+The Jotnar Seidr can only have up to two Regiments in its Warband
+Mainstay: Mountain Jotnar Restricted: Ice Jotnar
+Sea Jotnar
+16
+Tribal Treasures
+Raven Messengers 10 points
+([Mortals] Character Stands only.)
+The Eagle, the Bear, the Wolf and the Raven feature
+prominently in Nord mythology. While their roles
+are complex and varied, few would challenge that the
+Raven is a creature of cunning and deep memory
+whose favor marks the greatest of leaders… or the most
+ruthless.
+During the Reinforcement Phase, if at least one of
+your Regiments is Engaged, select an additional
+Regiment to automatically pass its Reinforcement Roll.
+Heralds of the Storm 10 pts
+(Shaman and Volva Only)
+Any Working of magic is difficult, be it by Gifted individuals or the Faithful, requiring immense concentration in thought and precision in method. Bringing
+to ghostly life the circumstances that birthed it, these
+wands made of pieces of old oak or drake bones struck
+by lightning, once broken summon an aetheric storm
+that makes tampers with the mystical energies around
+them, while making concentration incredibly difficult.
+Al l Regiments currently within 10" of this
+[Character] Stand counts as +3 Stands for the
+purposes of Scaling when they become the Target
+of an Enemy Spellcasting Action.
+Coils of the Serpent 20 points
+Ripped from the flank of a jormungandr serpent, blood
+still drips from this rough banner, imbuing the unit that
+bears it with some of the serpent’s unholy resilience.
+The Regiment this Character Stand is currently
+attached to, adds +1 to its Evasion Characteristic
+(to a maximum of 2).
+Figurehead of the Naglfar 20 points
+Naglfar was the ship of Jarl Vignik Vignarson, who
+during Ragnarök had been tasked with sailing through
+the Hreggfjorden under cover of mist, in a flanking
+maneuver against Surtr’s forces. They were never seen
+again. After the return of the Einherjar, on a rare clear
+morning in Hreggford, Naglfar landed quietly on the
+shores, intact but bereft of crew or their remains.
+When the Regiment this [Character] Stand is
+currently attached to becomes the Target of an Enemy
+Regiment's Volley Action it gains the Tenacious (2)
+Special Rule until the end of that Action.
+TROVE-FINDS
+Each Trove-Find may only be included in your Army once.
+CHAR ACTERS AND CHAR ACTER UPGR ADES
+Magical Items and Heraldry are an important part of a Faction’s culture and history. Each Faction has access
+to a list of Character Upgrades as described in their Army List. Unless noted otherwise, each entry may only
+be selected once in your Army List, and it does not have to be visually represented on the Character Stand.
+Each Character Upgrade confers abilities or attributes to the Character Stand, and their bonuses are lost as
+soon as the Character Stand is removed from the game for any reason.
+Unless otherwise specified, the following restriction apply for Nord Character Stands:
+• If a Character Stand can have more than one Character Upgrade, they must purchase upgrades
+ from different categories.
+Occultists Charm 10 points
+(Shaman and Jarl Only.)
+Character gains access to Bloody Sacrifice [Draw
+Event]:
+• The Regiment this [Character] is currently
+attached to immediately suffers 2 Wounds. These
+Wounds do not trigger Morale Tests.
+• The Regiment this [Character] is attached to
+adds +1 to its March Characteristic until the end
+of its first Action.
+Armors
+Ty Jokull, the Rimeheart 40 points
+Wrested from the shattered form of Aurgelmir, greatest
+and last of the great Ice Jotnar sorcerers by the Einherjar
+Svankarl, this unmelting slab of ice has been fashioned
+into a shield that absorbs the power of even the most
+powerful of blows by cracking and then refreezing.
+The Regiment this [Character] is currently
+attached to gain the Hardened (1) Special Rule
+Massive Frame 10 points
+While the average Nord towers a head over most ‘sunlanders’, there are a few rare individuals who tower
+above even them. This height is often ascribed to a long
+lost Einherjar ancestor, but whatever the cause they
+make terrifying foes to face with a naked blade, capable of shrugging off blows and shattering enemy lines.
+The [Character] Stand gains the Impact (+2)
+and Linebreaker Special Rules.
+Mark of the Beast 5 points
+The Regiment this [Character] is currently
+attached to, gains [Half-Bloods] Battlefield
+Role in addition to any other ones it currently has.
+18
+Weapons
+Elding, the Skypiercer 30 points
+(Blooded, Jarl or Kongyur only)
+• The [Character] and Regiment they are currently attached to, gains the Sureshot Special Rule.
+• The [Character] gains Barrage (5), Range X
+Special Rules where X is equal to the Range of
+the Barrage Special Rule of the Regiment this
+[Character] is attached to.
+Rjóða, the Red Bringer 30 points
+Seven bright, flawless blades surface time and again
+in Nord myth, granting their wielders fame, glory and
+victory, before the curses bound into each cause their
+death. Rjóða, the Red Bringer, causes the wearer to
+enter an uncontrollable rage when drawn, making the
+warrior unstoppable in the field. Invariably, its wielders
+will lose the ability to tell friend from foe, killing friends
+and family before guilt drives them to exile and suicide.
+The Regiment this [Character] Stand is currently
+attached to, gains the Impact (2) Special Rule.
+In addition, this [Character] Stand adds +2 to its
+Attack Characteristic and may always Die Fighting!
+regardless of whether the [Character] or their
+Regiment has Acted this Round.
+Blóðíss, the Blood Thirster 20 points
+• When performing a Clash or Duel Action, before
+the Roll to Hit step, this [Character] may suffer
+up to 3 Wounds, and add that many to its Attack
+Characteristic until the end of that Action. You
+cannot choose to suffer a number of Wounds that
+would destroy the [Character].
+• This [Character] cannot deny a Duel.
+Vinda, the Dancer 20 points
+Second of the Seven Blades, Vinda is a slender, well
+balanced and flexible blade that seems to move of its
+own accord, seeking holes and weaknesses in the opponent’s guard. Her bearer is doomed to slowly lose all
+sense of humor, and in time to come to perceive even
+the friendliest of gestures as a deadly insult.
+For every two successful Hits (rounding up) this
+Character Stand makes during a Clash or Duel
+Action, roll one additional Attack and add any Hits
+to the total number of Hits. These additional Hits
+do not generate additional Attacks.
+Reyngeir, the God Spear 20 points
+Legend claims that this spear was forged entirely from
+the heart of a fallen star. Heavy enough that only the
+strongest of warriors could hope to wield it, let alone throw
+it, it remains superbly balanced and eternally sharp.
+The [Character] Stand gains the Parry and Cleave
+(2) Special Rules.
+19
+Teachings of Manheim
+Wealth of a Hundred Raids 30 points
+([Mortals] and [Exalted] Characters only.)
+The Regiment this Character Stand is currently
+attached to gains the Dauntless Special Rule.
+Cautious Strikes 10 points
+(Konyngur or Jarl Warlord Only)
+When a Friendly [Exalted] Regiment fails a charge
+it may move up to its March Characteristic instead
+of the Roll result.
+Lessons of the Jotun War 10 points
+(Konungyr and Jarl Only)
+Once per Battle, when you activate the Regiment this
+[Character] is currently attached to, it gains the
+effects of one tribal Tactic until the end of the Round.
+Jotun Shepard 5 points
+(Shaman Only)
+[Aura] Friendly [ Jotun] Regiments currently
+within 12'' gain the Indomitable (+2) Special Rule.
+Tales of Savagery
+Call the Hunt 30 points
+([Half-Bloods] Warlord only)
+[Always Active] When selecting a Regiment to
+arrive from Reinforcements automatically this
+Round, choose one additional Friendly [HalfBloods] Regiment. Call the Hunt does not trigger
+when selecting a Regiment with the Flank Special
+Rule to arrive.
+Vicious Assault 15 points
+The Regiment this [Character] is currently
+attached to gains Fury Special Rule.
+Pack Tactics 10 points
+([Half-Bloods] Characters only.)
+(Always Active) When a friendly Cavalry or Brute
+[Half-Bloods] Regiment performs a Clash Action
+against a Monster Regiment it gains the Support
+(X) Special Rule where X is equal to the Regiment’s
+Attack Characteristic until the end of the Action.
+Northern Sagas
+Ancestors' Blessing 15 points
+(Shaman and Volva Only)
+The Regiment this [Character] Stand is currently attached to, gains the Bastion (1) Draw Event.
+Currently attached Character Stands do not gain
+the Bastion (1) Draw Event.
+Promise of Flesh 10 points
+The [Half-bloods] Regiment this [Character]
+is currently attached to gains the Vanguard (3)
+Special Rule.
+Written in Bones 5 points
+The Regiment this [Character] is currently
+attached to cannot be Shattered.
+MASTERIES
+Character Stands are heroes of renown or highly gifted individuals, who excel above and beyond the masses.
+Be it through luck, education, training and effort or other powers at work, Character Stands have mastered
+abilities that make them exceptional.
+Masteries are optional upgrade abilities for your Characters, which are noted on your Army List and confer bonus abilities to your Character Stand. As a rule of thumb a Character Stand may select one Mastery
+however there are cases in which a Character Stand may be able to purchase more than one. This will be
+clearly stated in the Character Stand’s Army List Entry.
+Each Mastery can only be purchased once, unless stated otherwise.
+SPELLS
+SHAMAN
+Name Range Attunement Effect
+Blurred Vision 12" 3 (Scaling) Target Friendly Regiment, until the end of the Round:
+• The Regiment counts as if it were in a piece of Cover
+Zonal Terrain.
+Mist Weave 12" 3 Target Friendly Regiment, until the end of the Round:
+• The Regiment adds +1 to its Evasion Characteristic (to
+a maximum of 2).
+Reshape Destiny Self 3 Until the end of the Round:
+The [Character] gains [Aura]: Friendly Regiments
+declaring a Charge Action while within 12" gain Unstoppable
+Special Rule.
+Hoarfrost 12" 4 Target Enemy Regiment:
+• The Regiment suffers one Hit per success with the Armor
+Piercing (1) Special Rule.
+Dominate 12" 3 Target Enemy Regiment, until the end of the Round:
+• The Regiment suffers -1 to its Resolve Characteristic.
+Enrage Self 3 Target Friendly Regiments currently within 12" of this
+[Character]:
+The Regiments immediately perform an out of sequence
+Rally or Combat Rally Action.
+21
+VOLVA
+Name Range Attunement Effect
+Aspect of Fenrir Self 3 (Scaling) Target Friendly Regiment, until the end of the Round:
+• The Regiment gains the Unyielding Special Rule.
+Fruit of the
+Golden Tree
+12" 3 Target Friendly Infantry Regiment:
+• The Regiment Heals 1 Wound for each success.
+Glory of Valhalla 12" 3 Target Friendly Regiment, until the end of the Round:
+• The Regiment gains the Indomitable (2) Special Rule.
+Hela's Caress 12" 4 Target Enemy Regiment:
+• The Regiment suffers one Hit per success.
+Warbringer's Light 12" 3 (Scaling) Target Friendly Regiment, until the end of the Round:
+• The Regiment gains the Blessed Special Rule.
+ICE JOTNAR
+Name Range Attunement Effect
+Ice Armor Self " 3 Until the end of the Round:
+• The Regiment adds +1 to its Defense Characteristic
+Rime Storm 12" 3 Target Enemy Regiment:
+• The Regiment suffers two Hits per success.
+Encase 12" 3 (Scaling) Target Enemy Regiment, until the end of the Round:
+• The Regiment suffers -2 to its Movement Characteristic.
+22
+Raiders 120 Points / +40 Per Stand
+Type Class M V C A W R D E Command Models
+Infantry Light 6 1 2 4 4 2 1 1 Leader, Standard Bearer
+Special Rules Flurry, Impact (2), Tenacious (1)
+Regiment
+• This Regiment is comprised of 3 Stands with 4 Models on each Stand.
+• You may add additional Stands for +40 points per Stand.
+Battlefield Role: [Mortals]
+Any Raiders Regiment may take up to two of the following Officers:
+Captain 10 points Shield Biter 5 points
+23
+Bow Chosen 180 Points / +60 Per Stand
+Type Class M V C A W R D E Command Models
+Infantry Light 6 3 3 4 5 3 2 2 Leader
+Special Rules Barrage (5) (14”, Precise Shot)
+Regiment
+• This Regiment is comprised of 3 Stands with 4 Models on each Stand.
+• You may add additional Stands for +60 points per Stand.
+Battlefield Role: [Exalted]
+Stalkers 130 Points / +40 Per Stand
+Type Class M V C A W R D E Command Models
+Infantry Light 6 2 2 4 4 2 1 2 Leader, Standard Bearer
+Special Rules Barrage (4) (16”), Opportunists, Pathfinders
+Regiment
+• This Regiment is comprised of 3 Stands with 4 Models on each Stand.
+• You may add additional Stands for +40 points per Stand.
+Battlefield Role: [Half-Bloods]
+24
+Werewargs 160 Points / +60 Per Stand
+Type Class M V C A W R D E Command Models
+Brute Light 7 1 2 6 5 3 2 1 Leader
+Draw Events Regeneration (5)
+Special Rules Impact (3), Terrifying (1), Flurry
+Regiment
+• This Regiment is comprised of 3 Stands with 1 Model on each Stand.
+• You may add additional Stands for +60 points per Stand.
+Battlefield Role: [Half-Bloods]
+Huskarls 150 Points / +50 Per Stand
+Type Class M V C A W R D E Command Models
+Infantry Medium 6 1 3 5 4 3 2 0 Leader, Standard Bearer
+Draw Events Bastion (1)
+Special Rules Shield, Impact (2), Untouchable
+Regiment
+• This Regiment is comprised of 3 Stands with 4 Models on each Stand.
+• You may add additional Stands for +50 points per Stand.
+Battlefield Role: [Mortals]
+Any Huskarl Regiment may take up to two of the following Officers:
+Thegn 25 points Skald 20 points
+25
+Ulfhednar 150 Points / +45 Per Stand
+Type Class M V C A W R D E Command Models
+Infantry Medium 6 1 2 6 4 5 2 1 Leader, Standard Bearer
+Special Rules Vanguard (4), Tenacious (1), Lethal Demise (3)
+While a Shaman is attached to this Regiment, it gains the Bodyguard Special Rule.
+Regiment
+• This Regiment is comprised of 3 Stands with 4 Models on each Stand.
+• You may add additional Stands for +45 points per Stand.
+Battlefield Role: [Mortals]
+Any Ulfhednar Regiment may take one of the following Officers:
+Savage 15 points Shield Biter 5 points
+Trolls 180 Points / +60 Per Stand
+Type Class M V C A W R D E Command Models
+Infantry Medium 6 1 2 5 6 3 2 1 Leader, Standard Bearer
+Draw Events Regeneration (6)
+Special Rules Cleave (1), Dread, Fearsome, Oblivious
+Regiment
+• This Regiment is comprised of 3 Stands with 4 Models on each Stand.
+• You may add additional Stands for +60 points per Stand.
+Battlefield Role: [Half-Bloods]
+26
+Valkyries 150 Points / +50 Per Stand
+Type Class M V C A W R D E Command Models
+Infantry Medium 6 1 3 4 4 3 2 0 Leader, Standard Bearer
+Special Rules Blessed, Devout, Shield, Support (2)
+Regiment
+• This Regiment is comprised of 3 Stands with 4 Models on each Stand.
+• You may add additional Stands for +50 points per Stand.
+Battlefield Role: [Mortals]
+Fenr Beastpack 140 Points / +50 Per Stand
+Type Class M V C A W R D E Command Models
+Cavalry Medium 7 1 2 5 4 2 2 2 Leader
+Special Rules Fluid Formation, Flank, Opportunists, Irregular, Loose Formation, Vanguard (4)
+Regiment
+• This Regiment is comprised of 3 Stands with 1 Model on each Stand.
+• You may add additional Stands for +50 points per Stand.
+Battlefield Role: [Half-Bloods]
+27
+Ugr 150 Points / +50 Per Stand
+Type Class M V C A W R D E Command Models
+Brute Medium 6 1 3 4 5 3 2 0 Leader
+Special Rules Cleave (2), Fearless, Oblivious, Impact (2), Unstoppable
+Savage Retaliation: When this Regiment is charged in its front arc and is not within a piece of
+Hindering Terrain with at least half of its Stands (Rounding up), it simultaneously immediately inflicts
+Impact Attacks against the Charging Regiment.
+Note: If an Enemy Regiment does not have Impact Attacks you still perform yours.
+Regiment
+• This Regiment is comprised of 3 Stands with 1 Model on each Stand.
+• You may add additional Stands for +50 points per Stand.
+Battlefield Role: [Half-Bloods]
+Bearsarks 160 Points / +45 Per Stand
+Type Class M V C A W R D E Command Models
+Infantry Heavy 6 1 3 5 4 5 2 1 Leader, Standard Bearer
+Special Rules Cleave (2), Vanguard (4), Tenacious (1)
+Rampage: While this Regiment is Below Starting Strength it adds +1 to its Clash and Attack
+Characteristics
+Regiment
+• This Regiment is comprised of 3 Stands with 4 Models on each Stand.
+• You may add additional Stands for +45 points per Stand.
+Battlefield Role: [Mortals]
+Any Bearsarks Regiment may take one of the following Officers:
+Savage 15 points Shield Biter 5 points
+28
+Steel Chosen 160 Points / +50 Per Stand
+Type Class M V C A W R D E Command Models
+Infantry Medium 6 1 3 6 5 3 2 1 Leader, Standard Bearer
+Special Rules Flurry, Linebreaker, Impact (2)
+Regiment
+• This Regiment is comprised of 3 Stands with 4 Models on each Stand.
+• You may add additional Stands for +50 points per Stand.
+Battlefield Role: [Exalted]
+Any Steel Chosen Regiment may take the following Officer:
+Shield Biter 5 points Thegn 20 points
+Goltr Beastpack 165 Points / +50 Per Stand
+Type Class M V C A W R D E Command Models
+Cavalry Medium 6 1 3 5 5 3 3 1 Leader
+Special Rules Brutal Impact (1), Linebreaker, Trample (2), Irregular, Impact (4), Unstoppable
+Regiment
+• This Regiment is comprised of 3 Stands with 1 Model on each Stand.
+• You may add additional Stands for +50 points per Stand.
+Battlefield Role: [Half-Bloods]
+29
+Sea Jotnar 240 Points
+Type Class M V C A W R D E
+Monster Heavy 7 3 3 13 16 3 3 2
+Special Rules Barrage (6) (8”, Armor Piercing (1)), Cleave (2), Fiend Hunter, Terrifying (1), Impact
+(5)
+The Sea Jotnar may perform a free Volley Action during its Activation, and may perform a Volley
+Action while in contact with an Enemy Regiment, but must target the Enemy Regiment(s) it is in
+contact with. A Sea Jotnar may not perform more than one Volley Action during its Activation.
+Regiment
+• This Regiment is comprised of 1 Stand with 1 Model on it.
+Battlefield Role: [ Jotun]
+Mountain Jotnar 210 Points
+Type Class M V C A W R D E
+Monster Medium 7 2 3 12 18 3 3 0
+Special Rules Cleave (2), Terrifying (1), Hardened (1), Impact (6)
+Hurl It! - When this Regiment performs a Charge and fails to roll high enough to reach its Target, it
+immediately performs an out-of-sequence Volley Action with the Barrage (1) and Aimed Shot Special
+Rules against the Charge Target.
+The Target counts as being in range but the Mountain Jotnar does not count as being within effective
+range for the purposes of this Action. Instead of Rolling for Defense, the Enemy Regiment suffers X
+wounds per successful hit where X is equal to the Target Regiment’s unmodified Size. These wounds do
+not trigger Morale Tests.
+Regiment
+• This Regiment is comprised of 1 Stand with 1 Model on it.
+Battlefield Role: [ Jotun]
+30
+Ice Jotnar 240 Points
+Type Class M V C A W R D E
+Monster Heavy 7 1 3 14 16 4 3 2
+Special Rules Cleave (3), Priest (5), Terrifying (1), Impact (6), Unstoppable
+An Ice Jotnar may perform a free Spellcasting Action during its Activation as if it were a
+Character Stand. The Ice Jotnar knows all the following Spells at no additional point cost:
+• Encase
+• Rime Storm
+• Ice Armor
+Regiment
+• This Regiment is comprised of 1 Stand with 1 Model on it.
+Battlefield Role: [ Jotun]
+31
+OFFICERS
+Certain Regiments have the option of taking Officer Models. Each Regiment may only take each Officer once. If
+the Officer Model is removed as a casualty, all benefits are lost. An Officer model is purchased on top of the model
+it replaces. In the case of Cavalry or Brute Stand you need to pay for the Stand and the Officer.
+Captain
+• The Regiment may use the unmodified Resolve
+Characteristic of a Friendly [Character]
+within 12” as if it was attached to this Regiment.
+• The Regiment gain Vanguard (4) Special rule
+• Before the first Reinforcement Phase you can
+choose to change this Regiment 's Class to Medium.
+Savage
+The Regiment may perform an additional Clash
+Action during its Activation.
+Shield Biter
+The Regiment’s Command Stand may Die Fighting!
+Skald
+The Regiment adds +1 to its Resolve Characteristic
+and gains the Bravery Special Rule.
+Thegn
+Before the first Reinforcement phase, choose a single
+Tribal Tactic; the Regiment is always under the effect
+of that Tribal Tactic.
