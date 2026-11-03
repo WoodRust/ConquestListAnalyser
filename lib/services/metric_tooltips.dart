@@ -803,6 +803,10 @@ class MetricTooltips {
                 '• Exception: Characters connected to light regiments = 0',
                 style: TextStyle(fontSize: 14),
               ),
+              Text(
+                '• Powerful Presence characters connected to medium/heavy regiments = 3',
+                style: TextStyle(fontSize: 14),
+              ),
               SizedBox(height: 12),
               Text(
                 'Higher values = better objective control',

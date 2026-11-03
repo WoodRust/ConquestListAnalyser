@@ -177,7 +177,7 @@ class ScoringEngine {
     if (regimentsWithSpeed.isEmpty) return 0.0;
 
     final totalSpeed = regimentsWithSpeed.fold(0, (total, regiment) {
-      return total + (regiment.unit.characteristics.march ?? 0);
+      return total + (regiment.march ?? 0);
     });
 
     return totalSpeed / regimentsWithSpeed.length;
@@ -457,6 +457,7 @@ class ScoringEngine {
   /// Light regiments: 0 stands
   /// Medium/Heavy regiments: count each stand
   /// Characters: 1 stand (unless connected to light regiment = 0)
+  /// Characters with Powerful Presence: 3 stands when connected to non-light
   /// Character monsters: use monster rules, not character rules
   int _calculateScoringStands(ArmyList armyList) {
     int totalStands = 0;
@@ -495,8 +496,11 @@ class ScoringEngine {
             // Connected to light → character counts as 0
             totalStands += 0;
           } else {
-            // Connected to medium/heavy → character counts as 1
-            totalStands += 1;
+            // Connected to medium/heavy → character counts as 1,
+            // or 3 with Powerful Presence
+            final hasPowerfulPresence = regiment.unit.specialRules.any(
+                (rule) => rule.name.toLowerCase() == 'powerful presence');
+            totalStands += hasPowerfulPresence ? 3 : 1;
           }
         }
         continue;

@@ -16,6 +16,9 @@ class Unit {
   final int points;
   final int? pointsPerAdditionalStand;
   final String? officerUpgrades;
+  final bool isModularStand;
+  final Map<String, int> commandModifiers;
+  final Map<String, int> regimentModifiers;
 
   const Unit({
     required this.name,
@@ -32,6 +35,9 @@ class Unit {
     required this.points,
     this.pointsPerAdditionalStand,
     this.officerUpgrades,
+    this.isModularStand = false,
+    this.commandModifiers = const {},
+    this.regimentModifiers = const {},
   });
 
   /// Creates a Unit from JSON data
@@ -60,6 +66,38 @@ class Unit {
       points: json['points'] as int,
       pointsPerAdditionalStand: json['pointsPerAdditionalStand'] as int?,
       officerUpgrades: json['officerUpgrades'] as String?,
+      isModularStand: json['isModularStand'] as bool? ?? false,
+      commandModifiers: _intMap(json['commandModifiers']),
+      regimentModifiers: _intMap(json['regimentModifiers']),
+    );
+  }
+
+  static Map<String, int> _intMap(dynamic value) =>
+      (value as Map<String, dynamic>? ?? {})
+          .map((key, v) => MapEntry(key, (v as num).toInt()));
+
+  Unit copyWith({
+    UnitCharacteristics? characteristics,
+    List<SpecialRule>? specialRules,
+  }) {
+    return Unit(
+      name: name,
+      faction: faction,
+      type: type,
+      regimentClass: regimentClass,
+      actualRegimentClass: actualRegimentClass,
+      characteristics: characteristics ?? this.characteristics,
+      specialRules: specialRules ?? this.specialRules,
+      numericSpecialRules: numericSpecialRules,
+      supremacyAbilities: supremacyAbilities,
+      drawEvents: drawEvents,
+      auxiliaryOptions: auxiliaryOptions,
+      points: points,
+      pointsPerAdditionalStand: pointsPerAdditionalStand,
+      officerUpgrades: officerUpgrades,
+      isModularStand: isModularStand,
+      commandModifiers: commandModifiers,
+      regimentModifiers: regimentModifiers,
     );
   }
 
@@ -82,6 +120,9 @@ class Unit {
       'points': points,
       'pointsPerAdditionalStand': pointsPerAdditionalStand,
       'officerUpgrades': officerUpgrades,
+      'isModularStand': isModularStand,
+      'commandModifiers': commandModifiers,
+      'regimentModifiers': regimentModifiers,
     };
   }
 
@@ -142,6 +183,21 @@ class UnitCharacteristics {
     );
   }
 
+  /// Returns a copy with each named characteristic increased by its modifier.
+  UnitCharacteristics applyModifiers(Map<String, int> modifiers) {
+    int mod(String key) => modifiers[key] ?? 0;
+    return UnitCharacteristics(
+      march: march == null ? null : march! + mod('march'),
+      volley: volley + mod('volley'),
+      clash: clash + mod('clash'),
+      attacks: attacks + mod('attacks'),
+      wounds: wounds + mod('wounds'),
+      resolve: resolve + mod('resolve'),
+      defense: defense + mod('defense'),
+      evasion: evasion + mod('evasion'),
+    );
+  }
+
   Map<String, dynamic> toJson() {
     return {
       'march': march,
@@ -169,6 +225,16 @@ class AuxiliaryProfile {
     required this.specialRules,
     required this.numericSpecialRules,
   });
+
+  factory AuxiliaryProfile.fromUnit(Unit unit,
+      {UnitCharacteristics? characteristics}) {
+    return AuxiliaryProfile(
+      name: unit.name,
+      characteristics: characteristics ?? unit.characteristics,
+      specialRules: unit.specialRules,
+      numericSpecialRules: unit.numericSpecialRules,
+    );
+  }
 
   factory AuxiliaryProfile.fromJson(Map<String, dynamic> json) {
     return AuxiliaryProfile(

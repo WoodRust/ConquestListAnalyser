@@ -202,6 +202,12 @@ class _MainScreenState extends State<MainScreen> {
         continue;
       }
 
+      if (regiment.isModular) {
+        buffer.writeln(
+            '* Modular Regiment (${regiment.displayStands}) [${regiment.pointsCost}]: ${regiment.modularComposition}');
+        continue;
+      }
+
       if (regiment.unit.regimentClass == 'character') {
         buffer.write('== ${regiment.unit.name} [${regiment.pointsCost}]');
       } else {

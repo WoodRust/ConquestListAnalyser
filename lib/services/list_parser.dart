@@ -1,5 +1,6 @@
 import '../models/regiment.dart';
 import '../models/army_list.dart';
+import '../models/unit.dart';
 import 'unit_database.dart';
 import 'unit_database_interface.dart';
 
@@ -138,6 +139,11 @@ class ListParser {
     final pointsCost = int.parse(match.group(3)!);
     final upgradesText = match.group(4)?.trim() ?? '';
 
+    if (unitName.toLowerCase() == 'modular regiment') {
+      final modular = _parseModularRegiment(stands, pointsCost, upgradesText);
+      return modular == null ? [] : [modular];
+    }
+
     if (unitName.toLowerCase().startsWith('war chariots')) {
       return _parseWarChariots(
         unitName,
@@ -178,6 +184,103 @@ class ListParser {
         .map((upgrade) => upgrade.trim())
         .where((upgrade) => upgrade.isNotEmpty)
         .toList();
+  }
+
+  /// Parse a Yoroni Modular Regiment composition such as
+  /// "Tengu Ayakashi (L), Tengu Ayakashi (2), Kappa Bushi".
+  /// Returns null (and logs a warning) if the composition breaks the build rules.
+  Regiment? _parseModularRegiment(
+      int stands, int pointsCost, String compositionText) {
+    final counts = <String, int>{};
+    final units = <String, Unit>{};
+    String? leaderName;
+    final token = RegExp(r'\(([^)]*)\)');
+
+    for (final entry in _splitUpgrades(compositionText)) {
+      final name = entry.replaceAll(token, '').trim();
+      var quantity = 1;
+      var isLeader = false;
+      for (final match in token.allMatches(entry)) {
+        final value = match.group(1)!.trim();
+        if (value.toUpperCase() == 'L') {
+          isLeader = true;
+        } else {
+          quantity = int.tryParse(value) ?? quantity;
+        }
+      }
+
+      final unit = _database.findUnit(name);
+      if (unit == null || !unit.isModularStand) {
+        print('Modular Regiment stand not recognised: $name');
+        return null;
+      }
+      units[unit.name] = unit;
+      counts[unit.name] = (counts[unit.name] ?? 0) + quantity;
+
+      if (isLeader) {
+        if (leaderName != null && leaderName != unit.name) {
+          print('Modular Regiment has more than one leader: $compositionText');
+          return null;
+        }
+        leaderName = unit.name;
+      }
+    }
+
+    if (counts.isEmpty) {
+      print('Modular Regiment has no stands: $compositionText');
+      return null;
+    }
+    leaderName ??= counts.keys.first;
+
+    final total = counts.values.fold(0, (sum, count) => sum + count);
+    final leaderCount = counts[leaderName]!;
+    final otherCount = total - leaderCount;
+    if (total != stands || total < 2 || otherCount >= leaderCount) {
+      print('Invalid Modular Regiment (expected $stands stands, '
+          'found $total with $leaderCount $leaderName): $compositionText');
+      return null;
+    }
+
+    final leader = units[leaderName]!;
+    final modifiers = <String, int>{};
+    void addModifiers(Map<String, int> source) => source.forEach(
+        (key, value) => modifiers[key] = (modifiers[key] ?? 0) + value);
+    addModifiers(leader.commandModifiers);
+    for (final unit in units.values) {
+      addModifiers(unit.regimentModifiers);
+    }
+
+    final leaderUnit = leader.copyWith(
+      characteristics: leader.characteristics.applyModifiers(modifiers),
+      specialRules: [
+        ...leader.specialRules,
+        const SpecialRule(
+          name: 'Leader',
+          description: 'The Modular Regiment\'s Command Stand and Leader.',
+        ),
+      ],
+    );
+
+    final auxiliaryStands = <AuxiliaryProfile>[];
+    counts.forEach((name, count) {
+      if (name == leaderName) return;
+      final unit = units[name]!;
+      final profile = AuxiliaryProfile.fromUnit(
+        unit,
+        characteristics: unit.characteristics.applyModifiers(modifiers),
+      );
+      for (var index = 0; index < count; index++) {
+        auxiliaryStands.add(profile);
+      }
+    });
+
+    return Regiment(
+      unit: leaderUnit,
+      stands: leaderCount,
+      pointsCost: pointsCost,
+      auxiliaryStands: auxiliaryStands,
+      isModular: true,
+    );
   }
 
   List<Regiment> _parseWarChariots(

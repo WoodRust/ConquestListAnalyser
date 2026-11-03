@@ -838,7 +838,7 @@ class CompareListsScreen extends StatelessWidget {
                             SizedBox(
                               width: 120,
                               child: Text(
-                                regiment.unit.name,
+                                regiment.displayName,
                                 style: const TextStyle(fontSize: 11),
                                 overflow: TextOverflow.ellipsis,
                               ),
@@ -846,7 +846,7 @@ class CompareListsScreen extends StatelessWidget {
                           ),
                           DataCell(
                             Text(
-                              regiment.stands.toString(),
+                              regiment.displayStands.toString(),
                               style: const TextStyle(fontSize: 11),
                             ),
                           ),

@@ -12,6 +12,10 @@ class Regiment {
   final String? sourceGroupName;
   final int? sourceGroupPoints;
 
+  /// True for Yoroni Modular Regiments: [unit] is the leader's profile and
+  /// [auxiliaryStands] holds one profile per non-leader-type stand.
+  final bool isModular;
+
   const Regiment({
     required this.unit,
     required this.stands,
@@ -22,6 +26,7 @@ class Regiment {
     this.sourceGroupId,
     this.sourceGroupName,
     this.sourceGroupPoints,
+    this.isModular = false,
   });
 
   /// Creates a Regiment from JSON data
@@ -38,6 +43,7 @@ class Regiment {
       sourceGroupId: json['sourceGroupId'] as String?,
       sourceGroupName: json['sourceGroupName'] as String?,
       sourceGroupPoints: json['sourceGroupPoints'] as int?,
+      isModular: json['isModular'] as bool? ?? false,
     );
   }
 
@@ -54,7 +60,40 @@ class Regiment {
       'sourceGroupId': sourceGroupId,
       'sourceGroupName': sourceGroupName,
       'sourceGroupPoints': sourceGroupPoints,
+      'isModular': isModular,
     };
+  }
+
+  /// Name shown in tables.
+  String get displayName =>
+      isModular ? 'Modular Regiment (${unit.name})' : unit.name;
+
+  /// Stand count shown in tables (modular regiments include all stand types).
+  int get displayStands => isModular ? stands + auxiliaryStands.length : stands;
+
+  /// Modular composition in list-text form,
+  /// e.g. "Tengu Ayakashi (L), Tengu Ayakashi (2), Kappa Bushi".
+  String get modularComposition {
+    String entry(String name, int count) =>
+        count > 1 ? '$name ($count)' : name;
+    final selections = <String>['${unit.name} (L)'];
+    if (stands > 1) selections.add(entry(unit.name, stands - 1));
+    final otherCounts = <String, int>{};
+    for (final stand in auxiliaryStands) {
+      otherCounts[stand.name] = (otherCounts[stand.name] ?? 0) + 1;
+    }
+    otherCounts.forEach((name, count) => selections.add(entry(name, count)));
+    return selections.join(', ');
+  }
+
+  /// March characteristic; modular regiments use the lowest of all stands.
+  int? get march {
+    final base = unit.characteristics.march;
+    if (!isModular || base == null) return base;
+    return auxiliaryStands
+        .map((stand) => stand.characteristics.march)
+        .whereType<int>()
+        .fold<int>(base, (lowest, value) => value < lowest ? value : lowest);
   }
 
   /// Total wounds for this regiment, including attached auxiliary stands.
@@ -78,8 +117,12 @@ class Regiment {
   /// Barrage value for this regiment from numeric special rules
   int get barrageValue => unit.numericSpecialRules['barrage'] as int? ?? 0;
 
-  /// Barrage range value for this regiment from numeric special rules
-  int get barrageRange => unit.numericSpecialRules['barrageRange'] as int? ?? 0;
+  /// Barrage range value for this regiment (longest across all stand profiles)
+  int get barrageRange => auxiliaryStands.fold(
+      unit.numericSpecialRules['barrageRange'] as int? ?? 0, (longest, stand) {
+        final range = stand.numericSpecialRules['barrageRange'] as int? ?? 0;
+        return range > longest ? range : longest;
+      });
 
   /// Armor piercing value for this regiment from numeric special rules
   int get armorPiercingValue =>
@@ -112,8 +155,7 @@ class Regiment {
   double get rangedExpectedHits => calculateRangedExpectedHits();
 
   /// Calculate ranged armor piercing rating for this regiment (Ranged Expected Hits * Armor Piercing)
-  double get rangedArmorPiercingRating =>
-      rangedExpectedHits * armorPiercingValue;
+  double get rangedArmorPiercingRating => calculateRangedArmorPiercingRating();
 
   /// Get effective evasion considering army-wide effects
   int getEffectiveEvasion(List<CharacteristicModifier> armyEffects) {
@@ -267,9 +309,26 @@ class Regiment {
   }
 
   /// Calculate ranged armor piercing rating for this regiment with army context
+  /// Each stand profile's ranged hits are multiplied by its own Armor Piercing.
   double calculateRangedArmorPiercingRating() {
-    final rangedHits = calculateRangedExpectedHits();
-    return rangedHits * armorPiercingValue;
+    var rating = _rangedHitsFor(
+          unit.characteristics,
+          unit.numericSpecialRules,
+          stands,
+          hasLeader: true,
+          hasLeaderRule: unit.specialRules
+              .any((rule) => rule.name.toLowerCase().contains('leader')),
+        ) *
+        armorPiercingValue;
+    for (final auxiliary in auxiliaryStands) {
+      rating += _rangedHitsFor(
+            auxiliary.characteristics,
+            auxiliary.numericSpecialRules,
+            1,
+          ) *
+          (auxiliary.numericSpecialRules['armorPiercingValue'] as int? ?? 0);
+    }
+    return rating;
   }
 
   @override
