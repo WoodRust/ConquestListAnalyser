@@ -10,6 +10,8 @@ class UnitDatabase implements UnitDatabaseInterface {
   UnitDatabase._();
 
   final Map<String, List<Unit>> _factionUnits = {};
+  /// Alternative unit names (lower case) from a unit's optional `aliases` list
+  final Map<String, Unit> _aliases = {};
   bool _isLoaded = false;
 
   /// List of all available faction files
@@ -24,6 +26,7 @@ class UnitDatabase implements UnitDatabaseInterface {
     'spires',
     'hundredKingdoms',
     'Yoroni',
+    'WeaverCourts',
   ];
 
   @override
@@ -51,7 +54,14 @@ class UnitDatabase implements UnitDatabaseInterface {
       final String jsonString =
           await rootBundle.loadString('assets/data/$faction.json');
       final List<dynamic> jsonList = json.decode(jsonString);
-      final units = jsonList.map((json) => Unit.fromJson(json)).toList();
+      final units = <Unit>[];
+      for (final json in jsonList) {
+        final unit = Unit.fromJson(json);
+        units.add(unit);
+        for (final alias in json['aliases'] as List? ?? []) {
+          _aliases[(alias as String).trim().toLowerCase()] = unit;
+        }
+      }
 
       _factionUnits[faction.toLowerCase()] = units;
       print('Loaded ${units.length} units for faction: $faction');
@@ -74,6 +84,12 @@ class UnitDatabase implements UnitDatabaseInterface {
           return unit;
         }
       }
+    }
+
+    final aliased = _aliases[normalizedName];
+    if (aliased != null) {
+      print('Found unit "$unitName" as alias of "${aliased.name}"');
+      return aliased;
     }
 
     print('Unit not found in any faction: "$unitName"');
@@ -120,6 +136,7 @@ class UnitDatabase implements UnitDatabaseInterface {
   /// Clear all loaded data (useful for testing or reloading)
   void clearData() {
     _factionUnits.clear();
+    _aliases.clear();
     _isLoaded = false;
   }
 }
